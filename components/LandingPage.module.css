@@ -1,0 +1,13 @@
+.mainback {
+}
+.lp {
+	background-color: lightgray;
+}
+
+.mainstyles {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
