@@ -8,7 +8,7 @@ import LandingPage from '../components/LandingPage';
 const Index = () => {
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
 			<LandingPage/>
 			<Footer />
 		</>

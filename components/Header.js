@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Header = () => {
 	return (
@@ -22,14 +23,19 @@ const Header = () => {
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav ml-auto">
 						<li className="nav-item">
-							<a className="nav-link" href="#">
-								Subscribe
-							</a>
+							<Link href="/articles">
+								<a>Articles</a>
+							</Link>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link" href="#">
-								Get Started
-							</a>
+							<Link href="/membership">
+								<a>Subscribe</a>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link href="/signup">
+								<button className={`btn`}>Get Started</button>
+							</Link>
 						</li>
 						<li className="nav-item dropdown">
 							<a

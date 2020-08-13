@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './LandingPage.module.css';
 
 const LandingPage = () => {
@@ -11,10 +12,27 @@ const LandingPage = () => {
 					<p>Learn with the world</p>
 					<br />
 					<br />
-					<button className={`btn btn-outline-light mb-1`}>Get Started</button>
+					<Link href="/signup">
+						<a>
+							<button className={`btn btn-outline-light mb-1`}>Get Started</button>
+						</a>
+					</Link>
 					<p>
-						Already have an account.<span>Sign in</span>
+						Already have an account.
+						<Link href="/signin">
+							<a>
+								<button className={`btn mb-1 text-danger text-capitalize`}>Sign in</button>
+							</a>
+						</Link>
 					</p>
+					<div>
+						Just here to read.
+						<Link href="/articles">
+							<a>
+								<button className={`btn mb-1 text-danger text-capitalize`}>Articles</button>
+							</a>
+						</Link>
+					</div>
 				</div>
 			</div>
 			<div className={`container`}>
@@ -49,13 +67,21 @@ const LandingPage = () => {
 				<div className={`text-center`}>
 					<h3>Subscribe to get the most of us</h3>
 					<p>Read unlimited articles. Write unlimited. Do unlimited. Be unlimited</p>
-					<button className={`btn btn-outline-success`}>Subscribe</button>
+					<Link href="/membership">
+						<a>
+							<button className={`btn btn-outline-success`}>Subscribe</button>
+						</a>
+					</Link>
 				</div>
 			</div>
 			<div className={`container text-center py-5`}>
 				<h1 className={`text-capitalize`}>So what are you waiting for?</h1>
 				<h3>Learn More with us</h3>
-				<button className={`btn btn-success`}>Get started</button>
+				<Link href="/signup">
+					<a>
+						<button className={`btn btn-success mb-1`}>Get Started</button>
+					</a>
+				</Link>
 			</div>
 		</div>
 	);
