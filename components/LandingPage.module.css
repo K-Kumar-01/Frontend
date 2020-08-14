@@ -1,7 +1,25 @@
 .mainback {
 }
 .lp {
-	background-color: lightgray;
+	background-color: #008060;
+	color: white;
+}
+
+.button {
+	color: white !important;
+}
+
+.button:hover {
+	color: #008060 !important;
+}
+
+.link {
+	color: lightgrey;
+	transition: all 0.2s linear;
+}
+.link:hover {
+	color: lightgray;
+	transform: scale(1.2);
 }
 
 .mainstyles {
@@ -10,4 +28,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.green{
+	color:#008060
 }

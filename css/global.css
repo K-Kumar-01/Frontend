@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Lora:wght@700&display=swap');
 
 html,
 body {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Alegreya', serif
+}
+/* font-family: 'Alegreya', serif;
+font-family: 'Lora', serif; */
+.heading {
+	font-family: 'Lora', serif;
 }
 
 .form-control:focus {
