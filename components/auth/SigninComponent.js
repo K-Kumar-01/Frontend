@@ -14,11 +14,18 @@ const FormWithToasts = () => {
 		event.preventDefault();
 		loginUser(data)
 			.then((response) => {
-				addToast(`${response.message}`, {
-					appearance: 'success',
-					autoDismiss: true,
-				});
-				Router.push('/');
+				if (response.error) {
+					addToast(`${response.error}`, {
+						appearance: 'error',
+						autoDismiss: true,
+					});
+				} else {
+					addToast(`${response.message}`, {
+						appearance: 'success',
+						autoDismiss: true,
+					});
+					Router.push('/');
+				}
 			})
 			.catch((err) => {
 				console.log(err);

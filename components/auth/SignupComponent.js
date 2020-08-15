@@ -5,8 +5,6 @@ import styles from './SignupComponent.module.css';
 import Link from 'next/link';
 import { createUser } from '../../actions/auth';
 
-
-
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
 	const { register, handleSubmit, errors, watch } = useForm(); // initialise the hook
@@ -17,13 +15,20 @@ const FormWithToasts = () => {
 		createUser(data)
 			.then((response) => {
 				console.log(response);
-				addToast(`${response.message}`, {
-					appearance: 'success',
-					autoDismiss: true,
-				});
+				if (response.error) {
+					addToast(`${response.error}`, {
+						appearance: 'error',
+						autoDismiss: true,
+					});
+				} else {
+					addToast(`${response.message}`, {
+						appearance: 'success',
+						autoDismiss: true,
+					});
+				}
 			})
 			.catch((err) => {
-				addToast(`${err.message}`, {
+				addToast(`${err}`, {
 					appearance: 'error',
 					autoDismiss: true,
 				});
