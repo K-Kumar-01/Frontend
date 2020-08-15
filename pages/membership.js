@@ -11,9 +11,9 @@ const membershipData = [
 
 const Membership = () => {
 	const showPlans = () => {
-		return membershipData.map((data) => {
+		return membershipData.map((data, i) => {
 			return (
-				<div className={`col-md-4 col-sm-12`}>
+				<div className={`col-md-4 col-sm-12`} key={`membership-${i}`}>
 					<div className="card ">
 						<div className={`card-header`}>
 							<h4>{data.title}</h4>
@@ -29,7 +29,7 @@ const Membership = () => {
 	};
 
 	return (
-		<div style={{ width: '100vw', height: '100vh', backgroundColor:'#efefef' }}>
+		<div style={{ width: '100vw', height: '100vh', backgroundColor: '#efefef' }}>
 			<div
 				className={`container d-flex justify-content-center align-items-center`}
 				style={{ width: '100%', height: '100vh' }}

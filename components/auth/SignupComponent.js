@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useToasts } from 'react-toast-notifications';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 import styles from './SignupComponent.module.css';
 import Link from 'next/link';
+import { createUser } from '../../actions/auth';
 
-const SignupComponent = () => {
-	// const { addToast } = useToasts();
+
+
+const FormWithToasts = () => {
+	const { addToast } = useToasts();
 	const { register, handleSubmit, errors, watch } = useForm(); // initialise the hook
+	// const [loading, setLoading] = useState(false);
 	const onSubmit = (data, event) => {
 		event.preventDefault();
-		// addToast('Signup Succesful. Please signin.', {
-		// 	appearance: 'success',
-		// 	autoDismiss: true,
-		// });
+
+		createUser(data)
+			.then((response) => {
+				console.log(response);
+				addToast(`${response.message}`, {
+					appearance: 'success',
+					autoDismiss: true,
+				});
+			})
+			.catch((err) => {
+				addToast(`${err.message}`, {
+					appearance: 'error',
+					autoDismiss: true,
+				});
+				console.error(err);
+			});
 	};
 
 	const showForm = () => {
@@ -121,6 +137,15 @@ const SignupComponent = () => {
 				</div>
 			</div>
 		</div>
+	);
+};
+
+const SignupComponent = () => {
+	return (
+		<ToastProvider>
+			{/* {loading && <Spinner />} */}
+			<FormWithToasts />
+		</ToastProvider>
 	);
 };
 

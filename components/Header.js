@@ -1,13 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 
+import styles from './Header.module.css';
+
 const Header = () => {
 	return (
-		<nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+		<nav className="navbar navbar-expand-lg navbar-top navbar-light bg-light">
 			<div className="container">
-				<a className="navbar-brand" href="#">
-					Titan Read
-				</a>
+				<Link href="/">
+					<a className="navbar-brand">Titan Read</a>
+				</Link>
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -22,19 +24,19 @@ const Header = () => {
 
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav ml-auto">
-						<li className="nav-item">
+						{/* <li className="nav-item">
 							<Link href="/articles">
-								<a>Articles</a>
+								<button className={`${styles.link} btn`}>Articles</button>
 							</Link>
-						</li>
+						</li> */}
 						<li className="nav-item">
 							<Link href="/membership">
-								<a>Subscribe</a>
+								<button className={`${styles.link} btn`}>Subscribe</button>
 							</Link>
 						</li>
 						<li className="nav-item">
 							<Link href="/signup">
-								<button className={`btn`}>Get Started</button>
+								<button className={`btn btn-outline-success`}>Get Started</button>
 							</Link>
 						</li>
 						<li className="nav-item dropdown">

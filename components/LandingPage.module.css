@@ -1,4 +1,5 @@
 .mainback {
+	text-align: center;
 }
 .lp {
 	background-color: #008060;
@@ -30,6 +31,6 @@
 	align-items: center;
 }
 
-.green{
-	color:#008060
+.green {
+	color: #008060;
 }

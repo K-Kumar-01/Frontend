@@ -1,36 +1,50 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useToasts } from 'react-toast-notifications';
-import styles from './SignupComponent.module.css';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 import Link from 'next/link';
+import Router from 'next/router';
 
-const SigninComponent = () => {
-	// const { addToast } = useToasts();
+import styles from './SignupComponent.module.css';
+import { loginUser } from '../../actions/auth';
+
+const FormWithToasts = () => {
+	const { addToast } = useToasts();
 	const { register, handleSubmit, errors, watch } = useForm(); // initialise the hook
 	const onSubmit = (data, event) => {
 		event.preventDefault();
-		// addToast('Signup Succesful. Please signin.', {
-		// 	appearance: 'success',
-		// 	autoDismiss: true,
-		// });
+		loginUser(data)
+			.then((response) => {
+				addToast(`${response.message}`, {
+					appearance: 'success',
+					autoDismiss: true,
+				});
+				Router.push('/');
+			})
+			.catch((err) => {
+				console.log(err);
+				addToast(`${err}`, {
+					appearance: 'error',
+					autoDismiss: true,
+				});
+			});
 	};
 
 	const showForm = () => {
 		return (
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className="form-group">
-					<label htmlFor="email">Email</label>
+					<label htmlFor="username">Username</label>
 					<input
-						type="email"
+						type="username"
 						className="form-control"
-						id="email"
-						placeholder="example@url.com"
-						name="email"
+						id="username"
+						placeholder="name123"
+						name="username"
 						ref={register({ required: true })}
 						autoComplete="off"
-						style={errors.email && { border: '1px solid red' }}
+						style={errors.username && { border: '1px solid red' }}
 					/>
-					<p className={`text-danger ${styles.errors}`}>{errors.email && 'Email is required'}</p>
+					<p className={`text-danger ${styles.errors}`}>{errors.username && 'Username is required'}</p>
 				</div>
 
 				<div className="form-group">
@@ -51,7 +65,7 @@ const SigninComponent = () => {
 				</div>
 				<div className="text-center">
 					<button type="submit" className="btn btn-primary btn-lg">
-						Signup
+						Signin
 					</button>
 				</div>
 			</form>
@@ -79,6 +93,14 @@ const SigninComponent = () => {
 				</div>
 			</div>
 		</div>
+	);
+};
+
+const SigninComponent = () => {
+	return (
+		<ToastProvider>
+			<FormWithToasts />
+		</ToastProvider>
 	);
 };
 
