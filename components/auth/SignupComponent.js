@@ -23,7 +23,6 @@ const FormWithToasts = () => {
 				} else {
 					addToast(`${response.message}`, {
 						appearance: 'success',
-						autoDismiss: true,
 					});
 				}
 			})
