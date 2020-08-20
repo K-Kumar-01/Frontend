@@ -2,16 +2,17 @@ import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ArticleCreate from '../../components/crud/article/ArticleCreate';
-import NProgress from '../../components/NProgress/Nprogress';
+import Layout from '../../components/Layout';
+
 
 const createArticle = () => {
 	return (
 		<main>
-			<NProgress>
+			<Layout>
 				<Header />
 				<ArticleCreate />
 				<Footer />
-			</NProgress>
+			</Layout>
 		</main>
 	);
 };

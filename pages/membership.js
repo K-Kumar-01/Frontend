@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import NProgress from '../components/NProgress/Nprogress';
+import Layout from '../components/Layout';
+Layout
 const membershipData = [
 	{
 		title: 'Monthly Subscription',
@@ -30,7 +31,7 @@ const Membership = () => {
 	};
 
 	return (
-		<NProgress>
+		<Layout>
 			<div style={{ width: '100vw', height: '100vh', backgroundColor: '#efefef' }}>
 				<div
 					className={`container d-flex justify-content-center align-items-center`}
@@ -52,7 +53,7 @@ const Membership = () => {
 					</section>
 				</div>
 			</div>
-		</NProgress>
+		</Layout>
 	);
 };
 

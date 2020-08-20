@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
+import Dante from 'Dante2';
 
 const ArticleCreate = () => {
-    return (
-        <div>
-            Article create component
-        </div>
-    )
-}
+	return (
+		<div className={`container`}>
+			<Dante
+				onChange={(editor) => {
+					console.log('editor content: ', editor.emitSerializedOutput());
+				}}
+			/>
+		</div>
+	);
+};
 
-export default ArticleCreate
+export default ArticleCreate;

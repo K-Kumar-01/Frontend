@@ -1,13 +1,14 @@
 import React from 'react';
 
 import SignupComponent from '../components/auth/SignupComponent';
-import NProgress from '../components/NProgress/Nprogress';
+import Layout from '../components/Layout';
+
 
 const Signup = () => {
 	return (
-		<NProgress>
+		<Layout>
 			<SignupComponent />
-		</NProgress>
+		</Layout>
 	);
 };
 

@@ -4,6 +4,25 @@ import 'nprogress/nprogress.css';
 
 import '../css/global.css';
 
+import Router from 'next/router';
+// import NProgress from 'nprogress';
+
+// NProgress.configure({ showSpinner: false });
+
+// Router.onRouteChangeStart = () => {
+// 	// console.log('onRouteChnageStart triggered');
+// 	NProgress.start();
+// };
+
+// Router.onRouteChangeComplete = () => {
+// 	// console.log('onRouteChnageComplete triggered');
+// 	NProgress.done();
+// };
+
+// Router.onRouteChangeError = () => {
+// 	// console.log('onRouteChnageError triggered');
+// 	NProgress.done();
+// };
 
 export default function App({ Component, pageProps, router }) {
 	return (
