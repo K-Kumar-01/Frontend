@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import { getCategoriees } from '../../actions/category';
 
 import styles from './index.module.css';
+import NProgress from '../../components/NProgress/Nprogress';
 
 const Articles = () => {
 	const [categories, setCategories] = useState([]);
@@ -35,13 +36,13 @@ const Articles = () => {
 	};
 
 	return (
-		<div>
+		<NProgress>
 			<Header />
 			<div className={`mx-auto my-3 py-3 px-3 d-flex`} style={{ width: '90%', overflowX: 'auto' }}>
 				{categories.length === 0 ? null : renderCategories()}
 			</div>
 			<Footer />
-		</div>
+		</NProgress>
 	);
 };
 

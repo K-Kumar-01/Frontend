@@ -1,12 +1,13 @@
 import React from 'react';
 
 import SignupComponent from '../components/auth/SignupComponent';
+import NProgress from '../components/NProgress/Nprogress';
 
 const Signup = () => {
 	return (
-		<React.Fragment>
+		<NProgress>
 			<SignupComponent />
-		</React.Fragment>
+		</NProgress>
 	);
 };
 

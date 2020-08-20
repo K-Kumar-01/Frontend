@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import NProgress from '../components/NProgress/Nprogress';
 const membershipData = [
 	{
 		title: 'Monthly Subscription',
@@ -29,27 +30,29 @@ const Membership = () => {
 	};
 
 	return (
-		<div style={{ width: '100vw', height: '100vh', backgroundColor: '#efefef' }}>
-			<div
-				className={`container d-flex justify-content-center align-items-center`}
-				style={{ width: '100%', height: '100vh' }}
-			>
-				<section>
-					<div className={`text-center pb-4`}>
-						<h1>Plans Available</h1>
-					</div>
-					<div className="row">
-						<div className="card-deck">{showPlans()}</div>
-					</div>
-					<div className={`text-center`}>
-						Return to{' '}
-						<Link href="/">
-							<a>Home Page</a>
-						</Link>
-					</div>
-				</section>
+		<NProgress>
+			<div style={{ width: '100vw', height: '100vh', backgroundColor: '#efefef' }}>
+				<div
+					className={`container d-flex justify-content-center align-items-center`}
+					style={{ width: '100%', height: '100vh' }}
+				>
+					<section>
+						<div className={`text-center pb-4`}>
+							<h1>Plans Available</h1>
+						</div>
+						<div className="row">
+							<div className="card-deck">{showPlans()}</div>
+						</div>
+						<div className={`text-center`}>
+							Return to{' '}
+							<Link href="/">
+								<a>Home Page</a>
+							</Link>
+						</div>
+					</section>
+				</div>
 			</div>
-		</div>
+		</NProgress>
 	);
 };
 
