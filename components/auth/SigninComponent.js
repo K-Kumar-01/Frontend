@@ -39,8 +39,7 @@ const FormWithToasts = () => {
 	const showForm = () => {
 		return (
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="form-group">
-					<label htmlFor="username">Username</label>
+				<div className={`${styles.formLabelGroup}`}>
 					<input
 						type="username"
 						className="form-control"
@@ -51,11 +50,11 @@ const FormWithToasts = () => {
 						autoComplete="off"
 						style={errors.username && { border: '1px solid red' }}
 					/>
+					<label htmlFor="username">Username</label>
 					<p className={`text-danger ${styles.errors}`}>{errors.username && 'Username is required'}</p>
 				</div>
 
-				<div className="form-group">
-					<label htmlFor="password">Password</label>
+				<div className={`${styles.formLabelGroup}`}>
 					<input
 						type="password"
 						name="password"
@@ -66,12 +65,16 @@ const FormWithToasts = () => {
 						autoComplete="off"
 						style={errors.password && { border: '1px solid red' }}
 					/>
+					<label htmlFor="password">Password</label>
 					<p className={`text-danger ${styles.errors}`}>
 						{errors.password && 'Password must be atleast 6 character long'}
 					</p>
 				</div>
 				<div className="text-center">
-					<button type="submit" className="btn btn-primary btn-lg">
+					<button
+						type="submit"
+						className={`btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
+					>
 						Signin
 					</button>
 				</div>
@@ -79,25 +82,60 @@ const FormWithToasts = () => {
 		);
 	};
 	return (
-		<div className={`row d-flex justify-content-center mx-auto pt-5 `}>
-			<div className={`col-lg-6 col-md-8 col-sm-10 ${styles.container}`}>
-				<div className={`text-center`}>
-					<h2>Signin</h2>
+		// <div className={`row d-flex justify-content-center mx-auto pt-5 `}>
+		// 	<div className={`col-lg-6 col-md-8 col-sm-10 ${styles.container}`}>
+		// 		<div className={`text-center`}>
+		// 			<h2>Signin</h2>
+		// 		</div>
+		// 		{showForm()}
+		// 		<div className={`d-flex justify-content-between`}>
+		// 			<p>
+		// 				New User?
+		// 				<Link href="/signup">
+		// 					<a>Signup</a>
+		// 				</Link>
+		// 			</p>
+		// 			<p>
+		// 				<Link href="/">
+		// 					<a>Back to Main Page</a>
+		// 				</Link>
+		// 			</p>
+		// 		</div>
+		// 	</div>
+		// </div>
+		<div className="container-fluid">
+			<div className="row no-gutter">
+				<div className="col-md-8 col-lg-6">
+					<div className={`${styles.login} d-flex align-items-center py-5`}>
+						<div className="container">
+							<div className="row">
+								<div className="col-md-9 col-lg-8 mx-auto">
+									<h3 className={`${styles.loginHeading} mb-4 text-center`}>
+										Welcome Back! <br />
+										<br />
+										<h5>To keep connected with us please login</h5>
+									</h3>
+
+									{showForm()}
+									<div className={`d-flex justify-content-between`}>
+										<p>
+											New User?
+											<Link href="/signup">
+												<a>Signup</a>
+											</Link>
+										</p>
+										<p>
+											<Link href="/">
+												<a>Back to Main Page</a>
+											</Link>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				{showForm()}
-				<div className={`d-flex justify-content-between`}>
-					<p>
-						New User?
-						<Link href="/signup">
-							<a>Signup</a>
-						</Link>
-					</p>
-					<p>
-						<Link href="/">
-							<a>Back to Main Page</a>
-						</Link>
-					</p>
-				</div>
+				<div className={`d-none d-md-flex col-md-4 col-lg-6 ${styles.bgImagelogin}`}></div>
 			</div>
 		</div>
 	);

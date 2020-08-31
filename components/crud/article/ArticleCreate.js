@@ -178,6 +178,7 @@ const ArticleCreate = () => {
 							<Dante
 								content={null}
 								onChange={(editor) => {
+									// console.log(editor);
 									console.log('editor content: ', editor.emitSerializedOutput());
 								}}
 								widgets={[
