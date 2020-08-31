@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Lora:wght@700&display=swap');
 
+:root {
+	--input-padding-x: 1.5rem;
+	--input-padding-y: 0.75rem;
+}
+
 html,
 body {
-	font-family: 'Alegreya', serif
+	font-family: 'Alegreya', serif;
 }
 /* font-family: 'Alegreya', serif;
 font-family: 'Lora', serif; */

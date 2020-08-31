@@ -2,8 +2,7 @@
 	font-size: 0.8rem;
 }
 
-
-.container {
+/* .container {
 	padding: 0.5rem 1rem;
 	border-radius: 5px;
 	transition: all 0.2s linear;
@@ -12,4 +11,125 @@
 .container:hover {
 	box-shadow: 0px 0px 20px 1px #eeeeee;
 	border: none;
+} */
+
+.formLabelGroup > input {
+	--input-padding-x: 1.5rem;
+	--input-padding-y: 0.75rem;
+}
+
+/*  */
+
+.login,
+.image {
+	min-height: 100vh;
+}
+
+.bgImage {
+	/* background-image: ; */
+	/* background: linear-gradient(rgba(63, 208, 212, 0.7), rgba(0, 0, 0, 0.7)), */
+	/* url("../images/defaultBcg.jpeg") center/cover no-repeat; */
+	/* background-color: #b1bfd8; */
+	
+	background: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(44, 130, 201, 0.68)),
+		url('./images/signup.jpg') center/cover no-repeat;
+	/* background-image: url('./images/signup.jpg'), linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%); */
+	/* background-size: cover; */
+	/* background-position: center; */
+}
+
+.loginHeading {
+	font-weight: 300;
+}
+
+.btnLogin {
+	font-size: 0.9rem;
+	letter-spacing: 0.05rem;
+	padding: 0.75rem 1rem;
+	border-radius: 2rem;
+}
+
+.formLabelGroup {
+	position: relative;
+	margin-bottom: 1rem;
+}
+
+.formLabelGroup > input,
+.formLabelGroup > label {
+	padding: var(--input-padding-y) var(--input-padding-x);
+	height: auto;
+	border-radius: 2rem;
+}
+
+.formLabelGroup > label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	margin-bottom: 0;
+	/* Override default `<label>` margin */
+	line-height: 1.5;
+	color: #495057;
+	cursor: text;
+	/* Match the input under the label */
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+	transition: all 0.1s ease-in-out;
+}
+
+.formLabelGroup input::-webkit-input-placeholder {
+	color: transparent;
+}
+
+.formLabelGroup input:-ms-input-placeholder {
+	color: transparent;
+}
+
+.formLabelGroup input::-ms-input-placeholder {
+	color: transparent;
+}
+
+.formLabelGroup input::-moz-placeholder {
+	color: transparent;
+}
+
+.formLabelGroup input::placeholder {
+	color: transparent;
+}
+
+.formLabelGroup input:not(:placeholder-shown) {
+	padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+	padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.formLabelGroup input:not(:placeholder-shown) ~ label {
+	padding-top: calc(var(--input-padding-y) / 3);
+	padding-bottom: calc(var(--input-padding-y) / 3);
+	font-size: 12px;
+	color: #777;
+}
+
+/* Fallback for Edge
+-------------------------------------------------- */
+
+@supports (-ms-ime-align: auto) {
+	.formLabelGroup > label {
+		display: none;
+	}
+	.formLabelGroup input::-ms-input-placeholder {
+		color: #777;
+	}
+}
+
+/* Fallback for IE
+-------------------------------------------------- */
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.formLabelGroup > label {
+		display: none;
+	}
+	.formLabelGroup input:-ms-input-placeholder {
+		color: #777;
+	}
 }

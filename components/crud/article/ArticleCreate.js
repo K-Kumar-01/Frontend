@@ -7,6 +7,7 @@ import { useDropzone } from 'react-dropzone';
 
 import Loading from '../../spinner/Loading';
 import { getCategoriees } from '../../../actions/category';
+import styles from './ArticleCreate.module.css';
 
 const ArticleCreate = () => {
 	// styling file image container
@@ -142,7 +143,7 @@ const ArticleCreate = () => {
 	const creationArticleArea = () => {
 		return (
 			<React.Fragment>
-				<div className={`px-2 mt-3`}>
+				<div className={`px-2`}>
 					<div className="row">
 						<div className="col-md-8 col-12">
 							<div className="form-group">
@@ -227,7 +228,11 @@ const ArticleCreate = () => {
 		);
 	};
 
-	return <div className={`container`}>{creationArticleArea()}</div>;
+	return (
+		<div className={`${styles.heightedcontainer}`}>
+			<div className={`container `}>{creationArticleArea()}</div>
+		</div>
+	);
 };
 
 export default ArticleCreate;
