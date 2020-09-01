@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import Dante from 'Dante2';
-import { useForm } from 'react-hook-form';
 import { ImageBlockConfig } from 'Dante2/package/lib/components/blocks/image.js';
 import { VideoBlockConfig } from 'Dante2/package/lib/components/blocks/video.js';
 import { useDropzone } from 'react-dropzone';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 
 import Loading from '../../spinner/Loading';
 import { getCategoriees } from '../../../actions/category';
 import styles from './ArticleCreate.module.css';
 
-const ArticleCreate = () => {
-	// styling file image container
+const ComponentWithToasts = () => {
+	const { addToast } = useToasts();
 	const thumbsContainer = {
 		display: 'flex',
 		flexDirection: 'row',
@@ -89,10 +89,11 @@ const ArticleCreate = () => {
 
 	// the above code is for file upload
 
-	const { register, handleSubmit, errors } = useForm(); // initialise the hook
-
 	const [categories, setCategories] = useState([]);
 	const [checkedCat, setCheckedCat] = useState([]);
+	const [title, setTitle] = useState('');
+	const [body, setBody] = useState(null);
+	const [extracted, setExtracted] = useState('');
 
 	useEffect(() => {
 		getCats();
@@ -140,6 +141,29 @@ const ArticleCreate = () => {
 		}
 	};
 
+	// to process the first 200 characters
+	const extraction = (data) => {
+		let s = '';
+		data.blocks.forEach((b) => {
+			if (s.length < 200) {
+				if (b.type.toLowerCase() !== 'image' && b.entityRanges.length === 0) {
+					if (s.length + b.text.length >= 200) {
+						let diff = 200 - s.length;
+						s += b.text.substr(0, diff);
+					} else {
+						s += b.text + '\n';
+					}
+				}
+			}
+		});
+
+		if (s.length < 200) {
+			return false;
+		} else {
+			return s;
+		}
+	};
+
 	const creationArticleArea = () => {
 		return (
 			<React.Fragment>
@@ -156,16 +180,11 @@ const ArticleCreate = () => {
 									id="title"
 									placeholder="New blog"
 									name="title"
-									// value={title}
-									// onChange={handleChange('title')}
-									ref={register({ required: true })}
+									value={title}
+									onChange={(e) => setTitle(e.target.value)}
 									autoComplete="off"
-									style={errors.title && { border: '1px solid red' }}
 								/>
 								<p className="small text-muted">Cannot change later</p>
-								<p className={`text-danger`} style={{ fontSize: '0.8rem' }}>
-									{errors.title && 'Blog should have a title'}
-								</p>
 							</div>
 
 							<div className="form-group">
@@ -178,8 +197,8 @@ const ArticleCreate = () => {
 							<Dante
 								content={null}
 								onChange={(editor) => {
-									// console.log(editor);
-									console.log('editor content: ', editor.emitSerializedOutput());
+									setBody(editor.emitSerializedOutput());
+									setExtracted(extraction(editor.emitSerializedOutput()));
 								}}
 								widgets={[
 									ImageBlockConfig({
@@ -224,15 +243,48 @@ const ArticleCreate = () => {
 							)}
 						</div>
 					</div>
+					<div className="row mb-3" onClick={() => handleSubmit()}>
+						<button className={`${styles.customBtn} ${styles.btn1}`}>Publish</button>
+					</div>
 				</div>
 			</React.Fragment>
 		);
+	};
+
+	const checkValidation = () => {
+		if (title === '') {
+			return 'Post must have a title';
+		} else if (!extracted || extracted.length < 200) {
+			return 'Post must be atleast 200 characters long';
+		} else if (checkedCat.length === 0) {
+			return 'No category selected';
+		}
+		return false;
+	};
+
+	const handleSubmit = () => {
+		let res = checkValidation();
+		if (res) {
+			addToast(`${res}`, {
+				appearance: 'error',
+				autoDismiss: true,
+			});
+		}
 	};
 
 	return (
 		<div className={`${styles.heightedcontainer}`}>
 			<div className={`container `}>{creationArticleArea()}</div>
 		</div>
+	);
+};
+
+const ArticleCreate = () => {
+	// styling file image container
+	return (
+		<ToastProvider>
+			<ComponentWithToasts />
+		</ToastProvider>
 	);
 };
 

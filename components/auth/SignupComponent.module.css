@@ -26,12 +26,12 @@
 }
 
 .bgImage {
-	background: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(44, 130, 201, 0.68)),
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
 		url('./images/signup.jpg') center/cover no-repeat;
 }
 
 .bgImagelogin {
-	background: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(44, 130, 201, 0.68)),
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
 		url('https://images.unsplash.com/photo-1535957998253-26ae1ef29506?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60')
 			center/cover no-repeat;
 }
