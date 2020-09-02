@@ -270,6 +270,13 @@ const ComponentWithToasts = () => {
 				autoDismiss: true,
 			});
 		}
+
+		let formData = new formData();
+		formData.append('title', title);
+		formData.append('mdesc', extracted);
+		formData.append('body', body);
+		formData.append('categories', categories);
+		formData.append('image', files[0]);
 	};
 
 	return (
