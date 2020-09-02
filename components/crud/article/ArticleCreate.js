@@ -8,6 +8,7 @@ import { ToastProvider, useToasts } from 'react-toast-notifications';
 import Loading from '../../spinner/Loading';
 import { getCategoriees } from '../../../actions/category';
 import styles from './ArticleCreate.module.css';
+import { createArticle } from '../../../actions/article';
 
 const ComponentWithToasts = () => {
 	const { addToast } = useToasts();
@@ -92,7 +93,7 @@ const ComponentWithToasts = () => {
 	const [categories, setCategories] = useState([]);
 	const [checkedCat, setCheckedCat] = useState([]);
 	const [title, setTitle] = useState('');
-	const [body, setBody] = useState(null);
+	const [body, setBody] = useState(``);
 	const [extracted, setExtracted] = useState('');
 
 	useEffect(() => {
@@ -106,6 +107,10 @@ const ComponentWithToasts = () => {
 			setCategories(result.categories);
 			// console.log('mre there');
 		} catch (error) {
+			addToast(`${error.message}`, {
+				appearance: 'error',
+				autoDismiss: false,
+			});
 			console.log(error);
 		}
 	};
@@ -195,7 +200,7 @@ const ComponentWithToasts = () => {
 							</div>
 
 							<Dante
-								content={null}
+								content={body}
 								onChange={(editor) => {
 									setBody(editor.emitSerializedOutput());
 									setExtracted(extraction(editor.emitSerializedOutput()));
@@ -262,21 +267,38 @@ const ComponentWithToasts = () => {
 		return false;
 	};
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		let res = checkValidation();
 		if (res) {
 			addToast(`${res}`, {
 				appearance: 'error',
 				autoDismiss: true,
 			});
+			return false;
 		}
 
-		let formData = new formData();
+		let formData = new FormData();
 		formData.append('title', title);
 		formData.append('mdesc', extracted);
 		formData.append('body', body);
-		formData.append('categories', categories);
+		formData.append('categories', checkedCat);
 		formData.append('image', files[0]);
+
+		let response;
+		try {
+			response = await createArticle(formData);
+		} catch (error) {
+			addToast(`${error}`, {
+				appearance: 'error',
+				autoDismiss: true,
+			});
+			return false;
+		}
+
+		addToast(`${response.data.message}`, {
+			appearance: 'success',
+			autoDismiss: false,
+		});
 	};
 
 	return (

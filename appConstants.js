@@ -4,3 +4,6 @@ const BASE_URL = `http://localhost:8000/`;
 const UPLOADS = `${BASE_URL}uploads`;
 const SIGNUP = `${BASE_URL}api/user/register`;
 const SIGNIN = `${BASE_URL}api/user/login`;
+const ARTICLE_CREATE = `${BASE_URL}api/article/create`;
+
+export { UPLOADS, SIGNIN, SIGNUP, ARTICLE_CREATE };
