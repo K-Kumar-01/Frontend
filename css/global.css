@@ -20,3 +20,16 @@ font-family: 'Lora', serif; */
 	box-shadow: none !important;
 	outline: none !important;
 }
+
+.loading-spinner__overlay {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.2);
+	display: flex;
+	z-index: 1000;
+	justify-content: center;
+	align-items: center;
+}

@@ -9,6 +9,7 @@ import Loading from '../../spinner/Loading';
 import { getCategoriees } from '../../../actions/category';
 import styles from './ArticleCreate.module.css';
 import { createArticle } from '../../../actions/article';
+import LoadingSpinner from '../../spinner/LoadingSpinner';
 
 const ComponentWithToasts = () => {
 	const { addToast } = useToasts();
@@ -95,6 +96,7 @@ const ComponentWithToasts = () => {
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState(``);
 	const [extracted, setExtracted] = useState('');
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		getCats();
@@ -284,6 +286,8 @@ const ComponentWithToasts = () => {
 		formData.append('categories', checkedCat);
 		formData.append('image', files[0]);
 
+		setLoading(true);
+
 		let response;
 		try {
 			response = await createArticle(formData);
@@ -292,8 +296,11 @@ const ComponentWithToasts = () => {
 				appearance: 'error',
 				autoDismiss: true,
 			});
+			setLoading(false);
 			return false;
 		}
+
+		setLoading(false);
 
 		addToast(`${response.data.message}`, {
 			appearance: 'success',
@@ -303,6 +310,7 @@ const ComponentWithToasts = () => {
 
 	return (
 		<div className={`${styles.heightedcontainer}`}>
+			{loading && <LoadingSpinner asOverlay />}
 			<div className={`container `}>{creationArticleArea()}</div>
 		</div>
 	);
