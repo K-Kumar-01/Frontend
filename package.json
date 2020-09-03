@@ -12,6 +12,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "framer-motion": "^2.4.1",
+    "js-cookie": "^2.2.1",
     "next": "9.5.2",
     "nprogress": "^0.2.0",
     "prismjs": "^1.21.0",
