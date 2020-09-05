@@ -122,27 +122,6 @@ const FormWithToasts = () => {
 		);
 	};
 	return (
-		// <div className={`row d-flex justify-content-center mx-auto pt-5 `}>
-		// 	<div className={`col-lg-6 col-md-8 col-sm-10 ${styles.container}`}>
-		// 		<div className={`text-center`}>
-		// 			<h2>Signup</h2>
-		// 		</div>
-		// 		{showForm()}
-		// <div className={`d-flex justify-content-between`}>
-		// 	<p>
-		// 		Already Registered?
-		// 		<Link href="/signin">
-		// 			<a>Signin</a>
-		// 		</Link>
-		// 	</p>
-		// 	<p>
-		// 		<Link href="/">
-		// 			<a>Back to Main Page</a>
-		// 		</Link>
-		// 	</p>
-		// </div>
-		// 	</div>
-		// </div>
 		<div className="container-fluid">
 			<div className="row no-gutter">
 				<div className={`d-none d-md-flex col-md-4 col-lg-6 ${styles.bgImage}`}></div>
@@ -156,37 +135,6 @@ const FormWithToasts = () => {
 										<br />
 										<h5>Enter your personal details and start journey with us</h5>
 									</h3>
-									{/* <form>
-										<div className="form-label-group">
-											<input
-												type="email"
-												id="inputEmail"
-												className="form-control"
-												placeholder="Email address"
-												required
-												autofocus
-											/>
-											<label for="inputEmail">Email address</label>
-										</div>
-
-										<div className="form-label-group">
-											<input
-												type="password"
-												id="inputPassword"
-												className="form-control"
-												placeholder="Password"
-												required
-											/>
-											<label for="inputPassword">Password</label>
-										</div>
-
-										<button
-											className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-											type="submit"
-										>
-											Sign in
-										</button>
-									</form> */}
 									{showForm()}
 									<div className={`d-flex justify-content-between`}>
 										<p>
@@ -208,14 +156,13 @@ const FormWithToasts = () => {
 				</div>
 			</div>
 		</div>
-	
 	);
 };
 
 const SignupComponent = () => {
 	return (
 		<ToastProvider>
-			{/* {loading && <Spinner />} */}
+			
 			<FormWithToasts />
 		</ToastProvider>
 	);
