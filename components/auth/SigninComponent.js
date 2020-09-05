@@ -82,27 +82,6 @@ const FormWithToasts = () => {
 		);
 	};
 	return (
-		// <div className={`row d-flex justify-content-center mx-auto pt-5 `}>
-		// 	<div className={`col-lg-6 col-md-8 col-sm-10 ${styles.container}`}>
-		// 		<div className={`text-center`}>
-		// 			<h2>Signin</h2>
-		// 		</div>
-		// 		{showForm()}
-		// 		<div className={`d-flex justify-content-between`}>
-		// 			<p>
-		// 				New User?
-		// 				<Link href="/signup">
-		// 					<a>Signup</a>
-		// 				</Link>
-		// 			</p>
-		// 			<p>
-		// 				<Link href="/">
-		// 					<a>Back to Main Page</a>
-		// 				</Link>
-		// 			</p>
-		// 		</div>
-		// 	</div>
-		// </div>
 		<div className="container-fluid">
 			<div className="row no-gutter">
 				<div className="col-md-8 col-lg-6">
