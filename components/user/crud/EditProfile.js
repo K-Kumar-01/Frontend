@@ -35,6 +35,7 @@ const EditProfile = (props) => {
 							name="name"
 							autoComplete="off"
 							value={name}
+							onChange={handleChange('name')}
 						/>
 						<label htmlFor="name">Name</label>
 					</div>
