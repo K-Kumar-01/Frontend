@@ -1,32 +1,37 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
-import styles from './SignupComponent.module.css';
 import Link from 'next/link';
+
+import styles from './SignupComponent.module.css';
 import { createUser } from '../../actions/auth';
+import LoadingSpinner from '../spinner/LoadingSpinner';
 
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
 	const { register, handleSubmit, errors, watch } = useForm(); // initialise the hook
-	// const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const onSubmit = (data, event) => {
 		event.preventDefault();
-
+		setLoading(true);
 		createUser(data)
 			.then((response) => {
 				console.log(response);
 				if (response.error) {
+					setLoading(false);
 					addToast(`${response.error}`, {
 						appearance: 'error',
 						autoDismiss: true,
 					});
 				} else {
+					setLoading(false);
 					addToast(`${response.message}`, {
 						appearance: 'success',
 					});
 				}
 			})
 			.catch((err) => {
+				setLoading(false);
 				addToast(`${err}`, {
 					appearance: 'error',
 					autoDismiss: true,
@@ -123,6 +128,7 @@ const FormWithToasts = () => {
 	};
 	return (
 		<div className="container-fluid">
+			{loading && <LoadingSpinner />}
 			<div className="row no-gutter">
 				<div className={`d-none d-md-flex col-md-4 col-lg-6 ${styles.bgImage}`}></div>
 				<div className="col-md-8 col-lg-6">
@@ -162,7 +168,6 @@ const FormWithToasts = () => {
 const SignupComponent = () => {
 	return (
 		<ToastProvider>
-			
 			<FormWithToasts />
 		</ToastProvider>
 	);
