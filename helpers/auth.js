@@ -1,4 +1,5 @@
 import cookie from 'js-cookie';
+import decode from 'jsonwebtoken';
 
 export const setCookie = (key, value) => {
 	cookie.set(key, value);
@@ -10,6 +11,10 @@ export const removeCookie = (key) => {
 
 export const getCookie = (key) => {
 	return cookie.get(key);
+};
+
+export const decodeCookie = (cookieValue) => {
+	return jwt.decode(cookieValue);
 };
 
 export const setLocalStorage = (key, value) => {

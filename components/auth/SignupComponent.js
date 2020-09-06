@@ -3,9 +3,12 @@ import { useForm } from 'react-hook-form';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 import Link from 'next/link';
 
+
 import styles from './SignupComponent.module.css';
 import { createUser } from '../../actions/auth';
 import LoadingSpinner from '../spinner/LoadingSpinner';
+import { setCookie } from '../../helpers/auth';
+import { COOKIE_NAME } from '../../appConstants';
 
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
@@ -17,17 +20,17 @@ const FormWithToasts = () => {
 		createUser(data)
 			.then((response) => {
 				console.log(response);
+				setLoading(false);
 				if (response.error) {
-					setLoading(false);
 					addToast(`${response.error}`, {
 						appearance: 'error',
 						autoDismiss: true,
 					});
 				} else {
-					setLoading(false);
 					addToast(`${response.message}`, {
 						appearance: 'success',
 					});
+					setCookie(COOKIE_NAME, response.token);
 				}
 			})
 			.catch((err) => {
@@ -128,7 +131,7 @@ const FormWithToasts = () => {
 	};
 	return (
 		<div className="container-fluid">
-			{loading && <LoadingSpinner />}
+			{loading && <LoadingSpinner asOverlay />}
 			<div className="row no-gutter">
 				<div className={`d-none d-md-flex col-md-4 col-lg-6 ${styles.bgImage}`}></div>
 				<div className="col-md-8 col-lg-6">

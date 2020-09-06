@@ -1,5 +1,5 @@
 export const createUser = (data) => {
-	return fetch(`https://mighty-ravine-63394.herokuapp.com/api/user/register/`, {
+	return fetch(`http://localhost:8000/api/user/register/`, {
 		method: 'POST',
 		body: JSON.stringify(data),
 		headers: {
@@ -11,12 +11,12 @@ export const createUser = (data) => {
 		})
 		.catch((err) => {
 			console.error(err);
-			return err;
+			return err.message;
 		});
 };
 
 export const loginUser = (data) => {
-	return fetch(`https://mighty-ravine-63394.herokuapp.com/api/user/login/`, {
+	return fetch(`http://localhost:8000/api/user/login/`, {
 		method: 'POST',
 		body: JSON.stringify(data),
 		headers: {
