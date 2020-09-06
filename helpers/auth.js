@@ -1,5 +1,5 @@
 import cookie from 'js-cookie';
-import decode from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 export const setCookie = (key, value) => {
 	cookie.set(key, value);
