@@ -12,7 +12,9 @@ import { COOKIE_NAME } from '../../appConstants';
 
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
-	const { register, handleSubmit, errors, watch } = useForm(); // initialise the hook
+	const { register, handleSubmit, errors, watch } = useForm({
+		mode: 'onTouched',
+	}); // initialise the hook
 	const [loading, setLoading] = useState(false);
 	const onSubmit = (data, event) => {
 		event.preventDefault();
@@ -76,7 +78,8 @@ const FormWithToasts = () => {
 					<label htmlFor="username">Username</label>
 					<p className={`text-danger ${styles.errors}`}>
 						{errors.username?.type === 'required' && 'Username is required'}
-						{errors.username?.type === 'pattern' && 'Username can only conatin characters numbers and _'}
+						{errors.username?.type === 'pattern' &&
+							'Username can only conatin characters numbers and underscores'}
 					</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
