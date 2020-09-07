@@ -131,6 +131,7 @@ const FormWithToasts = () => {
 				<button
 					type="submit"
 					className={`btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
+					disabled={Object.keys(formState.touched).length === 0 || Object.keys(errors).length !== 0}
 				>
 					Signup
 				</button>

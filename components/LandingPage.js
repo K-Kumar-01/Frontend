@@ -22,12 +22,12 @@ const LandingPage = () => {
 						Already have an account?
 						<Link href="/signin">
 							<a>
-								<button
+								<span
 									className={`btn mb-1 font-bold heading text-capitalize ${styles.link}`}
 									style={{ fontSize: '1.2rem' }}
 								>
 									Sign in
-								</button>
+								</span>
 							</a>
 						</Link>
 					</p>

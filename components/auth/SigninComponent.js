@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 import Link from 'next/link';
@@ -9,7 +9,14 @@ import { loginUser } from '../../actions/auth';
 
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
-	const { register, handleSubmit, errors, watch } = useForm(); // initialise the hook
+	const { register, handleSubmit, errors, formState } = useForm({
+		mode: 'onTouched',
+	}); // initialise the hook
+	useEffect(() => {
+		console.log(errors);
+		console.log('****');
+		console.log(formState.touched);
+	}, []);
 	const onSubmit = (data, event) => {
 		event.preventDefault();
 		loginUser(data)
@@ -74,6 +81,7 @@ const FormWithToasts = () => {
 					<button
 						type="submit"
 						className={`btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
+						disabled={Object.keys(formState.touched).length === 0 || Object.keys(errors).length !== 0}
 					>
 						Signin
 					</button>

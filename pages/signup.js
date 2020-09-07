@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import SignupComponent from '../components/auth/SignupComponent';
 import Layout from '../components/Layout';
-
+import Protected from '../components/Protected/Protected';
 
 const Signup = () => {
 	// for seo friendly sites
@@ -28,9 +28,11 @@ const Signup = () => {
 	// };
 
 	return (
-		<Layout>
-			<SignupComponent />
-		</Layout>
+		<Protected>
+			<Layout>
+				<SignupComponent />
+			</Layout>
+		</Protected>
 	);
 };
 
