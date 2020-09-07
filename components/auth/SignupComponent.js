@@ -9,7 +9,6 @@ import { createUser } from '../../actions/auth';
 import LoadingSpinner from '../spinner/LoadingSpinner';
 import { setCookie, decodeCookie } from '../../helpers/auth';
 import { COOKIE_NAME } from '../../appConstants';
-import { Router } from 'next/router';
 
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
