@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 import Link from 'next/link';
-
+import Router from 'next/router';
 
 import styles from './SignupComponent.module.css';
 import { createUser } from '../../actions/auth';
 import LoadingSpinner from '../spinner/LoadingSpinner';
-import { setCookie } from '../../helpers/auth';
+import { setCookie, decodeCookie } from '../../helpers/auth';
 import { COOKIE_NAME } from '../../appConstants';
+import { Router } from 'next/router';
 
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
@@ -27,10 +28,12 @@ const FormWithToasts = () => {
 						autoDismiss: true,
 					});
 				} else {
+					setCookie(COOKIE_NAME, response.token);
 					addToast(`${response.message}`, {
 						appearance: 'success',
 					});
-					setCookie(COOKIE_NAME, response.token);
+					// const decodedToken = decodeCookie(COOKIE_NAME);
+					Router.push(`/articles`);
 				}
 			})
 			.catch((err) => {
@@ -67,12 +70,15 @@ const FormWithToasts = () => {
 						id="username"
 						placeholder="Username"
 						name="username"
-						ref={register({ required: true })}
+						ref={register({ required: true, pattern: /^[a-zA-Z0-9_.-]*$/ })}
 						autoComplete="off"
 						style={errors.username && { border: '1px solid red' }}
 					/>
 					<label htmlFor="username">Username</label>
-					<p className={`text-danger ${styles.errors}`}>{errors.username && 'Username is required'}</p>
+					<p className={`text-danger ${styles.errors}`}>
+						{errors.username?.type === 'required' && 'Username is required'}
+						{errors.username?.type === 'pattern' && 'Username can only conatin characters numbers and _'}
+					</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
 					<input

@@ -17,6 +17,20 @@ export const decodeCookie = (cookieValue) => {
 	return jwt.decode(cookieValue);
 };
 
+export const authenticate = (key) => {
+	let token = getCookie(key);
+	let decodedCookie = decodeCookie(token);
+	if (!decodeCookie || !token) {
+		return false;
+	}
+	let expDate = decodedCookie.exp * 1000;
+	if (parseInt(new Date().getTime()) > expDate) {
+		return false;
+	} else {
+		return decodedCookie;
+	}
+};
+
 export const setLocalStorage = (key, value) => {
 	localStorage.setItem(key, JSON.stringify(value));
 };
