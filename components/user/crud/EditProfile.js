@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -8,9 +8,47 @@ import styles from './EditProfile.module.css';
 import LoadingSpinner from '../../spinner/LoadingSpinner';
 
 const EditProfile = (props) => {
+	// IMage component
+	const [file, setFile] = useState();
+	const [previewUrl, setPreviewUrl] = useState();
+	const [isValid, setIsValid] = useState(true);
+
+	const filePickerRef = useRef();
+
+	useEffect(() => {
+		if (!file) {
+			return;
+		}
+		const fileReader = new FileReader();
+		fileReader.onload = () => {
+			setPreviewUrl(fileReader.result);
+		};
+		fileReader.readAsDataURL(file);
+	}, [file]);
+
+	const pickImageHandler = () => {
+		filePickerRef.current.click();
+	};
+
+	const pickedhandler = (event) => {
+		let pickedFile;
+		let fileIsValid = isValid;
+		if (event.target.files && event.target.files.length === 1) {
+			pickedFile = event.target.files[0];
+			setFile(pickedFile);
+			setIsValid(true);
+			fileIsValid = true;
+		} else {
+			setIsValid(false);
+			fileIsValid = false;
+		}
+	};
+
+	//
+
 	const [values, setValues] = useState({
 		name: null,
-		email: null,
+		email: '',
 		username: null,
 		opassword: null,
 		npassword: null,
@@ -22,7 +60,6 @@ const EditProfile = (props) => {
 		defaultValues: {},
 	});
 
-	let { name, email, username, opassword, npassword, cpassword } = values;
 	useEffect(() => {
 		setValues({ ...values });
 	}, []);
@@ -75,7 +112,8 @@ const EditProfile = (props) => {
 						placeholder="example@url.com"
 						name="email"
 						autoComplete="off"
-						value={email}
+						ref={register()}
+						value={values.email}
 						disabled
 					/>
 					<label htmlFor="email">Email</label>
@@ -137,6 +175,26 @@ const EditProfile = (props) => {
 		<div className={`container my-3`}>
 			<form className={`row`} onSubmit={handleSubmit(onSubmit)}>
 				<section className={`col-md-6`}>
+					<div>
+						<input
+							type="file"
+							ref={filePickerRef}
+							style={{ display: 'none' }}
+							accept=".jpg,.pmg,.jpeg"
+							onChange={pickedhandler}
+						/>
+						<div className={`${styles.imageUpload} 'center'`}>
+							<div className={`${styles.imageUploadPreview}`}>
+								{previewUrl && <img src={previewUrl} alt="Preview" />}
+								{!previewUrl && <p>Profile picture.</p>}
+							</div>
+							<button type="button" className={`btn btn-primary`} onClick={pickImageHandler}>
+								PICK IMAGE
+							</button>
+						</div>
+						{!previewUrl && !isValid && <p>Invalid image type chosen</p>}
+					</div>
+					<br />
 					<div>
 						<label htmlFor="about">
 							<h4>About you</h4>
