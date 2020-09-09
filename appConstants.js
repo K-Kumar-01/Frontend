@@ -10,4 +10,4 @@ const SIGNUP = `${BASE_URL}api/user/register`;
 const SIGNIN = `${BASE_URL}api/user/login`;
 const ARTICLE_CREATE = `${BASE_URL}api/article/create`;
 
-export { UPLOADS, SIGNIN, SIGNUP, ARTICLE_CREATE, COOKIE_NAME };
+export { UPLOADS, SIGNIN, SIGNUP, ARTICLE_CREATE, COOKIE_NAME, BASE_URL };
