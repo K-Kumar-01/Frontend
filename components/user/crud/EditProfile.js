@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
+
 import styles from './EditProfile.module.css';
+import LoadingSpinner from '../../spinner/LoadingSpinner';
 
 const EditProfile = (props) => {
 	const [values, setValues] = useState({
@@ -13,13 +17,19 @@ const EditProfile = (props) => {
 		cpassword: null,
 	});
 
+	const { register, handleSubmit, errors, formState, watch } = useForm({
+		mode: 'onTouched',
+		defaultValues: {},
+	});
+
 	let { name, email, username, opassword, npassword, cpassword } = values;
 	useEffect(() => {
 		setValues({ ...values });
 	}, []);
 
-	const handleChange = (name) => (e) => {
-		setValues({ ...values, [name]: e.target.value });
+	const onSubmit = (data) => {
+		console.log('hello');
+		// console.log(data);
 	};
 
 	const showForm = () => {
@@ -32,11 +42,12 @@ const EditProfile = (props) => {
 						id="name"
 						placeholder="Name"
 						name="name"
+						ref={register({ required: true })}
 						autoComplete="off"
-						value={name}
-						onChange={handleChange('name')}
+						style={errors.name && { border: '1px solid red' }}
 					/>
 					<label htmlFor="name">Name</label>
+					<p className={`text-danger ${styles.errors}`}>{errors.name && 'Name is required'}</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
@@ -45,10 +56,16 @@ const EditProfile = (props) => {
 						id="username"
 						placeholder="Username"
 						name="username"
+						ref={register({ required: true, pattern: /^[a-zA-Z0-9_.-]*$/ })}
 						autoComplete="off"
-						value={username}
+						style={errors.username && { border: '1px solid red' }}
 					/>
 					<label htmlFor="username">Username</label>
+					<p className={`text-danger ${styles.errors}`}>
+						{errors.username?.type === 'required' && 'Username is required'}
+						{errors.username?.type === 'pattern' &&
+							'Username can only conatin characters numbers and underscores'}
+					</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
@@ -72,11 +89,15 @@ const EditProfile = (props) => {
 						name="password"
 						className={`form-control`}
 						id="password"
-						placeholder="Old Password"
+						placeholder="Minimum 6 characters"
+						ref={register({ required: true, minLength: 6 })}
 						autoComplete="off"
-						value={opassword}
+						style={errors.password && { border: '1px solid red' }}
 					/>
 					<label htmlFor="password">Old Password</label>
+					<p className={`text-danger ${styles.errors}`}>
+						{errors.password && 'Password must be atleast 6 character long'}
+					</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
@@ -85,10 +106,14 @@ const EditProfile = (props) => {
 						className={`form-control`}
 						id="npassword"
 						placeholder="Minimum 6 characters"
+						ref={register({ required: true, minLength: 6 })}
 						autoComplete="off"
-						value={npassword}
+						style={errors.npassword && { border: '1px solid red' }}
 					/>
-					<label htmlFor="cpassword">New Password</label>
+					<label htmlFor="npassword">New Password</label>
+					<p className={`text-danger ${styles.errors}`}>
+						{errors.npassword && 'Password must be atleast 6 character long'}
+					</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
@@ -96,11 +121,13 @@ const EditProfile = (props) => {
 						name="cpassword"
 						className={`form-control`}
 						id="cpassword"
-						placeholder="*******"
+						placeholder="•••••••"
+						ref={register({ validate: (value) => value === watch('npassword') })}
 						autoComplete="off"
-						value={cpassword}
+						style={errors.cpassword && { border: '1px solid red' }}
 					/>
-					<label htmlFor="cpassword">Confirm New Password</label>
+					<label htmlFor="cpassword">Confirm Password</label>
+					<p className={`text-danger ${styles.errors}`}>{errors.cpassword && 'Passwords do not match'}</p>
 				</div>
 			</section>
 		);
@@ -108,28 +135,35 @@ const EditProfile = (props) => {
 
 	return (
 		<div className={`container my-3`}>
-			<form className={`row`}>
+			<form className={`row`} onSubmit={handleSubmit(onSubmit)}>
 				<section className={`col-md-6`}>
-					Image here
-					<br />
-					<button className={`btn btn-primary`}>Change Image</button>
 					<div>
 						<label htmlFor="about">
 							<h4>About you</h4>
 						</label>
-						<textarea placeholder="Let people know more about you" className={`form-control`}></textarea>
+						<textarea
+							name="about"
+							ref={register({ minLength: 20 })}
+							placeholder="Let people know more about you"
+							className={`form-control`}
+							style={errors.about && { border: '1px solid red' }}
+						></textarea>
+						<p className={`text-danger ${styles.errors}`}>
+							{errors.about && 'Must be atleast 20 characters long'}
+						</p>
 					</div>
 				</section>
 				<section className={`col-md-6`}>{showForm()}</section>
+				<div className={`col-md-4 mx-auto my-3`}>
+					<button
+						type="submit"
+						className={`btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
+						disabled={Object.keys(formState.touched).length === 0 || Object.keys(errors).length !== 0}
+					>
+						Save Changes
+					</button>
+				</div>
 			</form>
-			<div className={`col-md-4 mx-auto my-3`}>
-				<button
-					type="submit"
-					className={`btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
-				>
-					Save Changes
-				</button>
-			</div>
 		</div>
 	);
 };

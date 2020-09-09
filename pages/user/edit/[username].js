@@ -7,13 +7,13 @@ import Protected from '../../../components/Protected/Protected';
 
 const EditUser = () => {
 	return (
-		<Protected>
-			<Layout>
-				<Header />
-				<EditProfile />
-				<Footer />
-			</Layout>
-		</Protected>
+		// <Protected>
+		<Layout>
+			<Header />
+			<EditProfile />
+			<Footer />
+		</Layout>
+		// </Protected>
 	);
 };
 

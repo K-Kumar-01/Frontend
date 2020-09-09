@@ -48,17 +48,21 @@ const FormWithToasts = () => {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
-						type="username"
+						type="text"
 						className="form-control"
 						id="username"
-						placeholder="name123"
+						placeholder="Username"
 						name="username"
-						ref={register({ required: true })}
+						ref={register({ required: true, pattern: /^[a-zA-Z0-9_.-]*$/ })}
 						autoComplete="off"
 						style={errors.username && { border: '1px solid red' }}
 					/>
 					<label htmlFor="username">Username</label>
-					<p className={`text-danger ${styles.errors}`}>{errors.username && 'Username is required'}</p>
+					<p className={`text-danger ${styles.errors}`}>
+						{errors.username?.type === 'required' && 'Username is required'}
+						{errors.username?.type === 'pattern' &&
+							'Username can only conatin characters numbers and underscores'}
+					</p>
 				</div>
 
 				<div className={`${styles.formLabelGroup}`}>
