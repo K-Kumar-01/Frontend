@@ -12,7 +12,7 @@ import { COOKIE_NAME } from '../../appConstants';
 
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
-	const { register, handleSubmit, errors, watch } = useForm({
+	const { register, handleSubmit, errors, watch, formState } = useForm({
 		mode: 'onTouched',
 	}); // initialise the hook
 	const [loading, setLoading] = useState(false);
