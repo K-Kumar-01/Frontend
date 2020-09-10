@@ -20,13 +20,13 @@ const EditUser = (props) => {
 			{props.error ? (
 				<Error statusCode={props.error} />
 			) : (
-				<Protected>
+				//<Protected>
 					<Layout>
 						<Header />
 						<EditProfile userDetails={props.userDetails} />
 						<Footer />
 					</Layout>
-				</Protected>
+				//</Protected>
 			)}
 		</>
 	);

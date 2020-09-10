@@ -31,7 +31,7 @@ const FormWithToasts = () => {
 						appearance: 'success',
 						autoDismiss: true,
 					});
-					Router.push('/');
+					Router.push('/articles');
 				}
 			})
 			.catch((err) => {

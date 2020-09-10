@@ -60,12 +60,18 @@ const ToastedComponent = (props) => {
 
 	useEffect(() => {
 		setPreviewUrl(props.userDetails.userInfo.image);
-		console.log(props.userDetails);
 	}, []);
 
 	const onSubmit = (data, event) => {
 		console.log(data);
 		event.preventDefault();
+		console.log(props.userDetails);
+		let formdata = new FormData();
+
+		formdata.append('username', data.username);
+		formdata.append('name', data.name);
+		formdata.append('about', data.about);
+		formdata.append('image', file);
 	};
 
 	const showForm = () => {
@@ -201,7 +207,7 @@ const ToastedComponent = (props) => {
 						</label>
 						<textarea
 							name="about"
-							ref={register({ minLength: 20 })}
+							ref={register({ minLength: 25 })}
 							placeholder="Let people know more about you"
 							className={`form-control`}
 							style={errors.about && { border: '1px solid red' }}

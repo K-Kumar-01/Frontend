@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { SIGNOUT } from '../appConstants';
+
 export const createUser = (data) => {
 	return fetch(`http://localhost:8000/api/user/register/`, {
 		method: 'POST',
@@ -30,4 +33,14 @@ export const loginUser = (data) => {
 			console.error(err);
 			return err;
 		});
+};
+
+export const logoutUser = async () => {
+	let response;
+	try {
+		response = await axios.get(`${SIGNOUT}`);
+		return { response };
+	} catch (error) {
+		return { error: error.response };
+	}
 };
