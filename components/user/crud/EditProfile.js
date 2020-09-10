@@ -57,16 +57,21 @@ const EditProfile = (props) => {
 
 	const { register, handleSubmit, errors, formState, watch } = useForm({
 		mode: 'onTouched',
-		defaultValues: {},
+		defaultValues: {
+			name: props.userDetails.userInfo.name,
+			email: props.userDetails.userInfo.email,
+			username: props.userDetails.userInfo.username,
+			about: props.userDetails.userInfo.about,
+		},
 	});
 
 	useEffect(() => {
-		setValues({ ...values });
+		setPreviewUrl(props.userDetails.userInfo.image);
+		console.log(props.userDetails);
 	}, []);
 
 	const onSubmit = (data) => {
 		console.log('hello');
-		// console.log(data);
 	};
 
 	const showForm = () => {
@@ -113,7 +118,7 @@ const EditProfile = (props) => {
 						name="email"
 						autoComplete="off"
 						ref={register()}
-						value={values.email}
+						value={props.userDetails.userInfo.email}
 						disabled
 					/>
 					<label htmlFor="email">Email</label>

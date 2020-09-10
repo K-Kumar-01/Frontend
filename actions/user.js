@@ -13,3 +13,14 @@ export const updateUser = async (id, data) => {
 	}
 	return { response };
 };
+
+export const getUserDetails = async (username) => {
+	let response;
+	try {
+		response = await axios.get(`${BASE_URL}api/user/profile/${username}`);
+		return { response };
+	} catch (error) {
+		// console.log(error.response);
+		return { error: error.response };
+	}
+};
