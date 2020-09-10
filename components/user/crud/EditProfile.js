@@ -7,7 +7,9 @@ import { ToastProvider, useToasts } from 'react-toast-notifications';
 import styles from './EditProfile.module.css';
 import LoadingSpinner from '../../spinner/LoadingSpinner';
 
-const EditProfile = (props) => {
+const ToastedComponent = (props) => {
+	const { addToast } = useToasts();
+
 	// IMage component
 	const [file, setFile] = useState();
 	const [previewUrl, setPreviewUrl] = useState();
@@ -46,15 +48,6 @@ const EditProfile = (props) => {
 
 	//
 
-	const [values, setValues] = useState({
-		name: null,
-		email: '',
-		username: null,
-		opassword: null,
-		npassword: null,
-		cpassword: null,
-	});
-
 	const { register, handleSubmit, errors, formState, watch } = useForm({
 		mode: 'onTouched',
 		defaultValues: {
@@ -70,8 +63,9 @@ const EditProfile = (props) => {
 		console.log(props.userDetails);
 	}, []);
 
-	const onSubmit = (data) => {
-		console.log('hello');
+	const onSubmit = (data, event) => {
+		console.log(data);
+		event.preventDefault();
 	};
 
 	const showForm = () => {
@@ -124,7 +118,7 @@ const EditProfile = (props) => {
 					<label htmlFor="email">Email</label>
 				</div>
 
-				<hr />
+				{/* <hr />
 				<h3>Password details</h3>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
@@ -172,6 +166,7 @@ const EditProfile = (props) => {
 					<label htmlFor="cpassword">Confirm Password</label>
 					<p className={`text-danger ${styles.errors}`}>{errors.cpassword && 'Passwords do not match'}</p>
 				</div>
+			 */}
 			</section>
 		);
 	};
@@ -228,6 +223,14 @@ const EditProfile = (props) => {
 				</div>
 			</form>
 		</div>
+	);
+};
+
+const EditProfile = (props) => {
+	return (
+		<ToastProvider>
+			<ToastedComponent userDetails={props.userDetails} />
+		</ToastProvider>
 	);
 };
 

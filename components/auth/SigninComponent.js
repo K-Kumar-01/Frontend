@@ -6,17 +6,15 @@ import Router from 'next/router';
 
 import styles from './SignupComponent.module.css';
 import { loginUser } from '../../actions/auth';
+import { setCookie } from '../../helpers/auth';
+import { COOKIE_NAME } from '../../appConstants';
 
 const FormWithToasts = () => {
 	const { addToast } = useToasts();
 	const { register, handleSubmit, errors, formState } = useForm({
 		mode: 'onTouched',
 	}); // initialise the hook
-	useEffect(() => {
-		console.log(errors);
-		console.log('****');
-		console.log(formState.touched);
-	}, []);
+	useEffect(() => {}, []);
 	const onSubmit = (data, event) => {
 		event.preventDefault();
 		loginUser(data)
@@ -27,6 +25,8 @@ const FormWithToasts = () => {
 						autoDismiss: true,
 					});
 				} else {
+					console.log(response);
+					setCookie(COOKIE_NAME, response.token);
 					addToast(`${response.message}`, {
 						appearance: 'success',
 						autoDismiss: true,

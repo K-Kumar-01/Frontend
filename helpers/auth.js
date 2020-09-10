@@ -20,7 +20,7 @@ export const decodeCookie = (cookieValue) => {
 export const authenticate = (key) => {
 	let token = getCookie(key);
 	let decodedCookie = decodeCookie(token);
-	if (!decodeCookie || !token) {
+	if (!decodedCookie || !token) {
 		return false;
 	}
 	let expDate = decodedCookie.exp * 1000;
