@@ -1,46 +1,75 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 import Link from 'next/link';
 import Router from 'next/router';
 
 import styles from './SignupComponent.module.css';
+import LoadingSpinner from '../spinner/LoadingSpinner';
 import { loginUser } from '../../actions/auth';
 import { setCookie } from '../../helpers/auth';
 import { COOKIE_NAME } from '../../appConstants';
 
 const FormWithToasts = () => {
+	const [loading, setLoading] = useState(false);
 	const { addToast } = useToasts();
 	const { register, handleSubmit, errors, formState } = useForm({
 		mode: 'onTouched',
 	}); // initialise the hook
 	useEffect(() => {}, []);
-	const onSubmit = (data, event) => {
+	const onSubmit = async (data, event) => {
 		event.preventDefault();
-		loginUser(data)
-			.then((response) => {
-				if (response.error) {
-					addToast(`${response.error}`, {
-						appearance: 'error',
-						autoDismiss: true,
-					});
-				} else {
-					console.log(response);
-					setCookie(COOKIE_NAME, response.token);
-					addToast(`${response.message}`, {
-						appearance: 'success',
-						autoDismiss: true,
-					});
-					Router.push('/articles');
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-				addToast(`${err}`, {
+		setLoading(true);
+		let response;
+
+		try {
+			response = await loginUser(data);
+			setLoading(false);
+			if (response.error) {
+				addToast(`${response.error}`, {
 					appearance: 'error',
 					autoDismiss: true,
 				});
+			} else {
+				setCookie(COOKIE_NAME, response.token);
+				addToast(`${response.message}`, {
+					appearance: 'success',
+					autoDismiss: true,
+				});
+				// Router.push('/articles');
+			}
+		} catch (error) {
+			setLoading(false);
+			addToast(`${error.message}`, {
+				appearance: 'error',
+				autoDismiss: true,
 			});
+		}
+
+		// loginUser(data)
+		// 	.then((response) => {
+		// 		if (response.error) {
+		// 			addToast(`${response.error}`, {
+		// 				appearance: 'error',
+		// 				autoDismiss: true,
+		// 			});
+		// 		} else {
+		// 			console.log(response);
+		// 			setCookie(COOKIE_NAME, response.token);
+		// 			addToast(`${response.message}`, {
+		// 				appearance: 'success',
+		// 				autoDismiss: true,
+		// 			});
+		// 			Router.push('/articles');
+		// 		}
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 		addToast(`${err}`, {
+		// 			appearance: 'error',
+		// 			autoDismiss: true,
+		// 		});
+		// 	});
 	};
 
 	const showForm = () => {
@@ -95,6 +124,7 @@ const FormWithToasts = () => {
 	};
 	return (
 		<div className="container-fluid">
+			{loading && <LoadingSpinner asOverlay />}
 			<div className="row no-gutter">
 				<div className="col-md-8 col-lg-6">
 					<div className={`${styles.login} d-flex align-items-center py-5`}>

@@ -16,35 +16,67 @@ const FormWithToasts = () => {
 		mode: 'onTouched',
 	}); // initialise the hook
 	const [loading, setLoading] = useState(false);
-	const onSubmit = (data, event) => {
+	const onSubmit = async (data, event) => {
+		// console.log(data);
 		event.preventDefault();
 		setLoading(true);
-		createUser(data)
-			.then((response) => {
-				console.log(response);
-				setLoading(false);
-				if (response.error) {
-					addToast(`${response.error}`, {
-						appearance: 'error',
-						autoDismiss: true,
-					});
-				} else {
-					setCookie(COOKIE_NAME, response.token);
-					addToast(`${response.message}`, {
-						appearance: 'success',
-					});
-					// const decodedToken = decodeCookie(COOKIE_NAME);
-					Router.push(`/articles`);
-				}
-			})
-			.catch((err) => {
-				setLoading(false);
-				addToast(`${err}`, {
+		let formdata = new FormData();
+		formdata.append('username', data.username);
+		formdata.append('name', data.name);
+		formdata.append('email', data.email);
+		formdata.append('password', data.password);
+
+		let response;
+		try {
+			response = await createUser(formdata);
+			// console.log(response);
+			setLoading(false);
+			if (response.error) {
+				addToast(`${response.error}`, {
 					appearance: 'error',
 					autoDismiss: true,
 				});
-				console.error(err);
+			} else {
+				setCookie(COOKIE_NAME, response.token);
+				addToast(`${response.message}`, {
+					appearance: 'success',
+				});
+				// Router.push(`/articles`);
+			}
+		} catch (error) {
+			console.log(error);
+			setLoading(false);
+			addToast(`${error.message}`, {
+				appearance: 'error',
+				autoDismiss: true,
 			});
+		}
+		// createUser(data)
+		// 	.then((response) => {
+		// 		console.log(response);
+		// 		setLoading(false);
+		// 		if (response.error) {
+		// 			addToast(`${response.error}`, {
+		// 				appearance: 'error',
+		// 				autoDismiss: true,
+		// 			});
+		// 		} else {
+		// 			setCookie(COOKIE_NAME, response.token);
+		// 			addToast(`${response.message}`, {
+		// 				appearance: 'success',
+		// 			});
+		// 			// const decodedToken = decodeCookie(COOKIE_NAME);
+		// 			Router.push(`/articles`);
+		// 		}
+		// 	})
+		// 	.catch((err) => {
+		// 		setLoading(false);
+		// 		addToast(`${err}`, {
+		// 			appearance: 'error',
+		// 			autoDismiss: true,
+		// 		});
+		// 		console.error(err);
+		// 	});
 	};
 
 	const showForm = () => {

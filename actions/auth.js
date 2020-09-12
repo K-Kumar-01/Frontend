@@ -1,38 +1,36 @@
 import axios from 'axios';
-import { SIGNOUT } from '../appConstants';
+import { SIGNIN, SIGNOUT, SIGNUP } from '../appConstants';
 
-export const createUser = (data) => {
-	return fetch(`http://localhost:8000/api/user/register/`, {
-		method: 'POST',
-		body: JSON.stringify(data),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	})
-		.then((response) => {
-			return response.json();
-		})
-		.catch((err) => {
-			console.error(err);
-			return err.message;
+export const createUser = async (data) => {
+	let response;
+	try {
+		response = await axios.post(`${SIGNUP}`, data, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
 		});
+		// console.log(response);
+		return response.data;
+	} catch (err) {
+		// console.log(err);
+		return (err.response && err.response.data) || err.message;
+	}
 };
 
-export const loginUser = (data) => {
-	return fetch(`http://localhost:8000/api/user/login/`, {
-		method: 'POST',
-		body: JSON.stringify(data),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	})
-		.then((response) => {
-			return response.json();
-		})
-		.catch((err) => {
-			console.error(err);
-			return err;
+export const loginUser = async (data) => {
+	let response;
+	let sendData;
+	try {
+		sendData = JSON.stringify(data);
+		response = await axios.post(`${SIGNIN}`, sendData, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		});
+		return response.data;
+	} catch (err) {
+		return (err.response && err.response.data) || err.message;
+	}
 };
 
 export const logoutUser = async () => {

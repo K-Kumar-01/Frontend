@@ -2,7 +2,7 @@ import cookie from 'js-cookie';
 import jwt from 'jsonwebtoken';
 
 export const setCookie = (key, value) => {
-	cookie.set(key, value);
+	cookie.set(key, value, { expires: 1 });
 };
 
 export const removeCookie = (key) => {

@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 
 import styles from './EditProfile.module.css';
 import LoadingSpinner from '../../spinner/LoadingSpinner';
+import { updateUser } from '../../../actions/user';
 
 const ToastedComponent = (props) => {
 	const { addToast } = useToasts();
@@ -46,7 +45,7 @@ const ToastedComponent = (props) => {
 		}
 	};
 
-	//
+	// /image component
 
 	const { register, handleSubmit, errors, formState, watch } = useForm({
 		mode: 'onTouched',
@@ -62,16 +61,25 @@ const ToastedComponent = (props) => {
 		setPreviewUrl(props.userDetails.userInfo.image);
 	}, []);
 
-	const onSubmit = (data, event) => {
+	const onSubmit = async (data, event) => {
 		console.log(data);
 		event.preventDefault();
-		console.log(props.userDetails);
 		let formdata = new FormData();
 
 		formdata.append('username', data.username);
 		formdata.append('name', data.name);
 		formdata.append('about', data.about);
 		formdata.append('image', file);
+
+		let response;
+		try {
+			response = await updateUser(props.userDetails.userInfo.username, formdata);
+			console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
+			console.log(response);
+		} catch (error) {
+			console.log('********************************');
+			console.log(error);
+		}
 	};
 
 	const showForm = () => {
@@ -222,7 +230,7 @@ const ToastedComponent = (props) => {
 					<button
 						type="submit"
 						className={`btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
-						disabled={Object.keys(formState.touched).length === 0 || Object.keys(errors).length !== 0}
+						disabled={Object.keys(errors).length !== 0}
 					>
 						Save Changes
 					</button>

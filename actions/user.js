@@ -1,17 +1,19 @@
 import axios from 'axios';
 import { BASE_URL } from '../appConstants';
 
-export const updateUser = async (id, data) => {
+export const updateUser = async (username, data) => {
 	let response;
 	try {
-		response = await axios.put(`${BASE_URL}/api/user/${id}`, data, {
+		response = await axios.put(`${BASE_URL}api/user/edit/${username}`, data, {
 			headers: { 'Content-Type': 'multipart/form-data' },
+			
 		});
 	} catch (error) {
 		console.log(error);
-		return { error: error.response };
+		return error.response;
 	}
-	return { response };
+	console.log(response);
+	return response;
 };
 
 export const getUserDetails = async (username) => {
