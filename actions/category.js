@@ -1,4 +1,4 @@
-export const getCategoriees = async () => {
+export const getCategories = async () => {
 	let response, responseData;
 	try {
 		response = await fetch(`https://mighty-ravine-63394.herokuapp.com/api/categories`);

@@ -36,7 +36,7 @@ const FormWithToasts = () => {
 					appearance: 'success',
 					autoDismiss: true,
 				});
-				// Router.push('/articles');
+				Router.push('/articles');
 			}
 		} catch (error) {
 			setLoading(false);
@@ -45,31 +45,6 @@ const FormWithToasts = () => {
 				autoDismiss: true,
 			});
 		}
-
-		// loginUser(data)
-		// 	.then((response) => {
-		// 		if (response.error) {
-		// 			addToast(`${response.error}`, {
-		// 				appearance: 'error',
-		// 				autoDismiss: true,
-		// 			});
-		// 		} else {
-		// 			console.log(response);
-		// 			setCookie(COOKIE_NAME, response.token);
-		// 			addToast(`${response.message}`, {
-		// 				appearance: 'success',
-		// 				autoDismiss: true,
-		// 			});
-		// 			Router.push('/articles');
-		// 		}
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 		addToast(`${err}`, {
-		// 			appearance: 'error',
-		// 			autoDismiss: true,
-		// 		});
-		// 	});
 	};
 
 	const showForm = () => {

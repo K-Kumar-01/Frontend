@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { getCategoriees } from '../../actions/category';
+import { getCategories } from '../../actions/category';
 
 import styles from './index.module.css';
 import Layout from '../../components/Layout';
@@ -17,7 +17,7 @@ const Articles = () => {
 	const getCats = async () => {
 		try {
 			// console.log('mew here');
-			const result = await getCategoriees();
+			const result = await getCategories();
 			setCategories(result.categories);
 			console.log(result);
 			// console.log('mre there');

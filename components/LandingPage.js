@@ -35,12 +35,12 @@ const LandingPage = () => {
 						Just here to read.
 						<Link href="/articles">
 							<a>
-								<button
+								<span
 									className={`btn mb-1 font-bold heading text-capitalize ${styles.link}`}
 									style={{ fontSize: '1.2rem' }}
 								>
 									Articles
-								</button>
+								</span>
 							</a>
 						</Link>
 					</div>

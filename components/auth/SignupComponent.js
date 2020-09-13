@@ -41,7 +41,7 @@ const FormWithToasts = () => {
 				addToast(`${response.message}`, {
 					appearance: 'success',
 				});
-				// Router.push(`/articles`);
+				Router.push(`/articles`);
 			}
 		} catch (error) {
 			console.log(error);
@@ -51,32 +51,6 @@ const FormWithToasts = () => {
 				autoDismiss: true,
 			});
 		}
-		// createUser(data)
-		// 	.then((response) => {
-		// 		console.log(response);
-		// 		setLoading(false);
-		// 		if (response.error) {
-		// 			addToast(`${response.error}`, {
-		// 				appearance: 'error',
-		// 				autoDismiss: true,
-		// 			});
-		// 		} else {
-		// 			setCookie(COOKIE_NAME, response.token);
-		// 			addToast(`${response.message}`, {
-		// 				appearance: 'success',
-		// 			});
-		// 			// const decodedToken = decodeCookie(COOKIE_NAME);
-		// 			Router.push(`/articles`);
-		// 		}
-		// 	})
-		// 	.catch((err) => {
-		// 		setLoading(false);
-		// 		addToast(`${err}`, {
-		// 			appearance: 'error',
-		// 			autoDismiss: true,
-		// 		});
-		// 		console.error(err);
-		// 	});
 	};
 
 	const showForm = () => {
