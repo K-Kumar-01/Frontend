@@ -1,19 +1,23 @@
 import axios from 'axios';
-import { BASE_URL } from '../appConstants';
+import { BASE_URL, COOKIE_NAME } from '../appConstants';
+import { getCookie } from '../helpers/auth';
 
 export const updateUser = async (username, data) => {
 	let response;
+	let token = getCookie(COOKIE_NAME);
 	try {
-		response = await axios.put(`${BASE_URL}api/user/edit/${username}`, data, {
-			headers: { 'Content-Type': 'multipart/form-data' },
-			
+		response = await axios.patch(`${BASE_URL}api/user/edit/${username}`, data, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				Authorization: token
+			},
 		});
+		return response.data;
 	} catch (error) {
-		console.log(error);
-		return error.response;
+		// console.log(error);
+		// console.log(error.response || { data: { error: error.message } });
+		return (error.response && error.response.data) || { error: error.message };
 	}
-	console.log(response);
-	return response;
 };
 
 export const getUserDetails = async (username) => {

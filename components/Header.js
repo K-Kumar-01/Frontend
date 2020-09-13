@@ -11,7 +11,6 @@ const Header = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
 	useEffect(() => {
 		setLoggedIn(authenticate(COOKIE_NAME));
-		console.log(authenticate(COOKIE_NAME));
 	}, []);
 	const router = useRouter();
 

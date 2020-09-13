@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 
 const Protected = (props) => {
 	const router = useRouter();
-
 	useEffect(() => {
 		if (router.pathname.startsWith('/signup') || router.pathname.startsWith('/signin')) {
 			if (authenticate(COOKIE_NAME)) {

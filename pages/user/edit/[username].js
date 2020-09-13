@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import EditProfile from '../../../components/user/crud/EditProfile';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
@@ -7,26 +7,42 @@ import Protected from '../../../components/Protected/Protected';
 import { getUserDetails } from '../../../actions/user';
 import Error from 'next/error';
 import { useRouter } from 'next/router';
+import { authenticate } from '../../../helpers/auth';
+import { COOKIE_NAME } from '../../../appConstants';
 
 const EditUser = (props) => {
 	const router = useRouter();
-
+	const [loggedIn, setLoggedIn] = useState(false);
 	useEffect(() => {
-		console.log(props);
+		let decodedData = authenticate(COOKIE_NAME);
+		setLoggedIn(decodedData);
+		if (!decodedData || !decodedData.username) {
+			router.push('/signin');
+		} else if (!props.error) {
+			if (decodedData.username.toString() !== router.query.username.toString()) {
+				router.push(`/user/edit/${decodedData.username}`);
+			}
+		}
 	}, []);
 
 	return (
 		<>
-			{props.error ? (
-				<Error statusCode={props.error} />
+			{loggedIn ? (
+				<>
+					{props.error ? (
+						<Error statusCode={props.error} />
+					) : (
+						<Layout>
+							<Header />
+							<EditProfile userDetails={props.userDetails} />
+							<Footer />
+						</Layout>
+					)}
+				</>
 			) : (
-				//<Protected>
-					<Layout>
-						<Header />
-						<EditProfile userDetails={props.userDetails} />
-						<Footer />
-					</Layout>
-				//</Protected>
+				<div>
+					Hello
+				</div>
 			)}
 		</>
 	);
@@ -34,6 +50,7 @@ const EditUser = (props) => {
 
 EditUser.getInitialProps = async (props) => {
 	let response;
+
 	try {
 		response = await getUserDetails(props.query.username);
 	} catch (error) {
@@ -46,7 +63,6 @@ EditUser.getInitialProps = async (props) => {
 	} else {
 		return { userDetails: response.response.data };
 	}
-	return true;
 };
 
 export default EditUser;

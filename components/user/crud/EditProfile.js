@@ -5,9 +5,15 @@ import { ToastProvider, useToasts } from 'react-toast-notifications';
 import styles from './EditProfile.module.css';
 import LoadingSpinner from '../../spinner/LoadingSpinner';
 import { updateUser } from '../../../actions/user';
+import { removeCookie, setCookie } from '../../../helpers/auth';
+import { COOKIE_NAME } from '../../../appConstants';
+import { useRouter } from 'next/router';
 
 const ToastedComponent = (props) => {
 	const { addToast } = useToasts();
+
+	const [loading, setLoading] = useState(false);
+	const router = useRouter();
 
 	// IMage component
 	const [file, setFile] = useState();
@@ -62,23 +68,53 @@ const ToastedComponent = (props) => {
 	}, []);
 
 	const onSubmit = async (data, event) => {
-		console.log(data);
+		// console.log(data);
+		// console.log('hello');
 		event.preventDefault();
+		// return ;
+		setLoading(true);
 		let formdata = new FormData();
 
 		formdata.append('username', data.username);
 		formdata.append('name', data.name);
 		formdata.append('about', data.about);
-		formdata.append('image', file);
+		if (file) {
+			formdata.append('image', file);
+		}
+
+		if (data.oldpassword) {
+			formdata.append('oldpassword', data.oldpassword);
+			formdata.append('newpassword', data.newpassword);
+		}
 
 		let response;
 		try {
 			response = await updateUser(props.userDetails.userInfo.username, formdata);
-			console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
 			console.log(response);
+			setLoading(false);
+			if (response.error) {
+				addToast(`${response.error}`, {
+					appearance: 'error',
+					autoDismiss: true,
+				});
+			} else {
+				removeCookie(COOKIE_NAME);
+				setCookie(COOKIE_NAME, response.token);
+				addToast(`${response.message}`, {
+					appearance: 'success',
+					autoDismiss: true,
+				});
+				setTimeout(() => {
+					router.push(`/user/edit/${response.username}`);
+				}, 1000);
+			}
 		} catch (error) {
 			console.log('********************************');
-			console.log(error);
+			setLoading(false);
+			addToast(`${error.message}`, {
+				appearance: 'error',
+				autoDismiss: true,
+			});
 		}
 	};
 
@@ -132,38 +168,38 @@ const ToastedComponent = (props) => {
 					<label htmlFor="email">Email</label>
 				</div>
 
-				{/* <hr />
+				<hr />
 				<h3>Password details</h3>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
 						type="password"
-						name="password"
+						name="oldpassword"
 						className={`form-control`}
-						id="password"
+						id="oldpassword"
 						placeholder="Minimum 6 characters"
-						ref={register({ required: true, minLength: 6 })}
+						ref={register({ minLength: 6 })}
 						autoComplete="off"
-						style={errors.password && { border: '1px solid red' }}
+						style={errors.oldpassword && { border: '1px solid red' }}
 					/>
-					<label htmlFor="password">Old Password</label>
+					<label htmlFor="oldpassword">Old Password</label>
 					<p className={`text-danger ${styles.errors}`}>
-						{errors.password && 'Password must be atleast 6 character long'}
+						{errors.oldpassword && 'Password must be atleast 6 character long'}
 					</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
 						type="password"
-						name="npassword"
+						name="newpassword"
 						className={`form-control`}
-						id="npassword"
+						id="newpassword"
 						placeholder="Minimum 6 characters"
-						ref={register({ required: true, minLength: 6 })}
+						ref={register({ required: watch('oldpassword'), minLength: 6 })}
 						autoComplete="off"
-						style={errors.npassword && { border: '1px solid red' }}
+						style={errors.newpassword && { border: '1px solid red' }}
 					/>
-					<label htmlFor="npassword">New Password</label>
+					<label htmlFor="newpassword">New Password</label>
 					<p className={`text-danger ${styles.errors}`}>
-						{errors.npassword && 'Password must be atleast 6 character long'}
+						{errors.newpassword && 'Password must be atleast 6 character long'}
 					</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
@@ -173,20 +209,20 @@ const ToastedComponent = (props) => {
 						className={`form-control`}
 						id="cpassword"
 						placeholder="•••••••"
-						ref={register({ validate: (value) => value === watch('npassword') })}
+						ref={register({ validate: (value) => value === watch('newpassword') })}
 						autoComplete="off"
 						style={errors.cpassword && { border: '1px solid red' }}
 					/>
 					<label htmlFor="cpassword">Confirm Password</label>
 					<p className={`text-danger ${styles.errors}`}>{errors.cpassword && 'Passwords do not match'}</p>
 				</div>
-			 */}
 			</section>
 		);
 	};
 
 	return (
 		<div className={`container my-3`}>
+			{loading && <LoadingSpinner asOverlay />}
 			<form className={`row`} onSubmit={handleSubmit(onSubmit)}>
 				<section className={`col-md-6`}>
 					<div>
@@ -230,7 +266,6 @@ const ToastedComponent = (props) => {
 					<button
 						type="submit"
 						className={`btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
-						disabled={Object.keys(errors).length !== 0}
 					>
 						Save Changes
 					</button>
