@@ -6,7 +6,7 @@ import { useDropzone } from 'react-dropzone';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 
 import Loading from '../../spinner/Loading';
-import { getCategoriees } from '../../../actions/category';
+import { getCategories } from '../../../actions/category';
 import styles from './ArticleCreate.module.css';
 import { createArticle } from '../../../actions/article';
 import LoadingSpinner from '../../spinner/LoadingSpinner';
@@ -105,7 +105,7 @@ const ComponentWithToasts = () => {
 	const getCats = async () => {
 		try {
 			// console.log('mew here');
-			const result = await getCategoriees();
+			const result = await getCategories();
 			setCategories(result.categories);
 			// console.log('mre there');
 		} catch (error) {
