@@ -8,7 +8,8 @@ const Protected = (props) => {
 	useEffect(() => {
 		if (router.pathname.startsWith('/signup') || router.pathname.startsWith('/signin')) {
 			if (authenticate(COOKIE_NAME)) {
-				router.back();
+				let decoded = authenticate(COOKIE_NAME);
+				router.push(`/user/profile/${decoded.username}`);
 			}
 		} else {
 			if (!authenticate(COOKIE_NAME)) {

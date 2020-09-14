@@ -1,0 +1,25 @@
+.profile {
+	border: 1px solid #efefef;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.profileImage {
+	width: 125px;
+	height: 125px;
+	/* border: 2px solid black; */
+	border-radius: 50%;
+	position: relative;
+	top: -50%;
+}
+
+@media (max-width: 576px) {
+	.profileInfo {
+		text-align: center;
+	}
+}
+
+.backgroundCover {
+	height: 100px;
+	background-color: blue;
+}
