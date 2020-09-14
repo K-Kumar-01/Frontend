@@ -30,7 +30,7 @@ const Header = () => {
 	};
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-top navbar-light bg-light">
+		<nav className="navbar navbar-expand-lg navbar-top navbar-light bg-light sticky-top">
 			<div className="container">
 				<Link href="/">
 					<a className="navbar-brand">Titan Read</a>
