@@ -118,9 +118,11 @@ const ToastedComponent = (props) => {
 		}
 	};
 
-	const showForm = () => {
+	const basicDetailsArea = () => {
 		return (
-			<section className={'my-4'}>
+			<>
+				<hr />
+				<h3 className={`heading`}>Basic Details</h3>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
 						type="text"
@@ -142,15 +144,16 @@ const ToastedComponent = (props) => {
 						id="username"
 						placeholder="Username"
 						name="username"
-						ref={register({ required: true, pattern: /^[a-zA-Z0-9_.-]*$/ })}
+						ref={register({ required: true, pattern: /^[a-zA-Z0-9_]*$/, minLength: 3 })}
 						autoComplete="off"
 						style={errors.username && { border: '1px solid red' }}
 					/>
 					<label htmlFor="username">Username</label>
 					<p className={`text-danger ${styles.errors}`}>
 						{errors.username?.type === 'required' && 'Username is required'}
+						{errors.username?.type === 'minLength' && 'Username must be atleast 3 characters long'}
 						{errors.username?.type === 'pattern' &&
-							'Username can only conatin characters numbers and underscores'}
+							'Username can only contain characters numbers and underscores'}
 					</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
@@ -167,9 +170,128 @@ const ToastedComponent = (props) => {
 					/>
 					<label htmlFor="email">Email</label>
 				</div>
+			</>
+		);
+	};
 
+	const contactDetailsArea = () => {
+		return (
+			<>
 				<hr />
-				<h3>Password details</h3>
+				<h3 className={`heading`}>Contact details</h3>
+				<div className={`${styles.formLabelGroup}`}>
+					<input
+						type="text"
+						className="form-control"
+						id="facebook"
+						placeholder="Facebook Profile Url"
+						name="facebook"
+						ref={register({
+							pattern: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
+						})}
+						autoComplete="off"
+						style={errors.facebook && { border: '1px solid red' }}
+					/>
+					<label htmlFor="facebook">Facebook Profile URL</label>
+					<p className={`text-danger ${styles.errors}`}>{errors.facebook && 'Not Valid URL'}</p>
+				</div>
+				<div className={`${styles.formLabelGroup}`}>
+					<input
+						type="text"
+						className="form-control"
+						id="github"
+						placeholder="Github username"
+						name="github"
+						ref={register({
+							pattern: /^[a-zA-Z0-9_.-]*$/,
+						})}
+						autoComplete="off"
+						style={errors.github && { border: '1px solid red' }}
+					/>
+					<label htmlFor="github">Github Username</label>
+					<p className={`text-danger ${styles.errors}`}>
+						{errors.github && 'Username can only contain characters numbers and underscores'}
+					</p>
+				</div>
+				<div className={`${styles.formLabelGroup}`}>
+					<input
+						type="text"
+						className="form-control"
+						placeholder="Instagram username"
+						id="instagram"
+						name="instagram"
+						ref={register({
+							pattern: /^[a-zA-Z0-9_.-]*$/,
+						})}
+						autoComplete="off"
+						style={errors.instagram && { border: '1px solid red' }}
+					/>
+					<label htmlFor="instagram">Instagram Username</label>
+					<p className={`text-danger ${styles.errors}`}>
+						{errors.instagram && 'Username can only contain characters numbers and underscores'}
+					</p>
+				</div>
+				<div className={`${styles.formLabelGroup}`}>
+					<input
+						type="text"
+						className="form-control"
+						placeholder="Twitter"
+						id="twitter"
+						name="twitter"
+						ref={register({
+							pattern: /^[a-zA-Z0-9_.-]*$/,
+						})}
+						autoComplete="off"
+						style={errors.twitter && { border: '1px solid red' }}
+					/>
+					<label htmlFor="twitter">Twitter Username</label>
+					<p className={`text-danger ${styles.errors}`}>
+						{errors.twitter && 'Username can only contain characters numbers and underscores'}
+					</p>
+				</div>
+				<div className={`${styles.formLabelGroup}`}>
+					<input
+						type="text"
+						className="form-control"
+						placeholder="Twitter"
+						id="website"
+						name="website"
+						ref={register({
+							pattern: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
+						})}
+						autoComplete="off"
+						style={errors.website && { border: '1px solid red' }}
+					/>
+					<label htmlFor="website">Personal Website</label>
+					<p className={`text-danger ${styles.errors}`}>{errors.website && 'Invalid URL'}</p>
+				</div>
+				<div className={`${styles.formLabelGroup}`}>
+					<input
+						type="text"
+						className="form-control"
+						placeholder="Twitter"
+						id="contactNumber"
+						name="contactNumber"
+						ref={register({
+							pattern: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g,
+							maxLength: 15,
+						})}
+						autoComplete="off"
+						style={errors.contactNumber && { border: '1px solid red' }}
+					/>
+					<label htmlFor="contactNumber">Contact Number</label>
+					<p className={`text-danger ${styles.errors}`}>{errors.contactNumber && 'Invalid Contact Number'}</p>
+				</div>
+			</>
+		);
+	};
+
+	const passwordArea = () => {
+		return (
+			<>
+				<hr className={`d-block d-md-none`} />
+
+				<h3 className={`heading`}>Password details</h3>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
 						type="password"
@@ -216,6 +338,15 @@ const ToastedComponent = (props) => {
 					<label htmlFor="cpassword">Confirm Password</label>
 					<p className={`text-danger ${styles.errors}`}>{errors.cpassword && 'Passwords do not match'}</p>
 				</div>
+			</>
+		);
+	};
+
+	const showForm = () => {
+		return (
+			<section className={'my-4'}>
+				{passwordArea()}
+				{contactDetailsArea()}
 			</section>
 		);
 	};
@@ -247,10 +378,11 @@ const ToastedComponent = (props) => {
 					<br />
 					<div>
 						<label htmlFor="about">
-							<h4>About you</h4>
+							<h3 className={`heading`}>About you</h3>
 						</label>
 						<textarea
 							name="about"
+							rows="4"
 							ref={register({ minLength: 25 })}
 							placeholder="Let people know more about you"
 							className={`form-control`}
@@ -260,6 +392,7 @@ const ToastedComponent = (props) => {
 							{errors.about && 'Must be atleast 20 characters long'}
 						</p>
 					</div>
+					{basicDetailsArea()}
 				</section>
 				<section className={`col-md-6`}>{showForm()}</section>
 				<div className={`col-md-4 mx-auto my-3`}>
