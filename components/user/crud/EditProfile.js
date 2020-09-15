@@ -64,7 +64,7 @@ const ToastedComponent = (props) => {
 	});
 
 	useEffect(() => {
-		setPreviewUrl(props.userDetails.userInfo.image);
+		setPreviewUrl(props.userDetails.userInfo.avatar);
 	}, []);
 
 	const onSubmit = async (data, event) => {
