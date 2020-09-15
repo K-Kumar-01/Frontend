@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './UserProfile.module.css';
 
-const UserProfile = () => {
+const UserProfile = (props) => {
+	const { userInfo } = props.userDetails;
+
 	return (
 		<div className={`container-fluid`}>
 			<main className={`${styles.maincontainer}`}>
@@ -16,7 +18,19 @@ const UserProfile = () => {
 										className={`${styles.profileImage}`}
 									/>
 								</div>
-								<div className={`col-lg-9 col-md-8 col-sm-12 ${styles.profileInfo}`}>Choose your</div>
+								<div className={`col-lg-9 col-md-8 col-sm-12 ${styles.profileInfo}`}>
+									<h3 className={`text-capitalize`}>{userInfo.name}</h3>
+									<h3>
+										Username:
+										<span className={`${styles.boldWeight}`}>{` ${userInfo.username}`}</span>
+									</h3>
+									<h3>
+										Joined on:{` `}
+										<span className={`${styles.boldWeight}`}>
+											{new Date(userInfo.createdAt).toLocaleDateString()}
+										</span>
+									</h3>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -24,8 +38,32 @@ const UserProfile = () => {
 				<section className={`${styles.otherinfo}`}>
 					<div className={`container`}>
 						<div className={`row`}>
-							<div className={`col-md-4 col-sm-12`}>yooy</div>
-							<div className={`col-md-8 col-sm-12`}>hello</div>
+							<div className={`col-md-4 col-sm-12 mb-2`}>
+								<div className={`card`}>
+									<div className={`card-header text-uppercase`}>
+										<h4 className={`font-weight-bold heading`}>Contact Info</h4>
+									</div>
+									<div className={`card-body`}></div>
+								</div>
+							</div>
+							<div className={`col-md-8 col-sm-12 mb-2`}>
+								<div className={`card`}>
+									<div className={`card-header text-uppercase`}>
+										<h4 className={`font-weight-bold heading`}>Other details</h4>
+									</div>
+									<div className={`card-body`}>
+										<section className={`${styles.aboutSection}`}>
+											<h3 className={``}>Bio</h3>
+											<p className={`text-muted lead`}>{userInfo.about}</p>
+										</section>
+										<hr />
+										<section className={`${styles.articleSection}`}>
+											<h3 className={``}>Articles</h3>
+											<p className={`text-muted lead`}>Articles here</p>
+										</section>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</section>

@@ -18,7 +18,7 @@ const UserIndex = (props) => {
 			) : (
 				<Layout>
 					<Header></Header>
-					<UserProfile />
+					<UserProfile userDetails={props.userDetails}/>
 					<Footer></Footer>
 				</Layout>
 			)}
