@@ -9,7 +9,7 @@ export const updateUser = async (username, data) => {
 		response = await axios.patch(`${BASE_URL}api/user/edit/${username}`, data, {
 			headers: {
 				'Content-Type': 'multipart/form-data',
-				Authorization: token
+				Authorization: token,
 			},
 		});
 		return response.data;
@@ -27,6 +27,6 @@ export const getUserDetails = async (username) => {
 		return { response };
 	} catch (error) {
 		// console.log(error.response);
-		return { error: error.response };
+		return { error: error.response || { status: 500 } };
 	}
 };

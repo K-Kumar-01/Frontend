@@ -31,8 +31,9 @@ UserIndex.getInitialProps = async (props) => {
 
 	try {
 		response = await getUserDetails(props.query.username);
+		// console.log(response);
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 		return { error: 500 };
 	}
 
