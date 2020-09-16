@@ -47,6 +47,22 @@
 	padding: 0.5rem;
 }
 
+.contactbody a {
+	text-decoration: none;
+	color: gray;
+	transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.contactbody a:hover {
+	text-decoration: none;
+	color: rgba(0, 0, 0, 0.8);
+	font-size: 1.6rem;
+}
+
+.reactIcons {
+	font-size: 1.2rem;
+}
+
 @media (max-width: 576px) {
 	.profileInfo {
 		text-align: center;

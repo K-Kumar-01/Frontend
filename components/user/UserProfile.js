@@ -1,8 +1,29 @@
 import React from 'react';
+import { IconContext } from 'react-icons';
+import { AiOutlineMail } from 'react-icons/ai';
+import { HiOutlineEmojiSad } from 'react-icons/hi';
+import { FaFacebook, FaInstagram, FaGithub, FaTwitter, FaPhoneAlt } from 'react-icons/fa';
+
 import styles from './UserProfile.module.css';
 
 const UserProfile = (props) => {
 	const { userInfo } = props.userDetails;
+	const showArticles = () => {
+		if (!props.articles || !props.articles.length) {
+			return (
+				<div className={`text-center`}>
+					<IconContext.Provider value={{ color: `#FED15A`, size: '4rem' }}>
+						<div>
+							<HiOutlineEmojiSad />
+						</div>
+					</IconContext.Provider>
+					<p>No articles published by this user as of now</p>
+				</div>
+			);
+		} else {
+			return <div>Article list</div>;
+		}
+	};
 
 	return (
 		<div className={`container-fluid`}>
@@ -43,7 +64,98 @@ const UserProfile = (props) => {
 									<div className={`card-header text-uppercase`}>
 										<h4 className={`font-weight-bold heading`}>Contact Info</h4>
 									</div>
-									<div className={`card-body`}></div>
+									<div className={`card-body ${styles.contactbody}`} style={{ fontSize: '1.5rem' }}>
+										<div className={`row`}>
+											<div className={`col-2`}>
+												<IconContext.Provider value={{ color: '' }}>
+													<div>
+														<AiOutlineMail />
+													</div>
+												</IconContext.Provider>
+											</div>
+											<div className={`col-10`}>
+												<a href={`mailto:${userInfo.email}`}>{userInfo.email}</a>
+											</div>
+										</div>
+										{userInfo.facebook && (
+											<div className={`row`}>
+												<div className={`col-2`}>
+													<IconContext.Provider value={{ color: `#3C5A99` }}>
+														<div>
+															<FaFacebook />
+														</div>
+													</IconContext.Provider>
+												</div>
+												<div className={`col-10`}>
+													<a href={`${userInfo.facebook}`}>{userInfo.facebook}</a>
+												</div>
+											</div>
+										)}
+										{userInfo.instagram && (
+											<div className={`row`}>
+												<div className={`col-2`}>
+													<IconContext.Provider value={{ color: `#BD227A` }}>
+														<div>
+															<FaInstagram />
+														</div>
+													</IconContext.Provider>
+												</div>
+												<div className={`col-10`}>
+													<a href={`https://www.instagram.com/${userInfo.instagram}`}>
+														{userInfo.instagram}
+													</a>
+												</div>
+											</div>
+										)}
+										{userInfo.twitter && (
+											<div className={`row`}>
+												<div className={`col-2`}>
+													<IconContext.Provider value={{ color: `#55ADEE` }}>
+														<div>
+															<FaTwitter />
+														</div>
+													</IconContext.Provider>
+												</div>
+												<div className={`col-10`}>
+													<a href={`https://www.twitter.com/${userInfo.twitter}`}>
+														{userInfo.twitter}
+													</a>
+												</div>
+											</div>
+										)}
+										{userInfo.github && (
+											<div className={`row`}>
+												<div className={`col-2`}>
+													<IconContext.Provider value={{ color: `#171515` }}>
+														<div>
+															<FaGithub />
+														</div>
+													</IconContext.Provider>
+												</div>
+												<div className={`col-10`}>
+													<a href={`https://www.github.com/${userInfo.github}`}>
+														{userInfo.github}
+													</a>
+												</div>
+											</div>
+										)}
+										{userInfo.contactNumber && (
+											<div className={`row`}>
+												<div className={`col-2`}>
+													<IconContext.Provider value={{ color: `brown` }}>
+														<div>
+															<FaPhoneAlt />
+														</div>
+													</IconContext.Provider>
+												</div>
+												<div className={`col-10`}>
+													<a href={`tel:${userInfo.contactNumber}`}>
+														{userInfo.contactNumber}
+													</a>
+												</div>
+											</div>
+										)}
+									</div>
 								</div>
 							</div>
 							<div className={`col-md-8 col-sm-12 mb-2`}>
@@ -59,7 +171,7 @@ const UserProfile = (props) => {
 										<hr />
 										<section className={`${styles.articleSection}`}>
 											<h3 className={``}>Articles</h3>
-											<p className={`text-muted lead`}>Articles here</p>
+											<p className={`text-muted lead`}>{showArticles()}</p>
 										</section>
 									</div>
 								</div>
