@@ -60,6 +60,12 @@ const ToastedComponent = (props) => {
 			email: props.userDetails.userInfo.email,
 			username: props.userDetails.userInfo.username,
 			about: props.userDetails.userInfo.about,
+			linkedin: props.userDetails.userInfo.linkedin,
+			instagram: props.userDetails.userInfo.instagram,
+			twitter: props.userDetails.userInfo.twitter,
+			github: props.userDetails.userInfo.github,
+			website: props.userDetails.userInfo.website,
+			contactNumber: props.userDetails.userInfo.contactNumber,
 		},
 	});
 
