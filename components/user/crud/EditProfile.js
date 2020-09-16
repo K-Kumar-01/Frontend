@@ -68,10 +68,8 @@ const ToastedComponent = (props) => {
 	}, []);
 
 	const onSubmit = async (data, event) => {
-		// console.log(data);
-		// console.log('hello');
 		event.preventDefault();
-		// return ;
+
 		setLoading(true);
 		let formdata = new FormData();
 
@@ -86,6 +84,11 @@ const ToastedComponent = (props) => {
 			formdata.append('oldpassword', data.oldpassword);
 			formdata.append('newpassword', data.newpassword);
 		}
+		formdata.append('linkedin', data.linkedin);
+		formdata.append('instagram', data.instagram);
+		formdata.append('twitter', data.twitter);
+		formdata.append('github', data.github);
+		formdata.append('contactNumber', data.contactNumber);
 
 		let response;
 		try {
