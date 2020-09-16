@@ -2,7 +2,7 @@ import React from 'react';
 import { IconContext } from 'react-icons';
 import { AiOutlineMail } from 'react-icons/ai';
 import { HiOutlineEmojiSad } from 'react-icons/hi';
-import { FaFacebook, FaInstagram, FaGithub, FaTwitter, FaPhoneAlt } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaGithub, FaTwitter, FaPhoneAlt, FaLinkedinIn } from 'react-icons/fa';
 
 import styles from './UserProfile.module.css';
 
@@ -64,7 +64,7 @@ const UserProfile = (props) => {
 									<div className={`card-header text-uppercase`}>
 										<h4 className={`font-weight-bold heading`}>Contact Info</h4>
 									</div>
-									<div className={`card-body ${styles.contactbody}`} style={{ fontSize: '1.5rem' }}>
+									<div className={`card-body ${styles.contactbody}`} style={{ fontSize: `1.5rem` }}>
 										<div className={`row`}>
 											<div className={`col-2`}>
 												<IconContext.Provider value={{ color: '' }}>
@@ -77,17 +77,17 @@ const UserProfile = (props) => {
 												<a href={`mailto:${userInfo.email}`}>{userInfo.email}</a>
 											</div>
 										</div>
-										{userInfo.facebook && (
+										{userInfo.linkedin && (
 											<div className={`row`}>
 												<div className={`col-2`}>
-													<IconContext.Provider value={{ color: `#3C5A99` }}>
+													<IconContext.Provider value={{ color: `#0274B3` }}>
 														<div>
-															<FaFacebook />
+															<FaLinkedinIn />
 														</div>
 													</IconContext.Provider>
 												</div>
 												<div className={`col-10`}>
-													<a href={`${userInfo.facebook}`}>{userInfo.facebook}</a>
+													<a target="_blank" rel="noopener noreferrer" href={`${userInfo.linkedin}`}>{userInfo.linkedin}</a>
 												</div>
 											</div>
 										)}
@@ -101,7 +101,7 @@ const UserProfile = (props) => {
 													</IconContext.Provider>
 												</div>
 												<div className={`col-10`}>
-													<a href={`https://www.instagram.com/${userInfo.instagram}`}>
+													<a target="_blank" rel="noopener noreferrer" href={`https://www.instagram.com/${userInfo.instagram}`}>
 														{userInfo.instagram}
 													</a>
 												</div>
@@ -117,7 +117,7 @@ const UserProfile = (props) => {
 													</IconContext.Provider>
 												</div>
 												<div className={`col-10`}>
-													<a href={`https://www.twitter.com/${userInfo.twitter}`}>
+													<a target="_blank" rel="noopener noreferrer" href={`https://www.twitter.com/${userInfo.twitter}`}>
 														{userInfo.twitter}
 													</a>
 												</div>
@@ -133,7 +133,7 @@ const UserProfile = (props) => {
 													</IconContext.Provider>
 												</div>
 												<div className={`col-10`}>
-													<a href={`https://www.github.com/${userInfo.github}`}>
+													<a target="_blank" rel="noopener noreferrer" href={`https://www.github.com/${userInfo.github}`}>
 														{userInfo.github}
 													</a>
 												</div>
@@ -142,7 +142,7 @@ const UserProfile = (props) => {
 										{userInfo.contactNumber && (
 											<div className={`row`}>
 												<div className={`col-2`}>
-													<IconContext.Provider value={{ color: `brown` }}>
+													<IconContext.Provider value={{ color: `black` }}>
 														<div>
 															<FaPhoneAlt />
 														</div>
