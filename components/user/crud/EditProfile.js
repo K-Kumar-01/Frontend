@@ -88,6 +88,7 @@ const ToastedComponent = (props) => {
 		formdata.append('instagram', data.instagram);
 		formdata.append('twitter', data.twitter);
 		formdata.append('github', data.github);
+		formdata.append('website', data.website);
 		formdata.append('contactNumber', data.contactNumber);
 
 		let response;
