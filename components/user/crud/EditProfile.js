@@ -389,7 +389,7 @@ const ToastedComponent = (props) => {
 							style={errors.about && { border: '1px solid red' }}
 						></textarea>
 						<p className={`text-danger ${styles.errors}`}>
-							{errors.about && 'Must be atleast 20 characters long'}
+							{errors.about && 'Must be atleast 25 characters long'}
 						</p>
 					</div>
 					{basicDetailsArea()}
