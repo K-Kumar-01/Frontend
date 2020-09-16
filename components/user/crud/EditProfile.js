@@ -267,7 +267,7 @@ const ToastedComponent = (props) => {
 						id="website"
 						name="website"
 						ref={register({
-							pattern: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
+							pattern: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/i,
 						})}
 						autoComplete="off"
 						style={errors.website && { border: '1px solid red' }}
