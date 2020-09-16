@@ -183,17 +183,17 @@ const ToastedComponent = (props) => {
 					<input
 						type="text"
 						className="form-control"
-						id="facebook"
-						placeholder="Facebook Profile Url"
-						name="facebook"
+						id="linkedin"
+						placeholder="Linkedin Profile Url"
+						name="linkedin"
 						ref={register({
-							pattern: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
+							minLength: 5,
 						})}
 						autoComplete="off"
-						style={errors.facebook && { border: '1px solid red' }}
+						style={errors.linkedin && { border: '1px solid red' }}
 					/>
-					<label htmlFor="facebook">Facebook Profile URL</label>
-					<p className={`text-danger ${styles.errors}`}>{errors.facebook && 'Not Valid URL'}</p>
+					<label htmlFor="linkedin">Linkedin Profile URL</label>
+					<p className={`text-danger ${styles.errors}`}>{errors.linkedin && 'URL too short'}</p>
 				</div>
 				<div className={`${styles.formLabelGroup}`}>
 					<input
