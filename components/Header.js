@@ -71,6 +71,9 @@ const Header = () => {
 									<Link href={`/user/edit/${loggedIn.username}`}>
 										<a className="dropdown-item">Profile</a>
 									</Link>
+									<Link href={`/user/profile/${loggedIn.username}`}>
+										<a className="dropdown-item">Dashboard</a>
+									</Link>
 									<a className="dropdown-item" href="#">
 										My Posts
 									</a>
