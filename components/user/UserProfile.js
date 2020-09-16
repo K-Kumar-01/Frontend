@@ -51,6 +51,10 @@ const UserProfile = (props) => {
 											{new Date(userInfo.createdAt).toLocaleDateString()}
 										</span>
 									</h3>
+									<h3>
+										Personal Website:
+										<span className={`${styles.boldWeight}`}>{` ${userInfo.website}`}</span>
+									</h3>
 								</div>
 							</div>
 						</div>
@@ -87,7 +91,13 @@ const UserProfile = (props) => {
 													</IconContext.Provider>
 												</div>
 												<div className={`col-10`}>
-													<a target="_blank" rel="noopener noreferrer" href={`${userInfo.linkedin}`}>{userInfo.linkedin}</a>
+													<a
+														target="_blank"
+														rel="noopener noreferrer"
+														href={`${userInfo.linkedin}`}
+													>
+														{userInfo.linkedin}
+													</a>
 												</div>
 											</div>
 										)}
@@ -101,7 +111,11 @@ const UserProfile = (props) => {
 													</IconContext.Provider>
 												</div>
 												<div className={`col-10`}>
-													<a target="_blank" rel="noopener noreferrer" href={`https://www.instagram.com/${userInfo.instagram}`}>
+													<a
+														target="_blank"
+														rel="noopener noreferrer"
+														href={`https://www.instagram.com/${userInfo.instagram}`}
+													>
 														{userInfo.instagram}
 													</a>
 												</div>
@@ -117,7 +131,11 @@ const UserProfile = (props) => {
 													</IconContext.Provider>
 												</div>
 												<div className={`col-10`}>
-													<a target="_blank" rel="noopener noreferrer" href={`https://www.twitter.com/${userInfo.twitter}`}>
+													<a
+														target="_blank"
+														rel="noopener noreferrer"
+														href={`https://www.twitter.com/${userInfo.twitter}`}
+													>
 														{userInfo.twitter}
 													</a>
 												</div>
@@ -133,7 +151,11 @@ const UserProfile = (props) => {
 													</IconContext.Provider>
 												</div>
 												<div className={`col-10`}>
-													<a target="_blank" rel="noopener noreferrer" href={`https://www.github.com/${userInfo.github}`}>
+													<a
+														target="_blank"
+														rel="noopener noreferrer"
+														href={`https://www.github.com/${userInfo.github}`}
+													>
 														{userInfo.github}
 													</a>
 												</div>
