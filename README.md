@@ -28,3 +28,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+# About
+This is a project made for 3rd semester as a part of ITW project.
+
+This repo holds the logic for frontend portion of the project
+
+Created using nextjs 
+
+## Getting Started
+
+1. Clone the repo
+2. Navigate to repo folder and run `yarn install`
+3. Run `yarn dev`
+
+> **Please make sure that you have the backend of this repo running on your machine**
+>
+> Link to [backend](https://github.com/atul-tyagi23/cso-project)
