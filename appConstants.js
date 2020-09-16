@@ -1,5 +1,5 @@
 const BASE_URL = `http://localhost:8000/`;
-// const BASE_URL = `https://mighty-ravine-63394.herokuapp.com/api/user/register/`;
+
 
 // others
 const COOKIE_NAME = 'token';
