@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { IconContext } from 'react-icons';
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 
-import styles from './Header.module.css';
 import { authenticate, removeCookie } from '../helpers/auth';
 import { COOKIE_NAME } from '../appConstants';
 import { logoutUser } from '../actions/auth';
 import { useRouter } from 'next/router';
+import styles from './Header.module.css';
 
 const Header = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -80,7 +82,10 @@ const Header = () => {
 									<div className="dropdown-divider"></div>
 
 									<button className="dropdown-item" onClick={logout}>
-										Logout
+										<IconContext.Provider value={{ size: '1.1rem' }}>
+											<RiLogoutBoxRLine />
+										</IconContext.Provider>
+										{` `}Logout
 									</button>
 								</div>
 							</li>
