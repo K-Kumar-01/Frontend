@@ -3,7 +3,7 @@ import { IconContext } from 'react-icons';
 import { AiOutlineMail } from 'react-icons/ai';
 import { HiOutlineEmojiSad } from 'react-icons/hi';
 import { FcPhone } from 'react-icons/fc';
-import {  FaInstagram, FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 import styles from './UserProfile.module.css';
 
@@ -52,10 +52,12 @@ const UserProfile = (props) => {
 											{new Date(userInfo.createdAt).toLocaleDateString()}
 										</span>
 									</h3>
-									<h3>
-										Personal Website:
-										<span className={`${styles.boldWeight}`}>{` ${userInfo.website}`}</span>
-									</h3>
+									{userInfo.website && (
+										<h3>
+											Personal Website:
+											<span className={`${styles.boldWeight}`}>{` ${userInfo.website}`}</span>
+										</h3>
+									)}
 								</div>
 							</div>
 						</div>
