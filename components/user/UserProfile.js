@@ -35,10 +35,7 @@ const UserProfile = (props) => {
 						<div className={`container`}>
 							<div className={`row `}>
 								<div className={`col-lg-3 col-md-4 col-sm-12 text-center`}>
-									<img
-										src="https://res.cloudinary.com/dr6pkartq/image/upload/v1600010974/n1f6wgh2sursue6tezo1.jpg"
-										className={`${styles.profileImage}`}
-									/>
+									<img src={`${userInfo.avatar}`} className={`${styles.profileImage}`} />
 								</div>
 								<div className={`col-lg-9 col-md-8 col-sm-12 ${styles.profileInfo}`}>
 									<h3 className={`text-capitalize`}>{userInfo.name}</h3>
