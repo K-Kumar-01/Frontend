@@ -319,7 +319,7 @@ const ComponentWithToasts = () => {
 const ArticleCreate = () => {
 	// styling file image container
 	return (
-		<ToastProvider>
+		<ToastProvider placement="bottom-right">
 			<ComponentWithToasts />
 		</ToastProvider>
 	);
