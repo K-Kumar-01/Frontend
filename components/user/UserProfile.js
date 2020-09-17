@@ -2,7 +2,8 @@ import React from 'react';
 import { IconContext } from 'react-icons';
 import { AiOutlineMail } from 'react-icons/ai';
 import { HiOutlineEmojiSad } from 'react-icons/hi';
-import { FaFacebook, FaInstagram, FaGithub, FaTwitter, FaPhoneAlt, FaLinkedinIn } from 'react-icons/fa';
+import { FcPhone } from 'react-icons/fc';
+import {  FaInstagram, FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 import styles from './UserProfile.module.css';
 
@@ -86,7 +87,7 @@ const UserProfile = (props) => {
 												<div className={`col-2`}>
 													<IconContext.Provider value={{ color: `#0274B3` }}>
 														<div>
-															<FaLinkedinIn />
+															<FaLinkedin />
 														</div>
 													</IconContext.Provider>
 												</div>
@@ -166,7 +167,7 @@ const UserProfile = (props) => {
 												<div className={`col-2`}>
 													<IconContext.Provider value={{ color: `black` }}>
 														<div>
-															<FaPhoneAlt />
+															<FcPhone />
 														</div>
 													</IconContext.Provider>
 												</div>
