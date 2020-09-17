@@ -110,6 +110,7 @@ const ToastedComponent = (props) => {
 			} else {
 				removeCookie(COOKIE_NAME);
 				setCookie(COOKIE_NAME, response.token);
+				console.log('Hello');
 				addToast(`${response.message}`, {
 					appearance: 'success',
 					autoDismiss: true,
@@ -420,7 +421,7 @@ const ToastedComponent = (props) => {
 
 const EditProfile = (props) => {
 	return (
-		<ToastProvider>
+		<ToastProvider placement="bottom-right">
 			<ToastedComponent userDetails={props.userDetails} />
 		</ToastProvider>
 	);
