@@ -20,6 +20,7 @@ import {
   FcCurrencyExchange,
   FcComboChart,
   FcAddDatabase,
+  FcSteam,
 } from "react-icons/fc";
 import { GiCaduceus, GiPopcorn } from "react-icons/gi";
 import { GrHistory } from "react-icons/gr";
@@ -213,6 +214,54 @@ const Header = (props) => {
                   </IconContext.Provider>
                 </i>
                 <span>Sports</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcBullish />
+                  </IconContext.Provider>
+                </i>
+                <span>Business</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcFilmReel />
+                  </IconContext.Provider>
+                </i>
+                <span>Media</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcCommandLine />
+                  </IconContext.Provider>
+                </i>
+                <span>Programming</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcSteam />
+                  </IconContext.Provider>
+                </i>
+                <span>Gaming</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcButtingIn />
+                  </IconContext.Provider>
+                </i>
+                <span>Psychology</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcGraduationCap />
+                  </IconContext.Provider>
+                </i>
+                <span>Education</span>
               </li>
             </ul>
           </aside>
