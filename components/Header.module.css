@@ -1,14 +1,80 @@
 .link {
-	text-decoration: none;
+  text-decoration: none;
+  color: inherit;
 }
 
 .link:hover {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .avatar {
-	height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.1);
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.App nav i {
+  margin: auto 0 auto 10px;
+  padding: 15px;
+  transition: transform 1s;
+}
+.App nav i:hover {
+  background-color: #d3d3d3;
+  border-radius: 26px;
+  transform: rotate(360deg);
+}
+.App nav h3 {
+  margin: auto;
+}
+.App aside {
+  overflow-x: hidden;
+  width: 0;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  bottom: 0;
+  background-color: #2d2d2d;
+  transition: width 0.5s ease-in-out;
+}
+.App aside ul {
+  list-style: none;
+  padding: 0;
+}
+.App aside ul li {
+  display: flex;
+  align-items: center;
+  color: #d3d3d3;
+  padding: 12px 0 12px 22px;
+  font-weight: 400;
+  transition: transform 1s;
+  cursor: pointer;
+}
+.App aside ul li i {
+  margin-right: 1em;
+}
+.App aside ul li:hover {
+  transform: translateX(5px);
+  color: #0288d1 !important;
+  border-left: 5px solid #0288d1;
+}
+.App .drawerMin {
+  width: 70px;
+}
+.App .drawerOpen {
+  width: 240px;
+}
+.App main {
+  top: 80px;
+  padding: 1em;
+  margin-left: 0;
+  bottom: 0;
+  overflow-y: auto;
+  transition: margin-left 0.5s ease-in-out;
+}
+.App .mainMin {
+  margin-left: 70px;
+}
+.App .mainOpen {
+  margin-left: 240px;
 }
