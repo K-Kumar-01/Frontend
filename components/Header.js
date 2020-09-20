@@ -20,9 +20,11 @@ import {
   FcCurrencyExchange,
   FcComboChart,
   FcAddDatabase,
+  FcFlowChart,
   FcSteam,
   FcFolder,
   FcOpenedFolder,
+  FcGallery,
 } from "react-icons/fc";
 import { GiCaduceus, GiPopcorn } from "react-icons/gi";
 import { GrHistory } from "react-icons/gr";
@@ -31,10 +33,10 @@ import {
   FaPray,
   FaTree,
   FaVenusMars,
-  FaHospitalAlt,
   FaPlane,
   FaSpaceShuttle,
   FaShoppingBag,
+  FaHospital,
 } from "react-icons/fa";
 
 import { authenticate, removeCookie } from "../helpers/auth";
@@ -92,7 +94,6 @@ const Header = (props) => {
     let w = "";
     data.forEach((d) => {
       let z = styles[`${d}`];
-      console.log(z);
       w += `${z} `;
     });
     return w;
@@ -294,6 +295,22 @@ const Header = (props) => {
               <li>
                 <i>
                   <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcFlowChart />
+                  </IconContext.Provider>
+                </i>
+                <span>History</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcGallery />
+                  </IconContext.Provider>
+                </i>
+                <span>Fashion</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
                     <FcCurrencyExchange />
                   </IconContext.Provider>
                 </i>
@@ -306,6 +323,91 @@ const Header = (props) => {
                   </IconContext.Provider>
                 </i>
                 <span>Marketing</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider
+                    value={{ size: "2rem", color: "bisque" }}
+                  >
+                    <GiPopcorn />
+                  </IconContext.Provider>
+                </i>
+                <span>Entertainment</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider
+                    value={{ size: "2rem", color: "#F7C6C5" }}
+                  >
+                    <FaHospital />
+                  </IconContext.Provider>
+                </i>
+                <span>Health</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider
+                    value={{ size: "2rem", color: "lightgray" }}
+                  >
+                    <FaPlane />
+                  </IconContext.Provider>
+                </i>
+                <span>Travel</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider
+                    value={{ size: "2rem", color: "rgb(223, 181, 142)" }}
+                  >
+                    <FaHamburger />
+                  </IconContext.Provider>
+                </i>
+                <span>Food</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FaVenusMars />
+                  </IconContext.Provider>
+                </i>
+                <span>Sexuality</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider
+                    value={{ size: "2rem", color: "rgb(18, 159, 75)" }}
+                  >
+                    <FaTree />
+                  </IconContext.Provider>
+                </i>
+                <span>Nature</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider
+                    value={{ size: "2rem", color: "floralwhite" }}
+                  >
+                    <FaPray />
+                  </IconContext.Provider>
+                </i>
+                <span>Spirituality</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FaSpaceShuttle />
+                  </IconContext.Provider>
+                </i>
+                <span>Space</span>
+              </li>
+
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcAddDatabase />
+                  </IconContext.Provider>
+                </i>
+                <span>Others</span>
               </li>
             </ul>
           </aside>
