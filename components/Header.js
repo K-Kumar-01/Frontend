@@ -2,7 +2,37 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { IconContext } from "react-icons";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import { FcAndroidOs, FcHome } from "react-icons/fc";
+import {
+  FcAndroidOs,
+  FcHome,
+  FcIdea,
+  FcSportsMode,
+  FcBullish,
+  FcFilmReel,
+  FcCommandLine,
+  FcButtingIn,
+  FcGraduationCap,
+  FcSpeaker,
+  FcGoogle,
+  FcGlobe,
+  FcBriefcase,
+  FcLandscape,
+  FcCurrencyExchange,
+  FcComboChart,
+  FcAddDatabase,
+} from "react-icons/fc";
+import { GiCaduceus, GiPopcorn } from "react-icons/gi";
+import { GrHistory } from "react-icons/gr";
+import {
+  FaHamburger,
+  FaPray,
+  FaTree,
+  FaVenusMars,
+  FaHospitalAlt,
+  FaPlane,
+  FaSpaceShuttle,
+  FaShoppingBag,
+} from "react-icons/fa";
 
 import { authenticate, removeCookie } from "../helpers/auth";
 import { COOKIE_NAME } from "../appConstants";
@@ -169,12 +199,20 @@ const Header = (props) => {
                 <span>Technology</span>
               </li>
               <li>
-                <i className="material-icons">show_chart</i>
-                <span>Sales</span>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcIdea />
+                  </IconContext.Provider>
+                </i>
+                <span>Science</span>
               </li>
               <li>
-                <i className="material-icons">table_chart</i>
-                <span>Others</span>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcSportsMode />
+                  </IconContext.Provider>
+                </i>
+                <span>Sports</span>
               </li>
             </ul>
           </aside>
