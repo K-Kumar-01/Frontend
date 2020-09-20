@@ -38,12 +38,6 @@
   transition: width 0.5s ease-in-out;
 }
 
-@media (max-width: 992px) {
-  .App aside {
-    top: 150px;
-  }
-}
-
 .App aside ul {
   list-style: none;
   padding: 0;
