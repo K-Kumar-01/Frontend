@@ -21,6 +21,8 @@ import {
   FcComboChart,
   FcAddDatabase,
   FcSteam,
+  FcFolder,
+  FcOpenedFolder,
 } from "react-icons/fc";
 import { GiCaduceus, GiPopcorn } from "react-icons/gi";
 import { GrHistory } from "react-icons/gr";
@@ -102,7 +104,9 @@ const Header = (props) => {
         <div className="container">
           {props.sidebar ? (
             <i className="material-icons" onClick={handleDrawer}>
-              menu
+              <IconContext.Provider value={{ size: "2rem" }}>
+                {drawerPos ? <FcOpenedFolder /> : <FcFolder />}
+              </IconContext.Provider>
             </i>
           ) : (
             <Link href="/">
@@ -262,6 +266,46 @@ const Header = (props) => {
                   </IconContext.Provider>
                 </i>
                 <span>Education</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcSpeaker />
+                  </IconContext.Provider>
+                </i>
+                <span>Politics</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcGoogle />
+                  </IconContext.Provider>
+                </i>
+                <span>World</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcBriefcase />
+                  </IconContext.Provider>
+                </i>
+                <span>Startups</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcCurrencyExchange />
+                  </IconContext.Provider>
+                </i>
+                <span>Cryptocurrency</span>
+              </li>
+              <li>
+                <i>
+                  <IconContext.Provider value={{ size: "2rem" }}>
+                    <FcComboChart />
+                  </IconContext.Provider>
+                </i>
+                <span>Marketing</span>
               </li>
             </ul>
           </aside>
