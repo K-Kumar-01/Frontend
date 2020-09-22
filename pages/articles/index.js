@@ -3,16 +3,40 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 import Layout from "../../components/Layout";
-
+import Preloader from "../../components/spinner/Preloader";
+import { getAllArticles } from "../../actions/article";
 
 const Articles = () => {
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {}, []);
+  const fetchArticles = async () => {
+    let response;
+    try {
+      response = await getAllArticles();
+      console.log(response);
+      console.log("********");
+      if (response.error) {
+        console.log(response.error);
+      } else {
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+    console.log(response.articles[1].body);
+  };
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
 
   return (
     <Layout>
-      <Header sidebar></Header>
+      <Header sidebar>
+        <div style={{ minHeight: "60vh" }}>{loading && <Preloader />}</div>
+      </Header>
       <Footer />
     </Layout>
   );

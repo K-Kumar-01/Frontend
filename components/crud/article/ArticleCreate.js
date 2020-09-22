@@ -100,7 +100,7 @@ const ComponentWithToasts = () => {
   const [categories, setCategories] = useState([]);
   const [checkedCat, setCheckedCat] = useState([]);
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState(``);
+  const [body, setBody] = useState();
   const [extracted, setExtracted] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -321,7 +321,7 @@ const ComponentWithToasts = () => {
     let formData = new FormData();
     formData.append("title", title);
     formData.append("mdesc", extracted);
-    formData.append("body", body);
+    formData.append("body", JSON.stringify(body));
     formData.append("categories", checkedCat);
     formData.append("image", files[0]);
 
