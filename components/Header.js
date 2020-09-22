@@ -99,6 +99,230 @@ const Header = (props) => {
     return w;
   };
 
+  const showDrawer = () => {
+    return (
+      <ul>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcHome />
+            </IconContext.Provider>
+          </i>
+          <Link href="/">
+            <a className={`navbar-brand ${styles.link}`}>Titan Read</a>
+          </Link>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcAndroidOs />
+            </IconContext.Provider>
+          </i>
+          <span>Technology</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcIdea />
+            </IconContext.Provider>
+          </i>
+          <span>Science</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcSportsMode />
+            </IconContext.Provider>
+          </i>
+          <span>Sports</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcBullish />
+            </IconContext.Provider>
+          </i>
+          <span>Business</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcFilmReel />
+            </IconContext.Provider>
+          </i>
+          <span>Media</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcCommandLine />
+            </IconContext.Provider>
+          </i>
+          <span>Programming</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcSteam />
+            </IconContext.Provider>
+          </i>
+          <span>Gaming</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcButtingIn />
+            </IconContext.Provider>
+          </i>
+          <span>Psychology</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcGraduationCap />
+            </IconContext.Provider>
+          </i>
+          <span>Education</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcSpeaker />
+            </IconContext.Provider>
+          </i>
+          <span>Politics</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcGoogle />
+            </IconContext.Provider>
+          </i>
+          <span>World</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcBriefcase />
+            </IconContext.Provider>
+          </i>
+          <span>Startups</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcFlowChart />
+            </IconContext.Provider>
+          </i>
+          <span>History</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcGallery />
+            </IconContext.Provider>
+          </i>
+          <span>Fashion</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcCurrencyExchange />
+            </IconContext.Provider>
+          </i>
+          <span>Cryptocurrency</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcComboChart />
+            </IconContext.Provider>
+          </i>
+          <span>Marketing</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem", color: "bisque" }}>
+              <GiPopcorn />
+            </IconContext.Provider>
+          </i>
+          <span>Entertainment</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem", color: "#F7C6C5" }}>
+              <FaHospital />
+            </IconContext.Provider>
+          </i>
+          <span>Health</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem", color: "lightgray" }}>
+              <FaPlane />
+            </IconContext.Provider>
+          </i>
+          <span>Travel</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider
+              value={{ size: "2rem", color: "rgb(223, 181, 142)" }}
+            >
+              <FaHamburger />
+            </IconContext.Provider>
+          </i>
+          <span>Food</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FaVenusMars />
+            </IconContext.Provider>
+          </i>
+          <span>Sexuality</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider
+              value={{ size: "2rem", color: "rgb(18, 159, 75)" }}
+            >
+              <FaTree />
+            </IconContext.Provider>
+          </i>
+          <span>Nature</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider
+              value={{ size: "2rem", color: "floralwhite" }}
+            >
+              <FaPray />
+            </IconContext.Provider>
+          </i>
+          <span>Spirituality</span>
+        </li>
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FaSpaceShuttle />
+            </IconContext.Provider>
+          </i>
+          <span>Space</span>
+        </li>
+
+        <li>
+          <i>
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcAddDatabase />
+            </IconContext.Provider>
+          </i>
+          <span>Others</span>
+        </li>
+      </ul>
+    );
+  };
+
   return (
     <div className={`${styles.App}`}>
       <nav className="navbar navbar-expand-lg navbar-top navbar-light bg-light sticky-top">
@@ -130,7 +354,7 @@ const Header = (props) => {
             <ul className="navbar-nav ml-auto d-flex align-items-center">
               <li className="nav-item">
                 <Link href="/membership">
-                  <button className={`${styles.link} btn`}>Subscribe</button>
+                  <span className={`${styles.link} btn`}>Subscribe</span>
                 </Link>
               </li>
 
@@ -185,231 +409,7 @@ const Header = (props) => {
       {props.sidebar && (
         <>
           <aside className={makeClassNameString(drawerClass)}>
-            <ul>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcHome />
-                  </IconContext.Provider>
-                </i>
-                <Link href="/">
-                  <a className={`navbar-brand ${styles.link}`}>Titan Read</a>
-                </Link>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcAndroidOs />
-                  </IconContext.Provider>
-                </i>
-                <span>Technology</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcIdea />
-                  </IconContext.Provider>
-                </i>
-                <span>Science</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcSportsMode />
-                  </IconContext.Provider>
-                </i>
-                <span>Sports</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcBullish />
-                  </IconContext.Provider>
-                </i>
-                <span>Business</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcFilmReel />
-                  </IconContext.Provider>
-                </i>
-                <span>Media</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcCommandLine />
-                  </IconContext.Provider>
-                </i>
-                <span>Programming</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcSteam />
-                  </IconContext.Provider>
-                </i>
-                <span>Gaming</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcButtingIn />
-                  </IconContext.Provider>
-                </i>
-                <span>Psychology</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcGraduationCap />
-                  </IconContext.Provider>
-                </i>
-                <span>Education</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcSpeaker />
-                  </IconContext.Provider>
-                </i>
-                <span>Politics</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcGoogle />
-                  </IconContext.Provider>
-                </i>
-                <span>World</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcBriefcase />
-                  </IconContext.Provider>
-                </i>
-                <span>Startups</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcFlowChart />
-                  </IconContext.Provider>
-                </i>
-                <span>History</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcGallery />
-                  </IconContext.Provider>
-                </i>
-                <span>Fashion</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcCurrencyExchange />
-                  </IconContext.Provider>
-                </i>
-                <span>Cryptocurrency</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcComboChart />
-                  </IconContext.Provider>
-                </i>
-                <span>Marketing</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider
-                    value={{ size: "2rem", color: "bisque" }}
-                  >
-                    <GiPopcorn />
-                  </IconContext.Provider>
-                </i>
-                <span>Entertainment</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider
-                    value={{ size: "2rem", color: "#F7C6C5" }}
-                  >
-                    <FaHospital />
-                  </IconContext.Provider>
-                </i>
-                <span>Health</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider
-                    value={{ size: "2rem", color: "lightgray" }}
-                  >
-                    <FaPlane />
-                  </IconContext.Provider>
-                </i>
-                <span>Travel</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider
-                    value={{ size: "2rem", color: "rgb(223, 181, 142)" }}
-                  >
-                    <FaHamburger />
-                  </IconContext.Provider>
-                </i>
-                <span>Food</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FaVenusMars />
-                  </IconContext.Provider>
-                </i>
-                <span>Sexuality</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider
-                    value={{ size: "2rem", color: "rgb(18, 159, 75)" }}
-                  >
-                    <FaTree />
-                  </IconContext.Provider>
-                </i>
-                <span>Nature</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider
-                    value={{ size: "2rem", color: "floralwhite" }}
-                  >
-                    <FaPray />
-                  </IconContext.Provider>
-                </i>
-                <span>Spirituality</span>
-              </li>
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FaSpaceShuttle />
-                  </IconContext.Provider>
-                </i>
-                <span>Space</span>
-              </li>
-
-              <li>
-                <i>
-                  <IconContext.Provider value={{ size: "2rem" }}>
-                    <FcAddDatabase />
-                  </IconContext.Provider>
-                </i>
-                <span>Others</span>
-              </li>
-            </ul>
+            {showDrawer()}
           </aside>
           <main className={makeClassNameString(mainClass)}>
             {props.children}

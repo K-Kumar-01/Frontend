@@ -104,9 +104,33 @@ const ComponentWithToasts = () => {
   const [extracted, setExtracted] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // let jsonContent = {
+  //   entityMap: {},
+  //   blocks: [
+  //     {
+  //       key: "13jqv",
+  //       text: "The problematic things about me",
+  //       type: "unstyled",
+  //       depth: 0,
+  //       inlineStyleRanges: [{ offset: 4, length: 12, style: "BOLD" }],
+  //       entityRanges: [],
+  //       data: {},
+  //     },
+  //     {
+  //       key: "bumc8",
+  //       text: "ME? what can I  about me",
+  //       type: "unstyled",
+  //       depth: 0,
+  //       inlineStyleRanges: [],
+  //       entityRanges: [],
+  //       data: {},
+  //     },
+  //   ],
+  // };
+
   useEffect(() => {
     getCats();
-    setBody();
+    // setBody(jso);
   }, []);
 
   const getCats = async () => {
