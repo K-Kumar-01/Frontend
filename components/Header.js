@@ -102,7 +102,7 @@ const Header = (props) => {
   const showDrawer = () => {
     return (
       <ul>
-        <li>
+        <li title="Home">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcHome />
@@ -112,7 +112,7 @@ const Header = (props) => {
             <a className={`navbar-brand ${styles.link}`}>Titan Read</a>
           </Link>
         </li>
-        <li>
+        <li title="Technology">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcAndroidOs />
@@ -120,7 +120,7 @@ const Header = (props) => {
           </i>
           <span>Technology</span>
         </li>
-        <li>
+        <li title="Science">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcIdea />
@@ -128,7 +128,7 @@ const Header = (props) => {
           </i>
           <span>Science</span>
         </li>
-        <li>
+        <li title="Sports">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcSportsMode />
@@ -136,7 +136,7 @@ const Header = (props) => {
           </i>
           <span>Sports</span>
         </li>
-        <li>
+        <li title="Business">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcBullish />
@@ -144,7 +144,7 @@ const Header = (props) => {
           </i>
           <span>Business</span>
         </li>
-        <li>
+        <li title="Media">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcFilmReel />
@@ -152,7 +152,7 @@ const Header = (props) => {
           </i>
           <span>Media</span>
         </li>
-        <li>
+        <li title="Programming">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcCommandLine />
@@ -160,7 +160,7 @@ const Header = (props) => {
           </i>
           <span>Programming</span>
         </li>
-        <li>
+        <li title="Gaming">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcSteam />
@@ -168,7 +168,7 @@ const Header = (props) => {
           </i>
           <span>Gaming</span>
         </li>
-        <li>
+        <li title="Psychology">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcButtingIn />
@@ -176,7 +176,7 @@ const Header = (props) => {
           </i>
           <span>Psychology</span>
         </li>
-        <li>
+        <li title="Education">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcGraduationCap />
@@ -184,7 +184,7 @@ const Header = (props) => {
           </i>
           <span>Education</span>
         </li>
-        <li>
+        <li title="Politics">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcSpeaker />
@@ -192,7 +192,7 @@ const Header = (props) => {
           </i>
           <span>Politics</span>
         </li>
-        <li>
+        <li title="World">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcGoogle />
@@ -200,7 +200,7 @@ const Header = (props) => {
           </i>
           <span>World</span>
         </li>
-        <li>
+        <li title="Startups">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcBriefcase />
@@ -208,7 +208,7 @@ const Header = (props) => {
           </i>
           <span>Startups</span>
         </li>
-        <li>
+        <li title="History">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcFlowChart />
@@ -216,7 +216,7 @@ const Header = (props) => {
           </i>
           <span>History</span>
         </li>
-        <li>
+        <li title="Fashion">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcGallery />
@@ -224,7 +224,7 @@ const Header = (props) => {
           </i>
           <span>Fashion</span>
         </li>
-        <li>
+        <li title="Cryptocurrency">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcCurrencyExchange />
@@ -232,7 +232,7 @@ const Header = (props) => {
           </i>
           <span>Cryptocurrency</span>
         </li>
-        <li>
+        <li title="Marketing">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcComboChart />
@@ -240,7 +240,7 @@ const Header = (props) => {
           </i>
           <span>Marketing</span>
         </li>
-        <li>
+        <li title="Entertainment">
           <i>
             <IconContext.Provider value={{ size: "2rem", color: "bisque" }}>
               <GiPopcorn />
@@ -248,7 +248,7 @@ const Header = (props) => {
           </i>
           <span>Entertainment</span>
         </li>
-        <li>
+        <li title="Health">
           <i>
             <IconContext.Provider value={{ size: "2rem", color: "#F7C6C5" }}>
               <FaHospital />
@@ -256,7 +256,7 @@ const Header = (props) => {
           </i>
           <span>Health</span>
         </li>
-        <li>
+        <li title="Travel">
           <i>
             <IconContext.Provider value={{ size: "2rem", color: "lightgray" }}>
               <FaPlane />
@@ -264,7 +264,7 @@ const Header = (props) => {
           </i>
           <span>Travel</span>
         </li>
-        <li>
+        <li title="Food">
           <i>
             <IconContext.Provider
               value={{ size: "2rem", color: "rgb(223, 181, 142)" }}
@@ -274,7 +274,7 @@ const Header = (props) => {
           </i>
           <span>Food</span>
         </li>
-        <li>
+        <li title="Sexuality">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FaVenusMars />
@@ -282,7 +282,7 @@ const Header = (props) => {
           </i>
           <span>Sexuality</span>
         </li>
-        <li>
+        <li title="Nature">
           <i>
             <IconContext.Provider
               value={{ size: "2rem", color: "rgb(18, 159, 75)" }}
@@ -292,7 +292,7 @@ const Header = (props) => {
           </i>
           <span>Nature</span>
         </li>
-        <li>
+        <li title="Spirituality">
           <i>
             <IconContext.Provider
               value={{ size: "2rem", color: "floralwhite" }}
@@ -302,7 +302,7 @@ const Header = (props) => {
           </i>
           <span>Spirituality</span>
         </li>
-        <li>
+        <li title="Space">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FaSpaceShuttle />
@@ -311,7 +311,7 @@ const Header = (props) => {
           <span>Space</span>
         </li>
 
-        <li>
+        <li title="Others">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
               <FcAddDatabase />
