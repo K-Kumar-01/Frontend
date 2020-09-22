@@ -20,6 +20,7 @@
   transition: transform 1s;
 }
 .App nav i:hover {
+  cursor: pointer;
   background-color: #d3d3d3;
   border-radius: 26px;
   transform: rotate(360deg);
