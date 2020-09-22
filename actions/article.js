@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ARTICLE_CREATE, COOKIE_NAME } from "../appConstants";
+import { ARTICLE_CREATE, COOKIE_NAME, FETCH_ARTICLES } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
 export const createArticle = async (data) => {
@@ -15,4 +15,14 @@ export const createArticle = async (data) => {
   }
 
   return response;
+};
+
+export const getAllArticles = async () => {
+  let response;
+  try {
+    response = await axios.get(`${FETCH_ARTICLES}`);
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+  return response.data;
 };
