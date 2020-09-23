@@ -1,7 +1,7 @@
 import React from "react";
 
 const ArticleList = () => {
-  return <div>Hello from article List</div>;
+  return <div className={`container`}>Hello from article List</div>;
 };
 
 export default ArticleList;

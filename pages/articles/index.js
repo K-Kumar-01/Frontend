@@ -5,19 +5,19 @@ import Footer from "../../components/Footer";
 import Layout from "../../components/Layout";
 import Preloader from "../../components/spinner/Preloader";
 import { getAllArticles } from "../../actions/article";
+import ArticleList from "../../components/articles/ArticleList";
 
 const Articles = () => {
   const [loading, setLoading] = useState(true);
+  const [articles, setArticles] = useState([]);
   const fetchArticles = async () => {
     let response;
     try {
       response = await getAllArticles();
-      console.log(response);
-      console.log("********");
       if (response.error) {
         console.log(response.error);
       } else {
-        console.log(response);
+        setArticles(response.articles);
       }
     } catch (error) {
       console.log(error);
@@ -32,7 +32,9 @@ const Articles = () => {
   return (
     <Layout>
       <Header sidebar>
-        <div style={{ minHeight: "60vh" }}>{loading && <Preloader />}</div>
+        <div style={{ minHeight: "60vh" }}>
+          {loading ? <Preloader /> : <ArticleList />}
+        </div>
       </Header>
       <Footer />
     </Layout>
