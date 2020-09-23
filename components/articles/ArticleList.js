@@ -28,8 +28,8 @@ const ArticleList = (props) => {
   const renderMainArticle = (index = 0) => {
     return (
       <div className={`col-12`}>
-        <div className={`d-flex`}>
-          <div className={`w-50`}>
+        <div className={`row`}>
+          <div className={`col-lg-6`}>
             <img
               className={`img-fluid`}
               src={`${articles[index].featuredPhoto}`}
@@ -38,7 +38,7 @@ const ArticleList = (props) => {
               style={{ maxHeight: "360px" }}
             />
           </div>
-          <div className={`w-50`}>
+          <div className={`col-lg-6`}>
             <h3>{articles[index].title}</h3>
             {articles[index].mdesc + `...`}
           </div>
