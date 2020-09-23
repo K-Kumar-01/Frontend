@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./ArticleList.module.css";
 
 const ArticleList = (props) => {
   const { articles } = props;
@@ -9,13 +10,13 @@ const ArticleList = (props) => {
       <div className={`col-md-4 mt-3`} key={d._id}>
         <div className={`w-100`}>
           <img
-            className={`img-fluid`}
+            className={`img-fluid ${styles.sideImage}`}
             src={d.featuredPhoto}
             title={d.title}
             alt={d.title}
           />
         </div>
-        <div className={`d-lg-flex align-items-center justify-content-between`}>
+        <div className={`d-flex align-items-center justify-content-between`}>
           <div className={`w-80`}>
             <h3>{d.title}</h3>
           </div>

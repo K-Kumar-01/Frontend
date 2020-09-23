@@ -1,0 +1,21 @@
+.mainImage,
+.sideImage {
+  width: 100%;
+}
+
+.sideImage {
+  height: 18rem;
+}
+
+@media (max-width: 992px) {
+  .sideImage {
+    height: 12rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sideImage {
+    height: auto;
+    max-height: 25rem;
+  }
+}
