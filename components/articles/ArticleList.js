@@ -3,7 +3,27 @@ import React from "react";
 const ArticleList = (props) => {
   const { articles } = props;
 
-  const renderArticles = (data) => {};
+  const renderSideArticles = (data) => {
+    console.log(data);
+    return data.map((d) => (
+      <div className={`col-md-4 mt-3`} key={d._id}>
+        <div className={`w-100`}>
+          <img
+            className={`img-fluid`}
+            src={d.featuredPhoto}
+            title={d.title}
+            alt={d.title}
+          />
+        </div>
+        <div className={`d-lg-flex align-items-center justify-content-between`}>
+          <div className={`w-80`}>
+            <h3>{d.title}</h3>
+          </div>
+          <div className={`w-80`}>Fav</div>
+        </div>
+      </div>
+    ));
+  };
 
   const renderMainArticle = (index = 0) => {
     return (
@@ -35,7 +55,10 @@ const ArticleList = (props) => {
       <hr />
       <section className={`latest`}>
         <h1>LATEST</h1>
-        <div className={`row`}>{renderMainArticle(0)}</div>
+        <div className={`row`}>
+          {renderMainArticle(0)}
+          {renderSideArticles(articles.slice(1, 4))}
+        </div>
       </section>
     </div>
   );
