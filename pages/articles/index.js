@@ -7,9 +7,7 @@ import Preloader from "../../components/spinner/Preloader";
 import { getAllArticles } from "../../actions/article";
 
 const Articles = () => {
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const fetchArticles = async () => {
     let response;
     try {
