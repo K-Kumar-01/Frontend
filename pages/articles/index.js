@@ -25,7 +25,6 @@ const Articles = () => {
       console.log(error);
     }
     setLoading(false);
-    console.log(response.articles[1].body);
   };
 
   useEffect(() => {
