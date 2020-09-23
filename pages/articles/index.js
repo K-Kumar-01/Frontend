@@ -33,7 +33,7 @@ const Articles = () => {
     <Layout>
       <Header sidebar>
         <div style={{ minHeight: "60vh" }}>
-          {loading ? <Preloader /> : <ArticleList />}
+          {loading ? <Preloader /> : <ArticleList articles={articles} />}
         </div>
       </Header>
       <Footer />
