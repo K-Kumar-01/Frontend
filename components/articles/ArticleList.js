@@ -76,8 +76,8 @@ const ArticleList = (props) => {
       <section className={`trending`}>
         <h1>TRENDING</h1>
         <div className={`row`}>
-          {renderMainArticle(trending[0])}
-          {renderSideArticles(trending.slice(1, 4))}
+          {trending.length && renderMainArticle(trending[0])}
+          {trending.length && renderSideArticles(trending.slice(1, 4))}
         </div>
       </section>
       <hr />
