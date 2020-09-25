@@ -49,22 +49,22 @@ const ArticleList = (props) => {
     ));
   };
 
-  const renderMainArticle = (index = 0) => {
+  const renderMainArticle = (data) => {
     return (
       <div className={`col-12`}>
         <div className={`row`}>
           <div className={`col-lg-6`}>
             <img
               className={`img-fluid ${styles.mainImage}`}
-              src={`${articles[index].featuredPhoto}`}
-              title={articles[index].title}
-              alt={articles[index].title}
+              src={`${data.featuredPhoto}`}
+              title={data.title}
+              alt={data.title}
               style={{ maxHeight: "360px" }}
             />
           </div>
           <div className={`col-lg-6`}>
-            <h3>{articles[index].title}</h3>
-            <p className="d-none d-lg-block">{articles[index].mdesc + `...`}</p>
+            <h3>{data.title}</h3>
+            <p className="d-none d-lg-block">{data.mdesc + `...`}</p>
           </div>
         </div>
       </div>
@@ -75,12 +75,16 @@ const ArticleList = (props) => {
     <div className={`container`}>
       <section className={`trending`}>
         <h1>TRENDING</h1>
+        <div className={`row`}>
+          {renderMainArticle(trending[0])}
+          {renderSideArticles(trending.slice(1, 4))}
+        </div>
       </section>
       <hr />
       <section className={`latest`}>
         <h1>LATEST</h1>
         <div className={`row`}>
-          {renderMainArticle(0)}
+          {renderMainArticle(articles[0])}
           {renderSideArticles(articles.slice(1, 4))}
         </div>
       </section>
