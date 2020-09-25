@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ArticleList.module.css";
 
 const ArticleList = (props) => {
   const { articles } = props;
 
+  const [trending, setTrending] = useState([]);
+  useEffect(() => {
+    let trends = [];
+    let uplimit = Math.min(10, articles.length);
+
+    // get 4 random articles
+    for (let i = 0; i < 4; ) {
+      let randnum = Math.floor(Math.random() * uplimit);
+      if (!trends.includes(randnum)) {
+        trends.push(randnum);
+        i++;
+      }
+    }
+
+    trends.sort((a, b) => a - b);
+
+    let trendingArticles = [];
+    for (let i = 0; i < 4; i++) {
+      trendingArticles.push(articles[trends[i]]);
+    }
+
+    setTrending(trendingArticles);
+  }, []);
+
   const renderSideArticles = (data) => {
-    console.log(data);
     return data.map((d) => (
       <div className={`col-md-4 mt-3`} key={d._id}>
         <div className={`w-100`}>
@@ -18,7 +41,7 @@ const ArticleList = (props) => {
         </div>
         <div className={`d-flex align-items-center justify-content-between`}>
           <div className={`w-80`}>
-            <h3>{d.title}</h3>
+            <h4>{d.title}</h4>
           </div>
           <div className={`w-80`}>Fav</div>
         </div>
@@ -32,7 +55,7 @@ const ArticleList = (props) => {
         <div className={`row`}>
           <div className={`col-lg-6`}>
             <img
-              className={`img-fluid`}
+              className={`img-fluid ${styles.mainImage}`}
               src={`${articles[index].featuredPhoto}`}
               title={articles[index].title}
               alt={articles[index].title}
@@ -41,7 +64,7 @@ const ArticleList = (props) => {
           </div>
           <div className={`col-lg-6`}>
             <h3>{articles[index].title}</h3>
-            {articles[index].mdesc + `...`}
+            <p className="d-none d-lg-block">{articles[index].mdesc + `...`}</p>
           </div>
         </div>
       </div>
