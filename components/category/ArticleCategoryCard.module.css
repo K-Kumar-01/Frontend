@@ -34,3 +34,7 @@
   color: #17a2b8 !important;
   background-color: white !important;
 }
+
+.link:hover {
+  text-decoration: none ;
+}

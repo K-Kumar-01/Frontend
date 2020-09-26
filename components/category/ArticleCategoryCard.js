@@ -37,6 +37,24 @@ const ArticleCategoryCard = (props) => {
                 <h4 className="card-title font-weight-bold">{article.title}</h4>
                 <p>{renderCategories(article.category)}</p>
                 <p className="card-text">{article.mdesc + `...`}</p>
+                <p className={`d-none d-lg-block`}>
+                  <section>
+                    <span className={`font-weight-bold h5`}>
+                      Posted by:{` `}
+                    </span>
+                    <Link href={`../user/profile/${article.postedBy.username}`}>
+                      <a className={`${styles.link}`}>
+                        {article.postedBy.username}
+                      </a>
+                    </Link>
+                  </section>
+                  <section>
+                    <span className={`font-weight-bold h5`}>
+                      Posted on:{` `}
+                    </span>
+                    {new Date(article.updatedAt).toLocaleDateString()}
+                  </section>
+                </p>
               </div>
             </div>
           </div>
