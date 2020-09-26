@@ -102,223 +102,274 @@ const Header = (props) => {
   const showDrawer = () => {
     return (
       <ul>
-        <li title="Home">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcHome />
-            </IconContext.Provider>
-          </i>
-          <Link href="/">
+        <Link href="/">
+          <li title="Home">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcHome />
+              </IconContext.Provider>
+            </i>
             <a className={`navbar-brand ${styles.link}`}>Titan Read</a>
-          </Link>
-        </li>
-        <li title="Technology">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcAndroidOs />
-            </IconContext.Provider>
-          </i>
-          <span>Technology</span>
-        </li>
-        <li title="Science">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcIdea />
-            </IconContext.Provider>
-          </i>
-          <span>Science</span>
-        </li>
-        <li title="Sports">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcSportsMode />
-            </IconContext.Provider>
-          </i>
-          <span>Sports</span>
-        </li>
-        <li title="Business">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcBullish />
-            </IconContext.Provider>
-          </i>
-          <span>Business</span>
-        </li>
-        <li title="Media">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcFilmReel />
-            </IconContext.Provider>
-          </i>
-          <span>Media</span>
-        </li>
-        <li title="Programming">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcCommandLine />
-            </IconContext.Provider>
-          </i>
-          <span>Programming</span>
-        </li>
-        <li title="Gaming">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcSteam />
-            </IconContext.Provider>
-          </i>
-          <span>Gaming</span>
-        </li>
-        <li title="Psychology">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcButtingIn />
-            </IconContext.Provider>
-          </i>
-          <span>Psychology</span>
-        </li>
-        <li title="Education">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcGraduationCap />
-            </IconContext.Provider>
-          </i>
-          <span>Education</span>
-        </li>
-        <li title="Politics">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcSpeaker />
-            </IconContext.Provider>
-          </i>
-          <span>Politics</span>
-        </li>
-        <li title="World">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcGoogle />
-            </IconContext.Provider>
-          </i>
-          <span>World</span>
-        </li>
-        <li title="Startups">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcBriefcase />
-            </IconContext.Provider>
-          </i>
-          <span>Startups</span>
-        </li>
-        <li title="History">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcFlowChart />
-            </IconContext.Provider>
-          </i>
-          <span>History</span>
-        </li>
-        <li title="Fashion">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcGallery />
-            </IconContext.Provider>
-          </i>
-          <span>Fashion</span>
-        </li>
-        <li title="Cryptocurrency">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcCurrencyExchange />
-            </IconContext.Provider>
-          </i>
-          <span>Cryptocurrency</span>
-        </li>
-        <li title="Marketing">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcComboChart />
-            </IconContext.Provider>
-          </i>
-          <span>Marketing</span>
-        </li>
-        <li title="Entertainment">
-          <i>
-            <IconContext.Provider value={{ size: "2rem", color: "bisque" }}>
-              <GiPopcorn />
-            </IconContext.Provider>
-          </i>
-          <span>Entertainment</span>
-        </li>
-        <li title="Health">
-          <i>
-            <IconContext.Provider value={{ size: "2rem", color: "#F7C6C5" }}>
-              <FaHospital />
-            </IconContext.Provider>
-          </i>
-          <span>Health</span>
-        </li>
-        <li title="Travel">
-          <i>
-            <IconContext.Provider value={{ size: "2rem", color: "lightgray" }}>
-              <FaPlane />
-            </IconContext.Provider>
-          </i>
-          <span>Travel</span>
-        </li>
-        <li title="Food">
-          <i>
-            <IconContext.Provider
-              value={{ size: "2rem", color: "rgb(223, 181, 142)" }}
-            >
-              <FaHamburger />
-            </IconContext.Provider>
-          </i>
-          <span>Food</span>
-        </li>
-        <li title="Sexuality">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FaVenusMars />
-            </IconContext.Provider>
-          </i>
-          <span>Sexuality</span>
-        </li>
-        <li title="Nature">
-          <i>
-            <IconContext.Provider
-              value={{ size: "2rem", color: "rgb(18, 159, 75)" }}
-            >
-              <FaTree />
-            </IconContext.Provider>
-          </i>
-          <span>Nature</span>
-        </li>
-        <li title="Spirituality">
-          <i>
-            <IconContext.Provider
-              value={{ size: "2rem", color: "floralwhite" }}
-            >
-              <FaPray />
-            </IconContext.Provider>
-          </i>
-          <span>Spirituality</span>
-        </li>
-        <li title="Space">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FaSpaceShuttle />
-            </IconContext.Provider>
-          </i>
-          <span>Space</span>
-        </li>
-
-        <li title="Others">
-          <i>
-            <IconContext.Provider value={{ size: "2rem" }}>
-              <FcAddDatabase />
-            </IconContext.Provider>
-          </i>
-          <span>Others</span>
-        </li>
+          </li>
+        </Link>
+        <Link href={`/category/technology`}>
+          <li title="Technology">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcAndroidOs />
+              </IconContext.Provider>
+            </i>
+            <span>Technology</span>
+          </li>
+        </Link>
+        <Link href={`/category/science`}>
+          <li title="Science">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcIdea />
+              </IconContext.Provider>
+            </i>
+            <span>Science</span>
+          </li>
+        </Link>
+        <Link href={`/category/sports`}>
+          <li title="Sports">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcSportsMode />
+              </IconContext.Provider>
+            </i>
+            <span>Sports</span>
+          </li>
+        </Link>
+        <Link href={`/caetgory/business`}>
+          <li title="Business">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcBullish />
+              </IconContext.Provider>
+            </i>
+            <span>Business</span>
+          </li>
+        </Link>
+        <Link href={`/category/media`}>
+          <li title="Media">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcFilmReel />
+              </IconContext.Provider>
+            </i>
+            <span>Media</span>
+          </li>
+        </Link>
+        <Link href={`/category/programming`}>
+          <li title="Programming">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcCommandLine />
+              </IconContext.Provider>
+            </i>
+            <span>Programming</span>
+          </li>
+        </Link>
+        <Link href={`/category/gaming`}>
+          <li title="Gaming">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcSteam />
+              </IconContext.Provider>
+            </i>
+            <span>Gaming</span>
+          </li>
+        </Link>
+        <Link href={`/caetgory/psychology`}>
+          <li title="Psychology">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcButtingIn />
+              </IconContext.Provider>
+            </i>
+            <span>Psychology</span>
+          </li>
+        </Link>
+        <Link href={`/category/education`}>
+          <li title="Education">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcGraduationCap />
+              </IconContext.Provider>
+            </i>
+            <span>Education</span>
+          </li>
+        </Link>
+        <Link href={`/category/politics`}>
+          <li title="Politics">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcSpeaker />
+              </IconContext.Provider>
+            </i>
+            <span>Politics</span>
+          </li>
+        </Link>
+        <Link href={`/category/world`}>
+          <li title="World">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcGoogle />
+              </IconContext.Provider>
+            </i>
+            <span>World</span>
+          </li>
+        </Link>
+        <Link href={`/category/startups`}>
+          <li title="Startups">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcBriefcase />
+              </IconContext.Provider>
+            </i>
+            <span>Startups</span>
+          </li>
+        </Link>
+        <Link href={`/category/history`}>
+          <li title="History">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcFlowChart />
+              </IconContext.Provider>
+            </i>
+            <span>History</span>
+          </li>
+        </Link>
+        <Link href={`/category/fashion`}>
+          <li title="Fashion">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcGallery />
+              </IconContext.Provider>
+            </i>
+            <span>Fashion</span>
+          </li>
+        </Link>
+        <Link href={`/category/cryptocurrency`}>
+          <li title="Cryptocurrency">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcCurrencyExchange />
+              </IconContext.Provider>
+            </i>
+            <span>Cryptocurrency</span>
+          </li>
+        </Link>
+        <Link href={`/category/marketing`}>
+          <li title="Marketing">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcComboChart />
+              </IconContext.Provider>
+            </i>
+            <span>Marketing</span>
+          </li>
+        </Link>
+        <Link href={`/category/entertainment`}>
+          <li title="Entertainment">
+            <i>
+              <IconContext.Provider value={{ size: "2rem", color: "bisque" }}>
+                <GiPopcorn />
+              </IconContext.Provider>
+            </i>
+            <span>Entertainment</span>
+          </li>
+        </Link>
+        <Link href={`/category/health`}>
+          <li title="Health">
+            <i>
+              <IconContext.Provider value={{ size: "2rem", color: "#F7C6C5" }}>
+                <FaHospital />
+              </IconContext.Provider>
+            </i>
+            <span>Health</span>
+          </li>
+        </Link>
+        <Link href={"/category/travel"}>
+          <li title="Travel">
+            <i>
+              <IconContext.Provider
+                value={{ size: "2rem", color: "lightgray" }}
+              >
+                <FaPlane />
+              </IconContext.Provider>
+            </i>
+            <span>Travel</span>
+          </li>
+        </Link>
+        <Link href={`/category/food`}>
+          <li title="Food">
+            <i>
+              <IconContext.Provider
+                value={{ size: "2rem", color: "rgb(223, 181, 142)" }}
+              >
+                <FaHamburger />
+              </IconContext.Provider>
+            </i>
+            <span>Food</span>
+          </li>
+        </Link>
+        <Link href={`/category/sexuality`}>
+          <li title="Sexuality">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FaVenusMars />
+              </IconContext.Provider>
+            </i>
+            <span>Sexuality</span>
+          </li>
+        </Link>
+        <Link href={`/category/nature`}>
+          <li title="Nature">
+            <i>
+              <IconContext.Provider
+                value={{ size: "2rem", color: "rgb(18, 159, 75)" }}
+              >
+                <FaTree />
+              </IconContext.Provider>
+            </i>
+            <span>Nature</span>
+          </li>
+        </Link>
+        <Link href={`/category/spirituality`}>
+          <li title="Spirituality">
+            <i>
+              <IconContext.Provider
+                value={{ size: "2rem", color: "floralwhite" }}
+              >
+                <FaPray />
+              </IconContext.Provider>
+            </i>
+            <span>Spirituality</span>
+          </li>
+        </Link>
+        <Link href={`/category/space`}>
+          <li title="Space">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FaSpaceShuttle />
+              </IconContext.Provider>
+            </i>
+            <span>Space</span>
+          </li>
+        </Link>
+        <Link href={`/category/others`}>
+          <li title="Others">
+            <i>
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <FcAddDatabase />
+              </IconContext.Provider>
+            </i>
+            <span>Others</span>
+          </li>
+        </Link>
       </ul>
     );
   };

@@ -20,7 +20,7 @@ const ArticleCategoryCard = (props) => {
 
   return (
     <div className="row mt-5">
-      <div className="col-8 mx-auto">
+      <div className="col-lg-9 col-md-10 col-sm-11 mx-auto">
         <div className="card mx-auto">
           <div className="card-body">
             <div className="row d-flex">
