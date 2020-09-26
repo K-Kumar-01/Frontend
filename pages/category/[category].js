@@ -1,19 +1,25 @@
 import React, { useEffect } from "react";
+import Error from "next/error";
+
 import { getArticlesByCategory } from "../../actions/article";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 const CategoryArticles = (props) => {
-  useEffect(() => {
-    console.log(props);
-  });
+  useEffect(() => {});
 
   return (
-    <Layout>
-      <Header sidebar></Header>
-      <Footer />
-    </Layout>
+    <>
+      {props.error ? (
+        <Error statusCode={props.error} />
+      ) : (
+        <Layout>
+          <Header sidebar></Header>
+          <Footer />
+        </Layout>
+      )}
+    </>
   );
 };
 
