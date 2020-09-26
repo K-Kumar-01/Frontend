@@ -30,9 +30,10 @@ const UserProfile = (props) => {
     data.map((d) => (
       <section key={d._id}>
         <Link href={`/${d.slug}`}>
-          <h4 className={``}>{d.title}</h4>
+          <h5 className={`${styles.headLink}`}>{d.title}</h5>
         </Link>
         <p className={`h6`}>{d.mdesc}</p>
+        <br/>
       </section>
     ));
 
