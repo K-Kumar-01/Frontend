@@ -32,7 +32,7 @@ const ArticleCategoryCard = (props) => {
               <div className="col-md-8 col-12">
                 <h4 className="card-title font-weight-bold">{article.title}</h4>
                 <p>{renderCategories(article.category)}</p>
-                <p className="card-text">{article.mdesc}</p>
+                <p className="card-text">{article.mdesc + `...`}</p>
               </div>
             </div>
           </div>

@@ -9,7 +9,7 @@ const ArticlesListCategory = (props) => {
       return (
         <section>
           {data.map((d) => (
-            <ArticleCategoryCard article={d} />
+            <ArticleCategoryCard key={d._id} article={d} />
           ))}
         </section>
       );
