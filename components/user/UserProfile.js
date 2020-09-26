@@ -25,6 +25,17 @@ const UserProfile = (props) => {
   }, []);
 
   const { userInfo } = props.userDetails;
+
+  const renderArticles = (data) =>
+    data.map((d) => (
+      <section key={d._id}>
+        <Link href={`/${d.slug}`}>
+          <h4 className={``}>{d.title}</h4>
+        </Link>
+        <p className={`h6`}>{d.mdesc}</p>
+      </section>
+    ));
+
   const showArticles = () => {
     if (!userInfo.articles || !userInfo.articles.length) {
       return (
@@ -38,7 +49,7 @@ const UserProfile = (props) => {
         </div>
       );
     } else {
-      return <div>Article list</div>;
+      return <div>{renderArticles(userInfo.articles)}</div>;
     }
   };
 
