@@ -5,6 +5,7 @@ import { getArticlesByCategory } from "../../actions/article";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ArticlesListCategory from "../../components/category/ArticlesListCategory";
 
 const CategoryArticles = (props) => {
   useEffect(() => {});
@@ -15,7 +16,9 @@ const CategoryArticles = (props) => {
         <Error statusCode={props.error} />
       ) : (
         <Layout>
-          <Header sidebar></Header>
+          <Header sidebar>
+            <ArticlesListCategory articles={props.articles} />
+          </Header>
           <Footer />
         </Layout>
       )}
