@@ -26,3 +26,12 @@ export const getAllArticles = async () => {
   }
   return response.data;
 };
+
+export const getArticlesByCategory = async (category) => {
+  let response;
+  try {
+    response = await axios.get(``);
+  } catch (error) {
+    return { error: error.response || { status: 500 } };
+  }
+};
