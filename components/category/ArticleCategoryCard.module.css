@@ -20,3 +20,13 @@
     transition: all 0.25s ease-in;
   }
 }
+
+.category {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.category:hover {
+  color: #17a2b8;
+  background-color: white;
+}
