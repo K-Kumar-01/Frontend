@@ -1,5 +1,10 @@
 import axios from "axios";
-import { ARTICLE_CREATE, COOKIE_NAME, FETCH_ARTICLES } from "../appConstants";
+import {
+  ARTICLE_CREATE,
+  COOKIE_NAME,
+  FETCH_ARTICLES,
+  FETCH_CATEGORY_ARTICLES,
+} from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
 export const createArticle = async (data) => {
@@ -30,7 +35,7 @@ export const getAllArticles = async () => {
 export const getArticlesByCategory = async (category) => {
   let response;
   try {
-    response = await axios.get(``);
+    response = await axios.get(`${FETCH_CATEGORY_ARTICLES(category)}`);
   } catch (error) {
     return { error: error.response || { status: 500 } };
   }

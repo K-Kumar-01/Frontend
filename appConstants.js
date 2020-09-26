@@ -10,7 +10,8 @@ const SIGNIN = `${BASE_URL}api/user/login`;
 const SIGNOUT = `${BASE_URL}api/user/logout`;
 const ARTICLE_CREATE = `${BASE_URL}api/article/create`;
 const FETCH_ARTICLES = `${BASE_URL}api/article`;
-const FETCH_CATEGORY_ARTICLES = `${BASE_URL}api/article/category/`;
+const FETCH_CATEGORY_ARTICLES = (category) =>
+  `${BASE_URL}api/article/category/${category}`;
 
 export {
   UPLOADS,
