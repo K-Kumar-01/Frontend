@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+
 import styles from "./ArticleCategoryCard.module.css";
 
 const ArticleCategoryCard = (props) => {
@@ -6,12 +8,14 @@ const ArticleCategoryCard = (props) => {
 
   const renderCategories = (data) =>
     data.map((d) => (
-      <span
-        key={d._id}
-        className={`badge badge-pill badge-info mr-3 ${styles.category}`}
-      >
-        {d.name}
-      </span>
+      <Link href={`/category/${d.name.toLowerCase()}`}>
+        <a
+          key={d._id}
+          className={`badge badge-pill badge-info mr-3 ${styles.category}`}
+        >
+          {d.name}
+        </a>
+      </Link>
     ));
 
   return (

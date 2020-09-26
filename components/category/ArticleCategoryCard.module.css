@@ -2,6 +2,8 @@
   /*   transform:translateX(-15%) */
   position: relative;
   right: 50px;
+  min-height: 125px;
+  min-width: 125px;
   border-radius: 5px;
   transition: all 0.25s ease-in;
 }
@@ -16,6 +18,8 @@
     /*   transform:translateX(-15%) */
     position: relative;
     bottom: 50px;
+    min-width: auto;
+    min-height: auto;
     left: 0;
     transition: all 0.25s ease-in;
   }
@@ -27,6 +31,6 @@
 }
 
 .category:hover {
-  color: #17a2b8;
-  background-color: white;
+  color: #17a2b8 !important;
+  background-color: white !important;
 }

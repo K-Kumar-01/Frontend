@@ -14,7 +14,7 @@ const ArticlesListCategory = (props) => {
               <HiOutlineEmojiSad />
             </div>
           </IconContext.Provider>
-          <p>No Articles of this category have been created</p>
+          <h3>No Articles of this category have been created</h3>
         </section>
       );
     } else {
