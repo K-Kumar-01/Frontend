@@ -21,11 +21,12 @@ const UserProfile = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);
   useEffect(() => {
     setTokenDetails(authenticate(COOKIE_NAME));
+    console.log(props);
   }, []);
 
   const { userInfo } = props.userDetails;
   const showArticles = () => {
-    if (!props.articles || !props.articles.length) {
+    if (!userInfo.articles || !userInfo.articles.length) {
       return (
         <div className={`text-center`}>
           <IconContext.Provider value={{ color: `#FED15A`, size: "4rem" }}>
@@ -33,19 +34,7 @@ const UserProfile = (props) => {
               <HiOutlineEmojiSad />
             </div>
           </IconContext.Provider>
-          <p>No articles published as of now</p>
-          {userInfo.username === tokenDetails.username && (
-            <p>
-              <Link href={`../../articles/create`}>
-                <a className={`btn btn-outline-info`}>
-                  <IconContext.Provider value={{ size: "1.2rem" }}>
-                    <MdCreate />
-                    {` `}Create Article
-                  </IconContext.Provider>
-                </a>
-              </Link>
-            </p>
-          )}
+          <p>No articles published as of now</p>u
         </div>
       );
     } else {
@@ -245,7 +234,23 @@ const UserProfile = (props) => {
                           <FaRegNewspaper />
                         </IconContext.Provider>
                       </h3>
-                      <p className={`text-muted lead`}>{showArticles()}</p>
+                      <p className={`text-muted lead`}>
+                        {userInfo.username === tokenDetails.username && (
+                          <p>
+                            <Link href={`../../articles/create`}>
+                              <a className={`btn btn-outline-info`}>
+                                <IconContext.Provider
+                                  value={{ size: "1.2rem" }}
+                                >
+                                  <MdCreate />
+                                  {` `}Create Article
+                                </IconContext.Provider>
+                              </a>
+                            </Link>
+                          </p>
+                        )}
+                        {showArticles()}
+                      </p>
                     </section>
                   </div>
                 </div>
