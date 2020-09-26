@@ -36,6 +36,7 @@ export const getArticlesByCategory = async (category) => {
   let response;
   try {
     response = await axios.get(`${FETCH_CATEGORY_ARTICLES(category)}`);
+    return response.data;
   } catch (error) {
     return { error: error.response || { status: 500 } };
   }
