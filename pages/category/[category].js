@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
 import { getArticlesByCategory } from "../../actions/article";
+import Layout from "../../components/Layout";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const CategoryArticles = (props) => {
   useEffect(() => {
     console.log(props);
   });
 
-  return <div>Hello</div>;
+  return (
+    <Layout>
+      <Header sidebar></Header>
+      <Footer />
+    </Layout>
+  );
 };
 
 CategoryArticles.getInitialProps = async (props) => {
