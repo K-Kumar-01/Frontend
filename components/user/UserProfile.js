@@ -39,7 +39,6 @@ const UserProfile = (props) => {
           </a>
         </Link>
         <p className={`h6 d-none d-md-block`}>{d.mdesc}</p>
-        
       </section>
     ));
 
@@ -242,7 +241,11 @@ const UserProfile = (props) => {
                   <div className={`card-body`}>
                     <section className={`${styles.aboutSection}`}>
                       <h3 className={``}>Bio</h3>
-                      <p className={`text-muted lead`}>{userInfo.about}</p>
+                      <p className={`text-muted lead`}>
+                        {userInfo.about
+                          ? userInfo.about
+                          : `${userInfo.name} has not made his bio.`}
+                      </p>
                     </section>
                     <hr />
                     <section className={`${styles.articleSection}`}>
