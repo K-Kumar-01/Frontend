@@ -10,7 +10,7 @@ const ArticleList = (props) => {
     let uplimit = Math.min(10, articles.length);
 
     // get 4 random articles
-    for (let i = 0; i < 4; ) {
+    for (let i = 0; i < 5; ) {
       let randnum = Math.floor(Math.random() * uplimit);
       if (!trends.includes(randnum)) {
         trends.push(randnum);
@@ -21,7 +21,7 @@ const ArticleList = (props) => {
     trends.sort((a, b) => a - b);
 
     let trendingArticles = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       trendingArticles.push(articles[trends[i]]);
     }
 
@@ -30,7 +30,7 @@ const ArticleList = (props) => {
 
   const renderSideArticles = (data) => {
     return data.map((d) => (
-      <div className={`col-md-4 mt-3`} key={d._id}>
+      <div className={`col-md-3 col-sm-6 col-xs-12 mt-3`} key={d._id}>
         <div className={`w-100`}>
           <img
             className={`img-fluid ${styles.sideImage}`}
@@ -77,7 +77,7 @@ const ArticleList = (props) => {
         <h1>TRENDING</h1>
         <div className={`row`}>
           {trending.length && renderMainArticle(trending[0])}
-          {trending.length && renderSideArticles(trending.slice(1, 4))}
+          {trending.length && renderSideArticles(trending.slice(1))}
         </div>
       </section>
       <hr />
@@ -85,7 +85,7 @@ const ArticleList = (props) => {
         <h1>LATEST</h1>
         <div className={`row`}>
           {renderMainArticle(articles[0])}
-          {renderSideArticles(articles.slice(1, 4))}
+          {renderSideArticles(articles.slice(1, 5))}
         </div>
       </section>
     </div>
