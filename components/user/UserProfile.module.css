@@ -74,6 +74,10 @@
   cursor: pointer;
 }
 
+.articlearea {
+  margin-bottom: 1rem;
+}
+
 .articlearea a:hover {
   text-decoration: none;
 }

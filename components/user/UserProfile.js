@@ -39,7 +39,7 @@ const UserProfile = (props) => {
           </a>
         </Link>
         <p className={`h6 d-none d-md-block`}>{d.mdesc}</p>
-        <br />
+        
       </section>
     ));
 
