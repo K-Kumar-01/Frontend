@@ -11,6 +11,7 @@ import {
   FaTwitter,
   FaLinkedin,
   FaRegNewspaper,
+  FaAngleRight,
 } from "react-icons/fa";
 
 import styles from "./UserProfile.module.css";
@@ -28,12 +29,17 @@ const UserProfile = (props) => {
 
   const renderArticles = (data) =>
     data.map((d) => (
-      <section key={d._id}>
+      <section key={d._id} className={`${styles.articlearea}`}>
         <Link href={`/${d.slug}`}>
-          <h5 className={`${styles.headLink}`}>{d.title}</h5>
+          <a>
+            <h5 className={`${styles.headLink}`}>
+              <FaAngleRight />
+              {d.title}
+            </h5>
+          </a>
         </Link>
-        <p className={`h6`}>{d.mdesc}</p>
-        <br/>
+        <p className={`h6 d-none d-md-block`}>{d.mdesc}</p>
+        <br />
       </section>
     ));
 
