@@ -103,197 +103,197 @@ const Header = (props) => {
     return (
       <ul>
         <Link href="/">
-          <li title="Home">
+          <a title="Home">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcHome />
               </IconContext.Provider>
             </i>
-            <a className={`navbar-brand ${styles.link}`}>Titan Read</a>
-          </li>
+            <span className={`navbar-brand ${styles.link}`}>Titan Read</span>
+          </a>
         </Link>
         <Link href={`/category/technology`}>
-          <li title="Technology">
+          <a title="Technology">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcAndroidOs />
               </IconContext.Provider>
             </i>
             <span>Technology</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/science`}>
-          <li title="Science">
+          <a title="Science">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcIdea />
               </IconContext.Provider>
             </i>
             <span>Science</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/sports`}>
-          <li title="Sports">
+          <a title="Sports">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcSportsMode />
               </IconContext.Provider>
             </i>
             <span>Sports</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/caetgory/business`}>
-          <li title="Business">
+          <a title="Business">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcBullish />
               </IconContext.Provider>
             </i>
             <span>Business</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/media`}>
-          <li title="Media">
+          <a title="Media">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcFilmReel />
               </IconContext.Provider>
             </i>
             <span>Media</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/programming`}>
-          <li title="Programming">
+          <a title="Programming">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcCommandLine />
               </IconContext.Provider>
             </i>
             <span>Programming</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/gaming`}>
-          <li title="Gaming">
+          <a title="Gaming">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcSteam />
               </IconContext.Provider>
             </i>
             <span>Gaming</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/caetgory/psychology`}>
-          <li title="Psychology">
+          <a title="Psychology">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcButtingIn />
               </IconContext.Provider>
             </i>
             <span>Psychology</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/education`}>
-          <li title="Education">
+          <a title="Education">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcGraduationCap />
               </IconContext.Provider>
             </i>
             <span>Education</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/politics`}>
-          <li title="Politics">
+          <a title="Politics">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcSpeaker />
               </IconContext.Provider>
             </i>
             <span>Politics</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/world`}>
-          <li title="World">
+          <a title="World">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcGoogle />
               </IconContext.Provider>
             </i>
             <span>World</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/startups`}>
-          <li title="Startups">
+          <a title="Startups">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcBriefcase />
               </IconContext.Provider>
             </i>
             <span>Startups</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/history`}>
-          <li title="History">
+          <a title="History">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcFlowChart />
               </IconContext.Provider>
             </i>
             <span>History</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/fashion`}>
-          <li title="Fashion">
+          <a title="Fashion">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcGallery />
               </IconContext.Provider>
             </i>
             <span>Fashion</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/cryptocurrency`}>
-          <li title="Cryptocurrency">
+          <a title="Cryptocurrency">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcCurrencyExchange />
               </IconContext.Provider>
             </i>
             <span>Cryptocurrency</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/marketing`}>
-          <li title="Marketing">
+          <a title="Marketing">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcComboChart />
               </IconContext.Provider>
             </i>
             <span>Marketing</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/entertainment`}>
-          <li title="Entertainment">
+          <a title="Entertainment">
             <i>
               <IconContext.Provider value={{ size: "2rem", color: "bisque" }}>
                 <GiPopcorn />
               </IconContext.Provider>
             </i>
             <span>Entertainment</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/health`}>
-          <li title="Health">
+          <a title="Health">
             <i>
               <IconContext.Provider value={{ size: "2rem", color: "#F7C6C5" }}>
                 <FaHospital />
               </IconContext.Provider>
             </i>
             <span>Health</span>
-          </li>
+          </a>
         </Link>
         <Link href={"/category/travel"}>
-          <li title="Travel">
+          <a title="Travel">
             <i>
               <IconContext.Provider
                 value={{ size: "2rem", color: "lightgray" }}
@@ -302,10 +302,10 @@ const Header = (props) => {
               </IconContext.Provider>
             </i>
             <span>Travel</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/food`}>
-          <li title="Food">
+          <a title="Food">
             <i>
               <IconContext.Provider
                 value={{ size: "2rem", color: "rgb(223, 181, 142)" }}
@@ -314,20 +314,20 @@ const Header = (props) => {
               </IconContext.Provider>
             </i>
             <span>Food</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/sexuality`}>
-          <li title="Sexuality">
+          <a title="Sexuality">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FaVenusMars />
               </IconContext.Provider>
             </i>
             <span>Sexuality</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/nature`}>
-          <li title="Nature">
+          <a title="Nature">
             <i>
               <IconContext.Provider
                 value={{ size: "2rem", color: "rgb(18, 159, 75)" }}
@@ -336,10 +336,10 @@ const Header = (props) => {
               </IconContext.Provider>
             </i>
             <span>Nature</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/spirituality`}>
-          <li title="Spirituality">
+          <a title="Spirituality">
             <i>
               <IconContext.Provider
                 value={{ size: "2rem", color: "floralwhite" }}
@@ -348,27 +348,27 @@ const Header = (props) => {
               </IconContext.Provider>
             </i>
             <span>Spirituality</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/space`}>
-          <li title="Space">
+          <a title="Space">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FaSpaceShuttle />
               </IconContext.Provider>
             </i>
             <span>Space</span>
-          </li>
+          </a>
         </Link>
         <Link href={`/category/others`}>
-          <li title="Others">
+          <a title="Others">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>
                 <FcAddDatabase />
               </IconContext.Provider>
             </i>
             <span>Others</span>
-          </li>
+          </a>
         </Link>
       </ul>
     );

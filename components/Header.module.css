@@ -43,7 +43,7 @@
   list-style: none;
   padding: 0;
 }
-.App aside ul li {
+.App aside ul a {
   display: flex;
   align-items: center;
   color: #d3d3d3;
@@ -52,13 +52,14 @@
   transition: transform 1s;
   cursor: pointer;
 }
-.App aside ul li i {
+.App aside ul a i {
   margin-right: 1em;
 }
-.App aside ul li:hover {
+.App aside ul a:hover {
   transform: translateX(5px);
   color: #0288d1 !important;
   border-left: 5px solid #0288d1;
+  text-decoration: none;
 }
 .App .drawerMin {
   width: 70px;
