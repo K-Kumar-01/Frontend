@@ -12,10 +12,7 @@ const ARTICLE_CREATE = `${BASE_URL}api/article/create`;
 const FETCH_ARTICLES = `${BASE_URL}api/article`;
 const FETCH_CATEGORY_ARTICLES = (category) =>
   `${BASE_URL}api/article/category/${category}`;
-const FETCH_PARTICULAR_ARTILCE = (slug) => {
-  `${BASE_URL}api/article/one/slug`;
-};
-
+const FETCH_PARTICULAR_ARTILCE = (slug) => `${BASE_URL}api/article/one/${slug}`;
 export {
   UPLOADS,
   SIGNIN,

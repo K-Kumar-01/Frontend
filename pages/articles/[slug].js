@@ -1,15 +1,38 @@
 import React from "react";
+import Error from "next/error";
+
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { getParticularArticle } from "../../actions/article";
 
-const SingleArticle = () => {
+const SingleArticle = (props) => {
   return (
-    <Layout>
-      <Header sidebar></Header>
-      <Footer />
-    </Layout>
+    <>
+      {props.error ? (
+        <Error statusCode={props.error} />
+      ) : (
+        <Layout>
+          <Header sidebar></Header>
+          <Footer />
+        </Layout>
+      )}
+    </>
   );
+};
+
+SingleArticle.getInitialProps = async (props) => {
+  let response;
+  try {
+    response = await getParticularArticle(props.query.slug);
+  } catch (error) {
+    return { error: 500 };
+  }
+  if (response.error) {
+    return { error: response.error.status };
+  } else {
+    return { article: response.article };
+  }
 };
 
 export default SingleArticle;
