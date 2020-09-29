@@ -107,3 +107,7 @@
 	bottom: 0;
 	right: 0;
 }
+
+.styledText{
+	font-family: "Montserrat", sans-serif;
+}

@@ -36,7 +36,7 @@ const ComponentWithToasts = () => {
           </Layout>
         </main>
       ) : (
-        <Preloader />
+        <Preloader message={`Redirecting to signin page`} />
       )}
     </>
   );
