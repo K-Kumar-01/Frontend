@@ -41,3 +41,5 @@ export const getArticlesByCategory = async (category) => {
     return { error: error.response || { status: 500 } };
   }
 };
+
+export const getParticularArticle = async (slug) => {};
