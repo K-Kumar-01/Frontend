@@ -10,10 +10,7 @@ const OneArticle = (props) => {
   const renderCategories = (data) =>
     data.map((d) => (
       <Link href={`/category/${d.name.toLowerCase()}`}>
-        <a
-          key={d._id}
-          className={`badge badge-pill badge-info mr-3 ${styles.category}`}
-        >
+        <a key={d._id} className={`mr-3 h6 font-weight-bold ${styles.badge}`}>
           {d.name}
         </a>
       </Link>
@@ -22,7 +19,9 @@ const OneArticle = (props) => {
     <section className={` container `}>
       <main className={`row`}>
         <h1 className={`col-12 text-center`}>{article.title}</h1>
-        <div className={`col-sm-11 col-md-9 mx-auto`}>{renderCategories(article.category)}</div>
+        <div className={`col-sm-11 col-md-9 mx-auto my-3`}>
+          {renderCategories(article.category)}
+        </div>
         <br />
         <div className={`col-sm-11 col-md-9 mx-auto`}>
           <Dante read_only content={JSON.parse(article.body)} />
