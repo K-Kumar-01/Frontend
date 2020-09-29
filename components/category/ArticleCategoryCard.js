@@ -34,7 +34,13 @@ const ArticleCategoryCard = (props) => {
                 />
               </div>
               <div className="col-md-8 col-12">
-                <h4 className="card-title font-weight-bold">{article.title}</h4>
+                <Link href={`/articles/${article.slug}`}>
+                  <a className={`${styles.link} ${styles.headLink}`}>
+                    <h4 className="card-title font-weight-bold">
+                      {article.title}
+                    </h4>
+                  </a>
+                </Link>
                 <p>{renderCategories(article.category)}</p>
                 <p className="card-text">{article.mdesc + `...`}</p>
                 <p className={`d-none d-lg-block`}>

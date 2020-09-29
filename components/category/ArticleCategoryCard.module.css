@@ -35,6 +35,14 @@
   background-color: white !important;
 }
 
+.headLink {
+  color: black;
+}
+
+.headLink:hover {
+  color:rgba(0,0,0,0.75);
+}
+
 .link:hover {
-  text-decoration: none ;
+  text-decoration: none;
 }
