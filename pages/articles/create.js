@@ -22,9 +22,7 @@ const ComponentWithToasts = () => {
         appearance: "error",
         autoDismiss: true,
       });
-      setTimeout(() => {
-        router.push("/signin");
-      }, 1500);
+      router.push("/signin");
     }
   }, []);
   return (
