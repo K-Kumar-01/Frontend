@@ -66,7 +66,7 @@ const UserProfile = (props) => {
           <div className={`w-100 ${styles.profile}`}>
             <div className={`${styles.backgroundCover} col-12`}></div>
             <div className={`container`}>
-              <div className={`row `}>
+              <div className={`row pt-3`}>
                 <div className={`col-lg-3 col-md-4 col-sm-12 text-center`}>
                   <img
                     src={`${userInfo.avatar}`}

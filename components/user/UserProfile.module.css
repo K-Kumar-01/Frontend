@@ -81,3 +81,7 @@
 .articlearea a:hover {
   text-decoration: none;
 }
+
+.articlearea a h5:hover {
+  font-size: 1.3rem;
+}
