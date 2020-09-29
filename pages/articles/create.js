@@ -1,20 +1,55 @@
-import React from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import ArticleCreate from '../../components/crud/article/ArticleCreate';
-import Layout from '../../components/Layout';
+import React, { useEffect, useState } from "react";
+import { ToastProvider, useToasts } from "react-toast-notifications";
 
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import ArticleCreate from "../../components/crud/article/ArticleCreate";
+import Layout from "../../components/Layout";
+import { authenticate } from "../../helpers/auth";
+import { COOKIE_NAME } from "../../appConstants";
+import { useRouter } from "next/router";
+import Preloader from "../../components/spinner/Preloader";
 
-const createArticle = () => {
-	return (
-		<main>
-			<Layout>
-				<Header />
-				<ArticleCreate />
-				<Footer />
-			</Layout>
-		</main>
-	);
+const ComponentWithToasts = () => {
+  const { addToast } = useToasts();
+  const [isAuth, setIsAuth] = useState(false);
+  const router = useRouter();
+  useEffect(() => {
+    if (authenticate(COOKIE_NAME)) {
+      setIsAuth(true);
+    } else {
+      addToast("Login required to perform this task", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+      setTimeout(() => {
+        router.push("/signin");
+      }, 1500);
+    }
+  }, []);
+  return (
+    <>
+      {isAuth ? (
+        <main>
+          <Layout>
+            <Header />
+            <ArticleCreate />
+            <Footer />
+          </Layout>
+        </main>
+      ) : (
+        <Preloader />
+      )}
+    </>
+  );
 };
 
-export default createArticle;
+const CreateArticle = () => {
+  return (
+    <ToastProvider>
+      <ComponentWithToasts />
+    </ToastProvider>
+  );
+};
+
+export default CreateArticle;
