@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ArticleList.module.css";
+import Link from "next/link";
 
 const ArticleList = (props) => {
   const { articles } = props;
@@ -41,7 +42,11 @@ const ArticleList = (props) => {
         </div>
         <div className={`d-flex align-items-center justify-content-between`}>
           <div className={`w-80`}>
-            <h4>{d.title}</h4>
+            <Link href={`/articles/${d.slug}`}>
+              <a className={`${styles.headLink}`}>
+                <h4 >{d.title}</h4>
+              </a>
+            </Link>
           </div>
           <div className={`w-80`}>Fav</div>
         </div>
@@ -63,7 +68,11 @@ const ArticleList = (props) => {
             />
           </div>
           <div className={`col-lg-6`}>
-            <h3>{data.title}</h3>
+          <Link href={`/articles/${data.slug}`}>
+              <a className={`${styles.headLink}`}>
+                <h3>{data.title}</h3>
+              </a>
+            </Link>
             <p className="d-none d-lg-block">{data.mdesc + `...`}</p>
           </div>
         </div>
