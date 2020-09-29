@@ -5,6 +5,7 @@ import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getParticularArticle } from "../../actions/article";
+import OneArticle from "../../components/articles/OneArticle";
 
 const SingleArticle = (props) => {
   return (
@@ -13,7 +14,9 @@ const SingleArticle = (props) => {
         <Error statusCode={props.error} />
       ) : (
         <Layout>
-          <Header sidebar></Header>
+          <Header sidebar>
+            <OneArticle article={props.article} />
+          </Header>
           <Footer />
         </Layout>
       )}

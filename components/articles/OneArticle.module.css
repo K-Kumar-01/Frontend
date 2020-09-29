@@ -1,0 +1,9 @@
+.category {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.category:hover {
+  color: #17a2b8 !important;
+  background-color: white !important;
+}
