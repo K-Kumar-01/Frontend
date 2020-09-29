@@ -19,11 +19,15 @@ const OneArticle = (props) => {
       </Link>
     ));
   return (
-    <section className={` container`}>
-      <h1 className={`text-center`}>{article.title}</h1>
-      <div>{renderCategories(article.category)}</div>
-      <br />
-      <Dante read_only content={JSON.parse(article.body)} />
+    <section className={` container `}>
+      <main className={`row`}>
+        <h1 className={`col-12 text-center`}>{article.title}</h1>
+        <div className={`col-sm-11 col-md-9 mx-auto`}>{renderCategories(article.category)}</div>
+        <br />
+        <div className={`col-sm-11 col-md-9 mx-auto`}>
+          <Dante read_only content={JSON.parse(article.body)} />
+        </div>
+      </main>
     </section>
   );
 };

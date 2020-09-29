@@ -7,3 +7,15 @@
   color: #17a2b8 !important;
   background-color: white !important;
 }
+
+.mainPadding {
+  padding-right: 6rem !important;
+  padding-left: 6rem !important;
+}
+
+@media (max-width: 992px) {
+  .mainPadding {
+    padding-right: 5rem ;
+    padding-left: 5rem ;
+  }
+}
