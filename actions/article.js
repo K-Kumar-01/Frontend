@@ -4,6 +4,7 @@ import {
   COOKIE_NAME,
   FETCH_ARTICLES,
   FETCH_CATEGORY_ARTICLES,
+  FETCH_PARTICULAR_ARTILCE,
 } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
@@ -42,4 +43,12 @@ export const getArticlesByCategory = async (category) => {
   }
 };
 
-export const getParticularArticle = async (slug) => {};
+export const getParticularArticle = async (slug) => {
+  let response;
+  try {
+    response = await axios.get(`${FETCH_PARTICULAR_ARTILCE(slug)}`);
+    return response.data;
+  } catch (error) {
+    return { error: error.response || { status: 500 } };
+  }
+};
