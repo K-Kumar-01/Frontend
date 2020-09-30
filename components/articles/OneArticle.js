@@ -9,10 +9,8 @@ const OneArticle = (props) => {
 
   const renderCategories = (data) =>
     data.map((d) => (
-      <Link href={`/category/${d.name.toLowerCase()}`}>
-        <a key={d._id} className={`mr-3 h6 font-weight-bold ${styles.badge}`}>
-          {d.name}
-        </a>
+      <Link key={d._id} href={`/category/${d.name.toLowerCase()}`}>
+        <a className={`mr-3 h6 font-weight-bold ${styles.badge}`}>{d.name}</a>
       </Link>
     ));
   return (

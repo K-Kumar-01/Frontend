@@ -15,7 +15,7 @@ const SingleArticle = (props) => {
       ) : (
         <Layout>
           <Header sidebar>
-            <OneArticle article={props.article} />
+            <OneArticle article={props.article} articles={props.articles} />
           </Header>
           <Footer />
         </Layout>
@@ -34,7 +34,7 @@ SingleArticle.getInitialProps = async (props) => {
   if (response.error) {
     return { error: response.error.status };
   } else {
-    return { article: response.article };
+    return { article: response.article, articles: response.articles };
   }
 };
 
