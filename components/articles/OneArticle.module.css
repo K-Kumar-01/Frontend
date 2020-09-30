@@ -30,3 +30,14 @@
 .removeLine:hover {
   text-decoration: none;
 }
+
+.authorImg {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+}
+
+.date {
+  color: #757575;
+  font-family: cursive;
+}

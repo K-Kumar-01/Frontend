@@ -16,7 +16,10 @@ const OneArticle = (props) => {
 
   const renderSimilarArticles = (data) =>
     data.map((d) => (
-      <div className={`col-lg-3 col-md-6 d-flex justify-content-between px-2`}>
+      <div
+        className={`col-lg-3 col-md-6 d-flex justify-content-between px-2`}
+        key={d._id}
+      >
         <div className={`mr-2 `}>
           <Link href={`/articles/${d.slug}`}>
             <a className={`${styles.similarLink} ${styles.removeLine}`}>
@@ -49,10 +52,44 @@ const OneArticle = (props) => {
         </div>
       </div>
     ));
+
+  const renderAuthorAndDateInfo = (authorInfo, dateInfo) => (
+    <div className={`col-sm-11 col-md-9 mx-auto d-flex align-items-center`}>
+      <div className={``}>
+        <Link href={`/user/profile/${authorInfo.username}`}>
+          <a className={`${styles.similarLink}`}>
+            <img
+              className={`${styles.authorImg}`}
+              alt={authorInfo.name}
+              src={authorInfo.avatar}
+            />
+          </a>
+        </Link>
+      </div>
+      <div>
+        <p className={`pt-3 pl-3`}>
+          <Link href={`/user/profile/${authorInfo.username}`}>
+            <a className={`${styles.similarLink}`}>
+              <strong>{authorInfo.name}</strong>
+            </a>
+          </Link>
+          <br />
+          <span className={`${styles.date}`}>{` ${new Date(
+            dateInfo.createdAt
+          ).toLocaleDateString()}`}</span>
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <section className={` container `}>
       <main className={`row`}>
-        <h1 className={`col-12 text-center mb-5`}>{article.title}</h1>
+        <h1 className={`col-12 text-center mb-3 display-4`}>{article.title}</h1>
+        {renderAuthorAndDateInfo(article.postedBy, {
+          createdAt: article.createdAt,
+          updatedAt: article.updatedAt,
+        })}
         <div className={`col-sm-11 col-md-9 mx-auto`}>
           <Dante read_only content={JSON.parse(article.body)} />
         </div>
@@ -64,7 +101,7 @@ const OneArticle = (props) => {
         <div className={`row`}>
           <div className={`col-12 px-2`}>
             <h1 className={`mb-3`}>Similar Articles</h1>
-            <hr/>
+            <hr />
           </div>
           {renderSimilarArticles(articles || [])}
         </div>
