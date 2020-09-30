@@ -74,9 +74,9 @@ const OneArticle = (props) => {
             </a>
           </Link>
           <br />
-          <span className={`${styles.date}`}>{` ${new Date(
-            dateInfo.createdAt
-          ).toLocaleDateString()}`}</span>
+          <span className={`${styles.date}`}>{` ${new Date(dateInfo.createdAt)
+            .toDateString()
+            .substring(4)}`}</span>
         </p>
       </div>
     </div>
