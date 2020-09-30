@@ -13,3 +13,23 @@
   text-decoration: none;
   color: #75758c;
 }
+
+.similarDesc {
+  width: 66%;
+}
+
+.similarImgCont {
+  width: 32%;
+}
+
+.similarImage {
+  max-width: 70px;
+  max-height: 70px;
+}
+
+.similarLink {
+  color: black;
+}
+.similarLink:hover {
+  color: black;
+}
