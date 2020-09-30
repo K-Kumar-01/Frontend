@@ -14,17 +14,9 @@
   color: #75758c;
 }
 
-.similarDesc {
-  width: 66%;
-}
-
-.similarImgCont {
-  width: 32%;
-}
-
 .similarImage {
-  max-width: 70px;
-  max-height: 70px;
+  max-width: 6rem;
+  max-height: 6rem;
 }
 
 .similarLink {
@@ -32,4 +24,9 @@
 }
 .similarLink:hover {
   color: black;
+  text-decoration-color: black;
+}
+
+.removeLine:hover {
+  text-decoration: none;
 }

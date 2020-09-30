@@ -18,9 +18,14 @@ const OneArticle = (props) => {
     data.map((d) => (
       <div className={`col-lg-3 col-md-6 d-flex justify-content-between px-2`}>
         <div className={`mr-2 `}>
-          <h4>
-            <strong>{d.title}</strong>
-          </h4>
+          <Link href={`/articles/${d.slug}`}>
+            <a className={`${styles.similarLink} ${styles.removeLine}`}>
+              <h4>
+                <strong>{d.title}</strong>
+              </h4>
+            </a>
+          </Link>
+
           <p>
             <Link href={`/user/profile/${d.postedBy.username}`}>
               <a className={`${styles.similarLink}`}>{d.postedBy.username}</a>
@@ -32,11 +37,15 @@ const OneArticle = (props) => {
           </p>
         </div>
         <div>
-          <img
-            className={`img-fluid ${styles.similarImage}`}
-            alt={d.title}
-            src={d.featuredPhoto}
-          />
+          <Link href={`/articles/${d.slug}`}>
+            <a>
+              <img
+                className={`img-fluid ${styles.similarImage}`}
+                alt={d.title}
+                src={d.featuredPhoto}
+              />
+            </a>
+          </Link>
         </div>
       </div>
     ));
@@ -51,7 +60,15 @@ const OneArticle = (props) => {
           {renderCategories(article.category)}
         </div>
       </main>
-      <div className={`row`}>{renderSimilarArticles(articles || [])}</div>
+      <main className={`px-3`}>
+        <div className={`row`}>
+          <div className={`col-12 px-2`}>
+            <h1 className={`mb-3`}>Similar Articles</h1>
+            <hr/>
+          </div>
+          {renderSimilarArticles(articles || [])}
+        </div>
+      </main>
     </section>
   );
 };
