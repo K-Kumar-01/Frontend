@@ -21,6 +21,7 @@ import { COOKIE_NAME } from "../../appConstants";
 
 const UserProfile = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);
+  const [modalTitle, setModalTitle] = useState(false);
   useEffect(() => {
     setTokenDetails(authenticate(COOKIE_NAME));
     console.log(props);
@@ -40,7 +41,12 @@ const UserProfile = (props) => {
               </h5>
             </a>
           </Link>
-          <h5 className={`${styles.delete}`}>
+          <h5
+            className={`${styles.delete}`}
+            data-toggle="modal"
+            data-target="#deleteModal"
+            onClick={() => setModalTitle(d.title)}
+          >
             <IconContext.Provider value={{ color: "#C23F3F" }}>
               <FaTrashAlt />
             </IconContext.Provider>
@@ -69,6 +75,51 @@ const UserProfile = (props) => {
 
   return (
     <div className={`container-fluid`}>
+      <main>
+        <div
+          className="modal fade"
+          id="deleteModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Delete Article
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  onClick={() => setModalTitle(false)}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Are you sure you want to delete the article{" "}
+                <strong>'{modalTitle}'</strong>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                  onClick={() => setModalTitle(false)}
+                >
+                  Cancel
+                </button>
+                <button type="button" className="btn btn-danger">
+                  Confirm Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
       <main className={`${styles.maincontainer}`}>
         <section className={`${styles.basicinfo}`}>
           <div className={`w-100 ${styles.profile}`}>
