@@ -54,9 +54,12 @@ export const getParticularArticle = async (slug) => {
 };
 
 export const deleteParticularArticle = async (slug) => {
-  let response;
+  let response, token;
+  token = getCookie(COOKIE_NAME);
   try {
-    response = await axios.delete(`${FETCH_PARTICULAR_ARTILCE(slug)}`);
+    response = await axios.delete(`${FETCH_PARTICULAR_ARTILCE(slug)}`, {
+      headers: { Authorization: token },
+    });
     return response.data;
   } catch (error) {
     return { error: error.response || { status: 500 } };

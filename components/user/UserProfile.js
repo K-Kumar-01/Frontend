@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { IconContext } from "react-icons";
 import { MdCreate } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
@@ -19,20 +20,46 @@ import styles from "./UserProfile.module.css";
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
 import LoadingSpinner from "../spinner/LoadingSpinner";
+import { ToastProvider, useToasts } from "react-toast-notifications";
+import { deleteParticularArticle } from "../../actions/article";
 
-const UserProfile = (props) => {
+const ToastedUserProfile = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);
   const [modalTitle, setModalTitle] = useState(false);
   const [slug, setSlug] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const { addToast } = useToasts();
   useEffect(() => {
     setTokenDetails(authenticate(COOKIE_NAME));
     console.log(props);
   }, []);
 
   const deleteArticle = async (slug) => {
-    alert(slug);
     setLoading(true);
+    let response;
+    try {
+      response = await deleteParticularArticle(slug);
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+        return ;
+      }
+      addToast(`${response.message}`, {
+        appearance: "success",
+        autoDismiss: true,
+      });
+      router.reload();
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
   };
 
   const { userInfo } = props.userDetails;
@@ -57,6 +84,7 @@ const UserProfile = (props) => {
               onClick={() => {
                 setModalTitle(d.title), setSlug(d.slug);
               }}
+              title="Delete article"
             >
               <IconContext.Provider value={{ color: "#C23F3F" }}>
                 <FaTrashAlt />
@@ -87,7 +115,7 @@ const UserProfile = (props) => {
 
   return (
     <div className={`container-fluid`}>
-      {loading && <LoadingSpinner asOverlay/>}
+      {loading && <LoadingSpinner asOverlay />}
       <main>
         <div
           className="modal fade"
@@ -335,7 +363,7 @@ const UserProfile = (props) => {
                           <FaRegNewspaper />
                         </IconContext.Provider>
                       </h3>
-                      <p className={`text-muted lead`}>
+                      <div className={`text-muted lead`}>
                         {userInfo.username === tokenDetails.username && (
                           <p>
                             <Link href={`../../articles/create`}>
@@ -351,7 +379,7 @@ const UserProfile = (props) => {
                           </p>
                         )}
                         {showArticles()}
-                      </p>
+                      </div>
                     </section>
                   </div>
                 </div>
@@ -361,6 +389,13 @@ const UserProfile = (props) => {
         </section>
       </main>
     </div>
+  );
+};
+const UserProfile = (props) => {
+  return (
+    <ToastProvider placement="bottom-right">
+      <ToastedUserProfile userDetails={props.userDetails} />
+    </ToastProvider>
   );
 };
 
