@@ -12,6 +12,7 @@ import {
   FaLinkedin,
   FaRegNewspaper,
   FaAngleRight,
+  FaTrashAlt,
 } from "react-icons/fa";
 
 import styles from "./UserProfile.module.css";
@@ -30,14 +31,21 @@ const UserProfile = (props) => {
   const renderArticles = (data) =>
     data.map((d) => (
       <section key={d._id} className={`${styles.articlearea}`}>
-        <Link href={`/${d.slug}`}>
-          <a>
-            <h5 className={`${styles.headLink}`}>
-              <FaAngleRight />
-              {d.title}
-            </h5>
-          </a>
-        </Link>
+        <div className={`d-flex justify-content-between align-items-center`}>
+          <Link href={`/${d.slug}`}>
+            <a>
+              <h5 className={`${styles.headLink}`}>
+                <FaAngleRight />
+                {d.title}
+              </h5>
+            </a>
+          </Link>
+          <h5 className={`${styles.delete}`}>
+            <IconContext.Provider value={{ color: "#C23F3F" }}>
+              <FaTrashAlt />
+            </IconContext.Provider>
+          </h5>
+        </div>
         <p className={`h6 d-none d-md-block`}>{d.mdesc}</p>
       </section>
     ));

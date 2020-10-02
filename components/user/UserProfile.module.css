@@ -85,3 +85,11 @@
 .articlearea a h5:hover {
   font-size: 1.3rem;
 }
+
+.delete {
+  cursor: pointer;
+}
+
+.delete:hover {
+  font-size: 1.3rem;
+}
