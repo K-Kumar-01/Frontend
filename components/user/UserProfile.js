@@ -41,16 +41,18 @@ const UserProfile = (props) => {
               </h5>
             </a>
           </Link>
-          <h5
-            className={`${styles.delete}`}
-            data-toggle="modal"
-            data-target="#deleteModal"
-            onClick={() => setModalTitle(d.title)}
-          >
-            <IconContext.Provider value={{ color: "#C23F3F" }}>
-              <FaTrashAlt />
-            </IconContext.Provider>
-          </h5>
+          {userInfo.username === tokenDetails.username && (
+            <h5
+              className={`${styles.delete}`}
+              data-toggle="modal"
+              data-target="#deleteModal"
+              onClick={() => setModalTitle(d.title)}
+            >
+              <IconContext.Provider value={{ color: "#C23F3F" }}>
+                <FaTrashAlt />
+              </IconContext.Provider>
+            </h5>
+          )}
         </div>
         <p className={`h6 d-none d-md-block`}>{d.mdesc}</p>
       </section>
