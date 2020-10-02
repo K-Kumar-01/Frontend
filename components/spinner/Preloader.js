@@ -12,9 +12,9 @@ const Preloader = (props) => {
       </div>
       <span style={{ display: "none" }}>Loading ..</span>
       {props.message && (
-        <p className={`styles.styledText text-center mt-2`}>
+        <div className={`styles.styledText text-center mt-2`}>
           <h3>{props.message}</h3>
-        </p>
+        </div>
       )}
     </div>
   );
