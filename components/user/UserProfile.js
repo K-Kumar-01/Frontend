@@ -18,14 +18,22 @@ import {
 import styles from "./UserProfile.module.css";
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
+import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const UserProfile = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);
   const [modalTitle, setModalTitle] = useState(false);
+  const [slug, setSlug] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     setTokenDetails(authenticate(COOKIE_NAME));
     console.log(props);
   }, []);
+
+  const deleteArticle = async (slug) => {
+    alert(slug);
+    setLoading(true);
+  };
 
   const { userInfo } = props.userDetails;
 
@@ -46,7 +54,9 @@ const UserProfile = (props) => {
               className={`${styles.delete}`}
               data-toggle="modal"
               data-target="#deleteModal"
-              onClick={() => setModalTitle(d.title)}
+              onClick={() => {
+                setModalTitle(d.title), setSlug(d.slug);
+              }}
             >
               <IconContext.Provider value={{ color: "#C23F3F" }}>
                 <FaTrashAlt />
@@ -77,6 +87,7 @@ const UserProfile = (props) => {
 
   return (
     <div className={`container-fluid`}>
+      {loading && <LoadingSpinner asOverlay/>}
       <main>
         <div
           className="modal fade"
@@ -96,7 +107,9 @@ const UserProfile = (props) => {
                   className="close"
                   data-dismiss="modal"
                   aria-label="Close"
-                  onClick={() => setModalTitle(false)}
+                  onClick={() => {
+                    setModalTitle(false), setSlug(false);
+                  }}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -110,11 +123,17 @@ const UserProfile = (props) => {
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
-                  onClick={() => setModalTitle(false)}
+                  onClick={() => {
+                    setModalTitle(false), setSlug(false);
+                  }}
                 >
                   Cancel
                 </button>
-                <button type="button" className="btn btn-danger">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => deleteArticle(slug)}
+                >
                   Confirm Delete
                 </button>
               </div>

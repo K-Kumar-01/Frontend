@@ -52,3 +52,13 @@ export const getParticularArticle = async (slug) => {
     return { error: error.response || { status: 500 } };
   }
 };
+
+export const deleteParticularArticle = async (slug) => {
+  let response;
+  try {
+    response = await axios.delete(`${FETCH_PARTICULAR_ARTILCE(slug)}`);
+    return response.data;
+  } catch (error) {
+    return { error: error.response || { status: 500 } };
+  }
+};

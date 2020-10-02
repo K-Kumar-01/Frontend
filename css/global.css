@@ -29,7 +29,7 @@ font-family: 'Lora', serif; */
 	left: 0;
 	background: rgba(0, 0, 0, 0.2);
 	display: flex;
-	z-index: 1000;
+	z-index: 1080;
 	justify-content: center;
 	align-items: center;
 }
