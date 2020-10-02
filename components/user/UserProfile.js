@@ -68,7 +68,7 @@ const ToastedUserProfile = (props) => {
     data.map((d) => (
       <section key={d._id} className={`${styles.articlearea}`}>
         <div className={`d-flex justify-content-between align-items-center`}>
-          <Link href={`/${d.slug}`}>
+          <Link href={`/articles/${d.slug}`}>
             <a>
               <h5 className={`${styles.headLink}`}>
                 <FaAngleRight />

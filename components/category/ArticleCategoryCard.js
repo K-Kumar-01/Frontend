@@ -8,9 +8,8 @@ const ArticleCategoryCard = (props) => {
 
   const renderCategories = (data) =>
     data.map((d) => (
-      <Link href={`/category/${d.name.toLowerCase()}`}>
+      <Link key={d._id} href={`/category/${d.name.toLowerCase()}`}>
         <a
-          key={d._id}
           className={`badge badge-pill badge-info mr-3 ${styles.category}`}
         >
           {d.name}
