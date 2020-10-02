@@ -97,15 +97,17 @@ const OneArticle = (props) => {
           {renderCategories(article.category)}
         </div>
       </main>
-      <main className={`px-3`}>
-        <div className={`row`}>
-          <div className={`col-12 px-2`}>
-            <h1 className={`mb-3`}>Similar Articles</h1>
-            <hr />
+      {articles.length > 0 && (
+        <main className={`px-3`}>
+          <div className={`row`}>
+            <div className={`col-12 px-2`}>
+              <h1 className={`mb-3`}>Similar Articles</h1>
+              <hr />
+            </div>
+            {renderSimilarArticles(articles || [])}
           </div>
-          {renderSimilarArticles(articles || [])}
-        </div>
-      </main>
+        </main>
+      )}
     </section>
   );
 };
