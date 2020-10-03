@@ -69,7 +69,7 @@ export const editParticularArticle = async (slug, data) => {
     });
     return response.data;
   } catch (error) {
-    return (error.response && error.response.data) || { error: error.message };
+    throw new Error(error.response.data.error || error.message);
   }
 };
 

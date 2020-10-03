@@ -7,14 +7,18 @@ import { VideoBlockConfig } from "Dante2/package/lib/components/blocks/video.js"
 import { getCategories } from "../../../actions/category";
 import Loading from "../../spinner/Loading";
 import styles from "./ArticleEdit.module.css";
+import { editParticularArticle } from "../../../actions/article";
+import { UPLOADS } from "../../../appConstants";
+import { useRouter } from "next/router";
+import LoadingSpinner from "../../spinner/LoadingSpinner";
 
 const ArticleEdit = (props) => {
   const { addToast } = useToasts();
+  const router = useRouter();
 
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(props.article.featuredPhoto);
   const [isValid, setIsValid] = useState(true);
-
   const filePickerRef = useRef();
 
   useEffect(() => {
@@ -83,7 +87,7 @@ const ArticleEdit = (props) => {
             <input
               type="checkbox"
               className="mr-2"
-              checked={checkedCat.find((a) => a === c._id)}
+              checked={findOutCheckedCategory(c._id)}
               onChange={() => {
                 handleToggleCat(c._id);
               }}
@@ -105,6 +109,15 @@ const ArticleEdit = (props) => {
       all.splice(checkedIndex, 1);
     }
     setCheckedCat(all);
+  };
+
+  const findOutCheckedCategory = (c) => {
+    const result = checkedCat.indexOf(c);
+    if (result !== -1) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   //   process the first 200 charcters
@@ -159,11 +172,37 @@ const ArticleEdit = (props) => {
     }
 
     setLoading(true);
+
+    let response;
+    try {
+      response = await editParticularArticle(props.article.slug, formData);
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+        return;
+      }
+
+      addToast(`${response.message}`, {
+        appearance: "success",
+        autoDismiss: true,
+      });
+      router.reload();
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
   };
 
   const articleEditArea = () => {
     return (
       <React.Fragment>
+        {loading && <LoadingSpinner asOverlay />}
         <div className={`px-2 my-4`}>
           <div className={`row`}>
             <div className={`col-md-8 col-sm-12`}>
@@ -207,7 +246,7 @@ const ArticleEdit = (props) => {
                 widgets={[
                   ImageBlockConfig({
                     options: {
-                      upload_url: "http://localhost:8000/uploads",
+                      upload_url: `${UPLOADS}`,
                       upload_callback: (ctx, img) => {
                         alert("file uploaded: " + ctx.data.url);
                       },
@@ -218,7 +257,7 @@ const ArticleEdit = (props) => {
                   }),
                   VideoBlockConfig({
                     options: {
-                      upload_url: "http://localhost:8000/uploads",
+                      upload_url: `${UPLOADS}`,
                       upload_callback: (ctx, img) => {
                         console.log("file uploaded: " + ctx.data.url);
                       },
