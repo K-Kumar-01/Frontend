@@ -42,9 +42,13 @@ const ArticleEdit = (props) => {
   };
 
   const [categories, setCategories] = useState([]);
+  const [checkedCat, setCheckedCat] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getCats();
+    let w = props.article.category.map((a) => a._id);
+    setCheckedCat(w);
   }, []);
 
   const getCats = async () => {
@@ -70,7 +74,7 @@ const ArticleEdit = (props) => {
             <input
               type="checkbox"
               className="mr-2"
-              checked={props.article.category.find((a) => a._id === c._id)}
+              checked={checkedCat.find((a) => a._id === c._id)}
               onChange={() => {
                 handleToggleCat(c._id);
               }}
@@ -80,6 +84,18 @@ const ArticleEdit = (props) => {
         );
       });
     }
+  };
+
+  const handleToggleCat = (c) => {
+    // console.log(c);
+    const all = [...checkedCat];
+    const checkedIndex = checkedCat.indexOf(c);
+    if (checkedIndex === -1) {
+      all.push(c);
+    } else {
+      all.splice(checkedIndex, 1);
+    }
+    setCheckedCat(all);
   };
 
   const articleEditArea = () => {
