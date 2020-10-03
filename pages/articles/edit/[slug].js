@@ -60,13 +60,12 @@ const EditArticlePage = (props) => {
 
 EditArticlePage.getInitialProps = async (props) => {
   let response;
-  console.log(props.query.slug);
+  
   try {
     response = await getParticularArticle(props.query.slug);
   } catch (error) {
     return { error: 500 };
   }
-  console.log(response);
   if (response.error) {
     return { error: response.error.status };
   } else {
