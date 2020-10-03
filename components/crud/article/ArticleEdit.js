@@ -8,9 +8,10 @@ import { getCategories } from "../../../actions/category";
 import Loading from "../../spinner/Loading";
 import styles from "./ArticleEdit.module.css";
 import { editParticularArticle } from "../../../actions/article";
-import { UPLOADS } from "../../../appConstants";
+import { UPLOADS, COOKIE_NAME } from "../../../appConstants";
 import { useRouter } from "next/router";
 import LoadingSpinner from "../../spinner/LoadingSpinner";
+import { authenticate } from "../../../helpers/auth";
 
 const ArticleEdit = (props) => {
   const { addToast } = useToasts();
@@ -56,8 +57,14 @@ const ArticleEdit = (props) => {
     props.article.category.map((a) => a._id)
   );
   const [loading, setLoading] = useState(false);
+  const [tokenDetails, setTokenDetails] = useState(false);
 
   useEffect(() => {
+    let tokenData = authenticate(COOKIE_NAME);
+    setTokenDetails(tokenData);
+    if (!tokenData) {
+      return;
+    }
     getCats();
     let w = props.article.category.map((a) => a._id);
     setCheckedCat(w);
@@ -199,6 +206,31 @@ const ArticleEdit = (props) => {
     }
   };
 
+  const renderCategoriesArea = () => {
+    return (
+      <React.Fragment>
+        {categories.length === 0 ? (
+          <>
+            <Loading />
+            <br />
+          </>
+        ) : (
+          <div className="form-group">
+            <label htmlFor="title" className="col-form-label">
+              <h4>Blog Categories</h4>
+              <p className="small text-muted">
+                Blog must belong to atleast one of the following categories
+              </p>
+            </label>
+            <ul style={{ maxHeight: "200px", overflowY: "auto" }}>
+              {showCategories()}
+            </ul>
+          </div>
+        )}
+      </React.Fragment>
+    );
+  };
+
   const articleEditArea = () => {
     return (
       <React.Fragment>
@@ -226,19 +258,23 @@ const ArticleEdit = (props) => {
                     )}
                     {!previewUrl && <p>Profile picture.</p>}
                   </div>
-                  <button
-                    type="button"
-                    className={`btn btn-primary`}
-                    onClick={pickImageHandler}
-                  >
-                    PICK IMAGE
-                  </button>
+                  {props.article.postedBy._id ===
+                    (tokenDetails && tokenDetails.id) && (
+                    <button
+                      type="button"
+                      className={`btn btn-primary`}
+                      onClick={pickImageHandler}
+                    >
+                      PICK IMAGE
+                    </button>
+                  )}
                 </div>
                 {!previewUrl && !isValid && <p>Invalid image type chosen</p>}
               </div>
               <hr />
               <Dante
                 content={body}
+                read_only={!tokenDetails}
                 onChange={(editor) => {
                   setBody(editor.emitSerializedOutput());
                   setExtracted(extraction(editor.emitSerializedOutput()));
@@ -271,31 +307,16 @@ const ArticleEdit = (props) => {
               />
             </div>
             <div className={`col-md-4 col-sm-12`}>
-              {categories.length === 0 ? (
-                <>
-                  <Loading />
-                  <br />
-                </>
-              ) : (
-                <div className="form-group">
-                  <label htmlFor="title" className="col-form-label">
-                    <h4>Blog Categories</h4>
-                    <p className="small text-muted">
-                      Blog must belong to atleast one of the following
-                      categories
-                    </p>
-                  </label>
-                  <ul style={{ maxHeight: "200px", overflowY: "auto" }}>
-                    {showCategories()}
-                  </ul>
-                </div>
+              {tokenDetails && renderCategoriesArea()}
+              {props.article.postedBy._id ===
+                (tokenDetails && tokenDetails.id) && (
+                <button
+                  onClick={() => handleSubmit()}
+                  className={`${styles.customBtn} ${styles.btn1} mt-3`}
+                >
+                  Edit
+                </button>
               )}
-              <button
-                onClick={() => handleSubmit()}
-                className={`${styles.customBtn} ${styles.btn1} mt-3`}
-              >
-                Edit
-              </button>
             </div>
           </div>
         </div>
