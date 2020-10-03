@@ -14,7 +14,6 @@ const ArticleEdit = (props) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(props.article.featuredPhoto);
   const [isValid, setIsValid] = useState(true);
-  const [body, setBody] = useState(JSON.parse(props.article.body));
 
   const filePickerRef = useRef();
 
@@ -46,7 +45,8 @@ const ArticleEdit = (props) => {
       fileIsValid = false;
     }
   };
-
+  const [body, setBody] = useState(JSON.parse(props.article.body));
+  const [extracted, setExtracted] = useState(props.article.mdesc);
   const [categories, setCategories] = useState([]);
   const [checkedCat, setCheckedCat] = useState(
     props.article.category.map((a) => a._id)
@@ -107,6 +107,58 @@ const ArticleEdit = (props) => {
     setCheckedCat(all);
   };
 
+  //   process the first 200 charcters
+  const extraction = (data) => {
+    let s = "";
+    data.blocks.forEach((b) => {
+      if (s.length < 200) {
+        if (b.type.toLowerCase() !== "image" && b.entityRanges.length === 0) {
+          if (s.length + b.text.length >= 200) {
+            let diff = 200 - s.length;
+            s += b.text.substr(0, diff);
+          } else {
+            s += b.text + "\n";
+          }
+        }
+      }
+    });
+
+    if (s.length < 200) {
+      return false;
+    } else {
+      return s;
+    }
+  };
+
+  const checkValidation = () => {
+    if (!extracted || extracted.length < 200) {
+      return "Post must be atleast 200 characters long";
+    } else if (checkedCat.length === 0) {
+      return "No category selected";
+    }
+    return false;
+  };
+
+  const handleSubmit = async () => {
+    let res = checkValidation();
+    if (res) {
+      addToast(`${res}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+      return false;
+    }
+    let formData = new FormData();
+    formData.append("mdesc", extracted);
+    formData.append("body", JSON.stringify(body));
+    formData.append("categories", checkedCat);
+    if (file) {
+      formdata.append("image", file);
+    }
+
+    setLoading(true);
+  };
+
   const articleEditArea = () => {
     return (
       <React.Fragment>
@@ -124,7 +176,13 @@ const ArticleEdit = (props) => {
                 />
                 <div className={`${styles.imageUpload}`}>
                   <div className={`${styles.imageUploadPreview} text-center`}>
-                    {previewUrl && <img src={previewUrl} alt="Preview" className={`mx-auto`}/>}
+                    {previewUrl && (
+                      <img
+                        src={previewUrl}
+                        alt="Preview"
+                        className={`mx-auto`}
+                      />
+                    )}
                     {!previewUrl && <p>Profile picture.</p>}
                   </div>
                   <button
@@ -142,6 +200,7 @@ const ArticleEdit = (props) => {
                 content={body}
                 onChange={(editor) => {
                   setBody(editor.emitSerializedOutput());
+                  setExtracted(extraction(editor.emitSerializedOutput()));
                 }}
                 widgets={[
                   ImageBlockConfig({
@@ -187,6 +246,12 @@ const ArticleEdit = (props) => {
                   </ul>
                 </div>
               )}
+              <button
+                onClick={() => handleSubmit()}
+                className={`${styles.customBtn} ${styles.btn1} mt-3`}
+              >
+                Edit
+              </button>
             </div>
           </div>
         </div>
