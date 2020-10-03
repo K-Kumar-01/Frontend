@@ -154,6 +154,8 @@ const ArticleEdit = (props) => {
     formData.append("categories", checkedCat);
     if (file) {
       formdata.append("image", file);
+    } else {
+      formData.append("featuredPhoto", props.article.featuredPhoto);
     }
 
     setLoading(true);
@@ -231,7 +233,10 @@ const ArticleEdit = (props) => {
             </div>
             <div className={`col-md-4 col-sm-12`}>
               {categories.length === 0 ? (
-                <Loading />
+                <>
+                  <Loading />
+                  <br />
+                </>
               ) : (
                 <div className="form-group">
                   <label htmlFor="title" className="col-form-label">

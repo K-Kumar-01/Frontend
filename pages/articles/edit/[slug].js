@@ -32,8 +32,9 @@ const ComponentWithToasts = (props) => {
     isAuth ? (
       <main>
         <Layout>
-          <Header />
-          <ArticleEdit article={props.article} />
+          <Header sidebar>
+            <ArticleEdit article={props.article} />
+          </Header>
           <Footer />
         </Layout>
       </main>
