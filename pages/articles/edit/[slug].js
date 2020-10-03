@@ -6,7 +6,7 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
 import { authenticate } from "../../../helpers/auth";
-import { COOKIE_NAME } from "../../../appConstants";
+import { COOKIE_NAME, FETCH_TYPE } from "../../../appConstants";
 import { useRouter } from "next/router";
 import Preloader from "../../../components/spinner/Preloader";
 import { getParticularArticle } from "../../../actions/article";
@@ -62,7 +62,7 @@ EditArticlePage.getInitialProps = async (props) => {
   let response;
 
   try {
-    response = await getParticularArticle(props.query.slug);
+    response = await getParticularArticle(props.query.slug, FETCH_TYPE);
   } catch (error) {
     return { error: 500 };
   }
