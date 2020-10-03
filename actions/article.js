@@ -57,6 +57,22 @@ export const getParticularArticle = async (slug, fetchType) => {
   }
 };
 
+export const editParticularArticle = async (slug, data) => {
+  let response, token;
+  token = getCookie(COOKIE_NAME);
+  try {
+    response = await axios.patch(`${FETCH_PARTICULAR_ARTILCE(slug)}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: token,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
 export const deleteParticularArticle = async (slug) => {
   let response, token;
   token = getCookie(COOKIE_NAME);
