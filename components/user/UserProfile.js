@@ -46,7 +46,7 @@ const ToastedUserProfile = (props) => {
           appearance: "error",
           autoDismiss: true,
         });
-        return ;
+        return;
       }
       addToast(`${response.message}`, {
         appearance: "success",
@@ -160,6 +160,7 @@ const ToastedUserProfile = (props) => {
                 <button
                   type="button"
                   className="btn btn-danger"
+                  data-dismiss="modal"
                   onClick={() => deleteArticle(slug)}
                 >
                   Confirm Delete
