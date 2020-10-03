@@ -10,6 +10,7 @@ import { getCategories } from "../../../actions/category";
 import styles from "./ArticleCreate.module.css";
 import { createArticle } from "../../../actions/article";
 import LoadingSpinner from "../../spinner/LoadingSpinner";
+import { UPLOADS } from "../../../appConstants";
 
 const ComponentWithToasts = () => {
   const { addToast } = useToasts();
@@ -103,30 +104,7 @@ const ComponentWithToasts = () => {
   const [body, setBody] = useState();
   const [extracted, setExtracted] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // let jsonContent = {
-  //   entityMap: {},
-  //   blocks: [
-  //     {
-  //       key: "13jqv",
-  //       text: "The problematic things about me",
-  //       type: "unstyled",
-  //       depth: 0,
-  //       inlineStyleRanges: [{ offset: 4, length: 12, style: "BOLD" }],
-  //       entityRanges: [],
-  //       data: {},
-  //     },
-  //     {
-  //       key: "bumc8",
-  //       text: "ME? what can I  about me",
-  //       type: "unstyled",
-  //       depth: 0,
-  //       inlineStyleRanges: [],
-  //       entityRanges: [],
-  //       data: {},
-  //     },
-  //   ],
-  // };
+  
 
   useEffect(() => {
     getCats();
@@ -231,7 +209,7 @@ const ComponentWithToasts = () => {
                 </label>
                 <Previews />
               </div>
-
+              
               <Dante
                 content={body}
                 onChange={(editor) => {
@@ -241,7 +219,7 @@ const ComponentWithToasts = () => {
                 widgets={[
                   ImageBlockConfig({
                     options: {
-                      upload_url: "http://localhost:8000/uploads",
+                      upload_url: `${UPLOADS}`,
                       upload_callback: (ctx, img) => {
                         alert("file uploaded: " + ctx.data.url);
                       },
@@ -252,7 +230,7 @@ const ComponentWithToasts = () => {
                   }),
                   VideoBlockConfig({
                     options: {
-                      upload_url: "http://localhost:8000/uploads",
+                      upload_url: `${UPLOADS}`,
                       upload_callback: (ctx, img) => {
                         console.log("file uploaded: " + ctx.data.url);
                       },
