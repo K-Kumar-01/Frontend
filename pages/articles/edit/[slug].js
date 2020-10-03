@@ -10,6 +10,7 @@ import { COOKIE_NAME } from "../../../appConstants";
 import { useRouter } from "next/router";
 import Preloader from "../../../components/spinner/Preloader";
 import { getParticularArticle } from "../../../actions/article";
+import ArticleEdit from "../../../components/crud/article/ArticleEdit";
 
 const ComponentWithToasts = (props) => {
   const { addToast } = useToasts();
@@ -32,7 +33,7 @@ const ComponentWithToasts = (props) => {
       <main>
         <Layout>
           <Header />
-
+          <ArticleEdit article={props.article} />
           <Footer />
         </Layout>
       </main>
@@ -44,14 +45,13 @@ const ComponentWithToasts = (props) => {
 };
 
 const EditArticlePage = (props) => {
-
   return (
     <>
       {props.error ? (
         <Error statusCode={props.error} />
       ) : (
         <ToastProvider placement="bottom-right">
-          <ComponentWithToasts />
+          <ComponentWithToasts article={props.article} />
         </ToastProvider>
       )}
     </>
@@ -60,7 +60,7 @@ const EditArticlePage = (props) => {
 
 EditArticlePage.getInitialProps = async (props) => {
   let response;
-  
+
   try {
     response = await getParticularArticle(props.query.slug);
   } catch (error) {
