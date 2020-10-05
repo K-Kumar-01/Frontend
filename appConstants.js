@@ -14,6 +14,7 @@ const FETCH_CATEGORY_ARTICLES = (category) =>
   `${BASE_URL}api/article/category/${category}`;
 const FETCH_PARTICULAR_ARTILCE = (slug) => `${BASE_URL}api/article/one/${slug}`;
 const FETCH_TYPE = `Single`;
+const FETCH_HELP_ALL = `${BASE_URL}api/request`;
 export {
   UPLOADS,
   SIGNIN,
@@ -26,4 +27,5 @@ export {
   FETCH_CATEGORY_ARTICLES,
   FETCH_PARTICULAR_ARTILCE,
   FETCH_TYPE,
+  FETCH_HELP_ALL,
 };
