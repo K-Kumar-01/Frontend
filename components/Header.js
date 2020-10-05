@@ -405,7 +405,13 @@ const Header = (props) => {
             <ul className="navbar-nav ml-auto d-flex align-items-center">
               <li className="nav-item">
                 <Link href="/membership">
-                  <span className={`${styles.link} btn`}>Subscribe</span>
+                  <a className={`${styles.link} btn`}>Subscribe</a>
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link href="/help">
+                  <a className={`${styles.link} btn`}>Help</a>
                 </Link>
               </li>
 
