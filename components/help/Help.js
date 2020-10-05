@@ -272,28 +272,28 @@ const Help = (props) => {
   const renderOpenRequests = (data) =>
     data.map((d) => (
       <div className={`row`} key={d._id}>
-        <div className={`col-3`}>{d.title}</div>
-        <div className={`col-3`}>{d.desc}</div>
-        <div className={`col-3`}>
+        <div className={`col-3 col-md-2`}>{d.title}</div>
+        <div className={`col-3 col-md-5`}>{d.desc}</div>
+        <div className={`col-3 col-md-2`}>
           <Link href={`/user/profile/${d.postedBy.username}`}>
             <a>{d.postedBy.username}</a>
           </Link>
         </div>
-        <div className={`col-3`}>{new Date(d.createdAt).toDateString()}</div>
+        <div className={`col-3 col-md-3`}>{new Date(d.createdAt).toDateString()}</div>
       </div>
     ));
 
   const renderPendingRequests = (data) =>
     data.map((d) => (
       <div className={`row`} key={d._id}>
-        <div className={`col-3`}>{d.title}</div>
-        <div className={`col-3`}>{d.desc}</div>
-        <div className={`col-3`}>
+        <div className={`col-3 col-md-2`}>{d.title}</div>
+        <div className={`col-3 col-md-5`}>{d.desc}</div>
+        <div className={`col-3 col-md-2`}>
           <Link href={`/user/profile/${d.postedBy.username}`}>
             <a>{d.postedBy.username}</a>
           </Link>
         </div>
-        {/* <div className={`col-3`}>
+        {/* <div className={`col-3 col-md-3`}>
           <Link href={`/articles/${d.closingArticle.slug}`}>
             <a>{d.closingArticle.title}</a>
           </Link>
@@ -320,16 +320,16 @@ const Help = (props) => {
           >
             {arrays.open.length > 0 ? (
               <div className={`row`}>
-                <div className={`col-3 ${styles.openHeading}`}>
+                <div className={`col-3 col-md-2 ${styles.openHeading}`}>
                   <strong>Title</strong>
                 </div>
-                <div className={`col-3 ${styles.openHeading}`}>
+                <div className={`col-3 col-md-5 ${styles.openHeading}`}>
                   <strong>Description</strong>
                 </div>
-                <div className={`col-3 ${styles.openHeading}`}>
+                <div className={`col-3 col-md-2 ${styles.openHeading}`}>
                   <strong>Requested By</strong>
                 </div>
-                <div className={`col-3 ${styles.openHeading}`}>
+                <div className={`col-3 col-md-3 ${styles.openHeading}`}>
                   <strong>Requested On</strong>
                 </div>
               </div>
@@ -355,16 +355,16 @@ const Help = (props) => {
           >
             {arrays.pending.length > 0 ? (
               <div className={`row`}>
-                <div className={`col-3 ${styles.openHeading}`}>
+                <div className={`col-3 col-md-2 ${styles.openHeading}`}>
                   <strong>Title</strong>
                 </div>
-                <div className={`col-3 ${styles.openHeading}`}>
+                <div className={`col-3 col-md-5 ${styles.openHeading}`}>
                   <strong>Description</strong>
                 </div>
-                <div className={`col-3 ${styles.openHeading}`}>
+                <div className={`col-3 col-md-2 ${styles.openHeading}`}>
                   <strong>Requested By</strong>
                 </div>
-                <div className={`col-3 ${styles.openHeading}`}>
+                <div className={`col-3 col-md-3 ${styles.openHeading}`}>
                   <strong>Suggested Article</strong>
                 </div>
               </div>
