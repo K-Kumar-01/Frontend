@@ -22,7 +22,6 @@ const Help = (props) => {
   useEffect(() => {
     let tokenData = authenticate(COOKIE_NAME);
     setTokenDetails(tokenData);
-    
   }, []);
 
   const onSubmit = async (data, event) => {
@@ -270,8 +269,7 @@ const Help = (props) => {
     </>
   );
 
-  const renderOpenRequests = (data) => (
-    
+  const renderOpenRequests = (data) =>
     data.map((d) => (
       <div className={`row`} key={d._id}>
         <div className={`col-3`}>{d.title}</div>
@@ -283,8 +281,26 @@ const Help = (props) => {
         </div>
         <div className={`col-3`}>{new Date(d.createdAt).toDateString()}</div>
       </div>
-    ))
-  );
+    ));
+
+  const renderPendingRequests = (data) =>
+    data.map((d) => (
+      <div className={`row`} key={d._id}>
+        <div className={`col-3`}>{d.title}</div>
+        <div className={`col-3`}>{d.desc}</div>
+        <div className={`col-3`}>
+          <Link href={`/user/profile/${d.postedBy.username}`}>
+            <a>{d.postedBy.username}</a>
+          </Link>
+        </div>
+        {/* <div className={`col-3`}>
+          <Link href={`/articles/${d.closingArticle.slug}`}>
+            <a>{d.closingArticle.title}</a>
+          </Link>
+        </div> */}
+      </div>
+    ));
+
   return (
     <React.Fragment>
       <div className={`container`}>
@@ -337,7 +353,34 @@ const Help = (props) => {
             role="tabpanel"
             aria-labelledby="pending-tab"
           >
-            2
+            {arrays.pending.length > 0 ? (
+              <div className={`row`}>
+                <div className={`col-3 ${styles.openHeading}`}>
+                  <strong>Title</strong>
+                </div>
+                <div className={`col-3 ${styles.openHeading}`}>
+                  <strong>Description</strong>
+                </div>
+                <div className={`col-3 ${styles.openHeading}`}>
+                  <strong>Requested By</strong>
+                </div>
+                <div className={`col-3 ${styles.openHeading}`}>
+                  <strong>Suggested Article</strong>
+                </div>
+              </div>
+            ) : (
+              <div className={`text-center`}>
+                <IconContext.Provider
+                  value={{ color: `#218838`, size: "4rem" }}
+                >
+                  <div>
+                    <HiOutlineEmojiHappy />
+                  </div>
+                </IconContext.Provider>
+                <p className={`h4`}>No open requests as of now.</p>
+              </div>
+            )}
+            {renderPendingRequests(arrays.pending)}
           </div>
           <div
             className="tab-pane fade"
