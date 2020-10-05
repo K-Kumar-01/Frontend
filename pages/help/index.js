@@ -9,31 +9,11 @@ import { getAllRequests } from "../../actions/help";
 
 const HelpPage = (props) => {
   const [arrays, setArrays] = useState({
-    open: [],
-    closed: [],
-    pending: [],
+    open: props.requests.open || [],
+    closed: props.requests.closed || [],
+    pending: props.requests.pending || [],
   });
-  useEffect(() => {
-    let w = props.requests;
-    let open = [],
-      closed = [],
-      pending = [];
-    for (let i = 0; i < w.length; i++) {
-      if (w[i].status === "OPEN") {
-        open.push(w[i]);
-      } else if (w[i].status === "CLOSED") {
-        closed.push(w[i]);
-      } else {
-        pending.push(w[i]);
-      }
-    }
-
-    setArrays({
-      open,
-      closed,
-      pending,
-    });
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div>
       {props.error ? (
@@ -65,7 +45,20 @@ HelpPage.getInitialProps = async () => {
   if (response.error) {
     return { error: response.error.status };
   } else {
-    return { requests: response.requests };
+    let w = response.requests;
+    let open = [],
+      closed = [],
+      pending = [];
+    for (let i = 0; i < w.length; i++) {
+      if (w[i].status === "OPEN") {
+        open.push(w[i]);
+      } else if (w[i].status === "CLOSED") {
+        closed.push(w[i]);
+      } else {
+        pending.push(w[i]);
+      }
+    }
+    return { requests: { open, closed, pending } };
   }
 };
 

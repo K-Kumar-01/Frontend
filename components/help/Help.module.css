@@ -124,3 +124,13 @@
 .tabs li {
   cursor: pointer;
 }
+
+.openHeading {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 576px) {
+  .openHeading {
+    font-size: 1.1rem;
+  }
+}

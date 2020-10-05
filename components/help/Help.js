@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { IconContext } from "react-icons";
+import { HiOutlineEmojiHappy } from "react-icons/hi";
+import Link from "next/link";
 
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
 import styles from "./Help.module.css";
 
-const Help = () => {
+const Help = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);
+  const [arrays, setArrays] = useState({
+    closed: props.closed || [],
+    open: props.open || [],
+    pending: props.pending || [],
+  });
   const { register, handleSubmit, errors, formState, reset } = useForm({
     mode: "onTouched",
   });
@@ -14,6 +22,7 @@ const Help = () => {
   useEffect(() => {
     let tokenData = authenticate(COOKIE_NAME);
     setTokenDetails(tokenData);
+    
   }, []);
 
   const onSubmit = async (data, event) => {
@@ -140,7 +149,7 @@ const Help = () => {
       <div
         className="modal fade"
         id="createRequest"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="createRequestLabel"
         aria-hidden="true"
         data-backdrop="static"
@@ -261,8 +270,23 @@ const Help = () => {
     </>
   );
 
+  const renderOpenRequests = (data) => (
+    
+    data.map((d) => (
+      <div className={`row`} key={d._id}>
+        <div className={`col-3`}>{d.title}</div>
+        <div className={`col-3`}>{d.desc}</div>
+        <div className={`col-3`}>
+          <Link href={`/user/profile/${d.postedBy.username}`}>
+            <a>{d.postedBy.username}</a>
+          </Link>
+        </div>
+        <div className={`col-3`}>{new Date(d.createdAt).toDateString()}</div>
+      </div>
+    ))
+  );
   return (
-    <>
+    <React.Fragment>
       <div className={`container`}>
         <div className={`d-flex justify-content-between`}>
           {renderAboutThisPageArea()}
@@ -271,17 +295,44 @@ const Help = () => {
       </div>
       <div className={`container-fluid px-5`}>
         {renderTabs()}
-        <div class="tab-content" id="myTabContent">
+        <div className="tab-content mt-4" id="myTabContent">
           <div
-            class="tab-pane fade show active"
+            className="tab-pane fade show active"
             id="open"
             role="tabpanel"
             aria-labelledby="open-tab"
           >
-            1
+            {arrays.open.length > 0 ? (
+              <div className={`row`}>
+                <div className={`col-3 ${styles.openHeading}`}>
+                  <strong>Title</strong>
+                </div>
+                <div className={`col-3 ${styles.openHeading}`}>
+                  <strong>Description</strong>
+                </div>
+                <div className={`col-3 ${styles.openHeading}`}>
+                  <strong>Requested By</strong>
+                </div>
+                <div className={`col-3 ${styles.openHeading}`}>
+                  <strong>Requested On</strong>
+                </div>
+              </div>
+            ) : (
+              <div className={`text-center`}>
+                <IconContext.Provider
+                  value={{ color: `#218838`, size: "4rem" }}
+                >
+                  <div>
+                    <HiOutlineEmojiHappy />
+                  </div>
+                </IconContext.Provider>
+                <p className={`h4`}>No open requests as of now.</p>
+              </div>
+            )}
+            {renderOpenRequests(arrays.open)}
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="pending"
             role="tabpanel"
             aria-labelledby="pending-tab"
@@ -289,7 +340,7 @@ const Help = () => {
             2
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="closed"
             role="tabpanel"
             aria-labelledby="closed-tab"
@@ -298,7 +349,7 @@ const Help = () => {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
