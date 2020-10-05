@@ -7,7 +7,7 @@ import styles from "./Help.module.css";
 
 const Help = () => {
   const [tokenDetails, setTokenDetails] = useState(false);
-  const { register, handleSubmit, errors, watch, formState } = useForm({
+  const { register, handleSubmit, errors, formState, reset } = useForm({
     mode: "onTouched",
   });
 
@@ -143,6 +143,8 @@ const Help = () => {
         tabindex="-1"
         aria-labelledby="createRequestLabel"
         aria-hidden="true"
+        data-backdrop="static"
+        data-keyboard="false"
       >
         <div class="modal-dialog">
           <div class="modal-content">
@@ -155,6 +157,7 @@ const Help = () => {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                onClick={resetFormState}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -166,10 +169,11 @@ const Help = () => {
                   type="submit"
                   className={`btn btn-lg btn-success text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
                   disabled={
-                    Object.keys(formState.touched).length === 0 ||
+                    Object.keys(formState.touched).length < 2 ||
                     Object.keys(errors).length !== 0
                   }
                   data-dismiss="modal"
+                  onClick={resetFormState}
                 >
                   Create
                 </button>
@@ -177,6 +181,7 @@ const Help = () => {
                   type="button"
                   class="btn btn-secondary"
                   data-dismiss="modal"
+                  onClick={resetFormState}
                 >
                   Cancel
                 </button>
@@ -187,6 +192,24 @@ const Help = () => {
       </div>
     </div>
   );
+
+  const resetFormState = () => {
+    reset(
+      {
+        title: "",
+        description: "",
+      },
+      {
+        errors: false,
+        dirtyFields: false,
+        isDirty: false,
+        isSubmitted: false,
+        touched: false,
+        isValid: false,
+        submitCount: false,
+      }
+    );
+  };
 
   return (
     <div className={`container`}>
