@@ -16,7 +16,8 @@ font-family: 'Lora', serif; */
 	font-family: 'Lora', serif;
 }
 
-.form-control:focus {
+.form-control:focus,
+.btn:focus {
 	box-shadow: none !important;
 	outline: none !important;
 }

@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { authenticate } from "../../helpers/auth";
+import { COOKIE_NAME } from "../../appConstants";
 
 const Help = () => {
+  const [tokenDetails, setTokenDetails] = useState(false);
+
+  useEffect(() => {
+    let tokenData = authenticate(COOKIE_NAME);
+    setTokenDetails(tokenData);
+  });
+
   const renderAboutThisPageArea = () => (
     <div>
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary text-capitalize font-weight-bold"
         data-toggle="modal"
         data-target="#aboutusModal"
       >
@@ -13,28 +22,28 @@ const Help = () => {
       </button>
 
       <div
-        class="modal fade"
+        className="modal fade"
         id="aboutusModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="aboutusModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="aboutusModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title" id="aboutusModalLabel">
                 About
               </h4>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <p>
                 This page is created with the aim to request article. If you are
                 looking for a article and are unable of find any you can request
@@ -48,10 +57,10 @@ const Help = () => {
                 it suitable then the request will get closed.
               </p>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-dismiss="modal"
               >
                 Close
