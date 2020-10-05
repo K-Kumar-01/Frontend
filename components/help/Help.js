@@ -8,7 +8,7 @@ const Help = () => {
   useEffect(() => {
     let tokenData = authenticate(COOKIE_NAME);
     setTokenDetails(tokenData);
-  });
+  },[]);
 
   const renderAboutThisPageArea = () => (
     <div>
@@ -71,7 +71,67 @@ const Help = () => {
       </div>
     </div>
   );
-  return <div className={`container`}>{renderAboutThisPageArea()}</div>;
+
+  const renderCreateRequestModal = () => (
+    <div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#createRequest"
+      >
+        Create Request
+      </button>
+
+      <div
+        class="modal fade"
+        id="createRequest"
+        tabindex="-1"
+        aria-labelledby="createRequestLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title text-center" id="createRequestLabel">
+                Create Request
+              </h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-success">
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className={`container`}>
+      <div className={`d-flex justify-content-between`}>
+        {renderAboutThisPageArea()}
+        {tokenDetails && renderCreateRequestModal()}
+      </div>
+    </div>
+  );
 };
 
 export default Help;
