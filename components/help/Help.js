@@ -130,7 +130,7 @@ const Help = () => {
     <div>
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         data-toggle="modal"
         data-target="#createRequest"
       >
@@ -138,7 +138,7 @@ const Help = () => {
       </button>
 
       <div
-        class="modal fade"
+        className="modal fade"
         id="createRequest"
         tabindex="-1"
         aria-labelledby="createRequestLabel"
@@ -146,15 +146,15 @@ const Help = () => {
         data-backdrop="static"
         data-keyboard="false"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title text-center" id="createRequestLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title text-center" id="createRequestLabel">
                 Create Request
               </h4>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={resetFormState}
@@ -163,8 +163,8 @@ const Help = () => {
               </button>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div class="modal-body">{renderRequestForm()}</div>
-              <div class="modal-footer">
+              <div className="modal-body">{renderRequestForm()}</div>
+              <div className="modal-footer">
                 <button
                   type="submit"
                   className={`btn btn-lg btn-success text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
@@ -179,7 +179,7 @@ const Help = () => {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  className="btn btn-secondary"
                   data-dismiss="modal"
                   onClick={resetFormState}
                 >
@@ -211,13 +211,94 @@ const Help = () => {
     );
   };
 
+  const renderTabs = () => (
+    <>
+      <ul
+        className={`nav nav-tabs pt-4 ${styles.tabs}`}
+        id="myTab"
+        role="tablist"
+      >
+        <li className="nav-item" role="presentation">
+          <span
+            className="nav-link active text-success heading"
+            id="open-tab"
+            data-toggle="tab"
+            href="#open"
+            role="tab"
+            aria-controls="open"
+            aria-selected="true"
+          >
+            Open
+          </span>
+        </li>
+        <li className="nav-item" role="presentation">
+          <span
+            className="nav-link text-warning heading"
+            id="pending-tab"
+            data-toggle="tab"
+            href="#pending"
+            role="tab"
+            aria-controls="pending"
+            aria-selected="false"
+          >
+            Pending
+          </span>
+        </li>
+        <li className="nav-item" role="presentation">
+          <span
+            className="nav-link text-danger heading"
+            id="closed-tab"
+            data-toggle="tab"
+            href="#closed"
+            role="tab"
+            aria-controls="closed"
+            aria-selected="false"
+          >
+            Closed
+          </span>
+        </li>
+      </ul>
+    </>
+  );
+
   return (
-    <div className={`container`}>
-      <div className={`d-flex justify-content-between`}>
-        {renderAboutThisPageArea()}
-        {tokenDetails && renderCreateRequestModal()}
+    <>
+      <div className={`container`}>
+        <div className={`d-flex justify-content-between`}>
+          {renderAboutThisPageArea()}
+          {tokenDetails && renderCreateRequestModal()}
+        </div>
       </div>
-    </div>
+      <div className={`container-fluid px-5`}>
+        {renderTabs()}
+        <div class="tab-content" id="myTabContent">
+          <div
+            class="tab-pane fade show active"
+            id="open"
+            role="tabpanel"
+            aria-labelledby="open-tab"
+          >
+            1
+          </div>
+          <div
+            class="tab-pane fade"
+            id="pending"
+            role="tabpanel"
+            aria-labelledby="pending-tab"
+          >
+            2
+          </div>
+          <div
+            class="tab-pane fade"
+            id="closed"
+            role="tabpanel"
+            aria-labelledby="closed-tab"
+          >
+            ...
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
