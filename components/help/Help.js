@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
+import styles from "./Help.module.css";
 
 const Help = () => {
   const [tokenDetails, setTokenDetails] = useState(false);
+  const { register, handleSubmit, errors, watch, formState } = useForm({
+    mode: "onTouched",
+  });
 
   useEffect(() => {
     let tokenData = authenticate(COOKIE_NAME);
     setTokenDetails(tokenData);
-  },[]);
+  }, []);
+
+  const onSubmit = async (data, event) => {
+    event.preventDefault();
+  };
 
   const renderAboutThisPageArea = () => (
     <div>
@@ -72,6 +82,50 @@ const Help = () => {
     </div>
   );
 
+  const renderRequestForm = () => (
+    <>
+      <div className={`${styles.formLabelGroup}`}>
+        <input
+          type="text"
+          className="form-control"
+          id="title"
+          placeholder="Name"
+          name="title"
+          ref={register({ required: true, pattern: /^[a-zA-Z0-9_]*$/ })}
+          autoComplete="off"
+          style={errors.title && { border: "1px solid red" }}
+        />
+        <label htmlFor="title">Title</label>
+        <p className={`text-danger ${styles.errors}`}>
+          {errors.title?.type === "required" && "Title is required"}
+          {errors.title?.type === "pattern" &&
+            "Title can only conatin characters numbers and underscores"}
+        </p>
+      </div>
+      <div>
+        <label htmlFor="description">
+          <h3 className={`heading`}>Description</h3>
+        </label>
+        <textarea
+          name="description"
+          rows="4"
+          ref={register({ required: true, minLength: 15, maxLength: 100 })}
+          placeholder="Description of the request(What you want?)"
+          className={`form-control`}
+          style={errors.description && { border: "1px solid red" }}
+        ></textarea>
+        <p className={`text-danger ${styles.errors}`}>
+          {errors.description?.type === "required" &&
+            "Need a description to create a request"}
+          {errors.description?.type === "minLength" &&
+            "Must be atleast 15 characters long"}
+          {errors.description?.type === "maxLength" &&
+            "Must be atmost 100 characters long"}
+        </p>
+      </div>
+    </>
+  );
+
   const renderCreateRequestModal = () => (
     <div>
       <button
@@ -105,19 +159,29 @@ const Help = () => {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-success">
-                Create
-              </button>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div class="modal-body">{renderRequestForm()}</div>
+              <div class="modal-footer">
+                <button
+                  type="submit"
+                  className={`btn btn-lg btn-success text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
+                  disabled={
+                    Object.keys(formState.touched).length === 0 ||
+                    Object.keys(errors).length !== 0
+                  }
+                  data-dismiss="modal"
+                >
+                  Create
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
