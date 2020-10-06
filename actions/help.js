@@ -1,5 +1,6 @@
 import axios from "axios";
-import { FETCH_HELP_ALL } from "../appConstants";
+import { FETCH_HELP_ALL, COOKIE_NAME, CREATE_REQUEST } from "../appConstants";
+import { getCookie } from "../helpers/auth";
 
 export const getAllRequests = async () => {
   let response;

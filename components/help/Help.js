@@ -3,13 +3,18 @@ import { useForm } from "react-hook-form";
 import { IconContext } from "react-icons";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import Link from "next/link";
+import { ToastProvider, useToasts } from "react-toast-notifications";
+import { useRouter } from "next/router";
 
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
 import styles from "./Help.module.css";
+import LoadingSpinner from "../spinner/LoadingSpinner";
+import { createRequest } from "../../actions/help";
 
-const Help = (props) => {
+const ToastedComponent = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [arrays, setArrays] = useState({
     closed: props.closed || [],
     open: props.open || [],
@@ -18,6 +23,8 @@ const Help = (props) => {
   const { register, handleSubmit, errors, formState, reset } = useForm({
     mode: "onTouched",
   });
+  const router = useRouter();
+  const { addToast } = useToasts();
 
   useEffect(() => {
     let tokenData = authenticate(COOKIE_NAME);
@@ -26,6 +33,35 @@ const Help = (props) => {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
+    $("#createRequest").modal("hide");
+    let response;
+    setLoading(true);
+    try {
+      response = await createRequest({
+        title: data.title.trim(),
+        desc: data.description.trim(),
+      });
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        router.reload();
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
+    resetFormState();
   };
 
   const renderAboutThisPageArea = () => (
@@ -180,8 +216,7 @@ const Help = (props) => {
                     Object.keys(formState.touched).length < 2 ||
                     Object.keys(errors).length !== 0
                   }
-                  data-dismiss="modal"
-                  onClick={resetFormState}
+                  // data-dismiss="modal"
                 >
                   Create
                 </button>
@@ -279,7 +314,9 @@ const Help = (props) => {
             <a>{d.postedBy.username}</a>
           </Link>
         </div>
-        <div className={`col-3 col-md-3`}>{new Date(d.createdAt).toDateString()}</div>
+        <div className={`col-3 col-md-3`}>
+          {new Date(d.createdAt).toDateString()}
+        </div>
       </div>
     ));
 
@@ -303,6 +340,7 @@ const Help = (props) => {
 
   return (
     <React.Fragment>
+      {loading && <LoadingSpinner asOverlay/>}
       <div className={`container`}>
         <div className={`d-flex justify-content-between`}>
           {renderAboutThisPageArea()}
@@ -393,6 +431,18 @@ const Help = (props) => {
         </div>
       </div>
     </React.Fragment>
+  );
+};
+
+const Help = (props) => {
+  return (
+    <ToastProvider placement="bottom-right">
+      <ToastedComponent
+        open={props.open}
+        closed={props.closed}
+        pending={props.pending}
+      />
+    </ToastProvider>
   );
 };
 
