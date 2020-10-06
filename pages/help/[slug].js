@@ -5,15 +5,18 @@ import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { fetchSingleRequest } from "../../actions/help";
+import SingleHelp from "../../components/help/SingleHelp";
 
-const SingleHelp = (props) => {
+const SingleHelpPage = (props) => {
   return (
     <div>
       {props.error ? (
         <Error statusCode={props.error} />
       ) : (
         <Layout>
-          <Header sidebar></Header>
+          <Header sidebar>
+            <SingleHelp request={props.request} />
+          </Header>
           <Footer />
         </Layout>
       )}
@@ -21,7 +24,7 @@ const SingleHelp = (props) => {
   );
 };
 
-SingleHelp.getInitialProps = async (props) => {
+SingleHelpPage.getInitialProps = async (props) => {
   let response;
   try {
     response = await fetchSingleRequest(props.query.slug);
@@ -35,4 +38,4 @@ SingleHelp.getInitialProps = async (props) => {
   }
 };
 
-export default SingleHelp;
+export default SingleHelpPage;
