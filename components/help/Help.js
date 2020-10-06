@@ -305,9 +305,13 @@ const ToastedComponent = (props) => {
   );
 
   const renderOpenRequests = (data) =>
-    data.map((d) => (
+    data.map((d, i) => (
       <div className={`row`} key={d._id}>
-        <div className={`col-3 col-md-2`}>{d.title}</div>
+        <div className={`col-3 col-md-2`}>
+          <Link href={`/help/${d.slug}`}>
+            <a>{d.title}</a>
+          </Link>
+        </div>
         <div className={`col-3 col-md-5`}>{d.desc}</div>
         <div className={`col-3 col-md-2`}>
           <Link href={`/user/profile/${d.postedBy.username}`}>
@@ -317,13 +321,18 @@ const ToastedComponent = (props) => {
         <div className={`col-3 col-md-3`}>
           {new Date(d.createdAt).toDateString()}
         </div>
+        {i < data.length - 1 && <hr />}
       </div>
     ));
 
   const renderPendingRequests = (data) =>
     data.map((d) => (
       <div className={`row`} key={d._id}>
-        <div className={`col-3 col-md-2`}>{d.title}</div>
+        <div className={`col-3 col-md-2`}>
+          <Link href={`/help/${d.slug}`}>
+            <a>{d.title}</a>
+          </Link>
+        </div>
         <div className={`col-3 col-md-5`}>{d.desc}</div>
         <div className={`col-3 col-md-2`}>
           <Link href={`/user/profile/${d.postedBy.username}`}>
@@ -340,96 +349,98 @@ const ToastedComponent = (props) => {
 
   return (
     <React.Fragment>
-      {loading && <LoadingSpinner asOverlay/>}
-      <div className={`container`}>
-        <div className={`d-flex justify-content-between`}>
-          {renderAboutThisPageArea()}
-          {tokenDetails && renderCreateRequestModal()}
-        </div>
-      </div>
-      <div className={`container-fluid px-5`}>
-        {renderTabs()}
-        <div className="tab-content mt-4" id="myTabContent">
-          <div
-            className="tab-pane fade show active"
-            id="open"
-            role="tabpanel"
-            aria-labelledby="open-tab"
-          >
-            {arrays.open.length > 0 ? (
-              <div className={`row`}>
-                <div className={`col-3 col-md-2 ${styles.openHeading}`}>
-                  <strong>Title</strong>
-                </div>
-                <div className={`col-3 col-md-5 ${styles.openHeading}`}>
-                  <strong>Description</strong>
-                </div>
-                <div className={`col-3 col-md-2 ${styles.openHeading}`}>
-                  <strong>Requested By</strong>
-                </div>
-                <div className={`col-3 col-md-3 ${styles.openHeading}`}>
-                  <strong>Requested On</strong>
-                </div>
-              </div>
-            ) : (
-              <div className={`text-center`}>
-                <IconContext.Provider
-                  value={{ color: `#218838`, size: "4rem" }}
-                >
-                  <div>
-                    <HiOutlineEmojiHappy />
-                  </div>
-                </IconContext.Provider>
-                <p className={`h4`}>No open requests as of now.</p>
-              </div>
-            )}
-            {renderOpenRequests(arrays.open)}
-          </div>
-          <div
-            className="tab-pane fade"
-            id="pending"
-            role="tabpanel"
-            aria-labelledby="pending-tab"
-          >
-            {arrays.pending.length > 0 ? (
-              <div className={`row`}>
-                <div className={`col-3 col-md-2 ${styles.openHeading}`}>
-                  <strong>Title</strong>
-                </div>
-                <div className={`col-3 col-md-5 ${styles.openHeading}`}>
-                  <strong>Description</strong>
-                </div>
-                <div className={`col-3 col-md-2 ${styles.openHeading}`}>
-                  <strong>Requested By</strong>
-                </div>
-                <div className={`col-3 col-md-3 ${styles.openHeading}`}>
-                  <strong>Suggested Article</strong>
-                </div>
-              </div>
-            ) : (
-              <div className={`text-center`}>
-                <IconContext.Provider
-                  value={{ color: `#218838`, size: "4rem" }}
-                >
-                  <div>
-                    <HiOutlineEmojiHappy />
-                  </div>
-                </IconContext.Provider>
-                <p className={`h4`}>No open requests as of now.</p>
-              </div>
-            )}
-            {renderPendingRequests(arrays.pending)}
-          </div>
-          <div
-            className="tab-pane fade"
-            id="closed"
-            role="tabpanel"
-            aria-labelledby="closed-tab"
-          >
-            ...
+      {loading && <LoadingSpinner asOverlay />}
+      <section style={{ minHeight: "70vh" }}>
+        <div className={`container`}>
+          <div className={`d-flex justify-content-between`}>
+            {renderAboutThisPageArea()}
+            {tokenDetails && renderCreateRequestModal()}
           </div>
         </div>
-      </div>
+        <div className={`container-fluid px-5`}>
+          {renderTabs()}
+          <div className="tab-content mt-4" id="myTabContent">
+            <div
+              className="tab-pane fade show active"
+              id="open"
+              role="tabpanel"
+              aria-labelledby="open-tab"
+            >
+              {arrays.open.length > 0 ? (
+                <div className={`row`}>
+                  <div className={`col-3 col-md-2 ${styles.openHeading}`}>
+                    <strong>Title</strong>
+                  </div>
+                  <div className={`col-3 col-md-5 ${styles.openHeading}`}>
+                    <strong>Description</strong>
+                  </div>
+                  <div className={`col-3 col-md-2 ${styles.openHeading}`}>
+                    <strong>Requested By</strong>
+                  </div>
+                  <div className={`col-3 col-md-3 ${styles.openHeading}`}>
+                    <strong>Requested On</strong>
+                  </div>
+                </div>
+              ) : (
+                <div className={`text-center`}>
+                  <IconContext.Provider
+                    value={{ color: `#218838`, size: "4rem" }}
+                  >
+                    <div>
+                      <HiOutlineEmojiHappy />
+                    </div>
+                  </IconContext.Provider>
+                  <p className={`h4`}>No open requests as of now.</p>
+                </div>
+              )}
+              {renderOpenRequests(arrays.open)}
+            </div>
+            <div
+              className="tab-pane fade"
+              id="pending"
+              role="tabpanel"
+              aria-labelledby="pending-tab"
+            >
+              {arrays.pending.length > 0 ? (
+                <div className={`row`}>
+                  <div className={`col-3 col-md-2 ${styles.openHeading}`}>
+                    <strong>Title</strong>
+                  </div>
+                  <div className={`col-3 col-md-5 ${styles.openHeading}`}>
+                    <strong>Description</strong>
+                  </div>
+                  <div className={`col-3 col-md-2 ${styles.openHeading}`}>
+                    <strong>Requested By</strong>
+                  </div>
+                  <div className={`col-3 col-md-3 ${styles.openHeading}`}>
+                    <strong>Suggested Article</strong>
+                  </div>
+                </div>
+              ) : (
+                <div className={`text-center`}>
+                  <IconContext.Provider
+                    value={{ color: `#218838`, size: "4rem" }}
+                  >
+                    <div>
+                      <HiOutlineEmojiHappy />
+                    </div>
+                  </IconContext.Provider>
+                  <p className={`h4`}>No open requests as of now.</p>
+                </div>
+              )}
+              {renderPendingRequests(arrays.pending)}
+            </div>
+            <div
+              className="tab-pane fade"
+              id="closed"
+              role="tabpanel"
+              aria-labelledby="closed-tab"
+            >
+              ...
+            </div>
+          </div>
+        </div>
+      </section>
     </React.Fragment>
   );
 };
