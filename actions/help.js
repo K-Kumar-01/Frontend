@@ -1,5 +1,10 @@
 import axios from "axios";
-import { FETCH_HELP_ALL, COOKIE_NAME, CREATE_REQUEST } from "../appConstants";
+import {
+  FETCH_HELP_ALL,
+  COOKIE_NAME,
+  CREATE_REQUEST,
+  SINGLE_REQUEST,
+} from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
 export const getAllRequests = async () => {
@@ -26,5 +31,15 @@ export const createRequest = async (data) => {
     return response.data;
   } catch (error) {
     return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
+export const fetchSingleRequest = async (slug) => {
+  let response;
+  try {
+    response = await axios.get(`${SINGLE_REQUEST(slug)}`);
+    return response.data;
+  } catch (error) {
+    return { error: error.response || { status: 500 } };
   }
 };

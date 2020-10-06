@@ -16,6 +16,7 @@ const FETCH_PARTICULAR_ARTILCE = (slug) => `${BASE_URL}api/article/one/${slug}`;
 const FETCH_TYPE = `Single`;
 const FETCH_HELP_ALL = `${BASE_URL}api/request`;
 const CREATE_REQUEST = `${BASE_URL}api/request/create`;
+const SINGLE_REQUEST = (slug) => `${BASE_URL}api/request/one/${slug}`;
 export {
   UPLOADS,
   SIGNIN,
@@ -30,4 +31,5 @@ export {
   FETCH_TYPE,
   FETCH_HELP_ALL,
   CREATE_REQUEST,
+  SINGLE_REQUEST,
 };
