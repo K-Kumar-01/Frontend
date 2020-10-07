@@ -43,3 +43,19 @@ export const fetchSingleRequest = async (slug) => {
     return { error: error.response || { status: 500 } };
   }
 };
+
+export const editSingleRequest = async (slug, data) => {
+  let response, token;
+  token = getCookie(COOKIE_NAME);
+  try {
+    response = await axios.patch(`${SINGLE_REQUEST(slug)}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};

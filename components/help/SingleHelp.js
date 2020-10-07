@@ -4,16 +4,21 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { IconContext } from "react-icons";
 import { FaEdit } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 import styles from "./SingleHelp.module.css";
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
+import { editSingleRequest } from "../../actions/help";
+import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const ToastedComponentSingleHelp = (props) => {
   const { addToast } = useToasts();
   const { request } = props;
 
   const [tokenDetails, setTokenDetails] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     let tokenData = authenticate(COOKIE_NAME);
@@ -44,32 +49,33 @@ const ToastedComponentSingleHelp = (props) => {
     event.preventDefault();
     $("#editRequest").modal("hide");
     let response;
-    // setLoading(true);
-    // try {
-    //   response = await createRequest({
-    //     title: data.title.trim(),
-    //     desc: data.description.trim(),
-    //   });
-    //   setLoading(false);
-    //   if (response.error) {
-    //     addToast(`${response.error}`, {
-    //       appearance: "error",
-    //       autoDismiss: true,
-    //     });
-    //   } else {
-    //     addToast(`${response.message}`, {
-    //       appearance: "success",
-    //       autoDismiss: true,
-    //     });
-    //     router.reload();
-    //   }
-    // } catch (error) {
-    //   setLoading(false);
-    //   addToast(`${error.message}`, {
-    //     appearance: "error",
-    //     autoDismiss: true,
-    //   });
-    // }
+    setLoading(true);
+    try {
+      console.log("Hello");
+      response = await editSingleRequest(request.slug, {
+        title: data.title.trim(),
+        desc: data.description.trim(),
+      });
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        router.reload();
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
     resetFormState();
   };
 
@@ -190,6 +196,7 @@ const ToastedComponentSingleHelp = (props) => {
 
   return (
     <section style={{ minHeight: "70vh" }}>
+      {loading && <LoadingSpinner asOverlay />}
       <div className={`container`}>
         {renderEditRequestModal()}
         <div className={`d-flex justify-content-between`}>
@@ -273,7 +280,7 @@ const ToastedComponentSingleHelp = (props) => {
 
 const SingleHelp = (props) => {
   return (
-    <ToastProvider>
+    <ToastProvider placement="bottom-right">
       <ToastedComponentSingleHelp request={props.request} />
     </ToastProvider>
   );
