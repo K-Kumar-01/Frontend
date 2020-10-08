@@ -3,7 +3,7 @@ import { ToastProvider, useToasts } from "react-toast-notifications";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { IconContext } from "react-icons";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useRouter } from "next/router";
 
 import styles from "./SingleHelp.module.css";
@@ -77,6 +77,13 @@ const ToastedComponentSingleHelp = (props) => {
       });
     }
     resetFormState();
+  };
+
+  const deleteRequest = async () => {
+    let response;
+    const slug = router.query.slug;
+    try {
+    } catch (error) {}
   };
 
   const resetFormState = () => {
@@ -194,12 +201,66 @@ const ToastedComponentSingleHelp = (props) => {
     </div>
   );
 
+  const renderDeleteRequestModal = () => (
+    <div>
+      <div
+        className="modal fade"
+        id="deleteRequest"
+        tabIndex="-1"
+        aria-labelledby="deleteRequestLabel"
+        aria-hidden="true"
+        data-backdrop="static"
+        data-keyboard="false"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title text-center" id="deleteRequestLabel">
+                Delete Request
+              </h4>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div className="modal-body">
+              Are you sure you want to delete the request?
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                data-dismiss="modal"
+                onClick={deleteRequest}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section style={{ minHeight: "70vh" }}>
       {loading && <LoadingSpinner asOverlay />}
       <div className={`container`}>
         {renderEditRequestModal()}
-        <div className={`d-flex justify-content-between`}>
+        {renderDeleteRequestModal()}
+        <div className={`d-flex justify-content-between align-items-center`}>
           <h2 className={`heading text-capitalize`}>Request Details</h2>
           {tokenDetails.username === request.postedBy.username &&
             new Date().getTime() - new Date(request.createdAt).getTime() <
@@ -215,6 +276,18 @@ const ToastedComponentSingleHelp = (props) => {
                 </div>
               </IconContext.Provider>
             )}
+          {tokenDetails.username === request.postedBy.username && (
+            <IconContext.Provider value={{ size: "2rem", color: "#C23F3F" }}>
+              <div
+                title="Delete"
+                style={{ cursor: "pointer" }}
+                data-toggle="modal"
+                data-target="#deleteRequest"
+              >
+                <FaTrashAlt />
+              </div>
+            </IconContext.Provider>
+          )}
         </div>
         <hr />
         <div className={`row`}>
