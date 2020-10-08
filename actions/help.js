@@ -4,6 +4,7 @@ import {
   COOKIE_NAME,
   CREATE_REQUEST,
   SINGLE_REQUEST,
+  SUGGEST_ARTICLE_REQUEST,
 } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
@@ -65,6 +66,22 @@ export const deleteSingleRequest = async (slug) => {
   token = getCookie(COOKIE_NAME);
   try {
     response = await axios.delete(`${SINGLE_REQUEST(slug)}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
+export const suggestArticleforRequest = async (slug, data) => {
+  let response, token;
+  token = getCookie(COOKIE_NAME);
+  try {
+    response = await axios.patch(`${SUGGEST_ARTICLE_REQUEST(slug)}`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: token,

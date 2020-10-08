@@ -135,7 +135,7 @@ const ToastedComponent = (props) => {
           id="title"
           placeholder="Name"
           name="title"
-          ref={register({ required: true, pattern: /^[a-zA-Z0-9_]*$/ })}
+          ref={register({ required: true })}
           autoComplete="off"
           style={errors.title && { border: "1px solid red" }}
         />
@@ -436,7 +436,7 @@ const ToastedComponent = (props) => {
               role="tabpanel"
               aria-labelledby="closed-tab"
             >
-              {arrays.closed.length > 0 && (
+              {arrays.closed.length > 0 ? (
                 <div className={`row`}>
                   <div className={`col-3 col-md-2 ${styles.openHeading}`}>
                     <strong>Title</strong>
@@ -450,6 +450,12 @@ const ToastedComponent = (props) => {
                   <div className={`col-3 col-md-3 ${styles.openHeading}`}>
                     <strong>Suggested Article</strong>
                   </div>
+                </div>
+              ) : (
+                <div
+                  className={`d-flex flex-column justify-content-center align-items-center`}
+                >
+                  No requests were closed.
                 </div>
               )}
               {renderPendingorClosedRequests(arrays.closed)}

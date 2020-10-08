@@ -9,7 +9,11 @@ import { useRouter } from "next/router";
 import styles from "./SingleHelp.module.css";
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
-import { editSingleRequest, deleteSingleRequest } from "../../actions/help";
+import {
+  editSingleRequest,
+  deleteSingleRequest,
+  suggestArticleforRequest,
+} from "../../actions/help";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const ToastedComponentSingleHelp = (props) => {
@@ -41,7 +45,7 @@ const ToastedComponentSingleHelp = (props) => {
   } = useForm({
     mode: "onTouched",
     defaultValues: {
-      title: "",
+      sugTitle: "",
     },
   });
 
@@ -71,7 +75,21 @@ const ToastedComponentSingleHelp = (props) => {
     }
   };
 
-  const renderOpenStatus = () => <div>Hello O</div>;
+  const renderOpenStatus = () => (
+    <div className={`row`}>
+      <div className={`col-8 mx-auto`}>
+        <button
+          className={`btn btn-primary`}
+          title="Suggest"
+          style={{ cursor: "pointer" }}
+          data-toggle="modal"
+          data-target="#suggest"
+        >
+          Suggest
+        </button>
+      </div>
+    </div>
+  );
   const renderClosedStatus = () => <div>Hello C</div>;
   const renderPendingStatus = () => <div>Hello P</div>;
 
@@ -97,7 +115,7 @@ const ToastedComponentSingleHelp = (props) => {
           appearance: "success",
           autoDismiss: true,
         });
-        router.reload();
+        router.replace("/help");
       }
     } catch (error) {
       setLoading(false);
@@ -109,7 +127,37 @@ const ToastedComponentSingleHelp = (props) => {
     resetFormState();
   };
 
-  const suggestArticle = (data) => {};
+  const suggestArticle = async (data) => {
+    event.preventDefault();
+    let response;
+    $("#suggest").modal("hide");
+    setLoading(true);
+    try {
+      response = await suggestArticleforRequest(request.slug, {
+        article: data.sugTitle.trim(),
+      });
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        router.reload();
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
+    resetFormState();
+  };
 
   const deleteRequest = async () => {
     let response;
@@ -413,6 +461,7 @@ const ToastedComponentSingleHelp = (props) => {
           <h2 className={`heading text-capitalize`}>Request Details</h2>
           <div>
             {tokenDetails.username === request.postedBy.username &&
+              request.status === "OPEN" &&
               new Date().getTime() - new Date(request.createdAt).getTime() <
                 1.728e8 && (
                 <IconContext.Provider
@@ -500,15 +549,7 @@ const ToastedComponentSingleHelp = (props) => {
             </h4>
           </div>
         </div>
-        {/* <span
-          className={`mr-2`}
-          title="Edit"
-          style={{ cursor: "pointer" }}
-          data-toggle="modal"
-          data-target="#suggest"
-        >
-          Suggest
-        </span> */}
+
         {renderAccordingToStatus(request.status)}
       </div>
     </section>

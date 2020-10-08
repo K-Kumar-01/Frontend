@@ -17,6 +17,9 @@ const FETCH_TYPE = `Single`;
 const FETCH_HELP_ALL = `${BASE_URL}api/request`;
 const CREATE_REQUEST = `${BASE_URL}api/request/create`;
 const SINGLE_REQUEST = (slug) => `${BASE_URL}api/request/one/${slug}`;
+const SUGGEST_ARTICLE_REQUEST = (slug) =>
+  `${BASE_URL}api/request/suggest/one/${slug}`;
+const CLOSE_REQUEST = (slug) => `${BASE_URL}api/request/close/one/${slug}`;
 export {
   UPLOADS,
   SIGNIN,
@@ -32,4 +35,6 @@ export {
   FETCH_HELP_ALL,
   CREATE_REQUEST,
   SINGLE_REQUEST,
+  SUGGEST_ARTICLE_REQUEST,
+  CLOSE_REQUEST,
 };
