@@ -64,7 +64,7 @@ export const deleteSingleRequest = async (slug) => {
   let response, token;
   token = getCookie(COOKIE_NAME);
   try {
-    response = await axios.delete(`${SINGLE_REQUEST(slug)}`, data, {
+    response = await axios.delete(`${SINGLE_REQUEST(slug)}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: token,

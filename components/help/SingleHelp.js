@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import styles from "./SingleHelp.module.css";
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
-import { editSingleRequest } from "../../actions/help";
+import { editSingleRequest, deleteSingleRequest } from "../../actions/help";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const ToastedComponentSingleHelp = (props) => {
@@ -82,8 +82,28 @@ const ToastedComponentSingleHelp = (props) => {
   const deleteRequest = async () => {
     let response;
     const slug = router.query.slug;
+    setLoading(true);
     try {
-    } catch (error) {}
+      response = await deleteSingleRequest(slug);
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        router.replace("/help");
+      }
+    } catch (error) {
+      addToast(`${response.message}`, {
+        appearance: "success",
+        autoDismiss: true,
+      });
+    }
   };
 
   const resetFormState = () => {
@@ -262,32 +282,37 @@ const ToastedComponentSingleHelp = (props) => {
         {renderDeleteRequestModal()}
         <div className={`d-flex justify-content-between align-items-center`}>
           <h2 className={`heading text-capitalize`}>Request Details</h2>
-          {tokenDetails.username === request.postedBy.username &&
-            new Date().getTime() - new Date(request.createdAt).getTime() <
-              1.728e8 && (
-              <IconContext.Provider value={{ size: "2rem", color: "#17A2B8" }}>
-                <div
-                  title="Edit"
+          <div>
+            {tokenDetails.username === request.postedBy.username &&
+              new Date().getTime() - new Date(request.createdAt).getTime() <
+                1.728e8 && (
+                <IconContext.Provider
+                  value={{ size: "2rem", color: "#17A2B8" }}
+                >
+                  <span
+                    className={`mr-2`}
+                    title="Edit"
+                    style={{ cursor: "pointer" }}
+                    data-toggle="modal"
+                    data-target="#editRequest"
+                  >
+                    <FaEdit />
+                  </span>
+                </IconContext.Provider>
+              )}
+            {tokenDetails.username === request.postedBy.username && (
+              <IconContext.Provider value={{ size: "2rem", color: "#C23F3F" }}>
+                <span
+                  title="Delete"
                   style={{ cursor: "pointer" }}
                   data-toggle="modal"
-                  data-target="#editRequest"
+                  data-target="#deleteRequest"
                 >
-                  <FaEdit />
-                </div>
+                  <FaTrashAlt />
+                </span>
               </IconContext.Provider>
             )}
-          {tokenDetails.username === request.postedBy.username && (
-            <IconContext.Provider value={{ size: "2rem", color: "#C23F3F" }}>
-              <div
-                title="Delete"
-                style={{ cursor: "pointer" }}
-                data-toggle="modal"
-                data-target="#deleteRequest"
-              >
-                <FaTrashAlt />
-              </div>
-            </IconContext.Provider>
-          )}
+          </div>
         </div>
         <hr />
         <div className={`row`}>
