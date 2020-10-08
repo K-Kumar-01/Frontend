@@ -326,7 +326,7 @@ const ToastedComponent = (props) => {
     ));
 
   const renderPendingorClosedRequests = (data) =>
-    data.map((d) => (
+    data.map((d,i) => (
       <div className={`row`} key={d._id}>
         <div className={`col-3 col-md-2`}>
           <Link href={`/help/${d.slug}`}>
@@ -344,6 +344,7 @@ const ToastedComponent = (props) => {
             <a>{d.closingArticle.title}</a>
           </Link>
         </div> */}
+        {i < data.length - 1 && <hr />}
       </div>
     ));
 

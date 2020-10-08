@@ -81,7 +81,6 @@ const ToastedComponentSingleHelp = (props) => {
         <button
           className={`btn btn-primary`}
           title="Suggest"
-          style={{ cursor: "pointer" }}
           data-toggle="modal"
           data-target="#suggest"
         >
@@ -91,8 +90,50 @@ const ToastedComponentSingleHelp = (props) => {
     </div>
   );
   const renderClosedStatus = () => <div>Hello C</div>;
-  const renderPendingStatus = () => <div>Hello P</div>;
-
+  const renderPendingStatus = () => (
+    <React.Fragment>
+      <div className={`row`}>
+        <div className={`col-3`}>
+          <p>
+            <strong className={``}>Suggested Article</strong>
+          </p>
+        </div>
+        <div className={`col-9 ${styles.changedFont}`}>
+          <p>
+            <Link href={`/articles/${request.article.slug}`}>
+              <a className={`${styles.link}`}>{request.article.title}</a>
+            </Link>
+          </p>
+        </div>
+      </div>
+      <div className={`row`}>
+        <div className={`col-3`}>
+          <p>
+            <strong className={``}>Suggested By</strong>
+          </p>
+        </div>
+        <div className={`col-9 ${styles.changedFont} `}>
+          <p>
+            <Link href={`/user/profile/${request.closedBy.username}`}>
+              <a className={`${styles.link}`}>{request.closedBy.name}</a>
+            </Link>
+          </p>
+        </div>
+      </div>
+      <div className={`row`}>
+        <div className={`col-8 mx-auto`}>
+          <button
+            className={`btn btn-primary`}
+            title="Approval"
+            data-toggle="modal"
+            data-target="#approveRequest"
+          >
+            Approve/Reject
+          </button>
+        </div>
+      </div>
+    </React.Fragment>
+  );
   const onSubmit = async (data, event) => {
     event.preventDefault();
     $("#editRequest").modal("hide");
@@ -185,6 +226,8 @@ const ToastedComponentSingleHelp = (props) => {
       });
     }
   };
+
+  const approveRequest = async () => {};
 
   const resetFormState = () => {
     reset(
@@ -450,6 +493,66 @@ const ToastedComponentSingleHelp = (props) => {
     );
   };
 
+  const renderApprovalMoal = () => (
+    <div>
+      <div
+        className="modal fade"
+        id="approveRequest"
+        tabIndex="-1"
+        aria-labelledby="approveRequestLabel"
+        aria-hidden="true"
+        data-backdrop="static"
+        data-keyboard="false"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title text-center" id="approveRequestLabel">
+                Approve Suggestion
+              </h4>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <p>Do you approve the suggested article ?</p>
+              <p>
+                Confirming will close the request with the article suggested.
+                <br />
+                If you do not like it, click Reject and then the request will be
+                open again
+              </p>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-success"
+                data-dismiss="modal"
+                onClick={() => approveRequest("YES")}
+              >
+                Confirm
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                data-dismiss="modal"
+                onClick={() => approveRequest("NO")}
+              >
+                Reject
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section style={{ minHeight: "70vh" }}>
       {loading && <LoadingSpinner asOverlay />}
@@ -457,6 +560,7 @@ const ToastedComponentSingleHelp = (props) => {
         {renderEditRequestModal()}
         {renderDeleteRequestModal()}
         {renderSuggestionModal()}
+        {renderApprovalMoal()}
         <div className={`d-flex justify-content-between align-items-center`}>
           <h2 className={`heading text-capitalize`}>Request Details</h2>
           <div>
@@ -478,18 +582,21 @@ const ToastedComponentSingleHelp = (props) => {
                   </span>
                 </IconContext.Provider>
               )}
-            {tokenDetails.username === request.postedBy.username && (
-              <IconContext.Provider value={{ size: "2rem", color: "#C23F3F" }}>
-                <span
-                  title="Delete"
-                  style={{ cursor: "pointer" }}
-                  data-toggle="modal"
-                  data-target="#deleteRequest"
+            {tokenDetails.username === request.postedBy.username &&
+              request.status === "OPEN" && (
+                <IconContext.Provider
+                  value={{ size: "2rem", color: "#C23F3F" }}
                 >
-                  <FaTrashAlt />
-                </span>
-              </IconContext.Provider>
-            )}
+                  <span
+                    title="Delete"
+                    style={{ cursor: "pointer" }}
+                    data-toggle="modal"
+                    data-target="#deleteRequest"
+                  >
+                    <FaTrashAlt />
+                  </span>
+                </IconContext.Provider>
+              )}
           </div>
         </div>
         <hr />
