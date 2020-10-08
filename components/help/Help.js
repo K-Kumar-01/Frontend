@@ -325,7 +325,7 @@ const ToastedComponent = (props) => {
       </div>
     ));
 
-  const renderPendingRequests = (data) =>
+  const renderPendingorClosedRequests = (data) =>
     data.map((d) => (
       <div className={`row`} key={d._id}>
         <div className={`col-3 col-md-2`}>
@@ -425,10 +425,10 @@ const ToastedComponent = (props) => {
                       <HiOutlineEmojiHappy />
                     </div>
                   </IconContext.Provider>
-                  <p className={`h4`}>No open requests as of now.</p>
+                  <p className={`h4`}>No pending requests as of now.</p>
                 </div>
               )}
-              {renderPendingRequests(arrays.pending)}
+              {renderPendingorClosedRequests(arrays.pending)}
             </div>
             <div
               className="tab-pane fade"
@@ -436,7 +436,23 @@ const ToastedComponent = (props) => {
               role="tabpanel"
               aria-labelledby="closed-tab"
             >
-              ...
+              {arrays.closed.length > 0 && (
+                <div className={`row`}>
+                  <div className={`col-3 col-md-2 ${styles.openHeading}`}>
+                    <strong>Title</strong>
+                  </div>
+                  <div className={`col-3 col-md-5 ${styles.openHeading}`}>
+                    <strong>Description</strong>
+                  </div>
+                  <div className={`col-3 col-md-2 ${styles.openHeading}`}>
+                    <strong>Requested By</strong>
+                  </div>
+                  <div className={`col-3 col-md-3 ${styles.openHeading}`}>
+                    <strong>Suggested Article</strong>
+                  </div>
+                </div>
+              )}
+              {renderPendingorClosedRequests(arrays.closed)}
             </div>
           </div>
         </div>
