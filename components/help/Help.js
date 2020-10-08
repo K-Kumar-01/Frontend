@@ -306,46 +306,50 @@ const ToastedComponent = (props) => {
 
   const renderOpenRequests = (data) =>
     data.map((d, i) => (
-      <div className={`row`} key={d._id}>
-        <div className={`col-3 col-md-2`}>
-          <Link href={`/help/${d.slug}`}>
-            <a>{d.title}</a>
-          </Link>
+      <React.Fragment>
+        <div className={`row`} key={d._id}>
+          <div className={`col-3 col-md-2`}>
+            <Link href={`/help/${d.slug}`}>
+              <a>{d.title}</a>
+            </Link>
+          </div>
+          <div className={`col-3 col-md-5`}>{d.desc}</div>
+          <div className={`col-3 col-md-2`}>
+            <Link href={`/user/profile/${d.postedBy.username}`}>
+              <a>{d.postedBy.username}</a>
+            </Link>
+          </div>
+          <div className={`col-3 col-md-3`}>
+            {new Date(d.createdAt).toDateString()}
+          </div>
         </div>
-        <div className={`col-3 col-md-5`}>{d.desc}</div>
-        <div className={`col-3 col-md-2`}>
-          <Link href={`/user/profile/${d.postedBy.username}`}>
-            <a>{d.postedBy.username}</a>
-          </Link>
-        </div>
-        <div className={`col-3 col-md-3`}>
-          {new Date(d.createdAt).toDateString()}
-        </div>
-        {i < data.length - 1 && <hr />}
-      </div>
+        {i < data.length - 1 && <div className={`mb-3`} />}
+      </React.Fragment>
     ));
 
   const renderPendingorClosedRequests = (data) =>
-    data.map((d,i) => (
-      <div className={`row`} key={d._id}>
-        <div className={`col-3 col-md-2`}>
-          <Link href={`/help/${d.slug}`}>
-            <a>{d.title}</a>
-          </Link>
+    data.map((d, i) => (
+      <React.Fragment>
+        <div className={`row`} key={d._id}>
+          <div className={`col-3 col-md-2`}>
+            <Link href={`/help/${d.slug}`}>
+              <a>{d.title}</a>
+            </Link>
+          </div>
+          <div className={`col-3 col-md-5`}>{d.desc}</div>
+          <div className={`col-3 col-md-2`}>
+            <Link href={`/user/profile/${d.postedBy.username}`}>
+              <a>{d.postedBy.username}</a>
+            </Link>
+          </div>
+          <div className={`col-3 col-md-3`}>
+            <Link href={`/articles/${d.article.slug}`}>
+              <a>{d.article.title}</a>
+            </Link>
+          </div>
         </div>
-        <div className={`col-3 col-md-5`}>{d.desc}</div>
-        <div className={`col-3 col-md-2`}>
-          <Link href={`/user/profile/${d.postedBy.username}`}>
-            <a>{d.postedBy.username}</a>
-          </Link>
-        </div>
-        {/* <div className={`col-3 col-md-3`}>
-          <Link href={`/articles/${d.closingArticle.slug}`}>
-            <a>{d.closingArticle.title}</a>
-          </Link>
-        </div> */}
-        {i < data.length - 1 && <hr />}
-      </div>
+        {i < data.length - 1 && <div className={`mb-3`} />}
+      </React.Fragment>
     ));
 
   return (
