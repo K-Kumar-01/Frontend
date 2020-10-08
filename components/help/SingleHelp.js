@@ -90,7 +90,51 @@ const ToastedComponentSingleHelp = (props) => {
       </div>
     </div>
   );
-  const renderClosedStatus = () => <div>Hello C</div>;
+  const renderClosedStatus = () => (
+    <React.Fragment>
+      <div className={`row`}>
+        <div className={`col-3`}>
+          <p>
+            <strong className={``}>Approved Article</strong>
+          </p>
+        </div>
+        <div className={`col-9 ${styles.changedFont}`}>
+          <p>
+            <Link href={`/articles/${request.article.slug}`}>
+              <a className={`${styles.link}`}>{request.article.title}</a>
+            </Link>
+          </p>
+        </div>
+      </div>
+      <div className={`row`}>
+        <div className={`col-3`}>
+          <p>
+            <strong className={``}>Suggested By</strong>
+          </p>
+        </div>
+        <div className={`col-9 ${styles.changedFont} `}>
+          <p>
+            <Link href={`/user/profile/${request.closedBy.username}`}>
+              <a className={`${styles.link}`}>{request.closedBy.name}</a>
+            </Link>
+          </p>
+        </div>
+      </div>
+
+      <div className={`row`}>
+        <div className={`col-3`}>
+          <p>
+            <strong className={``}>Closed on</strong>
+          </p>
+        </div>
+        <div className={`col-9 ${styles.changedFont} `}>
+          <p>
+            <p>{new Date(request.updatedAt).toDateString()}</p>
+          </p>
+        </div>
+      </div>
+    </React.Fragment>
+  );
   const renderPendingStatus = () => (
     <React.Fragment>
       <div className={`row`}>
