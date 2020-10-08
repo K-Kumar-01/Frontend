@@ -19,7 +19,7 @@ const CREATE_REQUEST = `${BASE_URL}api/request/create`;
 const SINGLE_REQUEST = (slug) => `${BASE_URL}api/request/one/${slug}`;
 const SUGGEST_ARTICLE_REQUEST = (slug) =>
   `${BASE_URL}api/request/suggest/one/${slug}`;
-const CLOSE_REQUEST = (slug) => `${BASE_URL}api/request/close/one/${slug}`;
+const APPROVE_REQUEST = (slug) => `${BASE_URL}api/request/close/one/${slug}`;
 export {
   UPLOADS,
   SIGNIN,
@@ -36,5 +36,5 @@ export {
   CREATE_REQUEST,
   SINGLE_REQUEST,
   SUGGEST_ARTICLE_REQUEST,
-  CLOSE_REQUEST,
+  APPROVE_REQUEST,
 };

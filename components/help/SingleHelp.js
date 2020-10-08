@@ -13,6 +13,7 @@ import {
   editSingleRequest,
   deleteSingleRequest,
   suggestArticleforRequest,
+  approveArticleRequest,
 } from "../../actions/help";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 
@@ -227,7 +228,34 @@ const ToastedComponentSingleHelp = (props) => {
     }
   };
 
-  const approveRequest = async () => {};
+  const approveRequest = async (data) => {
+    let response;
+    const slug = router.query.slug;
+    setLoading(true);
+    try {
+      response = await approveArticleRequest(slug, {
+        approve: data,
+      });
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        router.replace(`/help/${slug}`);
+      }
+    } catch (error) {
+      addToast(`${response.message}`, {
+        appearance: "success",
+        autoDismiss: true,
+      });
+    }
+  };
 
   const resetFormState = () => {
     reset(

@@ -5,6 +5,7 @@ import {
   CREATE_REQUEST,
   SINGLE_REQUEST,
   SUGGEST_ARTICLE_REQUEST,
+  APPROVE_REQUEST,
 } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
@@ -82,6 +83,22 @@ export const suggestArticleforRequest = async (slug, data) => {
   token = getCookie(COOKIE_NAME);
   try {
     response = await axios.patch(`${SUGGEST_ARTICLE_REQUEST(slug)}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
+export const approveArticleRequest = async (slug, data) => {
+  let response, token;
+  token = getCookie(COOKIE_NAME);
+  try {
+    response = await axios.patch(`${APPROVE_REQUEST(slug)}`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: token,
