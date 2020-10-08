@@ -32,6 +32,19 @@ const ToastedComponentSingleHelp = (props) => {
     },
   });
 
+  const {
+    register: register2,
+    errors: errors2,
+    handleSubmit: handleSubmit2,
+    formState: formState2,
+    reset: reset2,
+  } = useForm({
+    mode: "onTouched",
+    defaultValues: {
+      title: "",
+    },
+  });
+
   const giveStatus = (data) => {
     switch (data) {
       case "OPEN":
@@ -44,6 +57,23 @@ const ToastedComponentSingleHelp = (props) => {
         return "text-info";
     }
   };
+
+  const renderAccordingToStatus = (data) => {
+    switch (data) {
+      case "OPEN":
+        return renderOpenStatus();
+      case "CLOSED":
+        return renderClosedStatus();
+      case "PENDING":
+        return renderPendingStatus();
+      default:
+        return "text-info";
+    }
+  };
+
+  const renderOpenStatus = () => <div>Hello O</div>;
+  const renderClosedStatus = () => <div>Hello C</div>;
+  const renderPendingStatus = () => <div>Hello P</div>;
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
@@ -79,6 +109,8 @@ const ToastedComponentSingleHelp = (props) => {
     resetFormState();
   };
 
+  const suggestArticle = (data) => {};
+
   const deleteRequest = async () => {
     let response;
     const slug = router.query.slug;
@@ -111,6 +143,20 @@ const ToastedComponentSingleHelp = (props) => {
       {
         title: request.title,
         description: request.desc,
+      },
+      {
+        errors: false,
+        dirtyFields: false,
+        isDirty: false,
+        isSubmitted: false,
+        touched: false,
+        isValid: false,
+        submitCount: false,
+      }
+    );
+    reset2(
+      {
+        sugTitle: "",
       },
       {
         errors: false,
@@ -201,7 +247,10 @@ const ToastedComponentSingleHelp = (props) => {
                 <button
                   type="submit"
                   className={`btn btn-lg btn-success text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
-                  disabled={Object.keys(errors).length !== 0}
+                  disabled={
+                    Object.keys(errors).length !== 0 ||
+                    Object.keys(formState.touched).length < 1
+                  }
                 >
                   Edit
                 </button>
@@ -274,12 +323,92 @@ const ToastedComponentSingleHelp = (props) => {
     </div>
   );
 
+  const renderSuggestionModal = () => {
+    return (
+      <div>
+        <div
+          className="modal fade"
+          id="suggest"
+          tabIndex="-1"
+          aria-labelledby="suggestLabel"
+          aria-hidden="true"
+          data-backdrop="static"
+          data-keyboard="false"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title text-center" id="suggestLabel">
+                  Suggest Article
+                </h4>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  onClick={resetFormState}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form onSubmit={handleSubmit2(suggestArticle)}>
+                <div className="modal-body">
+                  <p>Type the title of the article you want to suggest </p>
+                  <div className={`${styles.formLabelGroup}`}>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="sugTitle"
+                      placeholder="Name"
+                      name="sugTitle"
+                      ref={register2({
+                        required: true,
+                      })}
+                      autoComplete="off"
+                      style={errors2.sugTitle && { border: "1px solid red" }}
+                    />
+                    <label htmlFor="sugTitle">Title</label>
+                    <p className={`text-danger ${styles.errors}`}>
+                      {errors2.sugTitle?.type === "required" &&
+                        "Title is required"}
+                    </p>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="submit"
+                    className={`btn btn-lg btn-success text-uppercase font-weight-bold mb-2 ${styles.btnLogin}`}
+                    disabled={
+                      Object.keys(errors2).length !== 0 ||
+                      Object.keys(formState2.touched).length === 0
+                    }
+                  >
+                    Suggest
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                    onClick={resetFormState}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section style={{ minHeight: "70vh" }}>
       {loading && <LoadingSpinner asOverlay />}
       <div className={`container`}>
         {renderEditRequestModal()}
         {renderDeleteRequestModal()}
+        {renderSuggestionModal()}
         <div className={`d-flex justify-content-between align-items-center`}>
           <h2 className={`heading text-capitalize`}>Request Details</h2>
           <div>
@@ -371,6 +500,16 @@ const ToastedComponentSingleHelp = (props) => {
             </h4>
           </div>
         </div>
+        {/* <span
+          className={`mr-2`}
+          title="Edit"
+          style={{ cursor: "pointer" }}
+          data-toggle="modal"
+          data-target="#suggest"
+        >
+          Suggest
+        </span> */}
+        {renderAccordingToStatus(request.status)}
       </div>
     </section>
   );
