@@ -10,8 +10,10 @@ const ArticleList = (props) => {
     let trends = [];
     let uplimit = Math.min(10, articles.length);
 
-    // get 4 random articles
-    for (let i = 0; i < 5; ) {
+    let rlimit = Math.min(articles.length, 5);
+
+    // get 5 random articles
+    for (let i = 0; i < rlimit; ) {
       let randnum = Math.floor(Math.random() * uplimit);
       if (!trends.includes(randnum)) {
         trends.push(randnum);
@@ -22,7 +24,7 @@ const ArticleList = (props) => {
     trends.sort((a, b) => a - b);
 
     let trendingArticles = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < rlimit; i++) {
       trendingArticles.push(articles[trends[i]]);
     }
 
@@ -32,19 +34,23 @@ const ArticleList = (props) => {
   const renderSideArticles = (data) => {
     return data.map((d) => (
       <div className={`col-md-3 col-sm-6 col-xs-12 mt-3`} key={d._id}>
-        <div className={`w-100`}>
-          <img
-            className={`img-fluid ${styles.sideImage}`}
-            src={d.featuredPhoto}
-            title={d.title}
-            alt={d.title}
-          />
+        <div className={`w-100 ${styles.sideImgWrp}`}>
+          <Link href={`/articles/${d.slug}`}>
+            <a>
+              <img
+                className={`img-fluid ${styles.sideImage}`}
+                src={d.featuredPhoto}
+                title={d.title}
+                alt={d.title}
+              />
+            </a>
+          </Link>
         </div>
         <div className={`d-flex align-items-center justify-content-between`}>
           <div className={`w-80`}>
             <Link href={`/articles/${d.slug}`}>
               <a className={`${styles.headLink}`}>
-                <h4 >{d.title}</h4>
+                <h4>{d.title}</h4>
               </a>
             </Link>
           </div>
@@ -58,17 +64,21 @@ const ArticleList = (props) => {
     return (
       <div className={`col-12`}>
         <div className={`row`}>
-          <div className={`col-lg-6`}>
-            <img
-              className={`img-fluid ${styles.mainImage}`}
-              src={`${data.featuredPhoto}`}
-              title={data.title}
-              alt={data.title}
-              style={{ maxHeight: "360px" }}
-            />
+          <div className={`col-lg-6 ${styles.mainImgWrp}`}>
+            <Link href={`/articles/${data.slug}`}>
+              <a>
+                <img
+                  className={`img-fluid ${styles.mainImage}`}
+                  src={`${data.featuredPhoto}`}
+                  title={data.title}
+                  alt={data.title}
+                  style={{ maxHeight: "360px" }}
+                />
+              </a>
+            </Link>
           </div>
           <div className={`col-lg-6`}>
-          <Link href={`/articles/${data.slug}`}>
+            <Link href={`/articles/${data.slug}`}>
               <a className={`${styles.headLink}`}>
                 <h3>{data.title}</h3>
               </a>
