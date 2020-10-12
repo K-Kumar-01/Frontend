@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Dante from "Dante2";
 import Link from "next/link";
+import { IconContext } from "react-icons";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 import styles from "./OneArticle.module.css";
 
 const OneArticle = (props) => {
   const { article, articles } = props;
+  const [fav, setFav] = useState(props.isFav);
 
   const renderCategories = (data) =>
     data.map((d) => (
@@ -53,31 +56,51 @@ const OneArticle = (props) => {
       </div>
     ));
 
+  const toggleFavorite = async () => {
+    
+  };
+
   const renderAuthorAndDateInfo = (authorInfo, dateInfo) => (
-    <div className={`col-sm-11 col-md-9 mx-auto d-flex align-items-center`}>
-      <div className={``}>
-        <Link href={`/user/profile/${authorInfo.username}`}>
-          <a className={`${styles.similarLink}`}>
-            <img
-              className={`${styles.authorImg}`}
-              alt={authorInfo.name}
-              src={authorInfo.avatar}
-            />
-          </a>
-        </Link>
-      </div>
-      <div>
-        <p className={`pt-3 pl-3`}>
+    <div
+      className={`col-sm-11 col-md-9 mx-auto d-flex align-items-center justify-content-between`}
+    >
+      <div className={`d-flex align-items-center`}>
+        <div className={``}>
           <Link href={`/user/profile/${authorInfo.username}`}>
             <a className={`${styles.similarLink}`}>
-              <strong>{authorInfo.name}</strong>
+              <img
+                className={`${styles.authorImg}`}
+                alt={authorInfo.name}
+                src={authorInfo.avatar}
+              />
             </a>
           </Link>
-          <br />
-          <span className={`${styles.date}`}>{` ${new Date(dateInfo.createdAt)
-            .toDateString()
-            .substring(4)}`}</span>
-        </p>
+        </div>
+        <div>
+          <p className={`pt-3 pl-3`}>
+            <Link href={`/user/profile/${authorInfo.username}`}>
+              <a className={`${styles.similarLink}`}>
+                <strong>{authorInfo.name}</strong>
+              </a>
+            </Link>
+            <br />
+            <span className={`${styles.date}`}>{` ${new Date(dateInfo.createdAt)
+              .toDateString()
+              .substring(4)}`}</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <IconContext.Provider value={{ size: "2rem", color: "#ED4956" }}>
+          <div style={{ cursor: "pointer" }}>
+            <span
+              title={fav ? "In your favourites" : "Add to your Favourites"}
+              onClick={() => toggleFavorite()}
+            >
+              {fav ? <FaHeart /> : <FaRegHeart />}
+            </span>
+          </div>
+        </IconContext.Provider>
       </div>
     </div>
   );
