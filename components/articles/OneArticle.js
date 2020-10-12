@@ -5,10 +5,18 @@ import { IconContext } from "react-icons";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 import styles from "./OneArticle.module.css";
+import { ToastProvider, useToasts } from "react-toast-notifications";
+import { useRouter } from "next/router";
+import { toggleFavourites } from "../../actions/article";
+import LoadingSpinner from "../spinner/LoadingSpinner";
 
-const OneArticle = (props) => {
+const ToastedOneArticle = (props) => {
   const { article, articles } = props;
+  const [loading, setLoading] = useState(false);
   const [fav, setFav] = useState(props.isFav);
+
+  const { addToast } = useToasts();
+  const router = useRouter();
 
   const renderCategories = (data) =>
     data.map((d) => (
@@ -57,7 +65,30 @@ const OneArticle = (props) => {
     ));
 
   const toggleFavorite = async () => {
-    
+    let response;
+    try {
+      setLoading(true);
+      response = await toggleFavourites(router.query.slug);
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        setFav(response.addedFav);
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
   };
 
   const renderAuthorAndDateInfo = (authorInfo, dateInfo) => (
@@ -107,6 +138,7 @@ const OneArticle = (props) => {
 
   return (
     <section className={` container `}>
+      {loading && <LoadingSpinner asOverlay />}
       <main className={`row`}>
         <h1 className={`col-12 text-center mb-3 display-4`}>{article.title}</h1>
         {renderAuthorAndDateInfo(article.postedBy, {
@@ -132,6 +164,14 @@ const OneArticle = (props) => {
         </main>
       )}
     </section>
+  );
+};
+
+const OneArticle = (props) => {
+  return (
+    <ToastProvider placement="bottom-right">
+      <ToastedOneArticle {...props} />
+    </ToastProvider>
   );
 };
 

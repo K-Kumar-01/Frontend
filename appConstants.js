@@ -20,6 +20,7 @@ const SINGLE_REQUEST = (slug) => `${BASE_URL}api/request/one/${slug}`;
 const SUGGEST_ARTICLE_REQUEST = (slug) =>
   `${BASE_URL}api/request/suggest/one/${slug}`;
 const APPROVE_REQUEST = (slug) => `${BASE_URL}api/request/close/one/${slug}`;
+const TOGGLE_FAVOURITE = (slug) => `${BASE_URL}api/article/favourite/${slug}`;
 export {
   UPLOADS,
   SIGNIN,
@@ -37,4 +38,5 @@ export {
   SINGLE_REQUEST,
   SUGGEST_ARTICLE_REQUEST,
   APPROVE_REQUEST,
+  TOGGLE_FAVOURITE,
 };

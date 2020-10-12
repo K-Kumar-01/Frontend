@@ -5,6 +5,7 @@ import {
   FETCH_ARTICLES,
   FETCH_CATEGORY_ARTICLES,
   FETCH_PARTICULAR_ARTILCE,
+  TOGGLE_FAVOURITE,
 } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
@@ -91,5 +92,18 @@ export const deleteParticularArticle = async (slug) => {
     return response.data;
   } catch (error) {
     return { error: error.response || { status: 500 } };
+  }
+};
+
+export const toggleFavourites = async (slug) => {
+  let response, token;
+  token = getCookie(COOKIE_NAME);
+  try {
+    response = await axios.patch(`${TOGGLE_FAVOURITE(slug)}`, null, {
+      headers: { Authorization: token },
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
   }
 };
