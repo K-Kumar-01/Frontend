@@ -9,9 +9,7 @@ const ArticleCategoryCard = (props) => {
   const renderCategories = (data) =>
     data.map((d) => (
       <Link key={d._id} href={`/category/${d.name.toLowerCase()}`}>
-        <a
-          className={`badge badge-pill badge-info mr-3 ${styles.category}`}
-        >
+        <a className={`badge badge-pill badge-info mr-3 ${styles.category}`}>
           {d.name}
         </a>
       </Link>
@@ -24,13 +22,17 @@ const ArticleCategoryCard = (props) => {
           <div className="card-body">
             <div className="row d-flex">
               <div className="col-md-4 col-12 d-flex align-items-center">
-                <img
-                  src={article.featuredPhoto}
-                  className={`card-img-top ${styles.myimage}`}
-                  alt={article.title}
-                  title={article.title}
-                  style={{ width: "100%" }}
-                />
+                <Link href={`/articles/${article.slug}`}>
+                  <a>
+                    <img
+                      src={article.featuredPhoto}
+                      className={`card-img-top ${styles.myimage}`}
+                      alt={article.title}
+                      title={article.title}
+                      style={{ width: "100%" }}
+                    />
+                  </a>
+                </Link>
               </div>
               <div className="col-md-8 col-12">
                 <Link href={`/articles/${article.slug}`}>
@@ -40,26 +42,32 @@ const ArticleCategoryCard = (props) => {
                     </h4>
                   </a>
                 </Link>
-                <p>{renderCategories(article.category)}</p>
+                {!props.fav && <p>{renderCategories(article.category)}</p>}
                 <p className="card-text">{article.mdesc + `...`}</p>
-                <p className={`d-none d-lg-block`}>
-                  <section>
-                    <span className={`font-weight-bold h5`}>
-                      Posted by:{` `}
-                    </span>
-                    <Link href={`../user/profile/${article.postedBy.username}`}>
-                      <a className={`${styles.link}`}>
-                        {article.postedBy.username}
-                      </a>
-                    </Link>
-                  </section>
-                  <section>
-                    <span className={`font-weight-bold h5`}>
-                      Posted on:{` `}
-                    </span>
-                    {new Date(article.updatedAt).toLocaleDateString()}
-                  </section>
-                </p>
+                {!props.fav && (
+                  <React.Fragment>
+                    <p className={`d-none d-lg-block`}>
+                      <section>
+                        <span className={`font-weight-bold h5`}>
+                          Posted by:{` `}
+                        </span>
+                        <Link
+                          href={`../user/profile/${article.postedBy.username}`}
+                        >
+                          <a className={`${styles.link}`}>
+                            {article.postedBy.username}
+                          </a>
+                        </Link>
+                      </section>
+                      <section>
+                        <span className={`font-weight-bold h5`}>
+                          Posted on:{` `}
+                        </span>
+                        {new Date(article.updatedAt).toLocaleDateString()}
+                      </section>
+                    </p>
+                  </React.Fragment>
+                )}
               </div>
             </div>
           </div>

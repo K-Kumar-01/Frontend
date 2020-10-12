@@ -4,18 +4,18 @@ import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getFavourites } from "../../actions/user";
+import Favourites from "../../components/user/Favourites";
 
 const FavouritesPage = (props) => {
-  useEffect(() => {
-    console.log(props);
-  }, []);
   return (
     <React.Fragment>
       {props.error ? (
         <Error statusCode={props.error} />
       ) : (
         <Layout>
-          <Header></Header>
+          <Header sidebar>
+            <Favourites favs={props.favourites} />
+          </Header>
           <Footer />
         </Layout>
       )}
