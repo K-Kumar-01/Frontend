@@ -14,6 +14,7 @@ import {
   FaRegNewspaper,
   FaAngleRight,
   FaTrashAlt,
+  FaEdit,
 } from "react-icons/fa";
 
 import styles from "./UserProfile.module.css";
@@ -77,19 +78,30 @@ const ToastedUserProfile = (props) => {
             </a>
           </Link>
           {userInfo.username === tokenDetails.username && (
-            <h5
-              className={`${styles.delete}`}
-              data-toggle="modal"
-              data-target="#deleteModal"
-              onClick={() => {
-                setModalTitle(d.title), setSlug(d.slug);
-              }}
-              title="Delete article"
-            >
-              <IconContext.Provider value={{ color: "#C23F3F" }}>
-                <FaTrashAlt />
-              </IconContext.Provider>
-            </h5>
+            <div className={`d-flex`}>
+              <h5 className={`${styles.delete} mr-2`} title="Edit article">
+                <Link href={`/articles/edit/${d.slug}`}>
+                  <a>
+                    <IconContext.Provider value={{ color: "#17A2B8" }}>
+                      <FaEdit />
+                    </IconContext.Provider>
+                  </a>
+                </Link>
+              </h5>
+              <h5
+                className={`${styles.delete}`}
+                data-toggle="modal"
+                data-target="#deleteModal"
+                onClick={() => {
+                  setModalTitle(d.title), setSlug(d.slug);
+                }}
+                title="Delete article"
+              >
+                <IconContext.Provider value={{ color: "#C23F3F" }}>
+                  <FaTrashAlt />
+                </IconContext.Provider>
+              </h5>
+            </div>
           )}
         </div>
         <p className={`h6 d-none d-md-block`}>{d.mdesc}</p>
