@@ -21,6 +21,8 @@ const SUGGEST_ARTICLE_REQUEST = (slug) =>
   `${BASE_URL}api/request/suggest/one/${slug}`;
 const APPROVE_REQUEST = (slug) => `${BASE_URL}api/request/close/one/${slug}`;
 const TOGGLE_FAVOURITE = (slug) => `${BASE_URL}api/article/favourite/${slug}`;
+const FETCH_FAVOURITES = (username) =>
+  `${BASE_URL}api/user/favourites/${username}`;
 export {
   UPLOADS,
   SIGNIN,
@@ -39,4 +41,5 @@ export {
   SUGGEST_ARTICLE_REQUEST,
   APPROVE_REQUEST,
   TOGGLE_FAVOURITE,
+  FETCH_FAVOURITES,
 };
