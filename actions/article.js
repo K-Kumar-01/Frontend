@@ -47,9 +47,15 @@ export const getParticularArticle = async (slug, fetchType, token) => {
   let response;
   // added the header to fetch only article
   // no header will mean similar also fetched
+  const headerOpts = {
+    fetchType: fetchType || "NOT SINGLE",
+  };
+  if (token) {
+    headerOpts.token = token;
+  }
   try {
     response = await axios.get(`${FETCH_PARTICULAR_ARTILCE(slug)}`, {
-      headers: { fetchtype: fetchType || "NOT SINGLE", token },
+      headers: headerOpts,
     });
 
     return response.data;

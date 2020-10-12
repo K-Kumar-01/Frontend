@@ -15,7 +15,11 @@ const SingleArticle = (props) => {
       ) : (
         <Layout>
           <Header sidebar>
-            <OneArticle article={props.article} articles={props.articles} />
+            <OneArticle
+              article={props.article}
+              articles={props.articles}
+              isFav={props.isFav}
+            />
           </Header>
           <Footer />
         </Layout>
@@ -31,12 +35,17 @@ SingleArticle.getInitialProps = async (props) => {
   try {
     response = await getParticularArticle(props.query.slug, undefined, token);
   } catch (error) {
+    console.log(error);
     return { error: 500 };
   }
   if (response.error) {
     return { error: response.error.status };
   } else {
-    return { article: response.article, articles: response.articles };
+    return {
+      article: response.article,
+      articles: response.articles,
+      isFav: response.isFav,
+    };
   }
 };
 
