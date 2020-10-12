@@ -43,17 +43,18 @@ export const getArticlesByCategory = async (category) => {
   }
 };
 
-export const getParticularArticle = async (slug, fetchType) => {
+export const getParticularArticle = async (slug, fetchType, token) => {
   let response;
   // added the header to fetch only article
   // no header will mean similar also fetched
   try {
     response = await axios.get(`${FETCH_PARTICULAR_ARTILCE(slug)}`, {
-      headers: { fetchtype: fetchType || "NOT SINGLE" },
+      headers: { fetchtype: fetchType || "NOT SINGLE", token },
     });
 
     return response.data;
   } catch (error) {
+    console.log(error);
     return { error: error.response || { status: 500 } };
   }
 };

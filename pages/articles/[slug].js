@@ -26,8 +26,10 @@ const SingleArticle = (props) => {
 
 SingleArticle.getInitialProps = async (props) => {
   let response;
+  let token = props.req.headers.cookie;
+  token = token && token.split("=")[1];
   try {
-    response = await getParticularArticle(props.query.slug);
+    response = await getParticularArticle(props.query.slug, undefined, token);
   } catch (error) {
     return { error: 500 };
   }
