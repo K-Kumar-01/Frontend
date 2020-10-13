@@ -5,6 +5,8 @@
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: 0.75rem;
+  /* --cx:; */
+  /* --cy:; */
 }
 
 html,
@@ -45,11 +47,11 @@ font-family: 'Lora', serif; */
   color: white;
   overflow: hidden;
 }
-h1 {
+.errorContainer h1 {
   margin-top: 2rem;
   text-align: center;
 }
-h1 + p {
+.errorContainer h1 + p {
   text-align: center;
 }
 .shelf {
@@ -236,7 +238,7 @@ h1 + p {
   font-family: 'Arial Black';
   text-align: center;
 }
-.container {
+.containerE {
   padding-top: 4em;
   width: 50%;
   display: block;

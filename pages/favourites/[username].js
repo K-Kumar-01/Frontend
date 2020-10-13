@@ -5,12 +5,17 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getFavourites } from "../../actions/user";
 import Favourites from "../../components/user/Favourites";
+import ErrorPage403 from "../../components/errorPages/403/ErrorPage403";
 
 const FavouritesPage = (props) => {
   return (
     <React.Fragment>
       {props.error ? (
-        <Error statusCode={props.error} />
+        props.error === 401 || props.error === 403 ? (
+          <ErrorPage403 error={props.error}/>
+        ) : (
+          <Error statusCode={props.error} />
+        )
       ) : (
         <Layout>
           <Header sidebar>

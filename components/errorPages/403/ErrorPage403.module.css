@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css?family=Bungee");
+
+.errorContainer {
+  background: #1b1b1b;
+  color: white;
+  font-family: "Bungee", cursive;
+  height: 100vh;
+  padding-top: 100px;
+  text-align: center;
+}
+.link {
+  color: #2aa7cc;
+  text-decoration: none;
+}
+.link {
+  color: white;
+}
+.link:hover {
+  text-decoration: none;
+}
+
+.errorContainer svg {
+  width: 50vw;
+}
+.lightblue {
+  fill: #444;
+}
+.eye {
+  cx: calc(115px + 30px * var(--mouse-x));
+  cy: calc(50px + 30px * var(--mouse-y));
+}
+#eyeWrap {
+  overflow: hidden;
+}
+.errorText {
+  font-size: 120px;
+}
+.alarm {
+  animation: alarmOn 0.5s infinite;
+}
+
+@keyframes alarmOn {
+  to {
+    fill: darkred;
+  }
+}

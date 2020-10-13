@@ -21,7 +21,7 @@ const Error = ({ statusCode }) => {
 
   return (
     <div className="full-screen">
-      <div className="container">
+      <div className="containerE">
         <span className="error-num">5</span>
         <div className="eye"></div>
         <div className="eye"></div>
