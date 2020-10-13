@@ -11,11 +11,11 @@ const ErrorPage404 = () => {
         <Link href={`/articles`}>
           <a className="book about-us">Articles</a>
         </Link>
-        <Link href={`/help`}>
-          <a className="book contact">Help</a>
-        </Link>
         <Link href={`/membership`}>
-          <a className="book faq">Membership</a>
+          <a className="book contact">Membership</a>
+        </Link>
+        <Link href={`/help`}>
+          <a className="book faq">Help</a>
         </Link>
 
         <span className="book not-found"></span>
