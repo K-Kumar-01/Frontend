@@ -16,7 +16,7 @@ const CategoryArticles = (props) => {
         <Error statusCode={props.error} />
       ) : (
         <Layout>
-          <Header sidebar>
+          <Header sidebar search={true}>
             <ArticlesListCategory articles={props.articles} />
           </Header>
           <Footer />

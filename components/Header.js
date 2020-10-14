@@ -14,9 +14,7 @@ import {
   FcGraduationCap,
   FcSpeaker,
   FcGoogle,
-  FcGlobe,
   FcBriefcase,
-  FcLandscape,
   FcCurrencyExchange,
   FcComboChart,
   FcAddDatabase,
@@ -26,8 +24,7 @@ import {
   FcOpenedFolder,
   FcGallery,
 } from "react-icons/fc";
-import { GiCaduceus, GiPopcorn } from "react-icons/gi";
-import { GrHistory } from "react-icons/gr";
+import { GiPopcorn } from "react-icons/gi";
 import {
   FaHamburger,
   FaPray,
@@ -35,7 +32,6 @@ import {
   FaVenusMars,
   FaPlane,
   FaSpaceShuttle,
-  FaShoppingBag,
   FaHospital,
   FaSearch,
 } from "react-icons/fa";
@@ -416,16 +412,13 @@ const Header = (props) => {
                 </Link>
               </li>
 
-              <li className="nav-item" title="Search Articles">
-                <Link href="/search/articles">
-                  <a className={`${styles.link} btn`}>
-                    <FaSearch />
-                    <span className={`d-lg-none d-sm-inline`}>
-                      Search Articles
-                    </span>
-                  </a>
-                </Link>
-              </li>
+              {props.search && (
+                <li className="nav-item searchBar" title="Search Articles">
+                  <form id="demo-2">
+                    <input type="search" placeholder="Search" />
+                  </form>
+                </li>
+              )}
 
               {loggedIn ? (
                 <li className="nav-item dropdown">

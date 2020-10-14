@@ -31,7 +31,7 @@ const Articles = () => {
 
   return (
     <Layout>
-      <Header sidebar>
+      <Header sidebar search={true}>
         <div style={{ minHeight: "60vh" }}>
           {loading ? <Preloader /> : <ArticleList articles={articles} />}
         </div>
