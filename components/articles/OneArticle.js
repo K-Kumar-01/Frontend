@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dante from "Dante2";
 import Link from "next/link";
 import { IconContext } from "react-icons";
@@ -9,14 +9,30 @@ import { ToastProvider, useToasts } from "react-toast-notifications";
 import { useRouter } from "next/router";
 import { toggleFavourites } from "../../actions/article";
 import LoadingSpinner from "../spinner/LoadingSpinner";
+import { authenticate } from "../../helpers/auth";
+import { COOKIE_NAME } from "../../appConstants";
 
 const ToastedOneArticle = (props) => {
   const { article, articles } = props;
   const [loading, setLoading] = useState(false);
   const [fav, setFav] = useState(props.isFav);
+  const [liked, setLiked] = useState(false);
+  const [isauth, setIsAuth] = useState(false);
 
   const { addToast } = useToasts();
   const router = useRouter();
+
+  useEffect(() => {
+    let tokenData = authenticate(COOKIE_NAME);
+    console.log(tokenData);
+    setIsAuth(tokenData);
+    if (!tokenData) {
+      return;
+    }
+    let isLiked;
+    isLiked = article.likedBy.findIndex((l) => l._id === tokenData.id) !== -1;
+    setLiked(isLiked);
+  }, []);
 
   const renderCategories = (data) =>
     data.map((d) => (
@@ -91,53 +107,193 @@ const ToastedOneArticle = (props) => {
     }
   };
 
-  const renderAuthorAndDateInfo = (authorInfo, dateInfo) => (
-    <div
-      className={`col-sm-11 col-md-9 mx-auto d-flex align-items-center justify-content-between`}
-    >
-      <div className={`d-flex align-items-center`}>
+  const renderLikesArea = () => (
+    <div className={`${styles.likesArea}`}>
+      {isauth && <IconContext.Provider></IconContext.Provider>}
+      {article.likes > 0 && (
+        <span>
+          Liked by{" "}
+          {isauth && liked ? (
+            <strong className={`${styles.pointedCursor}`}>you </strong>
+          ) : null}
+          {liked ? (
+            article.likes - 1 > 0 ? (
+              article.likes - 1 > 1 ? (
+                <span>
+                  and{" "}
+                  <strong
+                    data-toggle="modal"
+                    data-target="#staticBackdrop"
+                    className={`${styles.pointedCursor}`}
+                  >
+                    {article.likes - 1} others
+                  </strong>
+                </span>
+              ) : (
+                <span>
+                  and{" "}
+                  <strong
+                    data-toggle="modal"
+                    data-target="#staticBackdrop"
+                    className={`${styles.pointedCursor}`}
+                  >
+                    {article.likes - 1} other
+                  </strong>
+                </span>
+              )
+            ) : (
+              ``
+            )
+          ) : article.likes > 1 ? (
+            <strong
+              data-toggle="modal"
+              data-target="#staticBackdrop"
+              className={`${styles.pointedCursor}`}
+            >
+              {article.likes} others
+            </strong>
+          ) : (
+            article.likes > 0 && (
+              <strong
+                data-toggle="modal"
+                data-target="#staticBackdrop"
+                className={`${styles.pointedCursor}`}
+              >
+                {article.likes} other
+              </strong>
+            )
+          )}
+        </span>
+      )}
+    </div>
+  );
+
+  const renderLikesList = (data) =>
+    data.map((d) => (
+      <div
+        key={d._id}
+        className={`d-flex justify-content-start align-items-center`}
+      >
         <div className={``}>
-          <Link href={`/user/profile/${authorInfo.username}`}>
-            <a className={`${styles.similarLink}`}>
+          <Link href={`/user/profile/${d.username}`}>
+            <a>
               <img
-                className={`${styles.authorImg}`}
-                alt={authorInfo.name}
-                src={authorInfo.avatar}
+                className={`img img-fluid ${styles.likedImage}`}
+                src={d.avatar}
+                alt={d.name}
               />
             </a>
           </Link>
         </div>
-        <div>
-          <p className={`pt-3 pl-3`}>
-            <Link href={`/user/profile/${authorInfo.username}`}>
-              <a className={`${styles.similarLink}`}>
-                <strong>{authorInfo.name}</strong>
+        <div className={`${styles.likedByPerson}`}>
+          <p>
+            <Link href={`/user/profile/${d.username}`}>
+              <a className={`${styles.likedByLink}`}>
+                <strong>{d.username}</strong>
               </a>
             </Link>
             <br />
-            <span className={`${styles.date}`}>{` ${new Date(dateInfo.createdAt)
-              .toDateString()
-              .substring(4)}`}</span>
+            {d.name}
+            {/* <br />
+            {d.email} */}
           </p>
         </div>
       </div>
-      <div>
-        <IconContext.Provider value={{ size: "2rem", color: "#ED4956" }}>
-          <div style={{ cursor: "pointer" }}>
-            <span
-              title={fav ? "In your favourites" : "Add to your Favourites"}
-              onClick={() => toggleFavorite()}
-            >
-              {fav ? <FaHeart /> : <FaRegHeart />}
-            </span>
+    ));
+
+  const renderAuthorAndDateInfo = (authorInfo, dateInfo) => (
+    <div className={`col-sm-11 col-md-9 mx-auto`}>
+      <div className={`d-flex align-items-center justify-content-between`}>
+        <div className={`d-flex align-items-center`}>
+          <div className={``}>
+            <Link href={`/user/profile/${authorInfo.username}`}>
+              <a className={`${styles.similarLink}`}>
+                <img
+                  className={`${styles.authorImg}`}
+                  alt={authorInfo.name}
+                  src={authorInfo.avatar}
+                />
+              </a>
+            </Link>
           </div>
-        </IconContext.Provider>
+          <div>
+            <p className={`pt-3 pl-3`}>
+              <Link href={`/user/profile/${authorInfo.username}`}>
+                <a className={`${styles.similarLink}`}>
+                  <strong>{authorInfo.name}</strong>
+                </a>
+              </Link>
+              <br />
+              <span className={`${styles.date}`}>{` ${new Date(
+                dateInfo.createdAt
+              )
+                .toDateString()
+                .substring(4)}`}</span>
+            </p>
+          </div>
+        </div>
+        {isauth && (
+          <div>
+            <IconContext.Provider value={{ size: "2rem", color: "#ED4956" }}>
+              <div style={{ cursor: "pointer" }}>
+                <span
+                  title={fav ? "In your favourites" : "Add to your Favourites"}
+                  onClick={() => toggleFavorite()}
+                >
+                  {fav ? <FaHeart /> : <FaRegHeart />}
+                </span>
+              </div>
+            </IconContext.Provider>
+          </div>
+        )}
+      </div>
+      <div>{renderLikesArea()}</div>
+    </div>
+  );
+
+  const renderLikedByModal = () => (
+    <div
+      class="modal fade "
+      id="staticBackdrop"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">
+              Liked By
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">{renderLikesList(article.likedBy)}</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
 
   return (
     <section className={` container `}>
+      {renderLikedByModal()}
       {loading && <LoadingSpinner asOverlay />}
       <main className={`row`}>
         <h1 className={`col-12 text-center mb-3 display-4`}>{article.title}</h1>

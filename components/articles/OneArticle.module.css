@@ -41,3 +41,41 @@
   color: #757575;
   font-family: cursive;
 }
+
+.pointedCursor {
+  cursor: pointer;
+}
+
+.likesArea {
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.likedImage {
+  height: 4rem;
+  width: 4rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid #75758c;
+}
+
+.likedByLink {
+  display: inline-block;
+  /*   border-radius: 5px; */
+  text-decoration: none;
+  color: #757575;
+  /* font-size: 2rem; */
+  /* Set up the hover */
+  /* If you aren't using autoprefix, remember to prefix the gradient for other browsers */
+  background-image: linear-gradient(#aaaaaa, #75768c);
+  background-size: 0 5px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all 0.2s ease-out;
+}
+
+.likedByLink:hover {
+  text-decoration: none;
+  color: #727272;
+  background-size: 100% 1px, auto;
+}
