@@ -5,7 +5,7 @@ const ErrorPage404 = () => {
   return (
     <div className="errorContainer">
       <nav className="shelf">
-        <Link href={``}>
+        <Link href={`/`}>
           <a className="book home-page">Home page</a>
         </Link>
         <Link href={`/articles`}>

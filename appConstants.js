@@ -21,6 +21,7 @@ const SUGGEST_ARTICLE_REQUEST = (slug) =>
   `${BASE_URL}api/request/suggest/one/${slug}`;
 const APPROVE_REQUEST = (slug) => `${BASE_URL}api/request/close/one/${slug}`;
 const TOGGLE_FAVOURITE = (slug) => `${BASE_URL}api/article/favourite/${slug}`;
+const TOGGLE_LIKE = (slug) => `${BASE_URL}api/article/react/${slug}`;
 const FETCH_FAVOURITES = (username) =>
   `${BASE_URL}api/user/favourites/${username}`;
 export {
@@ -41,5 +42,6 @@ export {
   SUGGEST_ARTICLE_REQUEST,
   APPROVE_REQUEST,
   TOGGLE_FAVOURITE,
+  TOGGLE_LIKE,
   FETCH_FAVOURITES,
 };

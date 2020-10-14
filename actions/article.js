@@ -6,6 +6,7 @@ import {
   FETCH_CATEGORY_ARTICLES,
   FETCH_PARTICULAR_ARTILCE,
   TOGGLE_FAVOURITE,
+  TOGGLE_LIKE,
 } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
@@ -100,6 +101,19 @@ export const toggleFavourites = async (slug) => {
   token = getCookie(COOKIE_NAME);
   try {
     response = await axios.patch(`${TOGGLE_FAVOURITE(slug)}`, null, {
+      headers: { Authorization: token },
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
+export const toggleLikes = async (slug) => {
+  let response, token;
+  token = getCookie(COOKIE_NAME);
+  try {
+    response = await axios.patch(`${TOGGLE_LIKE(slug)}`, null, {
       headers: { Authorization: token },
     });
     return response.data;
