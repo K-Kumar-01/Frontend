@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import Dante from "Dante2";
 import Link from "next/link";
 import { IconContext } from "react-icons";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 
 import styles from "./OneArticle.module.css";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import { useRouter } from "next/router";
-import { toggleFavourites } from "../../actions/article";
+import { toggleFavourites, toggleLikes } from "../../actions/article";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 import { authenticate } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
@@ -18,6 +18,8 @@ const ToastedOneArticle = (props) => {
   const [fav, setFav] = useState(props.isFav);
   const [liked, setLiked] = useState(false);
   const [isauth, setIsAuth] = useState(false);
+  const [likedBy, setLikedBy] = useState(article.likedBy);
+  const [likedNumber, setLikedNumber] = useState(article.likes);
 
   const { addToast } = useToasts();
   const router = useRouter();
@@ -30,7 +32,7 @@ const ToastedOneArticle = (props) => {
       return;
     }
     let isLiked;
-    isLiked = article.likedBy.findIndex((l) => l._id === tokenData.id) !== -1;
+    isLiked = likedBy.findIndex((l) => l._id === tokenData.id) !== -1;
     setLiked(isLiked);
   }, []);
 
@@ -107,18 +109,63 @@ const ToastedOneArticle = (props) => {
     }
   };
 
+  const handleLike = async () => {
+    let response;
+    try {
+      setLoading(true);
+      response = await toggleLikes(router.query.slug);
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        setLikedBy(response.likedList);
+        setLikedNumber(response.likes);
+        setLiked(
+          response.likedList.findIndex((l) => l._id === isauth.id) !== -1
+        );
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
+  };
+
   const renderLikesArea = () => (
     <div className={`${styles.likesArea}`}>
-      {isauth && <IconContext.Provider></IconContext.Provider>}
-      {article.likes > 0 && (
+      {isauth && (
+        <IconContext.Provider value={{ size: "1.4rem", color: "#395693" }}>
+          <span style={{ cursor: "pointer" }} onClick={() => handleLike()}>
+            {liked ? (
+              <span title="Liked this post">
+                <FaThumbsUp />
+              </span>
+            ) : (
+              <span title="Like this post">
+                <FaRegThumbsUp />
+              </span>
+            )}
+          </span>
+        </IconContext.Provider>
+      )}
+      {likedNumber > 0 && (
         <span>
           Liked by{" "}
           {isauth && liked ? (
             <strong className={`${styles.pointedCursor}`}>you </strong>
           ) : null}
           {liked ? (
-            article.likes - 1 > 0 ? (
-              article.likes - 1 > 1 ? (
+            likedNumber - 1 > 0 ? (
+              likedNumber - 1 > 1 ? (
                 <span>
                   and{" "}
                   <strong
@@ -126,7 +173,7 @@ const ToastedOneArticle = (props) => {
                     data-target="#staticBackdrop"
                     className={`${styles.pointedCursor}`}
                   >
-                    {article.likes - 1} others
+                    {likedNumber - 1} others
                   </strong>
                 </span>
               ) : (
@@ -137,29 +184,29 @@ const ToastedOneArticle = (props) => {
                     data-target="#staticBackdrop"
                     className={`${styles.pointedCursor}`}
                   >
-                    {article.likes - 1} other
+                    {likedNumber - 1} other
                   </strong>
                 </span>
               )
             ) : (
               ``
             )
-          ) : article.likes > 1 ? (
+          ) : likedNumber > 1 ? (
             <strong
               data-toggle="modal"
               data-target="#staticBackdrop"
               className={`${styles.pointedCursor}`}
             >
-              {article.likes} others
+              {likedNumber} others
             </strong>
           ) : (
-            article.likes > 0 && (
+            likedNumber > 0 && (
               <strong
                 data-toggle="modal"
                 data-target="#staticBackdrop"
                 className={`${styles.pointedCursor}`}
               >
-                {article.likes} other
+                {likedNumber} other
               </strong>
             )
           )}
@@ -276,7 +323,7 @@ const ToastedOneArticle = (props) => {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">{renderLikesList(article.likedBy)}</div>
+          <div class="modal-body">{renderLikesList(likedBy)}</div>
           <div class="modal-footer">
             <button
               type="button"

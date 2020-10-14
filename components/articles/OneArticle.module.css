@@ -47,8 +47,11 @@
 }
 
 .likesArea {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .likedImage {
