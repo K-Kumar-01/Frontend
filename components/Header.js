@@ -37,6 +37,7 @@ import {
   FaSpaceShuttle,
   FaShoppingBag,
   FaHospital,
+  FaSearch,
 } from "react-icons/fa";
 
 import { authenticate, removeCookie } from "../helpers/auth";
@@ -402,7 +403,7 @@ const Header = (props) => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto d-flex align-items-center">
+            <ul className="navbar-nav ml-auto d-flex align-items-center text-left">
               <li className="nav-item">
                 <Link href="/membership">
                   <a className={`${styles.link} btn`}>Subscribe</a>
@@ -412,6 +413,17 @@ const Header = (props) => {
               <li className="nav-item">
                 <Link href="/help">
                   <a className={`${styles.link} btn`}>Help</a>
+                </Link>
+              </li>
+
+              <li className="nav-item" title="Search Articles">
+                <Link href="/search/articles">
+                  <a className={`${styles.link} btn`}>
+                    <FaSearch />
+                    <span className={`d-lg-none d-sm-inline`}>
+                      Search Articles
+                    </span>
+                  </a>
                 </Link>
               </li>
 
