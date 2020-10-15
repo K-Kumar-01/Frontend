@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { IconContext } from "react-icons";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import {
@@ -33,25 +34,31 @@ import {
   FaPlane,
   FaSpaceShuttle,
   FaHospital,
-  FaSearch,
+  FaTimes,
 } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { ToastProvider, useToasts } from "react-toast-notifications";
 
 import { authenticate, removeCookie } from "../helpers/auth";
 import { COOKIE_NAME } from "../appConstants";
 import { logoutUser } from "../actions/auth";
-import { useRouter } from "next/router";
+
 import styles from "./Header.module.css";
 
-const Header = (props) => {
+const ToastedHeader = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [drawerPos, setDrawerPos] = useState(0);
   const [drawerClass, setDrawerClass] = useState([]);
   const [mainClass, setMainClass] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     setLoggedIn(authenticate(COOKIE_NAME));
     console.log(props);
   }, []);
+
+  const { addToast } = useToasts();
 
   useEffect(() => {
     if (drawerPos === 1) {
@@ -371,6 +378,52 @@ const Header = (props) => {
     );
   };
 
+  const renderSearchArea = () => (
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {
+          scale: 0.8,
+          opacity: 0,
+        },
+        visible: {
+          scale: 1,
+          opacity: 1,
+          transition: {
+            delay: 0.4,
+          },
+        },
+      }}
+    >
+      <section className={`container mt-4`}>
+        <div className={`row ${styles.changedFont}`}>
+          <div className={`col-10 col-md-9`}>
+            <p>
+              Showing results for <strong>{searchText}</strong>
+            </p>
+          </div>
+          <div className={`col-2 col-md-3 text-right`}>
+            <p
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setShowSearch(false);
+                setSearchText("");
+              }}
+            >
+              <span title="Reset Search">
+                <IconContext.Provider value={{ size: "2rem" }}>
+                  <FaTimes />
+                </IconContext.Provider>
+              </span>
+              <span className={`d-none d-lg-inline ml-2`}>Reset Search</span>
+            </p>
+          </div>
+        </div>
+      </section>
+    </motion.div>
+  );
+
   return (
     <div className={`${styles.App}`}>
       <nav className="navbar navbar-expand-lg navbar-top navbar-light bg-light sticky-top">
@@ -414,8 +467,19 @@ const Header = (props) => {
 
               {props.search && (
                 <li className="nav-item searchBar" title="Search Articles">
-                  <form id="demo-2">
-                    <input type="search" placeholder="Search" />
+                  <form
+                    id="demo-2"
+                    onSubmit={(e) => {
+                      setShowSearch(true);
+                      e.preventDefault();
+                    }}
+                  >
+                    <input
+                      value={searchText}
+                      type="search"
+                      placeholder="Search"
+                      onChange={(e) => setSearchText(e.target.value)}
+                    />
                   </form>
                 </li>
               )}
@@ -474,11 +538,45 @@ const Header = (props) => {
             {showDrawer()}
           </aside>
           <main className={makeClassNameString(mainClass)}>
-            {props.children}
+            {showSearch ? (
+              <section style={{ minHeight: "73vh" }}>
+                {renderSearchArea()}
+              </section>
+            ) : (
+              <motion.section
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      when: "beforeChildren",
+                      staggerChildren: 0.8,
+                    },
+                  },
+                  hidden: {
+                    opacity: 0,
+                    transition: {
+                      when: "afterChildren",
+                    },
+                  },
+                }}
+              >
+                {props.children}
+              </motion.section>
+            )}
           </main>
         </>
       )}
     </div>
+  );
+};
+
+const Header = (props) => {
+  return (
+    <ToastProvider placement="bottom-right">
+      <ToastedHeader {...props} />
+    </ToastProvider>
   );
 };
 

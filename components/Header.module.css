@@ -87,3 +87,8 @@
 .App .mainOpen {
   margin-left: 240px;
 }
+
+.changedFont {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+}
