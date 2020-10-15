@@ -44,6 +44,7 @@ import { COOKIE_NAME } from "../appConstants";
 import { logoutUser } from "../actions/auth";
 
 import styles from "./Header.module.css";
+import ArticleCard from "./articles/ArticleCard";
 
 const ToastedHeader = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -420,6 +421,7 @@ const ToastedHeader = (props) => {
             </p>
           </div>
         </div>
+        <ArticleCard />
       </section>
     </motion.div>
   );
@@ -551,7 +553,7 @@ const ToastedHeader = (props) => {
                     opacity: 1,
                     transition: {
                       when: "beforeChildren",
-                      staggerChildren: 0.8,
+                      staggerChildren: 0.5,
                     },
                   },
                   hidden: {
