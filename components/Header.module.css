@@ -95,5 +95,11 @@
 
 .textChanged {
   font-size: 2rem;
-  color: lightslategray
+  color: lightslategray;
+}
+
+@media (max-width: 992px) {
+  .searchIcon {
+    margin-bottom: 10px;
+  }
 }

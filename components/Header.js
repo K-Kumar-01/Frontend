@@ -500,7 +500,7 @@ const ToastedHeader = (props) => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto d-flex align-items-center text-left">
+            <ul className="navbar-nav ml-auto d-flex text-left">
               <li className="nav-item">
                 <Link href="/membership">
                   <a className={`${styles.link} btn`}>Subscribe</a>
@@ -514,7 +514,7 @@ const ToastedHeader = (props) => {
               </li>
 
               {props.search && (
-                <li className="nav-item searchBar" title="Search Articles">
+                <li className={`nav-item searchBar mr-3 ${styles.searchIcon}`} title="Search Articles">
                   <form
                     id="demo-2"
                     onSubmit={(e) => {
