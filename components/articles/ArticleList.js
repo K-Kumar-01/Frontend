@@ -54,7 +54,6 @@ const ArticleList = (props) => {
               </a>
             </Link>
           </div>
-          <div className={`w-80`}>Fav</div>
         </div>
       </div>
     ));

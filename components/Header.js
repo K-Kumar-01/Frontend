@@ -46,6 +46,7 @@ import { logoutUser } from "../actions/auth";
 import styles from "./Header.module.css";
 import ArticleCard from "./articles/ArticleCard";
 import LoadingSpinner from "./spinner/LoadingSpinner";
+import { searchArticles } from "../actions/article";
 
 const ToastedHeader = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -54,11 +55,12 @@ const ToastedHeader = (props) => {
   const [mainClass, setMainClass] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+  const [searchedQuery, setSearchedQuery] = useState("");
   const [loading, setLoading] = useState(false);
+  const [searchedArticles, setSearchedArticles] = useState([]);
 
   useEffect(() => {
     setLoggedIn(authenticate(COOKIE_NAME));
-    console.log(props);
   }, []);
 
   const { addToast } = useToasts();
@@ -403,7 +405,7 @@ const ToastedHeader = (props) => {
         <div className={`row ${styles.changedFont}`}>
           <div className={`col-10 col-md-9`}>
             <p>
-              Showing results for <strong>{searchText}</strong>
+              Showing results for <strong>{searchedQuery}</strong>
             </p>
           </div>
           <div className={`col-2 col-md-3 text-right`}>
@@ -412,6 +414,8 @@ const ToastedHeader = (props) => {
               onClick={() => {
                 setShowSearch(false);
                 setSearchText("");
+                setSearchedQuery("");
+                setSearchedArticles([]);
               }}
             >
               <span title="Reset Search">
@@ -423,14 +427,39 @@ const ToastedHeader = (props) => {
             </p>
           </div>
         </div>
-        <ArticleCard />
+        <ArticleCard articles={searchedArticles} />
       </section>
     </motion.div>
   );
 
+  const fetchSearchedArticles = async (textToSearch) => {
+    let response;
+    setLoading(true);
+    try {
+      response = await searchArticles(textToSearch);
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        setShowSearch(true);
+        console.log(response.foundArticles);
+        setSearchedArticles(response.foundArticles);
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
+  };
+
   return (
     <div className={`${styles.App}`}>
-      {loading && <LoadingSpinner asOverlay/>}
+      {loading && <LoadingSpinner asOverlay />}
       <nav className="navbar navbar-expand-lg navbar-top navbar-light bg-light sticky-top">
         <div className="container">
           {props.sidebar ? (
@@ -483,15 +512,17 @@ const ToastedHeader = (props) => {
                         });
                         return;
                       }
-                      setShowSearch(true);
-                      setLoading(true);
+                      setSearchedQuery(searchText);
+                      fetchSearchedArticles(searchText);
                     }}
                   >
                     <input
                       value={searchText}
                       type="search"
                       placeholder="Search"
-                      onChange={(e) => setSearchText(e.target.value)}
+                      onChange={(e) => {
+                        setSearchText(e.target.value);
+                      }}
                     />
                   </form>
                 </li>
