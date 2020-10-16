@@ -47,6 +47,7 @@ import styles from "./Header.module.css";
 import ArticleCard from "./articles/ArticleCard";
 import LoadingSpinner from "./spinner/LoadingSpinner";
 import { searchArticles } from "../actions/article";
+import { HiOutlineEmojiSad } from "react-icons/hi";
 
 const ToastedHeader = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -427,7 +428,20 @@ const ToastedHeader = (props) => {
             </p>
           </div>
         </div>
-        <ArticleCard articles={searchedArticles} />
+        {searchedArticles.length > 0 ? (
+          <ArticleCard articles={searchedArticles} />
+        ) : (
+          <div>
+            <p className={`text-center`}>
+              <IconContext.Provider value={{ size: "4rem", color: `#FED15A` }}>
+                <HiOutlineEmojiSad />
+              </IconContext.Provider>
+            </p>
+            <p className={`text-center heading ${styles.textChanged}`}>
+              Found 0 articles matching the given search.
+            </p>
+          </div>
+        )}
       </section>
     </motion.div>
   );

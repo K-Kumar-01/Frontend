@@ -92,3 +92,8 @@
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
 }
+
+.textChanged {
+  font-size: 2rem;
+  color: lightslategray
+}
