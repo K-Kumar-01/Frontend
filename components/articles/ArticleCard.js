@@ -85,8 +85,11 @@ const Content = (props) => {
           <strong className={`heading`}>Posted on :</strong>{" "}
           {` ${new Date(article.createdAt).toLocaleDateString()}`}
         </div>
-        <div className={`${styles.row} mt-3`}>
+        <div className={`${styles.row} my-3`}>
           {renderCategories(article.category)}
+        </div>
+        <div className={`${styles.row} ${styles.desc}`}>
+          {article.mdesc + " ..."}
         </div>
       </div>
     </motion.div>

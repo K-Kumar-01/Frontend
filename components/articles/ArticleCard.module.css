@@ -100,3 +100,10 @@
   text-decoration: none;
   color: wheat;
 }
+
+.desc {
+  font-family: cursive;
+  color: white;
+  text-shadow: 1px -1px 8px black;
+  font-size: 1.2rem;
+}
