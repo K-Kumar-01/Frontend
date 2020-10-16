@@ -7,6 +7,7 @@ import {
   FETCH_PARTICULAR_ARTILCE,
   TOGGLE_FAVOURITE,
   TOGGLE_LIKE,
+  SEARCH_ARTICLES,
 } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
@@ -116,6 +117,16 @@ export const toggleLikes = async (slug) => {
     response = await axios.patch(`${TOGGLE_LIKE(slug)}`, null, {
       headers: { Authorization: token },
     });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
+export const searchArticles = async (search) => {
+  let response;
+  try {
+    response = await axios.get(`${SEARCH_ARTICLES(search)}`);
     return response.data;
   } catch (error) {
     return (error.response && error.response.data) || { error: error.message };

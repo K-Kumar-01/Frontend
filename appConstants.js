@@ -24,6 +24,8 @@ const TOGGLE_FAVOURITE = (slug) => `${BASE_URL}api/article/favourite/${slug}`;
 const TOGGLE_LIKE = (slug) => `${BASE_URL}api/article/react/${slug}`;
 const FETCH_FAVOURITES = (username) =>
   `${BASE_URL}api/user/favourites/${username}`;
+const SEARCH_ARTICLES = (search) =>
+  `${BASE_URL}api/article/search?search=${search}`;
 export {
   UPLOADS,
   SIGNIN,
@@ -44,4 +46,5 @@ export {
   TOGGLE_FAVOURITE,
   TOGGLE_LIKE,
   FETCH_FAVOURITES,
+  SEARCH_ARTICLES,
 };

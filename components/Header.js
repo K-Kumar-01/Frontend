@@ -45,6 +45,7 @@ import { logoutUser } from "../actions/auth";
 
 import styles from "./Header.module.css";
 import ArticleCard from "./articles/ArticleCard";
+import LoadingSpinner from "./spinner/LoadingSpinner";
 
 const ToastedHeader = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -53,6 +54,7 @@ const ToastedHeader = (props) => {
   const [mainClass, setMainClass] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoggedIn(authenticate(COOKIE_NAME));
@@ -428,6 +430,7 @@ const ToastedHeader = (props) => {
 
   return (
     <div className={`${styles.App}`}>
+      {loading && <LoadingSpinner asOverlay/>}
       <nav className="navbar navbar-expand-lg navbar-top navbar-light bg-light sticky-top">
         <div className="container">
           {props.sidebar ? (
@@ -472,8 +475,16 @@ const ToastedHeader = (props) => {
                   <form
                     id="demo-2"
                     onSubmit={(e) => {
-                      setShowSearch(true);
                       e.preventDefault();
+                      if (searchText === "") {
+                        addToast(`Invalid Search text`, {
+                          appearance: "error",
+                          autoDismiss: true,
+                        });
+                        return;
+                      }
+                      setShowSearch(true);
+                      setLoading(true);
                     }}
                   >
                     <input
