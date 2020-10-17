@@ -426,7 +426,7 @@ font-family: 'Lora', serif; */
 }
 .mainContainer .containerLP .right span {
   font-size: 72px;
-  letter-spacing: -4px;
+  letter-spacing: 2px;
   color: #232323;
 }
 .mainContainer .containerLP .right p {
@@ -477,7 +477,7 @@ font-family: 'Lora', serif; */
   background: linear-gradient(to bottom, #1d1d1d, black);
   position: absolute;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   height: auto;
 }
 .mainContainer article {
@@ -550,6 +550,10 @@ font-family: 'Lora', serif; */
   text-transform: uppercase;
 }
 
+.containerLP {
+  margin-bottom: 1rem;
+}
+
 @media (min-width: 1024px) {
   .mainContainer .cover-heading h1 {
     font-size: 72px;
@@ -607,12 +611,19 @@ font-family: 'Lora', serif; */
 .header-img {
   width: 100%;
   border-radius: 1rem;
-  min-height: 50vw;
+  height: clamp(50vw, 50vw, 300px);
   /* -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right
         bottom, from(transparent), to(rgba(255, 255, 255, 0.4))); */
-
+  /* 
   -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right
-        bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.4)));
+        bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.4))); */
+}
+
+@media (max-width: 992px) {
+  .header-img {
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right
+          bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.4)));
+  }
 }
 
 @media (max-width: 992px) {

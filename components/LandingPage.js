@@ -407,6 +407,30 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
+          <div
+            style={{
+              display: scrolled ? "block" : "none",
+              backgroundColor: "white",
+              width: "100%",
+            }}
+          >
+            <div className="container">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse interdum sapien tortor, sit amet eleifend lorem
+              sagittis non. Nullam est lectus, bibendum at finibus eu, tincidunt
+              eu massa. Nam id lorem fringilla, semper elit in, convallis metus.
+              Fusce dignissim pharetra urna, non tempor leo. Proin sagittis eget
+              mi id tincidunt. Vivamus maximus lacus ac sapien aliquet, accumsan
+              bibendum diam mollis. Praesent aliquet eros tincidunt, viverra
+              metus ac, consequat erat. Praesent vel tempus libero. Curabitur in
+              rhoncus dui. In hac habitasse platea dictumst. Sed nisi erat,
+              posuere non mi nec, ultrices imperdiet neque. Nulla pellentesque
+              accumsan condimentum. Nullam sed mattis sem. Phasellus pharetra,
+              urna vel faucibus tempus, sapien ipsum elementum risus, vel
+              volutpat est felis ornare nisi. Fusce vulputate dolor eget semper
+              viverra. Maecenas finibus bibendum nibh.
+            </div>
+          </div>
         </div>
         <div className="cover-4"></div>
         <div className="cover-3"></div>
