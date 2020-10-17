@@ -362,7 +362,7 @@ const LandingPage = () => {
             </ul>
           </header>
 
-          <div className="container">
+          {/* <div className="containerLP">
             <div className="left">
               <img
                 className="header-img"
@@ -379,51 +379,32 @@ const LandingPage = () => {
               </h1>
               <p className="sub-heading">
                 <Link href={`/articles`}>
-					<a>Get Started</a>
-				</Link>
+                  <a>Get Started</a>
+                </Link>
               </p>
             </div>
-            <div className={` mt-5`} style={{ opacity: scrolled ? "1" : "0" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              rutrum urna et porttitor elementum. Nam ut finibus massa, eget
-              commodo nisl. Aliquam erat volutpat. Donec urna neque, interdum
-              aliquet tempus a, lacinia vitae orci. Proin metus ligula, placerat
-              vitae augue condimentum, vestibulum pharetra ipsum. Suspendisse
-              potenti. Morbi ac velit ut nisi ornare auctor at vel nisl. Aenean
-              at ex in nulla faucibus blandit nec at ante. Nunc dignissim ante
-              nec hendrerit vulputate. Etiam laoreet faucibus lorem pulvinar
-              dignissim. Aliquam ultricies nulla at nisi condimentum,
-              scelerisque sodales eros sodales. Curabitur auctor ultricies
-              risus, vel viverra arcu vehicula at. Morbi accumsan ultrices lacus
-              eget varius. Suspendisse arcu velit, efficitur in consequat id,
-              gravida vitae nisl. Integer dui risus, aliquam nec massa vel,
-              scelerisque lobortis velit. Sed eget rutrum neque, ut scelerisque
-              metus. Interdum et malesuada fames ac ante ipsum primis in
-              faucibus. Nunc elementum ipsum sit amet interdum euismod. Integer
-              condimentum vel sapien quis consequat. Mauris nulla diam, commodo
-              vitae odio non, elementum bibendum enim. Donec eu vulputate odio,
-              sit amet vulputate justo. Vestibulum odio mauris, porta nec
-              ullamcorper a, lacinia at dolor. Etiam suscipit massa neque. Sed
-              egestas suscipit hendrerit. Nulla enim magna, tempus laoreet
-              porttitor non, hendrerit ut ex. Integer rutrum augue nibh,
-              accumsan sodales est tincidunt in. Donec condimentum orci id nibh
-              pharetra imperdiet. Pellentesque libero sapien, imperdiet ut justo
-              ut, placerat tempus quam. Proin ut leo quis diam mattis molestie.
-              Aliquam volutpat magna felis, nec iaculis diam bibendum ac. Morbi
-              cursus quis elit eu tincidunt. Nunc nec ex semper, porta mauris
-              sit amet, vulputate sapien. Fusce sodales lacus dictum,
-              pellentesque augue et, auctor massa. In sed feugiat magna.
-              Pellentesque eleifend, justo pretium maximus aliquam, erat nisi
-              laoreet libero, in aliquet dui tellus nec urna. Phasellus iaculis
-              porttitor tortor. Pellentesque a laoreet dui, quis efficitur
-              risus. Nullam lacus turpis, ornare sed nibh eget, congue placerat
-              lacus. Morbi diam purus, molestie non porta sit amet, convallis
-              sed lacus. Sed fermentum posuere imperdiet. Aenean porttitor, quam
-              ut aliquet faucibus, ante felis suscipit nunc, in dignissim turpis
-              ipsum eget ligula. Praesent eros eros, suscipit at ligula sit
-              amet, luctus ultrices libero. Vivamus sed odio tempor purus
-              facilisis sodales. Pellentesque porttitor, metus tristique porta
-              sodales, eros risus dignissim enim, quis tincid
+          </div> */}
+          <div className={`mx-3 containerLP`}>
+            <div className={`row`}>
+              <div className={`col-lg-8 col-md-10 mx-auto col-12`}>
+                <img
+                  className="header-img"
+                  src="https://images.unsplash.com/photo-1522211988038-6fcbb8c12c7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                  alt=""
+                />
+              </div>
+              <div className={`col-lg-4 col-md-10 mx-auto col-12 right`}>
+                <h1 className="heading">
+                  <span>TITAN </span>
+                  <br />
+                  READ
+                </h1>
+                <p className="sub-heading">
+                  <Link href={`/articles`}>
+                    <a>Get Started</a>
+                  </Link>
+                </p>
+              </div>
             </div>
           </div>
         </div>
