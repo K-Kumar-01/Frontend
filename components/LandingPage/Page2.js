@@ -33,6 +33,23 @@ const Page2 = () => {
     },
   };
 
+  const leftVariants = {
+    hidden: {
+      x: -200,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.75,
+        ease: "easeIn",
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
   const rightVariants = {
     hidden: {
       x: 200,
@@ -44,7 +61,8 @@ const Page2 = () => {
       transition: {
         duration: 0.75,
         ease: "easeIn",
-        staggerChildren: 0.3,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
@@ -70,10 +88,11 @@ const Page2 = () => {
       <div className={`mx-3 containerLP`}>
         <div className={`row`}>
           <motion.div
-            variants={leftEntranceVariants}
+            variants={leftVariants}
             className={`col-lg-8 col-md-10 mx-auto col-12`}
           >
-            <img
+            <motion.img
+              variants={leftEntranceVariants}
               className="header-img"
               src="https://images.unsplash.com/photo-1522211988038-6fcbb8c12c7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
               alt=""
@@ -84,15 +103,15 @@ const Page2 = () => {
             className={`col-lg-4 col-md-10 mx-auto col-12 right`}
           >
             <h1 className="heading">
-              <motion.p variants={rightEntranceVariants}>TITAN </motion.p>
+              <motion.span variants={rightEntranceVariants}>TITAN </motion.span>
               <br />
               <motion.div variants={rightEntranceVariants}>READ</motion.div>
             </h1>
-            <p className="sub-heading">
+            <motion.p variants={rightEntranceVariants} className="sub-heading">
               <Link href={`/articles`}>
                 <a>Get Started</a>
               </Link>
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </div>

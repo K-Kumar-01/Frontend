@@ -526,7 +526,15 @@ const LandingPage = () => {
       fontSize: "4rem",
       justifyContent: "start",
     },
-    { ...commonStyle, background: "#161616", display: "block", color: "white" },
+    {
+      ...commonStyle,
+      background: "#161616",
+      display: "block",
+      color: "white",
+      minHeight: "80vh",
+      height: "auto",
+      paddingBottom: "1rem",
+    },
   ];
 
   const [page, setPage] = useState(0);

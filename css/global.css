@@ -630,14 +630,14 @@ font-family: 'Lora', serif; */
         bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.4))); */
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .header-img {
     -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right
           bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.4)));
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .logo {
     font-size: 1.5rem;
   }
