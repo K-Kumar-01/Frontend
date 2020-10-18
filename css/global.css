@@ -9,6 +9,10 @@
   /* --cy:; */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   font-family: "Alegreya", serif;

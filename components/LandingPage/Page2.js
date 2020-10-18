@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import AnimatedBox from "./AnimatedBox";
 
 const Page2 = () => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(true);
+    }, 2000);
+  }, []);
+
   const rightEntranceVariants = {
     hidden: {
       x: 200,
@@ -75,7 +84,7 @@ const Page2 = () => {
         </motion.div>
         <motion.ul variants={rightEntranceVariants} className="items">
           <li className="item">
-            <a href="">About</a>
+            <a href="#about">About</a>
           </li>
           <li className="item">
             <a href="">Why Us</a>
@@ -115,6 +124,24 @@ const Page2 = () => {
           </motion.div>
         </div>
       </div>
+      {show && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          style={{ background: "white" }}
+        >
+          <a name="about">
+            <AnimatedBox />
+            <AnimatedBox />
+            <AnimatedBox />
+            <AnimatedBox />
+            <AnimatedBox />
+            <AnimatedBox />
+            <AnimatedBox />
+            <AnimatedBox />
+          </a>
+        </motion.div>
+      )}
     </React.Fragment>
   );
 };
