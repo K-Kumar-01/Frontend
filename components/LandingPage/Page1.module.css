@@ -1,0 +1,10 @@
+.changedFont {
+  font-size: 8rem;
+  font-weight: 900;
+  z-index: -1;
+  color: #2d2d2d;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 4px;
+  margin-left: 7.5rem;
+  line-height: 1;
+}

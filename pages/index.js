@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Footer from "../components/Footer";
-import LandingPage from "../components/LandingPage";
+import LandingPage from "../components/LandingPage/LandingPage";
 import Layout from "../components/Layout";
 
 const Index = () => {

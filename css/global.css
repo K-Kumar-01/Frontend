@@ -387,7 +387,7 @@ font-family: 'Lora', serif; */
   height: 100vh;
   overflow: hidden;
 }
-.mainContainer .headerLP {
+.headerLP {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -396,27 +396,35 @@ font-family: 'Lora', serif; */
   align-items: center;
   padding: 20px 14px;
 }
-.mainContainer .headerLP img {
+.headerLP img {
   height: 15px;
 }
-.mainContainer .headerLP ul {
+.headerLP ul {
   margin-left: auto;
 }
-.mainContainer .headerLP ul li {
+.headerLP ul li {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.headerLP ul li a {
   color: white;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 10px;
   letter-spacing: 1px;
   display: inline-block;
-  margin-left: 10px;
 }
 
-.mainContainer .containerLP .right {
+.headerLP ul li a:hover {
+  text-decoration: none;
+}
+
+.containerLP .right {
   padding: 0 10px;
   /* margin-top: -100px; */
 }
-.mainContainer .containerLP .right h1 {
+.containerLP .right h1 {
   color: white;
   font-size: 6rem;
   font-weight: 900;
@@ -424,12 +432,12 @@ font-family: 'Lora', serif; */
   font-family: serif;
   line-height: 1;
 }
-.mainContainer .containerLP .right span {
+.containerLP .right span {
   font-size: 72px;
   letter-spacing: 2px;
   color: #232323;
 }
-.mainContainer .containerLP .right p {
+.containerLP .right p {
   margin-top: 40px;
   max-width: 600px;
   color: white;
@@ -437,7 +445,7 @@ font-family: 'Lora', serif; */
   font-size: 18px;
   line-height: 1.7;
 }
-.mainContainer .containerLP .right a {
+.containerLP .right a {
   text-decoration: none;
   color: white;
   display: inline-block;
@@ -500,7 +508,7 @@ font-family: 'Lora', serif; */
   height: 100vh;
 }
 
-.mainContainer .containerLP .right a:hover {
+.containerLP .right a:hover {
   background-color: white;
   color: black;
 }
@@ -564,15 +572,18 @@ font-family: 'Lora', serif; */
   .mainContainer .imsrk2 {
     font-size: 124px;
   }
-  .mainContainer .headerLP {
+  .headerLP {
     padding: 50px 80px;
   }
-  .mainContainer .headerLP ul {
+  .headerLP ul {
     margin-left: auto;
   }
-  .mainContainer .headerLP ul li {
+  .headerLP ul li {
     font-size: 14px;
     margin-left: 50px;
+  }
+  .headerLP ul li a {
+    font-size: 14px;
   }
 
   .mainContainer .containerLP .right h1 {
