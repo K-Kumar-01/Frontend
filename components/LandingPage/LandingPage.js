@@ -455,11 +455,11 @@ const LandingPage = () => {
   const pageVariants = [
     {
       hidden: {
-        x: "100vw",
+        y: "150vh",
         opacity: 0,
       },
       visible: {
-        x: 0,
+        y: 0,
         opacity: 1,
         transition: {
           when: "beforeChildren",
@@ -533,9 +533,8 @@ const LandingPage = () => {
       background: "#161616",
       display: "block",
       color: "white",
-      minHeight: "80vh",
+      minHeight: "100vh",
       height: "auto",
-      paddingBottom: "1rem",
     },
   ];
 

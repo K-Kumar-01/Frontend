@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 
-const AnimatedBox = () => {
+const AnimatedBox = (props) => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
 
@@ -18,21 +18,14 @@ const AnimatedBox = () => {
         ref={ref}
         animate={controls}
         initial="hidden"
-        style={{
-          padding: 40,
-          background: "blue",
-          display: "inline-block",
-          marginTop: 150,
-          marginLeft: 40,
-          marginBottom: 150,
-          borderRadius: 5,
-        }}
         transition={{ duration: 1, ease: "easeOut" }}
         variants={{
           visible: { opacity: 1, x: 0 },
           hidden: { opacity: 0, x: 300 },
         }}
-      />
+      >
+        {props.children}
+      </motion.div>
     </div>
   );
 };
