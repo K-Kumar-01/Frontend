@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import styles from "./About.module.css";
 
 const About = () => {
   const [[page, direction], setPage] = useState([0, 0]);
@@ -42,63 +43,50 @@ const About = () => {
   );
   useEffect(() => {
     const interval = setInterval(() => {
-      // console.log("This will run every second!");
       paginate(1);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, [paginate]);
 
   return (
-    <section
-      style={{
-        background: "#444454",
-      }}
-    >
+    <section className={styles.mainContainer}>
       <h2 className="heading text-center pt-5">ABOUT</h2>
-      <div
-        style={{
-          width: "100vw",
-          height: "50vh",
-          position: "relative",
-          overflow: "hidden",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <motion.div
-          key={page}
-          className="new-container"
-          // src={images[page%3]}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 200 },
-            opacity: { duration: 1 },
-            duration: 1,
-          }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
+      <div className={styles.parentContainer}>
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={page}
+            className={`${styles.newContainer}`}
+            // src={images[page%3]}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 200 },
+              opacity: { duration: 1 },
+              duration: 1,
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
 
-            if (swipe < -swipeConfidenceThreshold) {
-              paginate(1);
-            } else if (swipe > swipeConfidenceThreshold) {
-              paginate(-1);
-            }
-          }}
-        >
-          {data[page % 3]}
-        </motion.div>
-        <div className="next" onClick={() => paginate(1)}>
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1);
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1);
+              }
+            }}
+          >
+            {data[page % 3]}
+          </motion.div>
+        </AnimatePresence>
+        <div className={`${styles.next}`} onClick={() => paginate(1)}>
           {"‣"}
         </div>
-        <div className="prev" onClick={() => paginate(-1)}>
+        <div className={`${styles.prev}`} onClick={() => paginate(-1)}>
           {"‣"}
         </div>
       </div>
