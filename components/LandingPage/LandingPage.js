@@ -533,7 +533,7 @@ const LandingPage = () => {
       background: "#161616",
       display: "block",
       color: "white",
-      minHeight: "100vh",
+      minHeight: "10ov0vh",
       height: "auto",
     },
   ];

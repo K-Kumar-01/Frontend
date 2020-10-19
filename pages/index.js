@@ -23,7 +23,9 @@ const Index = () => {
   return (
     <React.Fragment>
       {head()}
-      <LandingPage />
+      <div style={{ overflowX: "hidden" }}>
+        <LandingPage />
+      </div>
     </React.Fragment>
   );
 };
