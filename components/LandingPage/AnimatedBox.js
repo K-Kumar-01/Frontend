@@ -12,17 +12,28 @@ const AnimatedBox = (props) => {
     }
   }, [controls, inView]);
 
+  const variants = {
+    hidden: {
+      opacity: 0,
+      x: "50vw",
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <div>
       <motion.div
         ref={ref}
         animate={controls}
+        variants={props.variants || variants}
         initial="hidden"
-        transition={{ duration: 1, ease: "easeOut" }}
-        variants={{
-          visible: { opacity: 1, x: 0 },
-          hidden: { opacity: 0, x: 300 },
-        }}
       >
         {props.children}
       </motion.div>

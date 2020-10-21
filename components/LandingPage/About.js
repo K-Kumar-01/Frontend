@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./About.module.css";
+import AnimatedBox from "./AnimatedBox";
 
 const About = () => {
   const [[page, direction], setPage] = useState([0, 0]);
@@ -50,46 +51,50 @@ const About = () => {
 
   return (
     <section className={styles.mainContainer}>
-      <h2 className="heading text-center pt-5">ABOUT</h2>
-      <div className={styles.parentContainer}>
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={page}
-            className={`${styles.newContainer}`}
-            // src={images[page%3]}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 200 },
-              opacity: { duration: 1 },
-              duration: 1,
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x);
+      <AnimatedBox>
+        <h2 className="heading text-center pt-5">ABOUT</h2>
+      </AnimatedBox>
+      <AnimatedBox>
+        <div className={styles.parentContainer}>
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={page}
+              className={`${styles.newContainer}`}
+              // src={images[page%3]}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 200 },
+                opacity: { duration: 1 },
+                duration: 1,
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x);
 
-              if (swipe < -swipeConfidenceThreshold) {
-                paginate(1);
-              } else if (swipe > swipeConfidenceThreshold) {
-                paginate(-1);
-              }
-            }}
-          >
-            {data[page % 3]}
-          </motion.div>
-        </AnimatePresence>
-        <div className={`${styles.next}`} onClick={() => paginate(1)}>
-          {"‣"}
+                if (swipe < -swipeConfidenceThreshold) {
+                  paginate(1);
+                } else if (swipe > swipeConfidenceThreshold) {
+                  paginate(-1);
+                }
+              }}
+            >
+              {data[page % 3]}
+            </motion.div>
+          </AnimatePresence>
+          <div className={`${styles.next}`} onClick={() => paginate(1)}>
+            {"‣"}
+          </div>
+          <div className={`${styles.prev}`} onClick={() => paginate(-1)}>
+            {"‣"}
+          </div>
         </div>
-        <div className={`${styles.prev}`} onClick={() => paginate(-1)}>
-          {"‣"}
-        </div>
-      </div>
+      </AnimatedBox>
     </section>
   );
 };

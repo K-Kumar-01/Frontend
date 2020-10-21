@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import AnimatedBox from "./AnimatedBox";
 import About from "./About";
+import WhyUs from "./WhyUs";
 
 const Page2 = () => {
   const [show, setShow] = useState(false);
@@ -147,8 +148,9 @@ const Page2 = () => {
             <AnimatedBox />
             <AnimatedBox />
             <AnimatedBox /> */}
-            <About />
-            
+
+            {/* <About /> */}
+            <WhyUs/>
           </a>
         </motion.div>
       )}
