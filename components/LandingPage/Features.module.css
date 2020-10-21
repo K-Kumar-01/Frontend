@@ -1,0 +1,25 @@
+.mainContainer {
+  background-color: rgb(196, 196, 196);
+  padding: 3.5rem 0.5rem;
+  color: black;
+}
+
+.heading {
+  font-size: 5rem;
+}
+
+.feature {
+  margin-bottom: 1rem;
+}
+
+.feature p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 4rem;
+  }
+}

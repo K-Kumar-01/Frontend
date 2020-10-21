@@ -4,6 +4,7 @@ import Link from "next/link";
 import AnimatedBox from "./AnimatedBox";
 import About from "./About";
 import WhyUs from "./WhyUs";
+import Features from "./Features";
 
 const Page2 = () => {
   const [show, setShow] = useState(false);
@@ -150,7 +151,10 @@ const Page2 = () => {
             <AnimatedBox /> */}
 
             {/* <About /> */}
-            <WhyUs/>
+            <WhyUs />
+          </a>
+          <a name="">
+            <Features />
           </a>
         </motion.div>
       )}

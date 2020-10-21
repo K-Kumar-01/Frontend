@@ -28,16 +28,15 @@ const AnimatedBox = (props) => {
   };
 
   return (
-    <div>
-      <motion.div
-        ref={ref}
-        animate={controls}
-        variants={props.variants || variants}
-        initial="hidden"
-      >
-        {props.children}
-      </motion.div>
-    </div>
+    <motion.div
+      ref={ref}
+      animate={controls}
+      variants={props.variants || variants}
+      initial="hidden"
+      className={`${props.class}`}
+    >
+      {props.children}
+    </motion.div>
   );
 };
 
