@@ -8,6 +8,31 @@
   font-size: 5rem;
 }
 
+.member {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  font-family: "Monstserrat", sans-serif;
+}
+
+.memberContainer {
+  margin-bottom: 2.25rem;
+}
+
+.memberImage {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid ghostwhite;
+}
+
+.name {
+  font-family: cursive;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .heading {
     font-size: 4rem;
