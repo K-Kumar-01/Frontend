@@ -22,7 +22,7 @@ import { MdChat, MdFavorite, MdCollectionsBookmark } from "react-icons/md";
 
 const Features = () => {
   const controls = useAnimation();
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({ threshold: 0.05 });
 
   useEffect(() => {
     if (inView) {
@@ -38,7 +38,7 @@ const Features = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1,
+        duration: 0.5,
         ease: "easeOut",
         staggerChildren: 0.5,
         when: "beforeChildren",

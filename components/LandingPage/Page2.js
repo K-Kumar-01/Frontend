@@ -5,6 +5,7 @@ import AnimatedBox from "./AnimatedBox";
 import About from "./About";
 import WhyUs from "./WhyUs";
 import Features from "./Features";
+import Contact from "./Contact";
 
 const Page2 = () => {
   const [show, setShow] = useState(false);
@@ -94,7 +95,7 @@ const Page2 = () => {
               <a href="">Why Us</a>
             </li>
             <li className="item">
-              <a href="">Contact</a>
+              <a href="#contact">Contact</a>
             </li>
           </motion.ul>
         </header>
@@ -155,6 +156,9 @@ const Page2 = () => {
           </a>
           <a name="">
             <Features />
+          </a>
+          <a name="contact">
+            <Contact />
           </a>
         </motion.div>
       )}

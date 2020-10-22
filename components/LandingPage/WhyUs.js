@@ -10,7 +10,7 @@ const WhyUs = () => {
       </AnimatedBox>
       <AnimatedBox>
         <div className={`text-center ${styles.description} mx-auto`}>
-          <p>
+          <p className={`mb-5`}>
             We provide our user with good quality content. Basically our goal is
             to keep everything simple and precise. We do not contain any Pop-up
             Ads that might hamper your experience with us.

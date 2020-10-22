@@ -1,0 +1,15 @@
+.mainContainer {
+  background-color: white;
+  padding: 3.5rem 0.5rem;
+  color: black;
+}
+
+.heading {
+  font-size: 5rem;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 4rem;
+  }
+}

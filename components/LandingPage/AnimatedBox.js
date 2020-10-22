@@ -4,7 +4,7 @@ import { motion, useAnimation } from "framer-motion";
 
 const AnimatedBox = (props) => {
   const controls = useAnimation();
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({ threshold: 0.05 });
 
   useEffect(() => {
     if (inView) {
