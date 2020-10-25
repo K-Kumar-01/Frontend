@@ -27,7 +27,7 @@ const FETCH_FAVOURITES = (username) =>
 const SEARCH_ARTICLES = (search) =>
   `${BASE_URL}api/article/search?search=${search}`;
 const ARTICLES_BY_SPECIFIC_USER = (username) =>
-  `${BASE_URL}api/user/article${username}`;
+  `${BASE_URL}api/user/articles/${username}`;
 export {
   UPLOADS,
   SIGNIN,

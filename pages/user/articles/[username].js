@@ -1,8 +1,26 @@
 import React from "react";
 import { getArticlesBySpecificUser } from "../../../actions/user";
+import Error from "next/error";
+import Layout from "../../../components/Layout";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
+import PostedArticles from "../../../components/user/PostedArticles";
 
-const ArticlesBySpecificUserPage = () => {
-  return <div></div>;
+const ArticlesBySpecificUserPage = (props) => {
+  return (
+    <React.Fragment>
+      {props.error ? (
+        <Error statusCode={props.error} />
+      ) : (
+        <Layout>
+          <Header sidebar>
+            <PostedArticles articles={props.articles} />
+          </Header>
+          <Footer />
+        </Layout>
+      )}
+    </React.Fragment>
+  );
 };
 
 ArticlesBySpecificUserPage.getInitialProps = async (props) => {
@@ -11,7 +29,7 @@ ArticlesBySpecificUserPage.getInitialProps = async (props) => {
   try {
     response = await getArticlesBySpecificUser(username);
   } catch (error) {
-    return { error: response.error.status };
+    return { error: 500 };
   }
   if (response.error) {
     return { error: response.error.status };

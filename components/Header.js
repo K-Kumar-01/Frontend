@@ -570,9 +570,9 @@ const ToastedHeader = (props) => {
                     <Link href={`/favourites/${loggedIn.username}`}>
                       <a className="dropdown-item">My Favourites</a>
                     </Link>
-                    <a className="dropdown-item" href="#">
-                      My Posts
-                    </a>
+                    <Link href={`/user/articles/${loggedIn.username}`}>
+                      <a className="dropdown-item">My Posts</a>
+                    </Link>
                     <div className="dropdown-divider"></div>
 
                     <button className="dropdown-item" onClick={logout}>
