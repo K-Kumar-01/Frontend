@@ -1,5 +1,10 @@
 import axios from "axios";
-import { BASE_URL, COOKIE_NAME, FETCH_FAVOURITES } from "../appConstants";
+import {
+  BASE_URL,
+  COOKIE_NAME,
+  FETCH_FAVOURITES,
+  ARTICLES_BY_SPECIFIC_USER,
+} from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
 export const updateUser = async (username, data) => {
@@ -41,6 +46,16 @@ export const getFavourites = async (username, token) => {
     response = await axios.get(`${FETCH_FAVOURITES(username)}`, {
       headers: headerOpts,
     });
+    return response.data;
+  } catch (error) {
+    return { error: error.response || { status: 500 } };
+  }
+};
+
+export const getArticlesBySpecificUser = async (username) => {
+  let response;
+  try {
+    response = await axios.get(`${ARTICLES_BY_SPECIFIC_USER(username)}`);
     return response.data;
   } catch (error) {
     return { error: error.response || { status: 500 } };

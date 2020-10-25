@@ -26,6 +26,8 @@ const FETCH_FAVOURITES = (username) =>
   `${BASE_URL}api/user/favourites/${username}`;
 const SEARCH_ARTICLES = (search) =>
   `${BASE_URL}api/article/search?search=${search}`;
+const ARTICLES_BY_SPECIFIC_USER = (username) =>
+  `${BASE_URL}api/user/article${username}`;
 export {
   UPLOADS,
   SIGNIN,
@@ -47,4 +49,5 @@ export {
   TOGGLE_LIKE,
   FETCH_FAVOURITES,
   SEARCH_ARTICLES,
+  ARTICLES_BY_SPECIFIC_USER,
 };
