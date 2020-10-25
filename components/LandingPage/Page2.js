@@ -127,7 +127,7 @@ const Page2 = () => {
                 variants={rightEntranceVariants}
                 className="sub-heading"
               >
-                <Link href={`/articles`}>
+                <Link href={`/signup`}>
                   <a>Get Started</a>
                 </Link>
               </motion.p>
@@ -142,16 +142,6 @@ const Page2 = () => {
           style={{ background: "white" }}
         >
           <a name="about">
-            {/* <AnimatedBox />
-            <AnimatedBox />
-            <AnimatedBox />
-            <AnimatedBox />
-            <AnimatedBox />
-            <AnimatedBox />
-            <AnimatedBox />
-            <AnimatedBox /> */}
-
-            {/* <About /> */}
             <WhyUs />
           </a>
           <a name="">

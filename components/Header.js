@@ -514,7 +514,10 @@ const ToastedHeader = (props) => {
               </li>
 
               {props.search && (
-                <li className={`nav-item searchBar mr-3 ${styles.searchIcon}`} title="Search Articles">
+                <li
+                  className={`nav-item searchBar mr-3 ${styles.searchIcon}`}
+                  title="Search Articles"
+                >
                   <form
                     id="demo-2"
                     onSubmit={(e) => {
@@ -563,6 +566,9 @@ const ToastedHeader = (props) => {
                     </Link>
                     <Link href={`/user/profile/${loggedIn.username}`}>
                       <a className="dropdown-item">Dashboard</a>
+                    </Link>
+                    <Link href={`/favourites/${loggedIn.username}`}>
+                      <a className="dropdown-item">My Favourites</a>
                     </Link>
                     <a className="dropdown-item" href="#">
                       My Posts

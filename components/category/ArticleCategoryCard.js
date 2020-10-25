@@ -21,7 +21,11 @@ const ArticleCategoryCard = (props) => {
         <div className="card mx-auto">
           <div className="card-body">
             <div className="row d-flex">
-              <div className="col-md-4 col-12 d-flex align-items-center">
+              <div
+                className={`${
+                  props.fav ? "col-md-2" : "col-md-4"
+                } col-10 mx-auto d-flex align-items-center`}
+              >
                 <Link href={`/articles/${article.slug}`}>
                   <a>
                     <img
@@ -34,7 +38,7 @@ const ArticleCategoryCard = (props) => {
                   </a>
                 </Link>
               </div>
-              <div className="col-md-8 col-12">
+              <div className={`${props.fav ? "col-md-10" : "col-md-8"} col-12`}>
                 <Link href={`/articles/${article.slug}`}>
                   <a className={`${styles.link} ${styles.headLink}`}>
                     <h4 className="card-title font-weight-bold">
