@@ -1,0 +1,40 @@
+.footer * {
+  color: white;
+}
+
+.colored {
+  color: #20b2aa;
+}
+
+.logo {
+  font-size: 4rem;
+  letter-spacing: 5px;
+}
+
+.link {
+  font-family: "Roboto", sans-serif;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.link:after {
+  content: " | ";
+}
+
+.copyright {
+  color: black;
+  font-size: 1.1rem;
+  font-family: "Karla", sans-serif;
+}
+
+.nopipe::after {
+  content: "";
+}
+
+.about {
+  color: #92999f;
+  font-family: "Montserrat", sans-serif;
+}

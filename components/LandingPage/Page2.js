@@ -6,6 +6,7 @@ import About from "./About";
 import AboutUs from "./AboutUs";
 import Features from "./Features";
 import Contact from "./Contact";
+import FooterLandingPage from "./FooterLandingPage";
 
 const Page2 = () => {
   const [show, setShow] = useState(false);
@@ -83,57 +84,59 @@ const Page2 = () => {
   return (
     <React.Fragment>
       <main>
-        <header className="headerLP">
-          <motion.div variants={leftEntranceVariants} className="logo">
-            TR
-          </motion.div>
-          <motion.ul variants={rightEntranceVariants} className="items">
-            <li className="item">
-              <a href="#about">About</a>
-            </li>
-            <li className="item">
-              <a href="#whyus">Why Us</a>
-            </li>
-            <li className="item">
-              <a href="#contact">Contact</a>
-            </li>
-          </motion.ul>
-        </header>
-        <div className={`mx-3 containerLP`}>
-          <div className={`row`}>
-            <motion.div
-              variants={leftVariants}
-              className={`col-lg-8 col-md-10 mx-auto col-12`}
-            >
-              <motion.img
-                variants={leftEntranceVariants}
-                className="header-img"
-                src={`https://res.cloudinary.com/dr6pkartq/image/upload/v1603729194/cxwzdta4biyxvsutpdji.jpg`}
-                alt={`Titan Read`}
-              />
+        <a name="home">
+          <header className="headerLP">
+            <motion.div variants={leftEntranceVariants} className="logo">
+              TR
             </motion.div>
-            <motion.div
-              variants={rightVariants}
-              className={`col-lg-4 col-md-10 mx-auto col-12 right`}
-            >
-              <h1 className="heading">
-                <motion.span variants={rightEntranceVariants}>
-                  TITAN{" "}
-                </motion.span>
-                <br />
-                <motion.div variants={rightEntranceVariants}>READ</motion.div>
-              </h1>
-              <motion.p
-                variants={rightEntranceVariants}
-                className="sub-heading"
+            <motion.ul variants={rightEntranceVariants} className="items">
+              <li className="item">
+                <a href="#about">About</a>
+              </li>
+              <li className="item">
+                <a href="#whyus">Why Us</a>
+              </li>
+              <li className="item">
+                <a href="#contact">Contact</a>
+              </li>
+            </motion.ul>
+          </header>
+          <div className={`mx-3 containerLP`}>
+            <div className={`row`}>
+              <motion.div
+                variants={leftVariants}
+                className={`col-lg-8 col-md-10 mx-auto col-12`}
               >
-                <Link href={`/signup`}>
-                  <a>Get Started</a>
-                </Link>
-              </motion.p>
-            </motion.div>
+                <motion.img
+                  variants={leftEntranceVariants}
+                  className="header-img"
+                  src={`https://res.cloudinary.com/dr6pkartq/image/upload/v1603729194/cxwzdta4biyxvsutpdji.jpg`}
+                  alt={`Titan Read`}
+                />
+              </motion.div>
+              <motion.div
+                variants={rightVariants}
+                className={`col-lg-4 col-md-10 mx-auto col-12 right`}
+              >
+                <h1 className="heading">
+                  <motion.span variants={rightEntranceVariants}>
+                    TITAN{" "}
+                  </motion.span>
+                  <br />
+                  <motion.div variants={rightEntranceVariants}>READ</motion.div>
+                </h1>
+                <motion.p
+                  variants={rightEntranceVariants}
+                  className="sub-heading"
+                >
+                  <Link href={`/signup`}>
+                    <a>Get Started</a>
+                  </Link>
+                </motion.p>
+              </motion.div>
+            </div>
           </div>
-        </div>
+        </a>
       </main>
       {show && (
         <motion.div
@@ -150,6 +153,9 @@ const Page2 = () => {
           <a name="contact">
             <Contact />
           </a>
+          <footer style={{ background: "#666666" }}>
+            <FooterLandingPage />
+          </footer>
         </motion.div>
       )}
     </React.Fragment>
