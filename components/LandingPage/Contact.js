@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 import styles from "./Contact.module.css";
 import AnimatedBox from "./AnimatedBox";
@@ -9,7 +10,8 @@ const Contact = () => {
     {
       name: "Kushal Kumar",
       role: "Full stack",
-      image_url: "",
+      image_url:
+        "https://media-exp1.licdn.com/dms/image/C5603AQFfV2CuvNdnyQ/profile-displayphoto-shrink_400_400/0?e=1609372800&v=beta&t=MJqZLfArd2Ia4sJQAj7MlWA64oWRu4m9lmXLHxUN4hg",
       contact_email: "kushalkumar012000@gmail.com",
     },
     {
@@ -31,9 +33,18 @@ const Contact = () => {
       role: "Design and Tester",
       image_url:
         "https://res.cloudinary.com/dr6pkartq/image/upload/v1603364040/WhatsApp_Image_2020-10-17_at_12.23.39_AM_d0q611.jpg",
-      contact_email: "",
+      contact_email: "adarsh.mishra.mat19@itbhu.ac.in",
     },
   ];
+
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.05 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
 
   const parentVariants = {
     hidden: {
@@ -113,9 +124,16 @@ const Contact = () => {
             Contact
           </h1>
         </AnimatedBox>
-        <AnimatedBox variants={parentVariants} class={`row my-4 pl-4`}>
+
+        <motion.div
+          ref={ref}
+          animate={controls}
+          variants={parentVariants}
+          initial="hidden"
+          className={`row my-4 pl-4`}
+        >
           {renderMembers(MEMBERS)}
-        </AnimatedBox>
+        </motion.div>
       </div>
     </div>
   );
