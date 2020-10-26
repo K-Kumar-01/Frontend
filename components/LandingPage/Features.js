@@ -142,7 +142,7 @@ const Features = () => {
       <div className={`container`}>
         <AnimatedBox>
           <h1 className={`heading text-center ${styles.heading} mb-5`}>
-            Features
+            Why Us
           </h1>
         </AnimatedBox>
 

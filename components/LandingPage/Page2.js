@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import AnimatedBox from "./AnimatedBox";
 import About from "./About";
-import WhyUs from "./WhyUs";
+import AboutUs from "./AboutUs";
 import Features from "./Features";
 import Contact from "./Contact";
 
@@ -92,7 +92,7 @@ const Page2 = () => {
               <a href="#about">About</a>
             </li>
             <li className="item">
-              <a href="">Why Us</a>
+              <a href="#whyus">Why Us</a>
             </li>
             <li className="item">
               <a href="#contact">Contact</a>
@@ -142,9 +142,9 @@ const Page2 = () => {
           style={{ background: "white" }}
         >
           <a name="about">
-            <WhyUs />
+            <AboutUs />
           </a>
-          <a name="">
+          <a name="whyus">
             <Features />
           </a>
           <a name="contact">
