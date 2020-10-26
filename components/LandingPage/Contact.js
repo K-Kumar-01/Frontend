@@ -109,7 +109,12 @@ const Contact = () => {
             <h3 className={`text-capitalize ${styles.name}`}>{d.name}</h3>
             <div className={`${styles.role}`}>{d.role}</div>
             <div>
-              <a href={`mailto:${d.contact_email}`}>{d.contact_email}</a>
+              <a
+                href={`mailto:${d.contact_email}`}
+                className={`${styles.links}`}
+              >
+                {d.contact_email}
+              </a>
             </div>
           </div>
         </div>

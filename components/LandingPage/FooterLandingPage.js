@@ -23,7 +23,7 @@ const FooterLandingPage = () => {
   };
 
   return (
-    <main style={{ background: "#666666" }}>
+    <main style={{ background: "rgb(56,56,56)" }}>
       <div className={`container ${styles.footer} py-5`}>
         <AnimatedBox variants={variants}>
           <div className={`row`}>

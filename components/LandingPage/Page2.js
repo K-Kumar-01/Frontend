@@ -87,7 +87,7 @@ const Page2 = () => {
         <a name="home">
           <header className="headerLP">
             <motion.div variants={leftEntranceVariants} className="logo">
-              TR
+              T<span>R</span>
             </motion.div>
             <motion.ul variants={rightEntranceVariants} className="items">
               <li className="item">

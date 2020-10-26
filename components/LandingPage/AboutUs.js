@@ -1,6 +1,6 @@
 import AnimatedBox from "./AnimatedBox";
 
-import styles from "./WhyUs.module.css";
+import styles from "./AboutUs.module.css";
 
 const WhyUs = () => {
   return (
@@ -10,7 +10,7 @@ const WhyUs = () => {
       </AnimatedBox>
       <AnimatedBox>
         <div className={`text-center ${styles.description} mx-auto`}>
-          <p className={`mb-5`}>
+          <p className={`mb-5 ${styles.paraWidth}`}>
             How many times were you pondering over the thought that you want to
             have a go with the ignited minds of our era. In todays era where
             people are more inclined towards using the online platforms to put

@@ -1,0 +1,41 @@
+.mainContainer {
+  padding: 4rem 0.5rem;
+  background-color: rgb(56, 56, 56);
+}
+
+.heading {
+  margin-bottom: 2rem;
+  font-size: 5rem;
+}
+
+.description {
+  font-size: 1.5rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 75%;
+}
+.space {
+  height: 0.5rem;
+  width: 100%;
+}
+
+.paraWidth {
+  width: 65%;
+}
+
+@media (max-width: 992px) {
+  .paraWidth {
+    width: 85%;
+  }
+}
+
+@media (max-width: 576px) {
+  .paraWidth {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .description {
+    max-width: 60%;
+  }
+}
