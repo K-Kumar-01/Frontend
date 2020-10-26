@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 const Page0 = () => {
   const childeVariants = {
     hidden: {
-      // x: -200,
       opacity: 0,
     },
     visible: {

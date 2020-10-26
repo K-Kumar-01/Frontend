@@ -487,13 +487,6 @@ const LandingPage = () => {
           duration: 1,
         },
       },
-      // exit: {
-      //   y: "-100vh",
-      //   opacity: 0,
-      //   transition: {
-      //     duration: 0.5,
-      //   },
-      // },
     },
     {
       hidden: {
@@ -545,10 +538,7 @@ const LandingPage = () => {
       setPage(1);
       console.log("here safmknasl");
     }, 4500);
-
-    // setTimeout(() => {
-    //   setPage(2);
-    // }, 4500 + 3000);
+    
     setTimeout(() => {
       setPage(2);
       console.log("hereonce");

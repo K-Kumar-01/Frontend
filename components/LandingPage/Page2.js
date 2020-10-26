@@ -108,8 +108,8 @@ const Page2 = () => {
               <motion.img
                 variants={leftEntranceVariants}
                 className="header-img"
-                src="https://images.unsplash.com/photo-1522211988038-6fcbb8c12c7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                alt=""
+                src={`https://res.cloudinary.com/dr6pkartq/image/upload/v1603729194/cxwzdta4biyxvsutpdji.jpg`}
+                alt={`Titan Read`}
               />
             </motion.div>
             <motion.div

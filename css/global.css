@@ -381,9 +381,6 @@ font-family: 'Lora', serif; */
 
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
-.mainContainer {
-  /*# sourceMappingURL=style.css.map */
-}
 
 .mainContainer .bodyLP {
   -webkit-box-sizing: border-box;
@@ -408,6 +405,7 @@ font-family: 'Lora', serif; */
 }
 .headerLP ul {
   margin-left: auto;
+  padding-right: 10px;
 }
 .headerLP ul li {
   display: inline-block;
@@ -629,12 +627,7 @@ font-family: 'Lora', serif; */
 .header-img {
   width: 100%;
   border-radius: 1rem;
-  height: clamp(50vw, 50vw, 300px);
-  /* -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right
-        bottom, from(transparent), to(rgba(255, 255, 255, 0.4))); */
-  /* 
-  -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right
-        bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.4))); */
+  min-height: 300px;
 }
 
 @media (max-width: 991px) {
