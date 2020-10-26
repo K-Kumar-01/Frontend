@@ -140,8 +140,8 @@ const Page2 = () => {
       </main>
       {show && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
           style={{ background: "white" }}
         >
           <a name="about">
@@ -153,9 +153,7 @@ const Page2 = () => {
           <a name="contact">
             <Contact />
           </a>
-          <footer style={{ background: "#666666" }}>
-            <FooterLandingPage />
-          </footer>
+          <FooterLandingPage />
         </motion.div>
       )}
     </React.Fragment>
