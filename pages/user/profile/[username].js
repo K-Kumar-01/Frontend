@@ -8,6 +8,7 @@ import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
 import { getUserDetails } from "../../../actions/user";
 import { DOMAIN } from "../../../appConstants";
+import ErrorPage404 from "../../404";
 
 const UserIndex = (props) => {
   const head = () => {
@@ -45,7 +46,11 @@ const UserIndex = (props) => {
   return (
     <React.Fragment>
       {props.error ? (
-        <Error statusCode={props.error} />
+        props.error === 404 ? (
+          <ErrorPage404 />
+        ) : (
+          <Error statusCode={props.error} />
+        )
       ) : (
         <React.Fragment>
           {head()}

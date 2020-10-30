@@ -1,68 +1,112 @@
-import React, { useEffect, useState } from 'react';
-import EditProfile from '../../../components/user/crud/EditProfile';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
-import Layout from '../../../components/Layout';
-import { getUserDetails } from '../../../actions/user';
-import Error from 'next/error';
-import { useRouter } from 'next/router';
-import { authenticate } from '../../../helpers/auth';
-import { COOKIE_NAME } from '../../../appConstants';
-import Preloader from '../../../components/spinner/Preloader';
+import React, { useEffect, useState } from "react";
+import Head from "next/head";
+
+import EditProfile from "../../../components/user/crud/EditProfile";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
+import Layout from "../../../components/Layout";
+import { getUserDetails } from "../../../actions/user";
+import Error from "next/error";
+import { useRouter } from "next/router";
+import { authenticate } from "../../../helpers/auth";
+import { COOKIE_NAME, DOMAIN } from "../../../appConstants";
+import Preloader from "../../../components/spinner/Preloader";
+import ErrorPage404 from "../../404";
 
 const EditUser = (props) => {
-	const router = useRouter();
-	const [loggedIn, setLoggedIn] = useState(false);
-	useEffect(() => {
-		console.log('Hello');
-		let decodedData = authenticate(COOKIE_NAME);
-		setLoggedIn(decodedData);
-		if (!decodedData || !decodedData.username) {
-			console.log('YES');
-			router.push('/signin');
-		} else if (!props.error) {
-			if (decodedData.username.toString() !== router.query.username.toString()) {
-				router.push(`/user/edit/${decodedData.username}`);
-			}
-		}
-	}, []);
+  const router = useRouter();
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    console.log("Hello");
+    let decodedData = authenticate(COOKIE_NAME);
+    setLoggedIn(decodedData);
+    if (!decodedData || !decodedData.username) {
+      console.log("YES");
+      router.push("/signin");
+    } else if (!props.error) {
+      if (
+        decodedData.username.toString() !== router.query.username.toString()
+      ) {
+        router.push(`/user/edit/${decodedData.username}`);
+      }
+    }
+  }, []);
 
-	return (
-		<React.Fragment>
-			{loggedIn ? (
-				<div>
-					{props.error ? (
-						<Error statusCode={props.error} />
-					) : (
-						<Layout>
-							<Header />
-							<EditProfile userDetails={props.userDetails} />
-							<Footer />
-						</Layout>
-					)}
-				</div>
-			) : (
-				<div>
-					<Preloader/>
-				</div>
-			)}
-		</React.Fragment>
-	);
+  const head = () => {
+    let data = null;
+    if (props.userDetails) {
+      data = props.userDetails.userInfo;
+    }
+    return (
+      <Head>
+        <title>{`${data.username} (${data.name})`}</title>
+        <meta name="description" content={`Details of ${data.username}`} />
+        <link
+          rel="canonical"
+          href={`${DOMAIN}/user/profile/${data.username}`}
+        />
+        <meta property="og:title" content={`${data.username} | TITAN READ`} />
+        <meta
+          property="og:description"
+          content={`Details of ${data.username}`}
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`${DOMAIN}/user/profile/${data.username}`}
+        />
+        <meta property="og:site_name" content="TITAN READ" />
+
+        <meta property="og:image" content={`${data.avatar}`} />
+        <meta property="og:image:secure_url" content={`${data.avatar}`} />
+        <meta property="og:image:type" content="image/jpeg" />
+      </Head>
+    );
+  };
+
+  return (
+    <React.Fragment>
+      {loggedIn ? (
+        <div>
+          {props.error ? (
+            props.error === 404 ? (
+              <ErrorPage404 />
+            ) : (
+              <Error statusCode={props.error} />
+            )
+          ) : (
+            <React.Fragment>
+              {head()}
+              <Layout>
+                <Header />
+                <EditProfile userDetails={props.userDetails} />
+                <Footer />
+              </Layout>
+            </React.Fragment>
+          )}
+        </div>
+      ) : (
+        <div>
+          <Preloader />
+        </div>
+      )}
+    </React.Fragment>
+  );
 };
 
 EditUser.getInitialProps = async (props) => {
-	let response;
+  let response;
 
-	try {
-		response = await getUserDetails(props.query.username);
-	} catch (error) {
-		return { error: 500 };
-	}
-	if (response.error) {
-		return { error: response.error.status };
-	} else {
-		return { userDetails: response.response.data };
-	}
+  try {
+    response = await getUserDetails(props.query.username);
+  } catch (error) {
+    return { error: 500 };
+  }
+  if (response.error) {
+    return { error: response.error.status };
+  } else {
+    return { userDetails: response.response.data };
+  }
 };
 
 export default EditUser;
