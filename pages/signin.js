@@ -21,7 +21,7 @@ const Signin = () => {
           content={`Create account TITAN READ. Join us and exlpore TITAN READ`}
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`/signin`} />
+        <meta property="og:url" content={`${DOMAIN}/signin`} />
         <meta property="og:site_name" content={`TITAN READ`} />
 
         {/* <meta property="og:image" content={`${signinImage}`} />

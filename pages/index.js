@@ -16,7 +16,6 @@ const Index = () => {
         name="viewport"
         content="width=device-width, initial-scale=1"
       ></meta>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
     </Head>
   );
 
