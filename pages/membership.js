@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Layout from "../components/Layout";
 import Head from "next/head";
+import { DOMAIN } from "../appConstants";
 Layout;
 const membershipData = [
   {
@@ -20,7 +21,7 @@ const head = () => {
         name="description"
         content={`Become a pro member. Join the pro program and have unlimited features.`}
       />
-      <link rel="canonical" href={`/membership`} />
+      <link rel="canonical" href={`${DOMAIN}/membership`} />
       <meta property="og:title" content={`MEMBERSHIP | TITAN READ`} />
       <meta
         property="og:description"

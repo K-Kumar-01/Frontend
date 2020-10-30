@@ -1,4 +1,5 @@
 const BASE_URL = `http://localhost:8000/`;
+const DOMAIN = `http://localhost:3000`;
 
 // others
 const COOKIE_NAME = "token";
@@ -35,6 +36,7 @@ export {
   ARTICLE_CREATE,
   COOKIE_NAME,
   BASE_URL,
+  DOMAIN,
   SIGNOUT,
   FETCH_ARTICLES,
   FETCH_CATEGORY_ARTICLES,

@@ -3,6 +3,7 @@ import Head from "next/head";
 import SigninComponent from "../components/auth/SigninComponent";
 import Layout from "../components/Layout";
 import Protected from "../components/Protected/Protected";
+import { DOMAIN } from "../appConstants";
 
 const Signin = () => {
   const head = () => {
@@ -13,7 +14,7 @@ const Signin = () => {
           name="description"
           content={`Make your account on TITAN READ. Join us and exlpore TITAN READ`}
         />
-        <link rel="canonical" href={`/signin`} />
+        <link rel="canonical" href={`${DOMAIN}/signin`} />
         <meta property="og:title" content={`SIGNIN | TITAN READ`} />
         <meta
           property="og:description"
