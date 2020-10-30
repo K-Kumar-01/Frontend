@@ -17,7 +17,6 @@ const FormWithToasts = () => {
 	}); // initialise the hook
 	const [loading, setLoading] = useState(false);
 	const onSubmit = async (data, event) => {
-		// console.log(data);
 		event.preventDefault();
 		setLoading(true);
 		let formdata = new FormData();
@@ -29,7 +28,6 @@ const FormWithToasts = () => {
 		let response;
 		try {
 			response = await createUser(formdata);
-			// console.log(response);
 			setLoading(false);
 			if (response.error) {
 				addToast(`${response.error}`, {
@@ -162,7 +160,7 @@ const FormWithToasts = () => {
 									{showForm()}
 									<div className={`d-flex justify-content-between`}>
 										<p>
-											Already Registered?
+											Already Registered?{" "}
 											<Link href="/signin">
 												<a>Signin</a>
 											</Link>
