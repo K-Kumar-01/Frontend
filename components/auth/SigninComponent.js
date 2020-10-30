@@ -115,7 +115,7 @@ const FormWithToasts = () => {
 									{showForm()}
 									<div className={`d-flex justify-content-between`}>
 										<p>
-											New User?
+											New User?{" "}
 											<Link href="/signup">
 												<a>Signup</a>
 											</Link>
