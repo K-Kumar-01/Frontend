@@ -43,7 +43,7 @@ const EditUser = (props) => {
         <meta name="description" content={`Details of ${data.username}`} />
         <link
           rel="canonical"
-          href={`${DOMAIN}/user/profile/${data.username}`}
+          href={`${DOMAIN}/user/edit/${data.username}`}
         />
         <meta property="og:title" content={`${data.username} | TITAN READ`} />
         <meta
@@ -53,7 +53,7 @@ const EditUser = (props) => {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content={`${DOMAIN}/user/profile/${data.username}`}
+          content={`${DOMAIN}/user/edit/${data.username}`}
         />
         <meta property="og:site_name" content="TITAN READ" />
 
