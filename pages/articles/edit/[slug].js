@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import Error from "next/error";
+import ErrorPage404 from "../../404";
+import Head from "next/head";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
 import { authenticate } from "../../../helpers/auth";
-import { COOKIE_NAME, FETCH_TYPE } from "../../../appConstants";
+import { COOKIE_NAME, FETCH_TYPE, DOMAIN } from "../../../appConstants";
 import { useRouter } from "next/router";
 import Preloader from "../../../components/spinner/Preloader";
 import { getParticularArticle } from "../../../actions/article";
@@ -27,9 +29,47 @@ const ComponentWithToasts = (props) => {
       router.push("/signin");
     }
   }, []);
+  
 
-  const renderPageContents = () =>
-    isAuth ? (
+  const head = () => (
+    <Head>
+      <title>Edit Article: {props.article.title} | TITAN READ</title>
+      <meta
+        name="description"
+        content={`Edit the article created. Made a mistake or want to add more. Change category or photo. Edit as you like`}
+      />
+      <link
+        rel="canonical"
+        href={`${DOMAIN}/articles/edit/${props.article.slug}`}
+      />
+      <meta
+        property="og:title"
+        content={`${props.article.title} | TITAN READ`}
+      />
+      <meta
+        property="og:description"
+        content="Edit the article created. Made a mistake or want to add more. Change category or photo. Edit as you like"
+      />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:url"
+        content={`${DOMAIN}/articles/edit/${props.article.slug}`}
+      />
+      <meta property="og:site_name" content="TITAN READ" />
+
+      <meta property="og:image" content={`${props.article.featuredPhoto}`} />
+      <meta
+        property="og:image:secure_url"
+        content={`${props.article.featuredPhoto}`}
+      />
+      <meta property="og:image:type" content="image/jpeg" />
+    </Head>
+  );
+
+  const renderPageContents = () => (
+    <React.Fragment>
+      {head()}
+      isAuth ? (
       <main>
         <Layout>
           <Header sidebar>
@@ -38,18 +78,23 @@ const ComponentWithToasts = (props) => {
           <Footer />
         </Layout>
       </main>
-    ) : (
-      <Preloader message={`Redirecting to signin page`} />
-    );
+      ) : (
+      <Preloader message={`Redirecting to signin page`} />)
+    </React.Fragment>
+  );
 
-  return <>{renderPageContents()}</>;
+  return <React.Fragment>{renderPageContents()}</React.Fragment>;
 };
 
 const EditArticlePage = (props) => {
   return (
     <>
       {props.error ? (
-        <Error statusCode={props.error} />
+        props.error === 404 ? (
+          <ErrorPage404 />
+        ) : (
+          <Error statusCode={props.error} />
+        )
       ) : (
         <ToastProvider placement="bottom-right">
           <ComponentWithToasts article={props.article} />
