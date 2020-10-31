@@ -1,28 +1,66 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Error from "next/error";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 import { getArticlesByCategory } from "../../actions/article";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ArticlesListCategory from "../../components/category/ArticlesListCategory";
+import { DOMAIN } from "../../appConstants";
 
 const CategoryArticles = (props) => {
-  useEffect(() => {});
+  const router = useRouter();
+
+  const head = () => (
+    <Head>
+      <title>Articles of category{` ${router.query.category}`}</title>
+      <meta
+        name="description"
+        content={`The page contains the articles of the category ${router.query.category}`}
+      />
+      <link
+        rel="canonical"
+        href={`${DOMAIN}/category/${router.query.category}`}
+      />
+      <meta
+        property="og:title"
+        content={`Articles of category ${router.query.category} | TITAN READ`}
+      />
+      <meta
+        property="og:description"
+        content={`The page contains the articles of the category ${router.query.category}`}
+      />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:url"
+        content={`${DOMAIN}/category/${router.query.category}`}
+      />
+      <meta property="og:site_name" content={`TITAN READ`} />
+    </Head>
+  );
 
   return (
-    <>
+    <React.Fragment>
       {props.error ? (
-        <Error statusCode={props.error} />
+        props.error === 404 ? (
+          <ErrorPage404 />
+        ) : (
+          <Error statusCode={props.error} />
+        )
       ) : (
-        <Layout>
-          <Header sidebar search={true}>
-            <ArticlesListCategory articles={props.articles} />
-          </Header>
-          <Footer />
-        </Layout>
+        <React.Fragment>
+          {head()}
+          <Layout>
+            <Header sidebar search={true}>
+              <ArticlesListCategory articles={props.articles} />
+            </Header>
+            <Footer />
+          </Layout>
+        </React.Fragment>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

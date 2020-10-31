@@ -21,7 +21,10 @@ const SingleHelpPage = (props) => {
         content={`Article requested: ${router.query.slug}. Description: ${props.request.desc}`}
       />
       <link rel="canonical" href={`${DOMAIN}/help/${router.query.slug}`} />
-      <meta property="og:title" content={`Reuqested Article: ${router.query.slug}`} />
+      <meta
+        property="og:title"
+        content={`Reuqested Article: ${router.query.slug}`}
+      />
       <meta
         property="og:description"
         content={`Article requested: ${router.query.slug}. Description: ${props.request.desc}`}
@@ -35,7 +38,11 @@ const SingleHelpPage = (props) => {
   return (
     <div>
       {props.error ? (
-        <Error statusCode={props.error} />
+        props.error === 404 ? (
+          <ErrorPage404 />
+        ) : (
+          <Error statusCode={props.error} />
+        )
       ) : (
         <React.Fragment>
           {head()}
