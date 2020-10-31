@@ -31,7 +31,7 @@ const ArticlesBySpecificUserPage = (props) => {
         />
         <meta
           property="og:title"
-          content={`${router.query.username} | TITAN READ`}
+          content={`Articles: ${router.query.username} | TITAN READ`}
         />
         <meta
           property="og:description"
