@@ -9,10 +9,11 @@ import Footer from "../../components/Footer";
 import { fetchSingleRequest } from "../../actions/help";
 import SingleHelp from "../../components/help/SingleHelp";
 import { DOMAIN } from "../../appConstants";
+import ErrorPage404 from "../404";
 
 const SingleHelpPage = (props) => {
   const router = useRouter();
-
+  
   const head = () => (
     <Head>
       <title>{`Reuqested Article: ${router.query.slug}`}</title>

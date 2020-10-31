@@ -9,6 +9,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ArticlesListCategory from "../../components/category/ArticlesListCategory";
 import { DOMAIN } from "../../appConstants";
+import ErrorPage404 from "../404";
 
 const CategoryArticles = (props) => {
   const router = useRouter();
@@ -40,7 +41,6 @@ const CategoryArticles = (props) => {
       <meta property="og:site_name" content={`TITAN READ`} />
     </Head>
   );
-
   return (
     <React.Fragment>
       {props.error ? (
