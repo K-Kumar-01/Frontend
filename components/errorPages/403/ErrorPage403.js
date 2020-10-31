@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import styles from "./ErrorPage403.module.css";
+import Head from "next/head";
 
 const ErrorPage403 = (props) => {
   useEffect(() => {
@@ -31,8 +32,20 @@ const ErrorPage403 = (props) => {
     });
   }, []);
 
+  const head = () => (
+    <Head>
+      <title>{props.error === 401 ? "Unauthorized" : "Not Allowed "}</title>
+      <description>
+        {props.error === 401
+          ? "Please login to see this page"
+          : "You are in somebody else's place and not allowed here."}
+      </description>
+    </Head>
+  );
+
   const renderTextAccordingToStatus = (code) => (
     <React.Fragment>
+      {head()}
       {code === 401 ? (
         <h2>
           You must be logged in. Click{" "}
@@ -44,7 +57,7 @@ const ErrorPage403 = (props) => {
       ) : (
         <h2>
           <p>This place is not yours. You are not allowed here.</p>
-          Go {" "}
+          Go{" "}
           <Link href={`/articles`}>
             <a className={`${styles.link}`}>Home!</a>
           </Link>
@@ -85,8 +98,8 @@ const ErrorPage403 = (props) => {
               clip-path="url(#white-clip)"
               fill="#000"
               stroke="#2aa7cc"
-              stroke-width="2"
-              stroke-miterlimit="10"
+              strokeWidth="2"
+              strokeMiterlimit="10"
               cx="130"
               cy="65"
               r="11"
