@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ToastProvider, useToasts } from "react-toast-notifications";
+import Head from "next/head";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ArticleCreate from "../../components/crud/article/ArticleCreate";
 import Layout from "../../components/Layout";
 import { authenticate } from "../../helpers/auth";
-import { COOKIE_NAME } from "../../appConstants";
+import { COOKIE_NAME, DOMAIN } from "../../appConstants";
 import { useRouter } from "next/router";
 import Preloader from "../../components/spinner/Preloader";
 
@@ -25,8 +26,29 @@ const ComponentWithToasts = () => {
       router.push("/signin");
     }
   }, []);
+
+  const head = () => (
+    <Head>
+      <title>Create Article | TITAN READ</title>
+      <meta
+        name="description"
+        content="Create a article. Let your imagination and words take over the world."
+      />
+      <link rel="canonical" href={`${DOMAIN}/articles/create`} />
+      <meta property="og:title" content={`Create Article | TITAN READ`} />
+      <meta
+        property="og:description"
+        content={`Create a article. Let your imagination and words take over the world.`}
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${DOMAIN}/articles/create`} />
+      <meta property="og:site_name" content={`TITAN READ`} />
+    </Head>
+  );
+
   return (
-    <>
+    <React.Fragment>
+      {head()}
       {isAuth ? (
         <main>
           <Layout>
@@ -39,7 +61,7 @@ const ComponentWithToasts = () => {
       ) : (
         <Preloader message={`Redirecting to signin page`} />
       )}
-    </>
+    </React.Fragment>
   );
 };
 
