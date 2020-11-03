@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useGoogleLogin } from "react-google-login";
 import { IconContext } from "react-icons";
 import { FcGoogle } from "react-icons/fc";
@@ -17,10 +17,6 @@ const ToastedGoogleSignin = () => {
 
   // for prod
   // const clientId = `${process.env.GOOGLE_CLIENT}`;
-
-  useEffect(() => {
-    console.log(clientId);
-  }, []);
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
