@@ -472,6 +472,7 @@ font-family: 'Lora', serif; */
   padding: 5px 12px 6px 12px;
   background-color: gray;
   border-radius: 5px;
+  cursor: pointer;
 }
 .mainContainer .cover-2 {
   background-color: #0f0f0f;
@@ -690,4 +691,27 @@ font-family: 'Lora', serif; */
   background-color: transparent;
   color: white;
   margin: auto;
+}
+
+.getSModalHeading {
+  color: rgb(22, 22, 22);
+}
+
+.registerLinksArea {
+  margin-bottom: 0.5rem;
+}
+
+.registerLinks {
+  color: black;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgb(22, 22, 22);
+  border-radius: 0.25rem;
+}
+
+.registerLinks:hover {
+  color: white;
+  background: rgb(22, 22, 22, 0.5);
+  border: none;
+  text-decoration: none;
 }

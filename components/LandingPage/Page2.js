@@ -7,6 +7,7 @@ import AboutUs from "./AboutUs";
 import Features from "./Features";
 import Contact from "./Contact";
 import FooterLandingPage from "./FooterLandingPage";
+import GoogleSignin from "../auth/Google/GoogleSignin";
 
 const Page2 = () => {
   const [show, setShow] = useState(false);
@@ -81,9 +82,68 @@ const Page2 = () => {
     },
   };
 
+  const renderModal = () => (
+    <div
+      className="modal fade"
+      id="getStartedModal"
+      tabindex="-1"
+      aria-labelledby="getStartedModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5
+              className="modal-title heading getSModalHeading"
+              id="getStartedModalLabel"
+            >
+              Join Titan Read or Sign in
+            </h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body text-center">
+            <GoogleSignin />
+            <hr />
+            <div>
+              <button className={`registerLinksArea btn`}>
+                <Link href={`/signup`}>
+                  <a className="registerLinks">Register here</a>
+                </Link>
+              </button>
+            </div>
+            <div>
+              <button className={`registerLinksArea btn`}>
+                <Link href={`/signin`}>
+                  <a className="registerLinks">Signin here</a>
+                </Link>
+              </button>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <React.Fragment>
       <main>
+        {renderModal()}
         <a name="home">
           <header className="headerLP">
             <motion.div variants={leftEntranceVariants} className="logo">
@@ -129,9 +189,9 @@ const Page2 = () => {
                   variants={rightEntranceVariants}
                   className="sub-heading"
                 >
-                  <Link href={`/signup`}>
-                    <a>Get Started</a>
-                  </Link>
+                  <a data-toggle="modal" data-target="#getStartedModal">
+                    Get Started
+                  </a>
                 </motion.p>
               </motion.div>
             </div>

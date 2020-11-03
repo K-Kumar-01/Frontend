@@ -8,6 +8,7 @@ const COOKIE_NAME = "token";
 const UPLOADS = `${BASE_URL}uploads`;
 const SIGNUP = `${BASE_URL}api/user/register`;
 const SIGNIN = `${BASE_URL}api/user/login`;
+const GOOGLESIGNIN = `${BASE_URL}api/user/googleSignin`;
 const SIGNOUT = `${BASE_URL}api/user/logout`;
 const ARTICLE_CREATE = `${BASE_URL}api/article/create`;
 const FETCH_ARTICLES = `${BASE_URL}api/article`;
@@ -32,6 +33,7 @@ const ARTICLES_BY_SPECIFIC_USER = (username) =>
 export {
   UPLOADS,
   SIGNIN,
+  GOOGLESIGNIN,
   SIGNUP,
   ARTICLE_CREATE,
   COOKIE_NAME,

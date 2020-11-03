@@ -536,12 +536,10 @@ const LandingPage = () => {
   useEffect(() => {
     setTimeout(() => {
       setPage(1);
-      console.log("here safmknasl");
     }, 4500);
     
     setTimeout(() => {
       setPage(2);
-      console.log("hereonce");
     }, 6700);
   }, []);
 
