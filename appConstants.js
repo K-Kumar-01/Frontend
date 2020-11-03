@@ -1,4 +1,4 @@
-const BASE_URL = `http://localhost:8000/`;
+const BASE_URL = `https://mighty-ravine-63394.herokuapp.com/`;
 const DOMAIN = `http://localhost:3000`;
 
 // others

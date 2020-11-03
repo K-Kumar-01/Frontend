@@ -9,7 +9,6 @@ import LoadingSpinner from "../spinner/LoadingSpinner";
 import { loginUser } from "../../actions/auth";
 import { setCookie } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
-import GoogleSignout from "./Google/GoogleSignout";
 
 const FormWithToasts = () => {
   const [loading, setLoading] = useState(false);
@@ -117,7 +116,6 @@ const FormWithToasts = () => {
                   </h3>
 
                   {showForm()}
-                  <GoogleSignout />
                   <div className={`d-flex justify-content-between`}>
                     <p>
                       New User?{" "}
