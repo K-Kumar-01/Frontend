@@ -13,10 +13,10 @@ import LoadingSpinner from "../../spinner/LoadingSpinner";
 
 const ToastedGoogleSignin = () => {
   // for dev
-  // const clientId = `${process.env.NEXT_PUBLIC_GOOGLE_CLIENT}`;
+  const clientId = `${process.env.NEXT_PUBLIC_GOOGLE_CLIENT}`;
 
   // for prod
-  const clientId = `${process.env.GOOGLE_CLIENT}`;
+  // const clientId = `${process.env.GOOGLE_CLIENT}`;
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
