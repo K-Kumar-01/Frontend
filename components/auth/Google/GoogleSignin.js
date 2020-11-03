@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGoogleLogin } from "react-google-login";
 import { IconContext } from "react-icons";
 import { FcGoogle } from "react-icons/fc";
@@ -17,6 +17,10 @@ const ToastedGoogleSignin = () => {
 
   // for prod
   // const clientId = `${process.env.GOOGLE_CLIENT}`;
+
+  useEffect(() => {
+    console.log(clientId);
+  }, []);
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -58,6 +62,7 @@ const ToastedGoogleSignin = () => {
 
   const onFailure = (res) => {
     $("#getStartedModal").modal("toggle");
+    console.log(res);
     addToast(`${res.error}`, {
       appearance: "error",
       autoDismiss: true,
