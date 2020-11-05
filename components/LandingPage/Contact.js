@@ -30,7 +30,7 @@ const Contact = () => {
     },
     {
       name: "Adarsh Mishra",
-      role: "Design and Tester",
+      role: "Design and Resources",
       image_url:
         "https://res.cloudinary.com/dr6pkartq/image/upload/v1603364040/WhatsApp_Image_2020-10-17_at_12.23.39_AM_d0q611.jpg",
       contact_email: "adarsh.mishra.mat19@itbhu.ac.in",
