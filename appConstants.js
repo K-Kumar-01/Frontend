@@ -1,11 +1,13 @@
 // const BASE_URL = `https://mighty-ravine-63394.herokuapp.com/`;
 const BASE_URL = `http://localhost:8000/`;
+
+// const DOMAIN = `https://frontend.k-kumar-01.vercel.app/`;
 const DOMAIN = `http://localhost:3000`;
 
 // others
 const COOKIE_NAME = "token";
 
-// urls to fethc and post
+// urls to fetch and post
 const UPLOADS = `${BASE_URL}uploads`;
 const SIGNUP = `${BASE_URL}api/user/register`;
 const SIGNIN = `${BASE_URL}api/user/login`;

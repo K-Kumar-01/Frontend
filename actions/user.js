@@ -81,6 +81,7 @@ export const sendVerifcationMail = async (username, token) => {
 export const verifyMail = async (username, data, token) => {
   let response;
   let headerOpts = {
+    "Content-Type": "application/json",
     Authorization: token,
   };
   try {

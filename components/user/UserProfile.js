@@ -18,11 +18,12 @@ import {
 } from "react-icons/fa";
 
 import styles from "./UserProfile.module.css";
-import { authenticate } from "../../helpers/auth";
+import { authenticate, getCookie } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import { deleteParticularArticle } from "../../actions/article";
+import { verifyMail } from "../../actions/user";
 
 const ToastedUserProfile = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);
@@ -40,6 +41,37 @@ const ToastedUserProfile = (props) => {
     if (router.query.token) {
       let result = authenticate(router.query.token);
       if (result) {
+        if (!userInfo.isVerified) {
+          let response;
+          setLoading(true);
+          try {
+            response = await verifyMail(
+              router.query.username,
+              {
+                isVerified: true,
+              },
+              getCookie(COOKIE_NAME)
+            );
+            setLoading(false);
+            if (response.error) {
+              addToast(`${response.error}`, {
+                appearance: "error",
+                autoDismiss: true,
+              });
+            } else {
+              addToast(`${response.message}`, {
+                appearance: "success",
+                autoDismiss: true,
+              });
+            }
+          } catch (error) {
+            setLoading(false);
+            addToast(`${error.message}`, {
+              appearance: "error",
+              autoDismiss: true,
+            });
+          }
+        }
       } else {
         if (!userInfo.isVerified) {
           addToast(
@@ -51,7 +83,6 @@ const ToastedUserProfile = (props) => {
           );
         }
       }
-    } else {
     }
   };
 
