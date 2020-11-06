@@ -18,12 +18,12 @@ import {
 } from "react-icons/fa";
 
 import styles from "./UserProfile.module.css";
-import { authenticate, getCookie } from "../../helpers/auth";
+import { authenticate, getCookie, decodeCookie } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import { deleteParticularArticle } from "../../actions/article";
-import { verifyMail } from "../../actions/user";
+import { verifyMail, sendVerifcationMail } from "../../actions/user";
 
 const ToastedUserProfile = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);
@@ -39,7 +39,15 @@ const ToastedUserProfile = (props) => {
 
   const checkForToken = async () => {
     if (router.query.token) {
-      let result = authenticate(router.query.token);
+      let result = true;
+      let decodedToken = decodeCookie(router.query.token);
+      if (!decodedToken) {
+        result = false;
+      }
+      let expDate = decodedToken.exp * 1000;
+      if (parseInt(new Date().getTime()) > expDate) {
+        result = false;
+      }
       if (result) {
         if (!userInfo.isVerified) {
           let response;
@@ -63,6 +71,9 @@ const ToastedUserProfile = (props) => {
                 appearance: "success",
                 autoDismiss: true,
               });
+              router.replace(
+                `${window.location.origin}/user/profile/${router.query.username}`
+              );
             }
           } catch (error) {
             setLoading(false);
@@ -83,6 +94,35 @@ const ToastedUserProfile = (props) => {
           );
         }
       }
+    }
+  };
+
+  const resendVerficationMail = async () => {
+    let response;
+    setLoading(true);
+    try {
+      response = await sendVerifcationMail(
+        router.query.username,
+        getCookie(COOKIE_NAME)
+      );
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
     }
   };
 
@@ -273,6 +313,31 @@ const ToastedUserProfile = (props) => {
             </div>
           </div>
         </section>
+        {!userInfo.isVerified && userInfo.username === tokenDetails.username && (
+          <section className={`${styles.emailVerification} container my-3`}>
+            <div className={`alert alert-primary`} role="alert">
+              <h4 className="alert-heading text-center font-weight-bold">
+                Email Verification
+              </h4>
+              <p>
+                Your email address is not verified. To use all features of titan
+                read verify the address using the link sent to your mail on
+                signup.
+              </p>
+              <hr />
+              <p className={`mb-0`}>
+                If the link is broken or expired,{" "}
+                <strong
+                  style={{ cursor: "pointer" }}
+                  onClick={() => resendVerficationMail()}
+                >
+                  CLICK HERE
+                </strong>{" "}
+                to resend verification mail.
+              </p>
+            </div>
+          </section>
+        )}
         <section className={`${styles.otherinfo}`}>
           <div className={`container`}>
             <div className={`row`}>
