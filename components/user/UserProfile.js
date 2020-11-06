@@ -33,8 +33,27 @@ const ToastedUserProfile = (props) => {
   const { addToast } = useToasts();
   useEffect(() => {
     setTokenDetails(authenticate(COOKIE_NAME));
-    console.log(props);
+    checkForToken();
   }, []);
+
+  const checkForToken = async () => {
+    if (router.query.token) {
+      let result = authenticate(router.query.token);
+      if (result) {
+      } else {
+        if (!userInfo.isVerified) {
+          addToast(
+            `Looks like the link is broken or got expired. Please resend the verification mail`,
+            {
+              appearance: "error",
+              autoDismiss: true,
+            }
+          );
+        }
+      }
+    } else {
+    }
+  };
 
   const deleteArticle = async (slug) => {
     setLoading(true);
@@ -132,7 +151,7 @@ const ToastedUserProfile = (props) => {
         <div
           className="modal fade"
           id="deleteModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >

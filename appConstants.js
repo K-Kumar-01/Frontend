@@ -1,4 +1,5 @@
-const BASE_URL = `https://mighty-ravine-63394.herokuapp.com/`;
+// const BASE_URL = `https://mighty-ravine-63394.herokuapp.com/`;
+const BASE_URL = `http://localhost:8000/`;
 const DOMAIN = `http://localhost:3000`;
 
 // others
@@ -30,6 +31,9 @@ const SEARCH_ARTICLES = (search) =>
   `${BASE_URL}api/article/search?search=${search}`;
 const ARTICLES_BY_SPECIFIC_USER = (username) =>
   `${BASE_URL}api/user/articles/${username}`;
+const EMAIL_VERIFICATION = (username) =>
+  `${BASE_URL}api/user/emailverification/${username}`;
+
 export {
   UPLOADS,
   SIGNIN,
@@ -54,4 +58,5 @@ export {
   FETCH_FAVOURITES,
   SEARCH_ARTICLES,
   ARTICLES_BY_SPECIFIC_USER,
+  EMAIL_VERIFICATION,
 };
