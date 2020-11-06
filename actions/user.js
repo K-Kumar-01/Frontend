@@ -4,6 +4,7 @@ import {
   COOKIE_NAME,
   FETCH_FAVOURITES,
   ARTICLES_BY_SPECIFIC_USER,
+  EMAIL_VERIFICATION,
 } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
@@ -59,5 +60,35 @@ export const getArticlesBySpecificUser = async (username) => {
     return response.data;
   } catch (error) {
     return { error: error.response || { status: 500 } };
+  }
+};
+
+export const sendVerifcationMail = async (username, token) => {
+  let response;
+  let headerOpts = {
+    Authorization: token,
+  };
+  try {
+    response = await axios.get(`${EMAIL_VERIFICATION(username)}`, {
+      headers: headerOpts,
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
+export const verifyMail = async (username, data, token) => {
+  let response;
+  let headerOpts = {
+    Authorization: token,
+  };
+  try {
+    response = await axios.patch(`${EMAIL_VERIFICATION(username)}`, data, {
+      headers: headerOpts,
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
   }
 };
