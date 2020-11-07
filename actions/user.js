@@ -5,6 +5,7 @@ import {
   FETCH_FAVOURITES,
   ARTICLES_BY_SPECIFIC_USER,
   EMAIL_VERIFICATION,
+  RECOVER_PASSWORD,
 } from "../appConstants";
 import { getCookie } from "../helpers/auth";
 
@@ -83,6 +84,31 @@ export const verifyMail = async (username, data, token) => {
   let headerOpts = {
     "Content-Type": "application/json",
     Authorization: token,
+  };
+  try {
+    response = await axios.patch(`${EMAIL_VERIFICATION(username)}`, data, {
+      headers: headerOpts,
+    });
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
+export const forgotPasswordMail = async (username) => {
+  let response;
+  try {
+    response = await axios.get(`${RECOVER_PASSWORD(username)}`);
+    return response.data;
+  } catch (error) {
+    return (error.response && error.response.data) || { error: error.message };
+  }
+};
+
+export const resetPassword = async (username, data) => {
+  let response;
+  let headerOpts = {
+    "Content-Type": "application/json",
   };
   try {
     response = await axios.patch(`${EMAIL_VERIFICATION(username)}`, data, {

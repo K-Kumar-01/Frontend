@@ -35,7 +35,8 @@ const ARTICLES_BY_SPECIFIC_USER = (username) =>
   `${BASE_URL}api/user/articles/${username}`;
 const EMAIL_VERIFICATION = (username) =>
   `${BASE_URL}api/user/emailverification/${username}`;
-
+const RECOVER_PASSWORD = (username) =>
+  `${BASE_URL}api/user/recoverpassword/${username}`;
 export {
   UPLOADS,
   SIGNIN,
@@ -61,4 +62,5 @@ export {
   SEARCH_ARTICLES,
   ARTICLES_BY_SPECIFIC_USER,
   EMAIL_VERIFICATION,
+  RECOVER_PASSWORD,
 };
