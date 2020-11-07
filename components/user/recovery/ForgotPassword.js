@@ -51,15 +51,22 @@ const ToastedForgotPassword = () => {
   );
 
   return (
-    <main style={{ minHeight: "70vh" }}>
+    <main style={{ minHeight: "73vh" }} className={`${styles.parentContainer}`}>
       {loading && <LoadingSpinner asOverlay />}
-      <section className={`container my-4 py-2`}>
-        <h1 className={`text-center heading`}>Forgot Password ?</h1>
-        <p className={`text-center ${styles.changedFont}`}>
-          No worries. Just type in the username below and we will send a link to
-          reset the password
-        </p>
-        <div>{showForm()}</div>
+      <section className={`${styles.mainBg}`}></section>
+      <section className={`${styles.contentArea}`}>
+        <section className={`container py-2`}>
+          <h1 className={`text-center heading`}>Forgot Password ?</h1>
+          <p className={`text-center ${styles.changedFont}`}>
+            No worries. Just type in the username below and we will send a link
+            to reset the password
+          </p>
+          <div className={`row`}>
+            <div className={`col-lg-8 col-md-9 col-10 mx-auto`}>
+              {showForm()}
+            </div>
+          </div>
+        </section>
       </section>
     </main>
   );
