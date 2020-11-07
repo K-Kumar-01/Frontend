@@ -4,6 +4,7 @@ import { ToastProvider, useToasts } from "react-toast-notifications";
 
 import styles from "./ForgotPassword.module.css";
 import LoadingSpinner from "../../spinner/LoadingSpinner";
+import { forgotPasswordMail } from "../../../actions/user";
 
 const ToastedForgotPassword = () => {
   const { addToast } = useToasts();
@@ -12,9 +13,31 @@ const ToastedForgotPassword = () => {
   }); // initialise the hook
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     e.preventDefault();
+    let response;
     setLoading(true);
+    try {
+      response = await forgotPasswordMail(data.username);
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        addToast(`${response.message}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
   };
 
   const showForm = () => (
@@ -59,7 +82,7 @@ const ToastedForgotPassword = () => {
           <h1 className={`text-center heading`}>Forgot Password ?</h1>
           <p className={`text-center ${styles.changedFont}`}>
             No worries. Just type in the username below and we will send a link
-            to reset the password
+            to reset the password.
           </p>
           <div className={`row`}>
             <div className={`col-lg-8 col-md-9 col-10 mx-auto`}>
