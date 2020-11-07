@@ -105,13 +105,14 @@ export const forgotPasswordMail = async (username) => {
   }
 };
 
-export const resetPassword = async (username, data) => {
+export const resetPassword = async (username, data, token) => {
   let response;
   let headerOpts = {
     "Content-Type": "application/json",
+    Authorization: token,
   };
   try {
-    response = await axios.patch(`${EMAIL_VERIFICATION(username)}`, data, {
+    response = await axios.patch(`${RECOVER_PASSWORD(username)}`, data, {
       headers: headerOpts,
     });
     return response.data;

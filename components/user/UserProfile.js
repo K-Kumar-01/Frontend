@@ -44,7 +44,7 @@ const ToastedUserProfile = (props) => {
       if (!decodedToken) {
         result = false;
       }
-      let expDate = decodedToken.exp * 1000;
+      let expDate = decodedToken && decodedToken.exp * 1000;
       if (parseInt(new Date().getTime()) > expDate) {
         result = false;
       }

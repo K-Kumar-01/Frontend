@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ToastProvider, useToasts } from "react-toast-notifications";
+import { useRouter } from "next/router";
+
+import LoadingSpinner from "../../spinner/LoadingSpinner";
 
 import styles from "./ForgotPassword.module.css";
-import LoadingSpinner from "../../spinner/LoadingSpinner";
+import { resetPassword } from "../../../actions/user";
+import { decodeCookie } from "../../../helpers/auth";
 
 const ToastedResetPassword = () => {
   const { addToast } = useToasts();
@@ -12,9 +16,74 @@ const ToastedResetPassword = () => {
   }); // initialise the hook
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data, e) => {
-    e.preventDefault();
+  const router = useRouter();
+
+  useEffect(() => {
+    checkForToken();
+  }, []);
+
+  const checkForToken = () => {
+    if (router.query.token) {
+      let result = true;
+      let decodedToken = decodeCookie(router.query.token);
+      if (!decodedToken) {
+        result = false;
+      }
+      let expDate = decodedToken && decodedToken.exp * 1000;
+      if (parseInt(new Date().getTime()) > expDate) {
+        result = false;
+      }
+      if (!result) {
+        addToast(
+          `Looks like the link is broken or got expired. Please resend password reset mail`,
+          {
+            appearance: "error",
+            autoDismiss: true,
+          }
+        );
+        setTimeout(() => {
+          addToast("Redirecting you to forgot password page", {
+            appearance: "info",
+            autoDismiss: true,
+          });
+          router.replace("/forgot-password");
+        }, 3000);
+      }
+    }
+  };
+
+  const onSubmit = async (data, e) => {
+    let response;
     setLoading(true);
+    console.log(router.query.token);
+    try {
+      response = await resetPassword(
+        router.query.username,
+        {
+          newpassword: data.password,
+        },
+        router.query.token
+      );
+      setLoading(false);
+      if (response.error) {
+        addToast(`${response.error}`, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      } else {
+        addToast(`${response.message}. Redirecting you to signin`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        router.replace("/signin");
+      }
+    } catch (error) {
+      setLoading(false);
+      addToast(`${error.message}`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
   };
 
   const showForm = () => (
@@ -72,7 +141,9 @@ const ToastedResetPassword = () => {
         <p className={`text-center ${styles.changedFont}`}>
           Enter the new password
         </p>
-        <div>{showForm()}</div>
+        <div className={`row`}>
+          <div className={`col-lg-8 col-md-9 col-10 mx-auto`}>{showForm()}</div>
+        </div>
       </section>
     </main>
   );
