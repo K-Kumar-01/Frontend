@@ -33,6 +33,7 @@
   cursor: pointer;
   background-color: white;
   padding: 0.5rem;
+  margin-bottom: 0.5rem;
   color: black;
   display: flex;
   justify-content: space-between;
@@ -74,7 +75,16 @@
 .chatMsg {
   overflow-y: auto;
   overflow-x: hidden;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
+
+.messages {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .msgInputArea {
   background: white;
   padding: 0.5rem;
@@ -103,4 +113,18 @@
   border: none;
   background-color: transparent;
   outline: none;
+}
+
+.greeting {
+  background-color: white;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  color: black;
+  width: 85%;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin: 0 auto;
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  font-family: "Dancing Script", sans-serif;
 }

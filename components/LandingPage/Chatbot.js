@@ -2,12 +2,40 @@ import { useState } from "react";
 import { IconContext } from "react-icons";
 import { FaRegComments, FaTimes } from "react-icons/fa";
 import { BiSend } from "react-icons/bi";
+import { FcAssistant } from "react-icons/fc";
 import { motion } from "framer-motion";
 
 import styles from "./Chatbot.module.css";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  const [convos, setConvos] = useState([
+    { sender: "Bot", message: "Hi how are you" },
+    { sender: "Me", message: "Hello" },
+    { sender: "Bot", message: "Good to know" },
+    { sender: "Me", message: "I am fine" },
+    { sender: "Bot", message: "Hi how are you" },
+    { sender: "Me", message: "Hello" },
+    { sender: "Bot", message: "Good to know" },
+    { sender: "Me", message: "I am fine" },
+    { sender: "Bot", message: "Hi how are you" },
+    { sender: "Me", message: "Hello" },
+    { sender: "Bot", message: "Good to know" },
+    { sender: "Me", message: "I am fine" },
+  ]);
+
+  const addMsgToConvos = (sender = "Me", message) => {
+    setConvos([{ sender, message }, ...convos]);
+  };
+
+  const updateScroll = () => {
+    let element = document.getElementById("chat-area");
+    element.scrollTop = element.scrollHeight + 40;
+    console.log(element);
+  };
+
   const variants = {
     hidden: {
       x: "100vw",
@@ -55,21 +83,6 @@ const Chatbot = () => {
     },
   };
 
-  const MSGS = [
-    { sender: "Bot", message: "Hi how are you" },
-    { sender: "Me", message: "Hello" },
-    { sender: "Bot", message: "Good to know" },
-    { sender: "Me", message: "I am fine" },
-    { sender: "Bot", message: "Hi how are you" },
-    { sender: "Me", message: "Hello" },
-    { sender: "Bot", message: "Good to know" },
-    { sender: "Me", message: "I am fine" },
-    { sender: "Bot", message: "Hi how are you" },
-    { sender: "Me", message: "Hello" },
-    { sender: "Bot", message: "Good to know" },
-    { sender: "Me", message: "I am fine" },
-  ];
-
   return (
     <main>
       <motion.section
@@ -99,32 +112,56 @@ const Chatbot = () => {
             <FaTimes />
           </IconContext.Provider>
         </motion.div>
-        <div className={`${styles.large} ${styles.chatMsg}`}>
-          {MSGS.map((d, i) => (
-            <motion.div
-              key={i}
-              variants={variantsChat}
-              initial={false}
-              custom={d.sender}
-              className={`${
-                d.sender === "Bot" ? `${styles.mrAuto}` : `${styles.mlAuto}`
-              } ${styles.chat}`}
-            >
-              {d.message}
-            </motion.div>
-          ))}
+        <div className={`${styles.large} ${styles.chatMsg}`} id="chat-area">
+          <motion.p
+            className={`${styles.greeting}`}
+            variants={closeVarints}
+            initial={false}
+          >
+            Hello there, Welcome to Titan Read. My name is Pixie and I will
+            assist you.{" "}
+            <IconContext.Provider value={{ size: "2rem" }}>
+              <FcAssistant />
+            </IconContext.Provider>
+          </motion.p>
+
+          <div className={`${styles.messages}`}>
+            {convos.map((d, i) => (
+              <motion.div
+                key={i}
+                variants={variantsChat}
+                initial={false}
+                custom={d.sender}
+                className={`${
+                  d.sender === "Bot" ? `${styles.mrAuto}` : `${styles.mlAuto}`
+                } ${styles.chat}`}
+              >
+                {d.message}
+              </motion.div>
+            ))}
+          </div>
         </div>
-        <motion.div className={`${styles.small} ${styles.msgInputArea}`}>
+        <motion.div
+          intial={false}
+          variants={closeVarints}
+          className={`${styles.small} ${styles.msgInputArea}`}
+        >
           <form
             className={`${styles.msgForm}`}
             onSubmit={(e) => {
               e.preventDefault();
-              alert("Hello");
+              if (msg.length > 0) {
+                addMsgToConvos("Me", msg);
+                setMsg("");
+                updateScroll();
+              }
             }}
           >
             <input
               type="text"
               placeholder="Your Message"
+              value={msg}
+              onChange={(e) => setMsg(e.target.value)}
               className={`${styles.input}`}
             />
             <button
