@@ -4,19 +4,22 @@
   bottom: 20px;
   background: white;
   color: black;
-  padding: 1rem;
+  padding: 0.75rem;
   border-radius: 50%;
   cursor: pointer;
+  border: 10px solid gray;
 }
 
 .chatbox {
   background-color: gray;
-  height: 25rem;
+  border: 1px solid #aeaeae;
+  height: 27.5rem;
   width: 25rem;
   position: fixed;
   bottom: 0;
   right: 0;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 576px) {
@@ -58,4 +61,46 @@
 .mlAuto {
   margin-left: auto;
   margin-right: 0.25rem;
+}
+
+.small {
+  height: 10%;
+}
+
+.large {
+  height: 80%;
+}
+
+.chatMsg {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.msgInputArea {
+  background: white;
+  padding: 0.5rem;
+}
+
+.msgForm {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  width: 85%;
+  outline: none;
+  border: none;
+}
+
+.sendBtn {
+  border: none;
+  background-color: transparent;
+}
+
+.sendBtn:focus,
+.sendBtn:active {
+  border: none;
+  background-color: transparent;
+  outline: none;
 }

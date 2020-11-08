@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IconContext } from "react-icons";
 import { FaRegComments, FaTimes } from "react-icons/fa";
+import { BiSend } from "react-icons/bi";
 import { motion } from "framer-motion";
 
 import styles from "./Chatbot.module.css";
@@ -59,6 +60,14 @@ const Chatbot = () => {
     { sender: "Me", message: "Hello" },
     { sender: "Bot", message: "Good to know" },
     { sender: "Me", message: "I am fine" },
+    { sender: "Bot", message: "Hi how are you" },
+    { sender: "Me", message: "Hello" },
+    { sender: "Bot", message: "Good to know" },
+    { sender: "Me", message: "I am fine" },
+    { sender: "Bot", message: "Hi how are you" },
+    { sender: "Me", message: "Hello" },
+    { sender: "Bot", message: "Good to know" },
+    { sender: "Me", message: "I am fine" },
   ];
 
   return (
@@ -80,7 +89,7 @@ const Chatbot = () => {
         <motion.div
           intial={false}
           variants={closeVarints}
-          className={`${styles.closeBtn}`}
+          className={`${styles.closeBtn} ${styles.small}`}
           onClick={() => setIsOpen(false)}
         >
           <span className={`${styles.chatBotName} heading`}>
@@ -90,19 +99,45 @@ const Chatbot = () => {
             <FaTimes />
           </IconContext.Provider>
         </motion.div>
-        {MSGS.map((d, i) => (
-          <motion.div
-            key={i}
-            variants={variantsChat}
-            initial={false}
-            custom={d.sender}
-            className={`${
-              d.sender === "Bot" ? `${styles.mrAuto}` : `${styles.mlAuto}`
-            } ${styles.chat}`}
+        <div className={`${styles.large} ${styles.chatMsg}`}>
+          {MSGS.map((d, i) => (
+            <motion.div
+              key={i}
+              variants={variantsChat}
+              initial={false}
+              custom={d.sender}
+              className={`${
+                d.sender === "Bot" ? `${styles.mrAuto}` : `${styles.mlAuto}`
+              } ${styles.chat}`}
+            >
+              {d.message}
+            </motion.div>
+          ))}
+        </div>
+        <motion.div className={`${styles.small} ${styles.msgInputArea}`}>
+          <form
+            className={`${styles.msgForm}`}
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Hello");
+            }}
           >
-            {d.message}
-          </motion.div>
-        ))}
+            <input
+              type="text"
+              placeholder="Your Message"
+              className={`${styles.input}`}
+            />
+            <button
+              type="submit"
+              title="Send Message"
+              className={`${styles.sendBtn}`}
+            >
+              <IconContext.Provider value={{ size: "1.5rem", color: "black" }}>
+                <BiSend />
+              </IconContext.Provider>
+            </button>
+          </form>
+        </motion.div>
       </motion.section>
     </main>
   );
