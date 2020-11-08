@@ -7,29 +7,21 @@ import { motion } from "framer-motion";
 
 import styles from "./Chatbot.module.css";
 import TypingDots from "./TypingDots";
+import { sendMessageChatbot } from "../../actions/chatbot";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [botMsg, setBotMsg] = useState("");
 
-  const [convos, setConvos] = useState([
-    { sender: "Bot", message: "Hi how are you" },
-    { sender: "Me", message: "Hello" },
-    { sender: "Bot", message: "Good to know" },
-    { sender: "Me", message: "I am fine" },
-    { sender: "Bot", message: "Hi how are you" },
-    { sender: "Me", message: "Hello" },
-    { sender: "Bot", message: "Good to know" },
-    { sender: "Me", message: "I am fine" },
-    { sender: "Bot", message: "Hi how are you" },
-    { sender: "Me", message: "Hello" },
-    { sender: "Bot", message: "Good to know" },
-    { sender: "Me", message: "I am fine" },
-  ]);
+  const PERSON = "ME",
+    BOT = "Bot";
 
-  const addMsgToConvos = (sender = "Me", message) => {
-    setConvos([{ sender, message }, ...convos]);
+  const [convos, setConvos] = useState([]);
+
+  const addMsgToConvos = (data) => {
+    setConvos([...data, ...convos]);
   };
 
   const updateScroll = () => {
@@ -59,8 +51,8 @@ const Chatbot = () => {
   };
 
   const variantsChat = {
-    hidden: (sender = "Bot") => ({
-      x: sender === "Bot" ? "-10%" : "10%",
+    hidden: (sender = BOT) => ({
+      x: sender === BOT ? "-10%" : "10%",
       opacity: 0,
       transition: {
         duration: 0.5,
@@ -84,11 +76,35 @@ const Chatbot = () => {
     },
   };
 
+  const callChatBot = async (data, messages) => {
+    let response;
+    try {
+      response = await sendMessageChatbot(data);
+      setLoading(false);
+      if (!response.length || response.error) {
+        messages.push({
+          sender: BOT,
+          message: "I could not find anything regarding this.",
+        });
+        addMsgToConvos(messages.reverse());
+      } else {
+        messages.push({ sender: BOT, message: response[0].text });
+        addMsgToConvos(messages.reverse());
+      }
+    } catch (error) {
+      setLoading(false);
+      messages.push({ sender: BOT, message: "I am unable to solve this" });
+      addMsgToConvos(messages.reverse());
+    }
+    updateScroll();
+  };
+
   return (
     <main>
       <motion.section
         className={`${styles.chatbot}`}
         onClick={() => setIsOpen(true)}
+        title="Chat with Pixie"
       >
         <IconContext.Provider value={{ size: "2rem" }}>
           <FaRegComments />
@@ -135,7 +151,7 @@ const Chatbot = () => {
                 initial={false}
                 custom={d.sender}
                 className={`${
-                  d.sender === "Bot" ? `${styles.mrAuto}` : `${styles.mlAuto}`
+                  d.sender === BOT ? `${styles.mrAuto}` : `${styles.mlAuto}`
                 } ${styles.chat}`}
               >
                 {d.message}
@@ -153,16 +169,19 @@ const Chatbot = () => {
             onSubmit={(e) => {
               e.preventDefault();
               if (msg.length > 0) {
-                addMsgToConvos("Me", msg);
+                let convoMsgs = [{ sender: PERSON, message: msg }];
+                addMsgToConvos(convoMsgs);
+                let data = {
+                  message: msg,
+                  sender: PERSON,
+                };
                 setMsg("");
                 updateScroll();
                 setTimeout(() => {
                   setLoading(true);
                   updateScroll();
+                  callChatBot(data, convoMsgs);
                 }, 1000);
-                setTimeout(() => {
-                  setLoading(false);
-                }, 3000);
               }
             }}
           >

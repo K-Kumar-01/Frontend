@@ -7,6 +7,9 @@ const DOMAIN = `http://localhost:3000`;
 // others
 const COOKIE_NAME = "token";
 
+// CHATBOT endpoint
+const CHATBOT = `https://titanreadchatbot.herokuapp.com/webhooks/rest/webhook`;
+
 // urls to fetch and post
 const UPLOADS = `${BASE_URL}uploads`;
 const SIGNUP = `${BASE_URL}api/user/register`;
@@ -39,6 +42,7 @@ const RECOVER_PASSWORD = (username) =>
   `${BASE_URL}api/user/recoverpassword/${username}`;
 export {
   UPLOADS,
+  CHATBOT,
   SIGNIN,
   GOOGLESIGNIN,
   SIGNUP,
