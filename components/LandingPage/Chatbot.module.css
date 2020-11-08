@@ -12,6 +12,13 @@
 
 .chatbox {
   background-color: gray;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.45),
+      rgba(255, 255, 255, 0.45)
+    ),
+    url("https://cdn.technologyadvice.com/wp-content/uploads/2018/02/friendly-chatbot-700x408.jpg");
+  background-size: cover;
+  background-position: center;
   border: 1px solid #aeaeae;
   height: 27.5rem;
   width: 25rem;

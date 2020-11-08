@@ -6,10 +6,12 @@ import { FcAssistant } from "react-icons/fc";
 import { motion } from "framer-motion";
 
 import styles from "./Chatbot.module.css";
+import TypingDots from "./TypingDots";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [convos, setConvos] = useState([
     { sender: "Bot", message: "Hi how are you" },
@@ -126,6 +128,7 @@ const Chatbot = () => {
           </motion.p>
 
           <div className={`${styles.messages}`}>
+            {!loading && <TypingDots />}
             {convos.map((d, i) => (
               <motion.div
                 key={i}
