@@ -35,7 +35,6 @@ const Chatbot = () => {
   const updateScroll = () => {
     let element = document.getElementById("chat-area");
     element.scrollTop = element.scrollHeight + 40;
-    console.log(element);
   };
 
   const variants = {
@@ -128,7 +127,7 @@ const Chatbot = () => {
           </motion.p>
 
           <div className={`${styles.messages}`}>
-            {!loading && <TypingDots />}
+            {loading && <TypingDots />}
             {convos.map((d, i) => (
               <motion.div
                 key={i}
@@ -157,6 +156,13 @@ const Chatbot = () => {
                 addMsgToConvos("Me", msg);
                 setMsg("");
                 updateScroll();
+                setTimeout(() => {
+                  setLoading(true);
+                  updateScroll();
+                }, 1000);
+                setTimeout(() => {
+                  setLoading(false);
+                }, 3000);
               }
             }}
           >
