@@ -8,3 +8,54 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.chatbox {
+  background-color: gray;
+  height: 25rem;
+  width: 25rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+}
+
+@media (max-width: 576px) {
+  .chatbox {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.closeBtn {
+  cursor: pointer;
+  background-color: white;
+  padding: 0.5rem;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatBotName {
+  font-size: 1.25rem;
+}
+
+.chat {
+  background: black;
+  color: white;
+  width: 75%;
+  margin-top: 0.5rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.mrAuto {
+  margin-right: auto;
+  margin-left: 0.25rem;
+}
+
+.mlAuto {
+  margin-left: auto;
+  margin-right: 0.25rem;
+}

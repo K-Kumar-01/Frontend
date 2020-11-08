@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IconContext } from "react-icons";
-import { FaRegComments } from "react-icons/fa";
+import { FaRegComments, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 import styles from "./Chatbot.module.css";
@@ -22,6 +22,7 @@ const Chatbot = () => {
       opacity: 1,
       transition: {
         duration: 0.75,
+        ease: "easeOut",
         when: "beforeChildren",
       },
     },
@@ -53,6 +54,13 @@ const Chatbot = () => {
     },
   };
 
+  const MSGS = [
+    { sender: "Bot", message: "Hi how are you" },
+    { sender: "Me", message: "Hello" },
+    { sender: "Bot", message: "Good to know" },
+    { sender: "Me", message: "I am fine" },
+  ];
+
   return (
     <main>
       <motion.section
@@ -62,6 +70,39 @@ const Chatbot = () => {
         <IconContext.Provider value={{ size: "2rem" }}>
           <FaRegComments />
         </IconContext.Provider>
+      </motion.section>
+      <motion.section
+        initial={false}
+        variants={variants}
+        animate={isOpen ? "visible" : "hidden"}
+        className={`${styles.chatbox}`}
+      >
+        <motion.div
+          intial={false}
+          variants={closeVarints}
+          className={`${styles.closeBtn}`}
+          onClick={() => setIsOpen(false)}
+        >
+          <span className={`${styles.chatBotName} heading`}>
+            Chat with Pixie
+          </span>
+          <IconContext.Provider value={{ size: "1.5rem" }}>
+            <FaTimes />
+          </IconContext.Provider>
+        </motion.div>
+        {MSGS.map((d, i) => (
+          <motion.div
+            key={i}
+            variants={variantsChat}
+            initial={false}
+            custom={d.sender}
+            className={`${
+              d.sender === "Bot" ? `${styles.mrAuto}` : `${styles.mlAuto}`
+            } ${styles.chat}`}
+          >
+            {d.message}
+          </motion.div>
+        ))}
       </motion.section>
     </main>
   );
