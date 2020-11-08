@@ -8,6 +8,7 @@ import Features from "./Features";
 import Contact from "./Contact";
 import FooterLandingPage from "./FooterLandingPage";
 import GoogleSignin from "../auth/Google/GoogleSignin";
+import Chatbot from "./Chatbot";
 
 const Page2 = () => {
   const [show, setShow] = useState(false);
@@ -204,6 +205,7 @@ const Page2 = () => {
           animate={{ opacity: 1, height: "auto" }}
           style={{ background: "white" }}
         >
+          <Chatbot />
           <a name="about">
             <AboutUs />
           </a>

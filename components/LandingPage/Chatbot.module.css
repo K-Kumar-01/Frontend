@@ -1,0 +1,10 @@
+.chatbot {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: white;
+  color: black;
+  padding: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
