@@ -52,7 +52,7 @@
 }
 
 .chat {
-  background: black;
+  background: #3e3c3c;
   color: white;
   width: 75%;
   margin-top: 0.5rem;
@@ -134,4 +134,15 @@
   font-size: 1.25rem;
   margin-top: 1rem;
   font-family: "Dancing Script", sans-serif;
+}
+
+@media (max-width: 576px) {
+  .closeBtn,
+  .msgInputArea {
+    padding: 0.5rem 1rem;
+  }
+
+  .mrAuto {
+    margin-left: 1rem;
+  }
 }

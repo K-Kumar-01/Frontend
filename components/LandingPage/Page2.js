@@ -87,7 +87,7 @@ const Page2 = () => {
     <div
       className="modal fade"
       id="getStartedModal"
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="getStartedModalLabel"
       aria-hidden="true"
     >
@@ -113,14 +113,20 @@ const Page2 = () => {
             <GoogleSignin />
             <hr />
             <div>
-              <button className={`registerLinksArea btn`}>
+              <button
+                onClick={() => $("#getStartedModal").modal("toggle")}
+                className={`registerLinksArea btn`}
+              >
                 <Link href={`/signup`}>
                   <a className="registerLinks">Register here</a>
                 </Link>
               </button>
             </div>
             <div>
-              <button className={`registerLinksArea btn`}>
+              <button
+                onClick={() => $("#getStartedModal").modal("toggle")}
+                className={`registerLinksArea btn`}
+              >
                 <Link href={`/signin`}>
                   <a className="registerLinks">Signin here</a>
                 </Link>
