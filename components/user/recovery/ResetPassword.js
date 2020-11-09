@@ -7,19 +7,32 @@ import LoadingSpinner from "../../spinner/LoadingSpinner";
 
 import styles from "./ForgotPassword.module.css";
 import { resetPassword } from "../../../actions/user";
-import { decodeCookie } from "../../../helpers/auth";
+import { decodeCookie, authenticate } from "../../../helpers/auth";
+import { COOKIE_NAME } from "../../../appConstants";
 
 const ToastedResetPassword = () => {
   const { addToast } = useToasts();
   const { register, handleSubmit, errors, watch, formState } = useForm({
     mode: "onTouched",
   }); // initialise the hook
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
 
+  const redirectIfAuthenticated = () => {
+    let token;
+    token = authenticate(COOKIE_NAME);
+    if (token) {
+      setLoading(false);
+      router.push(`/user/profile/${token.username}`);
+    } else {
+      setLoading(false);
+      checkForToken();
+    }
+  };
+
   useEffect(() => {
-    checkForToken();
+    redirectIfAuthenticated();
   }, []);
 
   const checkForToken = () => {
