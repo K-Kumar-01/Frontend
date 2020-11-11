@@ -306,8 +306,8 @@ const ToastedComponent = (props) => {
 
   const renderOpenRequests = (data) =>
     data.map((d, i) => (
-      <React.Fragment>
-        <div className={`row`} key={d._id}>
+      <React.Fragment key={d._id}>
+        <div className={`row`}>
           <div className={`col-3 col-md-2`}>
             <Link href={`/help/${d.slug}`}>
               <a>{d.title}</a>
@@ -329,8 +329,8 @@ const ToastedComponent = (props) => {
 
   const renderPendingorClosedRequests = (data) =>
     data.map((d, i) => (
-      <React.Fragment>
-        <div className={`row`} key={d._id}>
+      <React.Fragment key={d._id}>
+        <div className={`row`}>
           <div className={`col-3 col-md-2`}>
             <Link href={`/help/${d.slug}`}>
               <a>{d.title}</a>
@@ -362,7 +362,7 @@ const ToastedComponent = (props) => {
             {tokenDetails && renderCreateRequestModal()}
           </div>
         </div>
-        <div className={`container-fluid px-5`}>
+        <div className={`container-fluid px-md-5 px-1`}>
           {renderTabs()}
           <div className="tab-content mt-4" id="myTabContent">
             <div

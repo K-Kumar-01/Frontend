@@ -88,7 +88,9 @@ const Chatbot = () => {
         });
         addMsgToConvos(messages.reverse());
       } else {
-        messages.push({ sender: BOT, message: response[0].text });
+        response.forEach((r) => {
+          messages.push({ sender: BOT, message: r.text });
+        });
         addMsgToConvos(messages.reverse());
       }
     } catch (error) {
