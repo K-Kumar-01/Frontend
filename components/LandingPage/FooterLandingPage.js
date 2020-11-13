@@ -53,7 +53,7 @@ const FooterLandingPage = () => {
               </p>
               <p className={`${styles.copyright}`}>Titan Read © 2020</p>
             </div>
-            <div className={`col-12 col-md-4 ml-auto`}>
+            <div className={`col-12 col-md-6 col-lg-4 ml-auto`}>
               <h2 className={`heading ${styles.heading}`}>About Titan Read</h2>
               <p className={`${styles.about} text-justify`}>
                 Titan Read is where those ideas take shape, take off, and spark

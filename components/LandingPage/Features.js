@@ -90,7 +90,7 @@ const Features = () => {
           </div>
         </IconContext.Provider>
       ),
-      description: "Qaulity user generated content for good reading experience",
+      description: "Quality user generated content for good reading experience",
     },
     {
       icon: (

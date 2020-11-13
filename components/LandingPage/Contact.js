@@ -19,7 +19,7 @@ const Contact = () => {
       role: "Backend and Design",
       image_url:
         "https://res.cloudinary.com/dr6pkartq/image/upload/v1602872162/IMG_20201014_123547_ooixvf.jpg",
-      contact_email: "atul.tyagi.mat19@iitbhu.ac.in",
+      contact_email: "atul.tyagi.mat19@itbhu.ac.in",
     },
     {
       name: "Lakshya Rathore",
@@ -33,7 +33,7 @@ const Contact = () => {
       role: "Design and Resources",
       image_url:
         "https://res.cloudinary.com/dr6pkartq/image/upload/v1603364040/WhatsApp_Image_2020-10-17_at_12.23.39_AM_d0q611.jpg",
-      contact_email: "adarsh.mishra.mat19@itbhu.ac.in",
+      contact_email: "akmishra2488@gmail.com",
     },
   ];
 

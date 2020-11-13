@@ -212,15 +212,15 @@ const Page2 = () => {
           style={{ background: "white" }}
         >
           <Chatbot />
-          <a name="about">
+          <div id="about">
             <AboutUs />
-          </a>
-          <a name="whyus">
+          </div>
+          <div id="whyus">
             <Features />
-          </a>
-          <a name="contact">
+          </div>
+          <div id="contact">
             <Contact />
-          </a>
+          </div>
           <FooterLandingPage />
         </motion.div>
       )}

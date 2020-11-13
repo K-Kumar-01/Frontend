@@ -17,7 +17,7 @@ const WhyUs = () => {
             out there ideas and discuss over it, our team is here to provide you
             with the best experience you can get.
             <br />
-            <div className={`${styles.space}`}></div>
+            <span className={`${styles.space}`}></span>
             The developers of 'Titan Read' wanted to bring out the best features
             and facility we could muster for our users. The built and design is
             made in a way that would ensure maximum pleasant reading experience.
