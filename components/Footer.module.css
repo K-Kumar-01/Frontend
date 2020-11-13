@@ -1,14 +1,49 @@
 .footer {
-	background-color: rgba(0, 0, 0, 0.8);
-	color: white;
-	padding: 1rem 0;
+  background-color: rgb(56, 56, 56);
+  color: white;
+  padding: 1rem 0;
 }
+
+.footer * {
+  color: white;
+}
+
+.colored {
+  color: #20b2aa;
+}
+
+.logo {
+  font-size: 4rem;
+  letter-spacing: 5px;
+}
+.logoLink:hover {
+  text-decoration: none;
+}
+
 .link {
-	color: white;
-	margin: 0 0.8rem 0 0;
+  font-family: "Roboto", sans-serif;
 }
 
 .link:hover {
-	text-decoration: none;
-	color: white;
+  text-decoration: none;
+  color: white;
+}
+
+.link:after {
+  content: " | ";
+}
+
+.copyright {
+  color: black;
+  font-size: 1.1rem;
+  font-family: "Karla", sans-serif;
+}
+
+.nopipe::after {
+  content: "";
+}
+
+.about {
+  color: #92999f;
+  font-family: "Montserrat", sans-serif;
 }

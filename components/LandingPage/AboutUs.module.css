@@ -25,6 +25,9 @@
 }
 
 @media (max-width: 992px) {
+  .description {
+    width: 80%;
+  }
   .paraWidth {
     width: 85%;
   }
@@ -37,7 +40,10 @@
 }
 
 @media (max-width: 768px) {
+  .paraWidth {
+    width: 90%;
+  }
   .description {
-    max-width: 60%;
+    max-width: 80%;
   }
 }
