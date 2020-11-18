@@ -33,6 +33,7 @@
   width: 0;
   position: fixed;
   top: 70px;
+  z-index: 2;
   left: 0;
   bottom: 0;
   background-color: #2d2d2d;

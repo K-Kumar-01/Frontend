@@ -339,7 +339,7 @@ const ToastedOneArticle = (props) => {
   );
 
   return (
-    <section className={` container `}>
+    <section className={` container ${styles.page} `}>
       {renderLikedByModal()}
       {loading && <LoadingSpinner asOverlay />}
       <main className={`row`}>

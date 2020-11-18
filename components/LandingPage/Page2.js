@@ -112,28 +112,33 @@ const Page2 = () => {
           <div className="modal-body text-center">
             <GoogleSignin />
             <hr />
-            <div>
-              <button
-                onClick={() => $("#getStartedModal").modal("toggle")}
-                className={`registerLinksArea btn`}
-              >
-                <Link href={`/signup`}>
-                  <a className="registerLinks">Register here</a>
-                </Link>
-              </button>
-            </div>
-            <div>
-              <button
-                onClick={() => $("#getStartedModal").modal("toggle")}
-                className={`registerLinksArea btn`}
-              >
-                <Link href={`/signin`}>
-                  <a className="registerLinks">Signin here</a>
-                </Link>
-              </button>
+            <div className={`d-flex justify-content-center`}>
+              <div>
+                <button
+                  onClick={() => $("#getStartedModal").modal("toggle")}
+                  className={`registerLinksArea btn`}
+                >
+                  <Link href={`/signup`}>
+                    <a className="registerLinks">Register here</a>
+                  </Link>
+                </button>
+              </div>
+              <div>
+                <button
+                  onClick={() => $("#getStartedModal").modal("toggle")}
+                  className={`registerLinksArea btn`}
+                >
+                  <Link href={`/signin`}>
+                    <a className="registerLinks">Signin here</a>
+                  </Link>
+                </button>
+              </div>
             </div>
             <hr />
-            <button className={`btn`} onClick={() => $("#getStartedModal").modal("toggle")}>
+            <button
+              className={`btn`}
+              onClick={() => $("#getStartedModal").modal("toggle")}
+            >
               <Link href={`/articles`}>
                 <a className="articlesbtn">Articles</a>
               </Link>
