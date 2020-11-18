@@ -132,6 +132,12 @@ const Page2 = () => {
                 </Link>
               </button>
             </div>
+            <hr />
+            <button className={`btn`} onClick={() => $("#getStartedModal").modal("toggle")}>
+              <Link href={`/articles`}>
+                <a className="articlesbtn">Articles</a>
+              </Link>
+            </button>
           </div>
           <div className="modal-footer">
             <button
