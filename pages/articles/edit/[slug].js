@@ -29,7 +29,6 @@ const ComponentWithToasts = (props) => {
       router.push("/signin");
     }
   }, []);
-  
 
   const head = () => (
     <Head>
@@ -69,17 +68,18 @@ const ComponentWithToasts = (props) => {
   const renderPageContents = () => (
     <React.Fragment>
       {head()}
-      isAuth ? (
-      <main>
-        <Layout>
-          <Header sidebar>
-            <ArticleEdit article={props.article} />
-          </Header>
-          <Footer />
-        </Layout>
-      </main>
+      {isAuth ? (
+        <main>
+          <Layout>
+            <Header sidebar>
+              <ArticleEdit article={props.article} />
+            </Header>
+            <Footer />
+          </Layout>
+        </main>
       ) : (
-      <Preloader message={`Redirecting to signin page`} />)
+        <Preloader message={`Redirecting to signin page`} />
+      )}
     </React.Fragment>
   );
 
@@ -88,7 +88,7 @@ const ComponentWithToasts = (props) => {
 
 const EditArticlePage = (props) => {
   return (
-    <>
+    <React.Fragment>
       {props.error ? (
         props.error === 404 ? (
           <ErrorPage404 />
@@ -100,7 +100,7 @@ const EditArticlePage = (props) => {
           <ComponentWithToasts article={props.article} />
         </ToastProvider>
       )}
-    </>
+    </React.Fragment>
   );
 };
 
