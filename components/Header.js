@@ -474,7 +474,7 @@ const ToastedHeader = (props) => {
   return (
     <div className={`${styles.App}`}>
       {loading && <LoadingSpinner asOverlay />}
-      <nav className="navbar navbar-expand-lg navbar-top navbar-light bg-light sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div className="container">
           {props.sidebar ? (
             <i className="material-icons" onClick={handleDrawer}>
@@ -567,6 +567,9 @@ const ToastedHeader = (props) => {
                     <Link href={`/user/profile/${loggedIn.username}`}>
                       <a className="dropdown-item">Dashboard</a>
                     </Link>
+                    <Link href={`/articles/create`}>
+                      <a className="dropdown-item">Create Article</a>
+                    </Link>
                     <Link href={`/favourites/${loggedIn.username}`}>
                       <a className="dropdown-item">My Favourites</a>
                     </Link>
@@ -586,9 +589,7 @@ const ToastedHeader = (props) => {
               ) : (
                 <li className="nav-item">
                   <Link href="/signup">
-                    <button className={`btn btn-outline-success`}>
-                      Get Started
-                    </button>
+                    <a className={`btn btn-outline-success`}>Get Started</a>
                   </Link>
                 </li>
               )}

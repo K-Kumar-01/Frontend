@@ -28,7 +28,7 @@ const Footer = () => {
             <p className={`py-3`}>
               <Link
                 href={`${
-                  loggedIn ? `/user/profile/${loggedIn.username}` : "/signup"
+                  loggedIn ? `/user/edit/${loggedIn.username}` : "/signup"
                 }`}
               >
                 <a className={`${styles.link}`}>
@@ -37,7 +37,7 @@ const Footer = () => {
               </Link>
               <Link
                 href={`${
-                  loggedIn ? `/user/edit/${loggedIn.username}` : "/signin"
+                  loggedIn ? `/user/profile/${loggedIn.username}` : "/signin"
                 }`}
               >
                 <a className={`${styles.link}`}>

@@ -11,6 +11,7 @@ import styles from "./ArticleCreate.module.css";
 import { createArticle } from "../../../actions/article";
 import LoadingSpinner from "../../spinner/LoadingSpinner";
 import { UPLOADS } from "../../../appConstants";
+import { useRouter } from "next/router";
 
 const ComponentWithToasts = () => {
   const { addToast } = useToasts();
@@ -104,7 +105,8 @@ const ComponentWithToasts = () => {
   const [body, setBody] = useState();
   const [extracted, setExtracted] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
+  const router = useRouter();
 
   useEffect(() => {
     getCats();
@@ -209,7 +211,7 @@ const ComponentWithToasts = () => {
                 </label>
                 <Previews />
               </div>
-              
+
               <Dante
                 content={body}
                 onChange={(editor) => {
@@ -323,6 +325,13 @@ const ComponentWithToasts = () => {
       appearance: "success",
       autoDismiss: false,
     });
+
+    addToast(`Redirecting you to created article`, {
+      appearance: "info",
+      autoDismiss: false,
+    });
+
+    router.push(`/articles/${response.data.createdArticle.slug}`);
   };
 
   return (

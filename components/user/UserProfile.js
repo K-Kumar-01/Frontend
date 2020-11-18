@@ -207,7 +207,7 @@ const ToastedUserProfile = (props) => {
               <HiOutlineEmojiSad />
             </div>
           </IconContext.Provider>
-          <p>No articles published as of now</p>u
+          <p>No articles published as of now</p>
         </div>
       );
     } else {
