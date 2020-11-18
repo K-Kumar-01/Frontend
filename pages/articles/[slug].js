@@ -13,13 +13,20 @@ import { DOMAIN } from "../../appConstants";
 const SingleArticle = (props) => {
   const head = () => (
     <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Article: {props.article.title} | TITAN READ</title>
       <meta name="description" content={`${props.article.mdesc}`} />
       <link rel="canonical" href={`${DOMAIN}/articles/${props.article.slug}`} />
-      <meta property="og:title" content={`${props.article.title} | TITAN READ`} />
+      <meta
+        property="og:title"
+        content={`${props.article.title} | TITAN READ`}
+      />
       <meta property="og:description" content={props.article.mdesc} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={`${DOMAIN}/articles/${props.article.slug}`} />
+      <meta
+        property="og:url"
+        content={`${DOMAIN}/articles/${props.article.slug}`}
+      />
       <meta property="og:site_name" content="TITAN READ" />
 
       <meta property="og:image" content={`${props.article.featuredPhoto}`} />

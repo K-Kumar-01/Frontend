@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+
+import { authenticate, removeCookie } from "../helpers/auth";
+import { COOKIE_NAME } from "../appConstants";
+
 import styles from "./Footer.module.css";
 
 const Footer = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setLoggedIn(authenticate(COOKIE_NAME));
+  }, []);
+
   return (
     <footer className={`${styles.footer}`}>
       <div className="container py-5">
@@ -16,11 +26,23 @@ const Footer = () => {
               </a>
             </Link>
             <p className={`py-3`}>
-              <Link href="/signup">
-                <a className={`${styles.link}`}>Get Started</a>
+              <Link
+                href={`${
+                  loggedIn ? `/user/profile/${loggedIn.username}` : "/signup"
+                }`}
+              >
+                <a className={`${styles.link}`}>
+                  {loggedIn ? "Profile" : "Get Started"}
+                </a>
               </Link>
-              <Link href={`/signin`}>
-                <a className={`${styles.link}`}>Already a member</a>
+              <Link
+                href={`${
+                  loggedIn ? `/user/edit/${loggedIn.username}` : "/signin"
+                }`}
+              >
+                <a className={`${styles.link}`}>
+                  {loggedIn ? "Dashboard" : "Already a member"}
+                </a>
               </Link>
               <Link href={`/articles`}>
                 <a className={`${styles.link}`}>Articles</a>

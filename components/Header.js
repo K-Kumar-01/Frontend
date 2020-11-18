@@ -112,7 +112,7 @@ const ToastedHeader = (props) => {
   const showDrawer = () => {
     return (
       <ul>
-        <Link href="/">
+        <Link href="/articles">
           <a title="Home">
             <i>
               <IconContext.Provider value={{ size: "2rem" }}>

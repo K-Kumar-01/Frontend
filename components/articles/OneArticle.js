@@ -300,7 +300,7 @@ const ToastedOneArticle = (props) => {
 
   const renderLikedByModal = () => (
     <div
-      class="modal fade "
+      className="modal fade "
       id="staticBackdrop"
       data-backdrop="static"
       data-keyboard="false"
@@ -308,26 +308,26 @@ const ToastedOneArticle = (props) => {
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">
+      <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="staticBackdropLabel">
               Liked By
             </h5>
             <button
               type="button"
-              class="close"
+              className="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">{renderLikesList(likedBy)}</div>
-          <div class="modal-footer">
+          <div className="modal-body">{renderLikesList(likedBy)}</div>
+          <div className="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              className="btn btn-secondary"
               data-dismiss="modal"
             >
               Close
