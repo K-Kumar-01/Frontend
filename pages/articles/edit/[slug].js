@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import Error from "next/error";
-import ErrorPage404 from "../../404";
+import { useRouter } from "next/router";
 import Head from "next/head";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
+import ArticleEdit from "../../../components/crud/article/ArticleEdit";
+import Preloader from "../../../components/spinner/Preloader";
+import ErrorPage404 from "../../404";
+import { getParticularArticle } from "../../../actions/article";
 import { authenticate } from "../../../helpers/auth";
 import { COOKIE_NAME, FETCH_TYPE, DOMAIN } from "../../../appConstants";
-import { useRouter } from "next/router";
-import Preloader from "../../../components/spinner/Preloader";
-import { getParticularArticle } from "../../../actions/article";
-import ArticleEdit from "../../../components/crud/article/ArticleEdit";
 
 const ComponentWithToasts = (props) => {
   const { addToast } = useToasts();

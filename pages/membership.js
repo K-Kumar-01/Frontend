@@ -1,14 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import Layout from "../components/Layout";
 import Head from "next/head";
+
+import Layout from "../components/Layout";
 import { DOMAIN } from "../appConstants";
-Layout;
+
 const membershipData = [
-  {
-    title: "Monthly Subscription",
-    pricing: "₹199",
-  },
+  { title: "Monthly Subscription", pricing: "₹199" },
   { title: "Annual Subscription", pricing: "₹1799" },
   { title: "Custom Subscription", pricing: "Custom Pricing" },
 ];
@@ -30,11 +28,6 @@ const head = () => {
       <meta property="og:type" content="website" />
       <meta property="og:url" content={`/membership`} />
       <meta property="og:site_name" content={`TITAN READ`} />
-
-      {/* <meta property="og:image" content={`${signinImage}`} />
-					<meta property="og:image:secure_url" content={`${signinImage}`} />
-					<meta property="og:image:type" content="image/jpeg" />
-					<meta property="fb:app_id" content={FB_APP_ID} /> */}
     </Head>
   );
 };

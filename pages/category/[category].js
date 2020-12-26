@@ -3,13 +3,13 @@ import Error from "next/error";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import { getArticlesByCategory } from "../../actions/article";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ArticlesListCategory from "../../components/category/ArticlesListCategory";
-import { DOMAIN } from "../../appConstants";
 import ErrorPage404 from "../404";
+import { getArticlesByCategory } from "../../actions/article";
+import { DOMAIN } from "../../appConstants";
 
 const CategoryArticles = (props) => {
   const router = useRouter();

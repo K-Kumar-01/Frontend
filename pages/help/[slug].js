@@ -6,10 +6,10 @@ import Head from "next/head";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { fetchSingleRequest } from "../../actions/help";
 import SingleHelp from "../../components/help/SingleHelp";
-import { DOMAIN } from "../../appConstants";
 import ErrorPage404 from "../404";
+import { fetchSingleRequest } from "../../actions/help";
+import { DOMAIN } from "../../appConstants";
 
 const SingleHelpPage = (props) => {
   const router = useRouter();

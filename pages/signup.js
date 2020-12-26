@@ -18,11 +18,6 @@ const Signup = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${DOMAIN}/signup`} />
         <meta property="og:site_name" content={`TITAN READ`} />
-
-        {/* <meta property="og:image" content={`${signupImage}`} />
-				<meta property="og:image:secure_url" content={`${signupImage}`} />
-				<meta property="og:image:type" content="image/jpeg" />
-				<meta property="fb:app_id" content={FB_APP_ID} /> */}
       </Head>
     );
   };

@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+
 import SigninComponent from "../components/auth/SigninComponent";
 import Layout from "../components/Layout";
 import Protected from "../components/Protected/Protected";
@@ -23,11 +24,6 @@ const Signin = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${DOMAIN}/signin`} />
         <meta property="og:site_name" content={`TITAN READ`} />
-
-        {/* <meta property="og:image" content={`${signinImage}`} />
-					<meta property="og:image:secure_url" content={`${signinImage}`} />
-					<meta property="og:image:type" content="image/jpeg" />
-					<meta property="fb:app_id" content={FB_APP_ID} /> */}
       </Head>
     );
   };

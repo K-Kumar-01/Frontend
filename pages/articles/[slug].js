@@ -72,7 +72,6 @@ SingleArticle.getInitialProps = async (props) => {
   try {
     response = await getParticularArticle(props.query.slug, undefined, token);
   } catch (error) {
-    console.log(error);
     return { error: 500 };
   }
   if (response.error) {

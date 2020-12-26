@@ -6,9 +6,9 @@ import UserProfile from "../../../components/user/UserProfile";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
+import ErrorPage404 from "../../404";
 import { getUserDetails } from "../../../actions/user";
 import { DOMAIN } from "../../../appConstants";
-import ErrorPage404 from "../../404";
 
 const UserIndex = (props) => {
   const head = () => {
@@ -67,12 +67,9 @@ const UserIndex = (props) => {
 
 UserIndex.getInitialProps = async (props) => {
   let response;
-
   try {
     response = await getUserDetails(props.query.username);
-    // console.log(response);
   } catch (error) {
-    // console.log(error);
     return { error: 500 };
   }
 

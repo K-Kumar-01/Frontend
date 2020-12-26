@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import Error from "next/error";
+import { useRouter } from "next/router";
 
 import EditProfile from "../../../components/user/crud/EditProfile";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
-import { getUserDetails } from "../../../actions/user";
-import Error from "next/error";
-import { useRouter } from "next/router";
-import { authenticate } from "../../../helpers/auth";
-import { COOKIE_NAME, DOMAIN } from "../../../appConstants";
 import Preloader from "../../../components/spinner/Preloader";
 import ErrorPage404 from "../../404";
+
+import { getUserDetails } from "../../../actions/user";
+import { authenticate } from "../../../helpers/auth";
+
+import { COOKIE_NAME, DOMAIN } from "../../../appConstants";
 
 const EditUser = (props) => {
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    console.log("Hello");
     let decodedData = authenticate(COOKIE_NAME);
     setLoggedIn(decodedData);
     if (!decodedData || !decodedData.username) {
-      console.log("YES");
       router.push("/signin");
     } else if (!props.error) {
       if (
@@ -41,10 +41,7 @@ const EditUser = (props) => {
       <Head>
         <title>{`${data.username} (${data.name})`}</title>
         <meta name="description" content={`Details of ${data.username}`} />
-        <link
-          rel="canonical"
-          href={`${DOMAIN}/user/edit/${data.username}`}
-        />
+        <link rel="canonical" href={`${DOMAIN}/user/edit/${data.username}`} />
         <meta property="og:title" content={`${data.username} | TITAN READ`} />
         <meta
           property="og:description"

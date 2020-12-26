@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Error from "next/error";
 import Head from "next/head";
 
@@ -10,11 +10,11 @@ import { getAllRequests } from "../../actions/help";
 import { DOMAIN } from "../../appConstants";
 
 const HelpPage = (props) => {
-  const [arrays, setArrays] = useState({
+  const arrays = {
     open: props.requests.open || [],
     closed: props.requests.closed || [],
     pending: props.requests.pending || [],
-  });
+  };
 
   const head = () => (
     <Head>

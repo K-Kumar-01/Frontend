@@ -35,9 +35,7 @@ const ErrorPage404 = () => {
           <Link href={`/help`}>
             <a className="book faq">Help</a>
           </Link>
-
           <span className="book not-found"></span>
-
           <span className="door left"></span>
           <span className="door right"></span>
         </nav>

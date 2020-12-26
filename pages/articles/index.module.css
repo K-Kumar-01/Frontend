@@ -1,8 +1,0 @@
-.categories {
-	font-size: 1.1rem;
-	transition: all 0.2s linear;
-}
-.categories:hover {
-	color: gray;
-	font-weight: bold;
-}

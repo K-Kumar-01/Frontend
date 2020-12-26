@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
+
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-
 import Layout from "../../components/Layout";
 import Preloader from "../../components/spinner/Preloader";
-import { getAllArticles } from "../../actions/article";
 import ArticleList from "../../components/articles/ArticleList";
-import Head from "next/head";
+import { getAllArticles } from "../../actions/article";
 import { DOMAIN } from "../../appConstants";
 
 const Articles = () => {
@@ -17,13 +17,10 @@ const Articles = () => {
     try {
       response = await getAllArticles();
       if (response.error) {
-        console.log(response.error);
       } else {
         setArticles(response.articles);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
     setLoading(false);
   };
 

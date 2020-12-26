@@ -12,7 +12,6 @@ class MyDocument extends Document {
         <Head>
           <link rel="shortcut icon" href="/logo.ico" />
         </Head>
-
         <body>
           <Main />
           <NextScript />

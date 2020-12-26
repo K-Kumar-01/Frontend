@@ -3,12 +3,12 @@ import Error from "next/error";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import { getArticlesBySpecificUser } from "../../../actions/user";
 import Layout from "../../../components/Layout";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import PostedArticles from "../../../components/user/PostedArticles";
 import ErrorPage404 from "../../404";
+import { getArticlesBySpecificUser } from "../../../actions/user";
 import { DOMAIN } from "../../../appConstants";
 
 const ArticlesBySpecificUserPage = (props) => {

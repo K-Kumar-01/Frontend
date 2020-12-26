@@ -1,8 +1,6 @@
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const Error = ({ statusCode }) => {
-  const router = useRouter();
+const Error = () => {
   useEffect(() => {
     $(".full-screen").mousemove(function (event) {
       var eye = $(".eye");

@@ -6,9 +6,9 @@ import Error from "next/error";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { getFavourites } from "../../actions/user";
 import Favourites from "../../components/user/Favourites";
 import ErrorPage403 from "../../components/errorPages/403/ErrorPage403";
+import { getFavourites } from "../../actions/user";
 import { DOMAIN } from "../../appConstants";
 
 const FavouritesPage = (props) => {
