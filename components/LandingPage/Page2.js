@@ -162,7 +162,7 @@ const Page2 = () => {
     <React.Fragment>
       <main>
         {renderModal()}
-        <a name="home">
+        <div id="home">
           <header className="headerLP">
             <motion.div variants={leftEntranceVariants} className="logo">
               T<span>R</span>
@@ -214,7 +214,7 @@ const Page2 = () => {
               </motion.div>
             </div>
           </div>
-        </a>
+        </div>
       </main>
       {show && (
         <motion.div
