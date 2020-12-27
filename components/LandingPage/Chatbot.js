@@ -5,15 +5,15 @@ import { BiSend } from "react-icons/bi";
 import { FcAssistant } from "react-icons/fc";
 import { motion } from "framer-motion";
 
-import styles from "./Chatbot.module.css";
 import TypingDots from "./TypingDots";
 import { sendMessageChatbot } from "../../actions/chatbot";
+
+import styles from "./Chatbot.module.css";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
-  const [botMsg, setBotMsg] = useState("");
 
   const PERSON = "ME",
     BOT = "Bot";

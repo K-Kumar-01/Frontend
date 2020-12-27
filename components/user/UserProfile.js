@@ -16,14 +16,15 @@ import {
   FaTrashAlt,
   FaEdit,
 } from "react-icons/fa";
-
-import styles from "./UserProfile.module.css";
-import { authenticate, getCookie, decodeCookie } from "../../helpers/auth";
-import { COOKIE_NAME } from "../../appConstants";
-import LoadingSpinner from "../spinner/LoadingSpinner";
 import { ToastProvider, useToasts } from "react-toast-notifications";
+
+import LoadingSpinner from "../spinner/LoadingSpinner";
 import { deleteParticularArticle } from "../../actions/article";
 import { verifyMail, sendVerifcationMail } from "../../actions/user";
+import { authenticate, getCookie, decodeCookie } from "../../helpers/auth";
+import { COOKIE_NAME } from "../../appConstants";
+
+import styles from "./UserProfile.module.css";
 
 const ToastedUserProfile = (props) => {
   const [tokenDetails, setTokenDetails] = useState(false);

@@ -1,6 +1,7 @@
 import React from "react";
 import { IconContext } from "react-icons";
 import { HiOutlineEmojiSad } from "react-icons/hi";
+
 import ArticleCategoryCard from "../category/ArticleCategoryCard";
 
 const Favourites = (props) => {

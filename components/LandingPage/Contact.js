@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-import styles from "./Contact.module.css";
 import AnimatedBox from "./AnimatedBox";
+
+import styles from "./Contact.module.css";
 
 const Contact = () => {
   const MEMBERS = [

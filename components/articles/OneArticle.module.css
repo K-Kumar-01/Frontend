@@ -69,10 +69,8 @@
 
 .likedByLink {
   display: inline-block;
-  /*   border-radius: 5px; */
   text-decoration: none;
   color: #757575;
-  /* font-size: 2rem; */
   /* Set up the hover */
   /* If you aren't using autoprefix, remember to prefix the gradient for other browsers */
   background-image: linear-gradient(#aaaaaa, #75768c);

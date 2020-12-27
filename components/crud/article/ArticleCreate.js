@@ -4,14 +4,15 @@ import { ImageBlockConfig } from "Dante2/package/lib/components/blocks/image.js"
 import { VideoBlockConfig } from "Dante2/package/lib/components/blocks/video.js";
 import { useDropzone } from "react-dropzone";
 import { ToastProvider, useToasts } from "react-toast-notifications";
+import { useRouter } from "next/router";
 
 import Loading from "../../spinner/Loading";
-import { getCategories } from "../../../actions/category";
-import styles from "./ArticleCreate.module.css";
-import { createArticle } from "../../../actions/article";
 import LoadingSpinner from "../../spinner/LoadingSpinner";
+import { getCategories } from "../../../actions/category";
+import { createArticle } from "../../../actions/article";
 import { UPLOADS } from "../../../appConstants";
-import { useRouter } from "next/router";
+
+import styles from "./ArticleCreate.module.css";
 
 const ComponentWithToasts = () => {
   const { addToast } = useToasts();
@@ -110,26 +111,21 @@ const ComponentWithToasts = () => {
 
   useEffect(() => {
     getCats();
-    // setBody(jso);
   }, []);
 
   const getCats = async () => {
     try {
-      // console.log('mew here');
       const result = await getCategories();
       setCategories(result.categories);
-      // console.log('mre there');
     } catch (error) {
       addToast(`${error.message}`, {
         appearance: "error",
         autoDismiss: false,
       });
-      console.log(error);
     }
   };
 
   const handleToggleCat = (c) => {
-    // console.log(c);
     const all = [...checkedCat];
     const checkedIndex = checkedCat.indexOf(c);
     if (checkedIndex === -1) {
@@ -222,24 +218,15 @@ const ComponentWithToasts = () => {
                   ImageBlockConfig({
                     options: {
                       upload_url: `${UPLOADS}`,
-                      upload_callback: (ctx, img) => {
-                        alert("file uploaded: " + ctx.data.url);
-                      },
-                      upload_error_callback: (ctx, img) => {
-                        console.log(ctx);
-                      },
+                      upload_callback: (ctx, img) => {},
+                      upload_error_callback: (ctx, img) => {},
                     },
                   }),
                   VideoBlockConfig({
                     options: {
                       upload_url: `${UPLOADS}`,
-                      upload_callback: (ctx, img) => {
-                        console.log("file uploaded: " + ctx.data.url);
-                      },
-                      upload_error_callback: (ctx, img) => {
-                        debugger;
-                        console.log(ctx);
-                      },
+                      upload_callback: (ctx, img) => {},
+                      upload_error_callback: (ctx, img) => {},
                     },
                   }),
                 ]}
@@ -343,7 +330,6 @@ const ComponentWithToasts = () => {
 };
 
 const ArticleCreate = () => {
-  // styling file image container
   return (
     <ToastProvider placement="bottom-right">
       <ComponentWithToasts />

@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IconContext } from "react-icons";
+import { useRouter } from "next/router";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import Link from "next/link";
 import { ToastProvider, useToasts } from "react-toast-notifications";
-import { useRouter } from "next/router";
 
-import { authenticate } from "../../helpers/auth";
-import { COOKIE_NAME } from "../../appConstants";
-import styles from "./Help.module.css";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 import { createRequest } from "../../actions/help";
+import { authenticate } from "../../helpers/auth";
+import { COOKIE_NAME } from "../../appConstants";
+
+import styles from "./Help.module.css";
 
 const ToastedComponent = (props) => {
+  const arrays = {
+    open: props.open || [],
+    closed: props.closed || [],
+    pending: props.pending || [],
+  };
   const [tokenDetails, setTokenDetails] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [arrays, setArrays] = useState({
-    closed: props.closed || [],
-    open: props.open || [],
-    pending: props.pending || [],
-  });
   const { register, handleSubmit, errors, formState, reset } = useForm({
     mode: "onTouched",
   });
@@ -127,7 +128,7 @@ const ToastedComponent = (props) => {
   );
 
   const renderRequestForm = () => (
-    <>
+    <React.Fragment>
       <div className={`${styles.formLabelGroup}`}>
         <input
           type="text"
@@ -167,7 +168,7 @@ const ToastedComponent = (props) => {
             "Must be atmost 100 characters long"}
         </p>
       </div>
-    </>
+    </React.Fragment>
   );
 
   const renderCreateRequestModal = () => (
@@ -216,7 +217,6 @@ const ToastedComponent = (props) => {
                     Object.keys(formState.touched).length < 2 ||
                     Object.keys(errors).length !== 0
                   }
-                  // data-dismiss="modal"
                 >
                   Create
                 </button>

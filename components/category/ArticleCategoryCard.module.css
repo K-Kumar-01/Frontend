@@ -1,5 +1,4 @@
 .myimage {
-  /*   transform:translateX(-15%) */
   position: relative;
   right: 50px;
   min-height: 125px;
@@ -15,7 +14,6 @@
 
 @media (max-width: 768px) {
   .myimage {
-    /*   transform:translateX(-15%) */
     position: relative;
     bottom: 50px;
     min-width: auto;

@@ -60,7 +60,6 @@ const About = () => {
             <motion.div
               key={page}
               className={`${styles.newContainer}`}
-              // src={images[page%3]}
               custom={direction}
               variants={variants}
               initial="enter"

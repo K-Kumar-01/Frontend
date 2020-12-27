@@ -4,17 +4,17 @@ import { ToastProvider, useToasts } from "react-toast-notifications";
 import { useRouter } from "next/router";
 
 import LoadingSpinner from "../../spinner/LoadingSpinner";
-
-import styles from "./ForgotPassword.module.css";
 import { resetPassword } from "../../../actions/user";
 import { decodeCookie, authenticate } from "../../../helpers/auth";
 import { COOKIE_NAME } from "../../../appConstants";
+
+import styles from "./ForgotPassword.module.css";
 
 const ToastedResetPassword = () => {
   const { addToast } = useToasts();
   const { register, handleSubmit, errors, watch, formState } = useForm({
     mode: "onTouched",
-  }); // initialise the hook
+  });
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
@@ -65,10 +65,9 @@ const ToastedResetPassword = () => {
     }
   };
 
-  const onSubmit = async (data, e) => {
+  const onSubmit = async (data) => {
     let response;
     setLoading(true);
-    console.log(router.query.token);
     try {
       response = await resetPassword(
         router.query.username,

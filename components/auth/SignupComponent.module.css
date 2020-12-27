@@ -2,17 +2,6 @@
 	font-size: 0.8rem;
 }
 
-/* .container {
-	padding: 0.5rem 1rem;
-	border-radius: 5px;
-	transition: all 0.2s linear;
-}
-
-.container:hover {
-	box-shadow: 0px 0px 20px 1px #eeeeee;
-	border: none;
-} */
-
 .formLabelGroup > input {
 	--input-padding-x: 1.5rem;
 	--input-padding-y: 0.75rem;

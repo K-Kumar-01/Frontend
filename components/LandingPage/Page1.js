@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+
 import styles from "./Page1.module.css";
 
 const Page1 = () => {

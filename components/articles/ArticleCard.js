@@ -4,16 +4,6 @@ import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import styles from "./ArticleCard.module.css";
 import Link from "next/link";
 
-/**
- * This is an example of animating shared layouts in Framer Motion 2.
- *
- * The open state of each panel is contained locally to that component. Wrapping
- * them all in the same AnimateSharedLayout component allows them all to animate
- * in response to state changes that affect each other's layout.
- *
- * Try removing AnimateSharedLayout to see how that affects the animation.
- */
-
 const Item = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const { article } = props;

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import styles from "./ErrorPage403.module.css";
 import Head from "next/head";
+
+import styles from "./ErrorPage403.module.css";
 
 const ErrorPage403 = (props) => {
   useEffect(() => {

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { COOKIE_NAME } from '../../appConstants';
-import { authenticate } from '../../helpers/auth';
 import { useRouter } from 'next/router';
+
+import { authenticate } from '../../helpers/auth';
+import { COOKIE_NAME } from '../../appConstants';
 
 const Protected = (props) => {
 	const router = useRouter();

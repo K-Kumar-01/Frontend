@@ -4,17 +4,18 @@ import { ToastProvider, useToasts } from "react-toast-notifications";
 import Link from "next/link";
 import Router from "next/router";
 
-import styles from "./SignupComponent.module.css";
-import { createUser } from "../../actions/auth";
 import LoadingSpinner from "../spinner/LoadingSpinner";
+import { createUser } from "../../actions/auth";
 import { setCookie } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
+
+import styles from "./SignupComponent.module.css";
 
 const FormWithToasts = () => {
   const { addToast } = useToasts();
   const { register, handleSubmit, errors, watch, formState } = useForm({
     mode: "onTouched",
-  }); // initialise the hook
+  });
   const [loading, setLoading] = useState(false);
   const onSubmit = async (data, event) => {
     event.preventDefault();
@@ -42,7 +43,6 @@ const FormWithToasts = () => {
         Router.push(`/articles`);
       }
     } catch (error) {
-      console.log(error);
       setLoading(false);
       addToast(`${error.message}`, {
         appearance: "error",

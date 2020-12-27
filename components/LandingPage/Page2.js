@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import AnimatedBox from "./AnimatedBox";
-import About from "./About";
+
 import AboutUs from "./AboutUs";
 import Features from "./Features";
 import Contact from "./Contact";

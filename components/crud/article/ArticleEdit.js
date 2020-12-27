@@ -3,15 +3,16 @@ import { useToasts } from "react-toast-notifications";
 import Dante from "Dante2";
 import { ImageBlockConfig } from "Dante2/package/lib/components/blocks/image.js";
 import { VideoBlockConfig } from "Dante2/package/lib/components/blocks/video.js";
-
-import { getCategories } from "../../../actions/category";
-import Loading from "../../spinner/Loading";
-import styles from "./ArticleEdit.module.css";
-import { editParticularArticle } from "../../../actions/article";
-import { UPLOADS, COOKIE_NAME } from "../../../appConstants";
 import { useRouter } from "next/router";
+
 import LoadingSpinner from "../../spinner/LoadingSpinner";
+import Loading from "../../spinner/Loading";
+import { editParticularArticle } from "../../../actions/article";
+import { getCategories } from "../../../actions/category";
 import { authenticate } from "../../../helpers/auth";
+import { UPLOADS, COOKIE_NAME } from "../../../appConstants";
+
+import styles from "./ArticleEdit.module.css";
 
 const ArticleEdit = (props) => {
   const { addToast } = useToasts();
@@ -73,16 +74,13 @@ const ArticleEdit = (props) => {
 
   const getCats = async () => {
     try {
-      // console.log('mew here');
       const result = await getCategories();
       setCategories(result.categories);
-      // console.log('mre there');
     } catch (error) {
       addToast(`${error.message}`, {
         appearance: "error",
         autoDismiss: false,
       });
-      console.log(error);
     }
   };
 
@@ -107,7 +105,6 @@ const ArticleEdit = (props) => {
   };
 
   const handleToggleCat = (c) => {
-    // console.log(c);
     const all = [...checkedCat];
     const checkedIndex = checkedCat.indexOf(c);
     if (checkedIndex === -1) {
@@ -283,24 +280,15 @@ const ArticleEdit = (props) => {
                   ImageBlockConfig({
                     options: {
                       upload_url: `${UPLOADS}`,
-                      upload_callback: (ctx, img) => {
-                        alert("file uploaded: " + ctx.data.url);
-                      },
-                      upload_error_callback: (ctx, img) => {
-                        console.log(ctx);
-                      },
+                      upload_callback: (ctx, img) => {},
+                      upload_error_callback: (ctx, img) => {},
                     },
                   }),
                   VideoBlockConfig({
                     options: {
                       upload_url: `${UPLOADS}`,
-                      upload_callback: (ctx, img) => {
-                        console.log("file uploaded: " + ctx.data.url);
-                      },
-                      upload_error_callback: (ctx, img) => {
-                        debugger;
-                        console.log(ctx);
-                      },
+                      upload_callback: (ctx, img) => {},
+                      upload_error_callback: (ctx, img) => {},
                     },
                   }),
                 ]}

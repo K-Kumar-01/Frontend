@@ -6,16 +6,17 @@ import { IconContext } from "react-icons";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useRouter } from "next/router";
 
-import styles from "./SingleHelp.module.css";
-import { authenticate } from "../../helpers/auth";
-import { COOKIE_NAME } from "../../appConstants";
+import LoadingSpinner from "../spinner/LoadingSpinner";
 import {
   editSingleRequest,
   deleteSingleRequest,
   suggestArticleforRequest,
   approveArticleRequest,
 } from "../../actions/help";
-import LoadingSpinner from "../spinner/LoadingSpinner";
+import { authenticate } from "../../helpers/auth";
+import { COOKIE_NAME } from "../../appConstants";
+
+import styles from "./Help.module.css";
 
 const ToastedComponentSingleHelp = (props) => {
   const { addToast } = useToasts();
@@ -185,7 +186,6 @@ const ToastedComponentSingleHelp = (props) => {
     let response;
     setLoading(true);
     try {
-      console.log("Hello");
       response = await editSingleRequest(request.slug, {
         title: data.title.trim(),
         desc: data.description.trim(),

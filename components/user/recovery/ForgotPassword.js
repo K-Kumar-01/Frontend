@@ -3,17 +3,18 @@ import { useForm } from "react-hook-form";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import { useRouter } from "next/router";
 
-import styles from "./ForgotPassword.module.css";
 import LoadingSpinner from "../../spinner/LoadingSpinner";
 import { forgotPasswordMail } from "../../../actions/user";
 import { authenticate } from "../../../helpers/auth";
 import { COOKIE_NAME } from "../../../appConstants";
 
+import styles from "./ForgotPassword.module.css";
+
 const ToastedForgotPassword = () => {
   const { addToast } = useToasts();
   const { register, handleSubmit, errors, watch, formState } = useForm({
     mode: "onTouched",
-  }); // initialise the hook
+  });
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "./ArticleList.module.css";
 import Link from "next/link";
+
+import styles from "./ArticleList.module.css";
 
 const ArticleList = (props) => {
   const { articles } = props;

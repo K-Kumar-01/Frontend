@@ -1,24 +1,19 @@
 import React, { useEffect } from "react";
-import styles from "./Features.module.css";
-import AnimatedBox from "./AnimatedBox";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import { IconContext } from "react-icons";
 import {
   FaLayerGroup,
-  FaRobot,
-  FaDesktop,
-  FaMobileAlt,
-  FaBookmark,
-  FaHandPointUp,
   FaStar,
   FaBullseye,
-  FaSearch,
   FaPenSquare,
   FaHeart,
 } from "react-icons/fa";
 import { DiResponsive } from "react-icons/di";
-import { MdChat, MdFavorite, MdCollectionsBookmark } from "react-icons/md";
+
+import AnimatedBox from "./AnimatedBox";
+
+import styles from "./Features.module.css";
 
 const Features = () => {
   const controls = useAnimation();

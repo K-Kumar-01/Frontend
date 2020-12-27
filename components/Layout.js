@@ -1,6 +1,7 @@
 import Router from "next/router";
 import NProgress from "nprogress";
 import { useEffect } from "react";
+
 import { removeCookieonExp } from "../helpers/auth";
 
 NProgress.configure({ showSpinner: false });

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
-import { authenticate, removeCookie } from "../helpers/auth";
+import { authenticate } from "../helpers/auth";
 import { COOKIE_NAME } from "../appConstants";
 
 import styles from "./Footer.module.css";

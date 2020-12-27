@@ -4,18 +4,19 @@ import { ToastProvider, useToasts } from "react-toast-notifications";
 import Link from "next/link";
 import Router from "next/router";
 
-import styles from "./SignupComponent.module.css";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 import { loginUser } from "../../actions/auth";
 import { setCookie } from "../../helpers/auth";
 import { COOKIE_NAME } from "../../appConstants";
+
+import styles from "./SignupComponent.module.css";
 
 const FormWithToasts = () => {
   const [loading, setLoading] = useState(false);
   const { addToast } = useToasts();
   const { register, handleSubmit, errors, formState } = useForm({
     mode: "onTouched",
-  }); // initialise the hook
+  });
   useEffect(() => {}, []);
   const onSubmit = async (data, event) => {
     event.preventDefault();

@@ -3,14 +3,15 @@ import Dante from "Dante2";
 import Link from "next/link";
 import { IconContext } from "react-icons";
 import { FaHeart, FaRegHeart, FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
-
-import styles from "./OneArticle.module.css";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import { useRouter } from "next/router";
-import { toggleFavourites, toggleLikes } from "../../actions/article";
+
 import LoadingSpinner from "../spinner/LoadingSpinner";
 import { authenticate } from "../../helpers/auth";
+import { toggleFavourites, toggleLikes } from "../../actions/article";
 import { COOKIE_NAME } from "../../appConstants";
+
+import styles from "./OneArticle.module.css";
 
 const ToastedOneArticle = (props) => {
   const { article, articles } = props;
@@ -26,7 +27,6 @@ const ToastedOneArticle = (props) => {
 
   useEffect(() => {
     let tokenData = authenticate(COOKIE_NAME);
-    console.log(tokenData);
     setIsAuth(tokenData);
     if (!tokenData) {
       return;
@@ -241,8 +241,6 @@ const ToastedOneArticle = (props) => {
             </Link>
             <br />
             {d.name}
-            {/* <br />
-            {d.email} */}
           </p>
         </div>
       </div>

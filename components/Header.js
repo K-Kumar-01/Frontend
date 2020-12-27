@@ -38,16 +38,16 @@ import {
 } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { ToastProvider, useToasts } from "react-toast-notifications";
+import { HiOutlineEmojiSad } from "react-icons/hi";
 
+import LoadingSpinner from "./spinner/LoadingSpinner";
+import ArticleCard from "./articles/ArticleCard";
 import { authenticate, removeCookie } from "../helpers/auth";
-import { COOKIE_NAME } from "../appConstants";
+import { searchArticles } from "../actions/article";
 import { logoutUser } from "../actions/auth";
+import { COOKIE_NAME } from "../appConstants";
 
 import styles from "./Header.module.css";
-import ArticleCard from "./articles/ArticleCard";
-import LoadingSpinner from "./spinner/LoadingSpinner";
-import { searchArticles } from "../actions/article";
-import { HiOutlineEmojiSad } from "react-icons/hi";
 
 const ToastedHeader = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -90,14 +90,11 @@ const ToastedHeader = (props) => {
     try {
       response = await logoutUser();
       if (response.error) {
-        console.log(error);
       } else {
         removeCookie(COOKIE_NAME);
         router.push("/signin");
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const makeClassNameString = (data) => {
@@ -459,7 +456,6 @@ const ToastedHeader = (props) => {
         });
       } else {
         setShowSearch(true);
-        console.log(response.foundArticles);
         setSearchedArticles(response.foundArticles);
       }
     } catch (error) {

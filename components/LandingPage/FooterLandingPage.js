@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import AnimatedBox from "./AnimatedBox";
+
 import styles from "./FooterLandingPage.module.css";
 
 const FooterLandingPage = () => {

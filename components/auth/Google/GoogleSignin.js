@@ -5,18 +5,15 @@ import { FcGoogle } from "react-icons/fc";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import { useRouter } from "next/router";
 
-import { signinWithGoogle } from "../../../actions/auth";
-import styles from "./GoogleSignin.module.css";
-import { COOKIE_NAME } from "../../../appConstants";
-import { setCookie, authenticate } from "../../../helpers/auth";
 import LoadingSpinner from "../../spinner/LoadingSpinner";
+import { signinWithGoogle } from "../../../actions/auth";
+import { setCookie, authenticate } from "../../../helpers/auth";
+import { COOKIE_NAME } from "../../../appConstants";
+
+import styles from "./GoogleSignin.module.css";
 
 const ToastedGoogleSignin = () => {
-  // for dev
   const clientId = `${process.env.NEXT_PUBLIC_GOOGLE_CLIENT}`;
-
-  // for prod
-  // const clientId = `${process.env.GOOGLE_CLIENT}`;
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -58,7 +55,6 @@ const ToastedGoogleSignin = () => {
 
   const onFailure = (res) => {
     $("#getStartedModal").modal("toggle");
-    console.log(res);
     addToast(`${res.error}`, {
       appearance: "error",
       autoDismiss: true,

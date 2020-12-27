@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Alegreya&family=Lora:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Dancing+Script:400,700");
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: 0.75rem;
-  /* --cx:; */
-  /* --cy:; */
 }
 
 html {
@@ -20,8 +20,7 @@ main {
   padding: 0;
   margin: 0;
 }
-/* font-family: 'Alegreya', serif;
-font-family: 'Lora', serif; */
+
 .heading {
   font-family: "Lora", serif;
 }
@@ -378,9 +377,6 @@ font-family: 'Lora', serif; */
 }
 
 /* for landing page */
-
-@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 .mainContainer .bodyLP {
   -webkit-box-sizing: border-box;
