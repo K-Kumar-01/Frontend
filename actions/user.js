@@ -21,8 +21,6 @@ export const updateUser = async (username, data) => {
     });
     return response.data;
   } catch (error) {
-    // console.log(error);
-    // console.log(error.response || { data: { error: error.message } });
     return (error.response && error.response.data) || { error: error.message };
   }
 };
@@ -33,7 +31,6 @@ export const getUserDetails = async (username) => {
     response = await axios.get(`${BASE_URL}api/user/profile/${username}`);
     return { response };
   } catch (error) {
-    // console.log(error.response);
     return { error: error.response || { status: 500 } };
   }
 };

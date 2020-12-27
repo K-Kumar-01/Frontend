@@ -22,7 +22,6 @@ export const createArticle = async (data) => {
   } catch (error) {
     throw new Error(error.response.data.message || error.message);
   }
-
   return response;
 };
 
@@ -63,7 +62,6 @@ export const getParticularArticle = async (slug, fetchType, token) => {
 
     return response.data;
   } catch (error) {
-    console.log(error);
     return { error: error.response || { status: 500 } };
   }
 };

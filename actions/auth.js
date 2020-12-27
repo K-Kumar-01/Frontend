@@ -9,10 +9,8 @@ export const createUser = async (data) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    // console.log(response);
     return response.data;
   } catch (err) {
-    // console.log(err);
     return (err.response && err.response.data) || err.message;
   }
 };
