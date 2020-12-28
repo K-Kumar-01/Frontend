@@ -63,7 +63,12 @@ const FavouritesPage = (props) => {
 FavouritesPage.getInitialProps = async (props) => {
   let response;
   let token = props.req.headers.cookie;
-  token = token && token.split("=")[1];
+  let index = token.search("token=");
+  if (index == -1) {
+    return { error: 401 };
+  }
+  token = token.substring(index);
+  token = token.split("=")[1];
   if (!token) {
     return { error: 401 };
   }

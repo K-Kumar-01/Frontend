@@ -130,6 +130,11 @@ const FormWithToasts = () => {
                       </Link>
                     </p>
                   </div>
+                  <p className="text-center">
+                    <Link href="/recovery/forgot-password">
+                      <a>Forgot Password</a>
+                    </Link>
+                  </p>
                 </div>
               </div>
             </div>

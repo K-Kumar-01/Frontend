@@ -48,11 +48,11 @@ const SingleArticle = (props) => {
         <React.Fragment>
           {head()}
           <Layout headerSidebar={true}>
-              <OneArticle
-                article={props.article}
-                articles={props.articles}
-                isFav={props.isFav}
-              />
+            <OneArticle
+              article={props.article}
+              articles={props.articles}
+              isFav={props.isFav}
+            />
           </Layout>
         </React.Fragment>
       )}
@@ -63,7 +63,16 @@ const SingleArticle = (props) => {
 SingleArticle.getInitialProps = async (props) => {
   let response;
   let token = props.req.headers.cookie;
-  token = token && token.split("=")[1];
+  let index = token.search("token=");
+  if (index == -1) {
+    token = "NA";
+  } else {
+    token = token.substring(index);
+    token = token.split("=")[1];
+  }
+  if (!token) {
+    return { error: 401 };
+  }
   try {
     response = await getParticularArticle(props.query.slug, undefined, token);
   } catch (error) {

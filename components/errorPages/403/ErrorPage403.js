@@ -36,11 +36,10 @@ const ErrorPage403 = (props) => {
   const head = () => (
     <Head>
       <title>{props.error === 401 ? "Unauthorized" : "Not Allowed "}</title>
-      <description>
-        {props.error === 401
-          ? "Please login to see this page"
-          : "You are in somebody else's place and not allowed here."}
-      </description>
+      <meta
+        name="description"
+        content={"Unauthorized access"}
+      />
     </Head>
   );
 
@@ -78,13 +77,13 @@ const ErrorPage403 = (props) => {
           <clipPath id="white-clip">
             <circle id="white-eye" fill="#cacaca" cx="130" cy="65" r="20" />{" "}
           </clipPath>
-          <text id="text-s" class={`${styles.errorText}`} y="106">
+          <text id="text-s" className={`${styles.errorText}`} y="106">
             {" "}
             {props.error}{" "}
           </text>
         </defs>
         <path
-          class="alarm"
+          className="alarm"
           fill="#e62326"
           d="M120.9 19.6V9.1c0-5 4.1-9.1 9.1-9.1h0c5 0 9.1 4.1 9.1 9.1v10.6"
         />
@@ -95,7 +94,7 @@ const ErrorPage403 = (props) => {
             <use xlinkHref="#white-eye"></use>
             <circle
               id="eyef"
-              class={`${styles.eye}`}
+              className={`${styles.eye}`}
               clip-path="url(#white-clip)"
               fill="#000"
               stroke="#2aa7cc"
@@ -115,7 +114,7 @@ const ErrorPage403 = (props) => {
             />
           </g>
           <circle
-            class={`${styles.lightblue}`}
+            className={`${styles.lightblue}`}
             cx="105"
             cy="32"
             r="2.5"
