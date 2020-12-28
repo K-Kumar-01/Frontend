@@ -58,7 +58,6 @@ const ArticlesBySpecificUserPage = (props) => {
           {head()}
           <Layout headerSidebar={true}>
               <PostedArticles articles={props.articles} />
-            <Footer />
           </Layout>
         </React.Fragment>
       )}

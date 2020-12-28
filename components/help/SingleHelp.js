@@ -96,7 +96,7 @@ const ToastedComponentSingleHelp = (props) => {
       <div className={`row`}>
         <div className={`col-3`}>
           <p>
-            <strong className={``}>Approved Article</strong>
+            <strong>Approved Article</strong>
           </p>
         </div>
         <div className={`col-9 ${styles.changedFont}`}>
@@ -110,7 +110,7 @@ const ToastedComponentSingleHelp = (props) => {
       <div className={`row`}>
         <div className={`col-3`}>
           <p>
-            <strong className={``}>Suggested By</strong>
+            <strong>Suggested By</strong>
           </p>
         </div>
         <div className={`col-9 ${styles.changedFont} `}>
@@ -125,7 +125,7 @@ const ToastedComponentSingleHelp = (props) => {
       <div className={`row`}>
         <div className={`col-3`}>
           <p>
-            <strong className={``}>Closed on</strong>
+            <strong>Closed on</strong>
           </p>
         </div>
         <div className={`col-9 ${styles.changedFont} `}>
@@ -141,7 +141,7 @@ const ToastedComponentSingleHelp = (props) => {
       <div className={`row`}>
         <div className={`col-3`}>
           <p>
-            <strong className={``}>Suggested Article</strong>
+            <strong>Suggested Article</strong>
           </p>
         </div>
         <div className={`col-9 ${styles.changedFont}`}>
@@ -155,7 +155,7 @@ const ToastedComponentSingleHelp = (props) => {
       <div className={`row`}>
         <div className={`col-3`}>
           <p>
-            <strong className={``}>Suggested By</strong>
+            <strong>Suggested By</strong>
           </p>
         </div>
         <div className={`col-9 ${styles.changedFont} `}>
@@ -166,18 +166,20 @@ const ToastedComponentSingleHelp = (props) => {
           </p>
         </div>
       </div>
-      <div className={`row`}>
-        <div className={`col-8 mx-auto`}>
-          <button
-            className={`btn btn-primary`}
-            title="Approval"
-            data-toggle="modal"
-            data-target="#approveRequest"
-          >
-            Approve/Reject
-          </button>
+      {tokenDetails.username === request.postedBy.username && (
+        <div className={`row`}>
+          <div className={`col-8 mx-auto`}>
+            <button
+              className={`btn btn-primary`}
+              title="Approval"
+              data-toggle="modal"
+              data-target="#approveRequest"
+            >
+              Approve/Reject
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </React.Fragment>
   );
   const onSubmit = async (data, event) => {
@@ -213,7 +215,7 @@ const ToastedComponentSingleHelp = (props) => {
     resetFormState();
   };
 
-  const suggestArticle = async (data) => {
+  const suggestArticle = async (data, event) => {
     event.preventDefault();
     let response;
     $("#suggest").modal("hide");
@@ -334,7 +336,7 @@ const ToastedComponentSingleHelp = (props) => {
   };
 
   const renderRequestForm = () => (
-    <>
+    <React.Fragment>
       <div className={`${styles.formLabelGroup}`}>
         <input
           type="text"
@@ -374,7 +376,7 @@ const ToastedComponentSingleHelp = (props) => {
             "Must be atmost 100 characters long"}
         </p>
       </div>
-    </>
+    </React.Fragment>
   );
 
   const renderEditRequestModal = () => (
