@@ -3,8 +3,6 @@ import { ToastProvider, useToasts } from "react-toast-notifications";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import Layout from "../../components/Layout";
 import ArticleCreate from "../../components/crud/article/ArticleCreate";
 import Preloader from "../../components/spinner/Preloader";
@@ -51,11 +49,8 @@ const ComponentWithToasts = () => {
       {head()}
       {isAuth ? (
         <main>
-          <Layout>
-            <Header sidebar>
-              <ArticleCreate />
-            </Header>
-            <Footer />
+          <Layout headerSidebar={true}>
+            <ArticleCreate />
           </Layout>
         </main>
       ) : (

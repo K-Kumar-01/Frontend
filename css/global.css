@@ -25,6 +25,11 @@ main {
   font-family: "Lora", serif;
 }
 
+.shiftBottom {
+  padding-top: 60px;
+  overflow-x: hidden;
+}
+
 .form-control:focus,
 .btn:focus {
   box-shadow: none !important;
@@ -726,4 +731,3 @@ main {
   border: none;
   text-decoration: none;
 }
-

@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 
 import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import SingleHelp from "../../components/help/SingleHelp";
 import ErrorPage404 from "../404";
 import { fetchSingleRequest } from "../../actions/help";
@@ -47,11 +45,8 @@ const SingleHelpPage = (props) => {
       ) : (
         <React.Fragment>
           {head()}
-          <Layout>
-            <Header sidebar>
+          <Layout headerSidebar={true}>
               <SingleHelp request={props.request} />
-            </Header>
-            <Footer />
           </Layout>
         </React.Fragment>
       )}

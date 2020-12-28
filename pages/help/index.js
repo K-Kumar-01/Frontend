@@ -3,8 +3,6 @@ import Error from "next/error";
 import Head from "next/head";
 
 import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import Help from "../../components/help/Help";
 import { getAllRequests } from "../../actions/help";
 import { DOMAIN } from "../../appConstants";
@@ -41,15 +39,12 @@ const HelpPage = (props) => {
       ) : (
         <React.Fragment>
           {head()}
-          <Layout>
-            <Header sidebar>
-              <Help
-                open={arrays.open}
-                closed={arrays.closed}
-                pending={arrays.pending}
-              />
-            </Header>
-            <Footer />
+          <Layout headerSidebar={true}>
+            <Help
+              open={arrays.open}
+              closed={arrays.closed}
+              pending={arrays.pending}
+            />
           </Layout>
         </React.Fragment>
       )}

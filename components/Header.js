@@ -470,7 +470,7 @@ const ToastedHeader = (props) => {
   return (
     <div className={`${styles.App}`}>
       {loading && <LoadingSpinner asOverlay />}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container">
           {props.sidebar ? (
             <i className="material-icons" onClick={handleDrawer}>

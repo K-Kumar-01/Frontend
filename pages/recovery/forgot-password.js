@@ -1,8 +1,6 @@
 import Head from "next/head";
 
 import Layout from "../../components/Layout";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
 import ForgotPassword from "../../components/user/recovery/ForgotPassword";
 
 const head = () => (
@@ -21,9 +19,7 @@ const ForgotPasswordPage = () => {
     <React.Fragment>
       {head()}
       <Layout>
-        <Header />
         <ForgotPassword />
-        <Footer />
       </Layout>
     </React.Fragment>
   );

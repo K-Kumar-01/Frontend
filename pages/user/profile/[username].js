@@ -3,8 +3,6 @@ import Error from "next/error";
 import Head from "next/head";
 
 import UserProfile from "../../../components/user/UserProfile";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
 import ErrorPage404 from "../../404";
 import { getUserDetails } from "../../../actions/user";
@@ -55,9 +53,7 @@ const UserIndex = (props) => {
         <React.Fragment>
           {head()}
           <Layout>
-            <Header></Header>
             <UserProfile userDetails={props.userDetails} />
-            <Footer></Footer>
           </Layout>
         </React.Fragment>
       )}

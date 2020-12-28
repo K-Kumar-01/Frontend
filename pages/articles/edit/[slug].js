@@ -4,8 +4,6 @@ import Error from "next/error";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
 import ArticleEdit from "../../../components/crud/article/ArticleEdit";
 import Preloader from "../../../components/spinner/Preloader";
@@ -70,11 +68,8 @@ const ComponentWithToasts = (props) => {
       {head()}
       {isAuth ? (
         <main>
-          <Layout>
-            <Header sidebar>
-              <ArticleEdit article={props.article} />
-            </Header>
-            <Footer />
+          <Layout headerSidebar={true}>
+            <ArticleEdit article={props.article} />
           </Layout>
         </main>
       ) : (

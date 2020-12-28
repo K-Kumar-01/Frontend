@@ -2,8 +2,6 @@ import React from "react";
 import Error from "next/error";
 
 import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import { getParticularArticle } from "../../actions/article";
 import OneArticle from "../../components/articles/OneArticle";
 import ErrorPage404 from "../404";
@@ -49,15 +47,12 @@ const SingleArticle = (props) => {
       ) : (
         <React.Fragment>
           {head()}
-          <Layout>
-            <Header sidebar>
+          <Layout headerSidebar={true}>
               <OneArticle
                 article={props.article}
                 articles={props.articles}
                 isFav={props.isFav}
               />
-            </Header>
-            <Footer />
           </Layout>
         </React.Fragment>
       )}

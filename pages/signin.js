@@ -31,7 +31,7 @@ const Signin = () => {
     <React.Fragment>
       {head()}
       <Protected>
-        <Layout>
+      <Layout withFooter={false} withHeader={false}>
           <SigninComponent />
         </Layout>
       </Protected>

@@ -4,8 +4,6 @@ import Error from "next/error";
 import { useRouter } from "next/router";
 
 import EditProfile from "../../../components/user/crud/EditProfile";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
 import Layout from "../../../components/Layout";
 import Preloader from "../../../components/spinner/Preloader";
 import ErrorPage404 from "../../404";
@@ -75,9 +73,7 @@ const EditUser = (props) => {
             <React.Fragment>
               {head()}
               <Layout>
-                <Header />
                 <EditProfile userDetails={props.userDetails} />
-                <Footer />
               </Layout>
             </React.Fragment>
           )}

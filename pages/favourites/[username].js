@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 import Error from "next/error";
 
 import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import Favourites from "../../components/user/Favourites";
 import ErrorPage403 from "../../components/errorPages/403/ErrorPage403";
 import { getFavourites } from "../../actions/user";
@@ -53,11 +51,8 @@ const FavouritesPage = (props) => {
       ) : (
         <React.Fragment>
           {head()}
-          <Layout>
-            <Header sidebar>
-              <Favourites favs={props.favourites} />
-            </Header>
-            <Footer />
+          <Layout headerSidebar={true}>
+            <Favourites favs={props.favourites} />
           </Layout>
         </React.Fragment>
       )}

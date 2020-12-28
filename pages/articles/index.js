@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import Layout from "../../components/Layout";
 import Preloader from "../../components/spinner/Preloader";
 import ArticleList from "../../components/articles/ArticleList";
@@ -50,13 +48,10 @@ const Articles = () => {
   return (
     <React.Fragment>
       {head()}
-      <Layout>
-        <Header sidebar search={true}>
-          <div style={{ minHeight: "70vh" }}>
-            {loading ? <Preloader /> : <ArticleList articles={articles} />}
-          </div>
-        </Header>
-        <Footer />
+      <Layout headerSearch={true} headerSidebar={true}>
+        <div style={{ minHeight: "70vh" }}>
+          {loading ? <Preloader /> : <ArticleList articles={articles} />}
+        </div>
       </Layout>
     </React.Fragment>
   );

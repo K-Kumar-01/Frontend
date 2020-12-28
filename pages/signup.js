@@ -26,7 +26,7 @@ const Signup = () => {
     <React.Fragment>
       {head()}
       <Protected>
-        <Layout>
+        <Layout withFooter={false} withHeader={false}>
           <SignupComponent />
         </Layout>
       </Protected>

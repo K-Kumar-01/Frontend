@@ -4,8 +4,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import ArticlesListCategory from "../../components/category/ArticlesListCategory";
 import ErrorPage404 from "../404";
 import { getArticlesByCategory } from "../../actions/article";
@@ -52,11 +50,8 @@ const CategoryArticles = (props) => {
       ) : (
         <React.Fragment>
           {head()}
-          <Layout>
-            <Header sidebar search={true}>
-              <ArticlesListCategory articles={props.articles} />
-            </Header>
-            <Footer />
+          <Layout headerSidebar={true} headerSearch={true}>
+            <ArticlesListCategory articles={props.articles} />
           </Layout>
         </React.Fragment>
       )}

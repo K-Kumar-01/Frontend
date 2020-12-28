@@ -4,8 +4,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import Layout from "../../../components/Layout";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
 import PostedArticles from "../../../components/user/PostedArticles";
 import ErrorPage404 from "../../404";
 import { getArticlesBySpecificUser } from "../../../actions/user";
@@ -58,10 +56,8 @@ const ArticlesBySpecificUserPage = (props) => {
       ) : (
         <React.Fragment>
           {head()}
-          <Layout>
-            <Header sidebar>
+          <Layout headerSidebar={true}>
               <PostedArticles articles={props.articles} />
-            </Header>
             <Footer />
           </Layout>
         </React.Fragment>
