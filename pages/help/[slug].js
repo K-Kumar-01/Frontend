@@ -14,7 +14,7 @@ const SingleHelpPage = (props) => {
   
   const head = () => (
     <Head>
-      <title>{`Reuqested Article: ${router.query.slug}`}</title>
+      <title>{`Requested Article: ${router.query.slug}`}</title>
       <meta
         name="description"
         content={`Article requested: ${router.query.slug}. Description: ${props.request.desc}`}
@@ -22,7 +22,7 @@ const SingleHelpPage = (props) => {
       <link rel="canonical" href={`${DOMAIN}/help/${router.query.slug}`} />
       <meta
         property="og:title"
-        content={`Reuqested Article: ${router.query.slug}`}
+        content={`Requested Article: ${router.query.slug}`}
       />
       <meta
         property="og:description"

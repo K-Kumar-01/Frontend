@@ -26,7 +26,7 @@ main {
 }
 
 .shiftBottom {
-  padding-top: 60px;
+  padding: 3.75rem 0.5rem 0.5rem;
   overflow-x: hidden;
 }
 

@@ -25,6 +25,7 @@
 
 .category {
   font-size: 1rem;
+  margin-bottom: 0.25rem;
   cursor: pointer;
 }
 
@@ -38,7 +39,7 @@
 }
 
 .headLink:hover {
-  color:rgba(0,0,0,0.75);
+  color: rgba(0, 0, 0, 0.75);
 }
 
 .link:hover {
