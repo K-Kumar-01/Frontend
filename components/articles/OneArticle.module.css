@@ -85,3 +85,8 @@
   color: #727272;
   background-size: 100% 1px, auto;
 }
+
+.catsArea{
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -350,7 +350,9 @@ const ToastedOneArticle = (props) => {
           <Dante read_only content={JSON.parse(article.body)} />
         </div>
         <div className={`col-sm-11 col-md-9 mx-auto my-3`}>
-          {renderCategories(article.category)}
+          <div className={styles.catsArea}>
+            {renderCategories(article.category)}
+          </div>
         </div>
       </main>
       {articles.length > 0 && (
