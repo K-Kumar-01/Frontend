@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { IconContext } from "react-icons";
 import { RiLogoutBoxRLine } from "react-icons/ri";
@@ -496,7 +497,7 @@ const ToastedHeader = (props) => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto d-flex text-left">
+            <ul className="navbar-nav ml-auto d-flex text-left align-items-center">
               <li className="nav-item">
                 <Link href="/membership">
                   <a className={`${styles.link} btn`}>Subscribe</a>
@@ -551,7 +552,12 @@ const ToastedHeader = (props) => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <img src={loggedIn.avatar} className={`${styles.avatar}`} />
+                    <Image
+                      src={loggedIn.avatar}
+                      className={`${styles.avatar}`}
+                      width={35}
+                      height={35}
+                    />
                   </span>
                   <div
                     className="dropdown-menu"

@@ -37,9 +37,7 @@
 }
 
 .authorImg {
-  height: 3rem;
-  width: 3rem;
-  border-radius: 50%;
+  border-radius: 50% !important;
 }
 
 .date {
@@ -60,11 +58,12 @@
 }
 
 .likedImage {
-  height: 4rem;
-  width: 4rem;
-  margin-right: 0.5rem;
-  border-radius: 50%;
-  border: 1px solid #75758c;
+  border-radius: 50% !important;
+  border: 1px solid #75758c !important;
+}
+
+.likedByPerson {
+  margin-left: 0.5rem;
 }
 
 .likedByLink {
@@ -86,7 +85,7 @@
   background-size: 100% 1px, auto;
 }
 
-.catsArea{
+.catsArea {
   display: flex;
   flex-wrap: wrap;
 }

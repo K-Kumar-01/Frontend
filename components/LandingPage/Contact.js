@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Image from "next/image";
 
 import AnimatedBox from "./AnimatedBox";
 
@@ -100,10 +101,12 @@ const Contact = () => {
       >
         <div className={`${styles.member}`}>
           <div>
-            <img
+            <Image
               className={`img img-fluid ${styles.memberImage}`}
               src={d.image_url}
               alt={d.name}
+              height={72}
+              width={72}
             />
           </div>
           <div>

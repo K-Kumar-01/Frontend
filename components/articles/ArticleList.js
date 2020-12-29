@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import styles from "./ArticleList.module.css";
 
@@ -38,11 +39,14 @@ const ArticleList = (props) => {
         <div className={`w-100 ${styles.sideImgWrp}`}>
           <Link href={`/articles/${d.slug}`}>
             <a>
-              <img
+              <Image
                 className={`img-fluid ${styles.sideImage}`}
                 src={d.featuredPhoto}
                 title={d.title}
                 alt={d.title}
+                width={"100%"}
+                height={100}
+                layout="responsive"
               />
             </a>
           </Link>
@@ -67,12 +71,14 @@ const ArticleList = (props) => {
           <div className={`col-lg-6 ${styles.mainImgWrp}`}>
             <Link href={`/articles/${data.slug}`}>
               <a>
-                <img
+                <Image
                   className={`img-fluid ${styles.mainImage}`}
                   src={`${data.featuredPhoto}`}
                   title={data.title}
                   alt={data.title}
-                  style={{ maxHeight: "360px" }}
+                  width={540}
+                  height={360}
+                  layout="responsive"
                 />
               </a>
             </Link>

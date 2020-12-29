@@ -5,6 +5,7 @@ import { IconContext } from "react-icons";
 import { FaHeart, FaRegHeart, FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import LoadingSpinner from "../spinner/LoadingSpinner";
 import { authenticate } from "../../helpers/auth";
@@ -71,10 +72,13 @@ const ToastedOneArticle = (props) => {
         <div>
           <Link href={`/articles/${d.slug}`}>
             <a>
-              <img
+              <Image
                 className={`img-fluid ${styles.similarImage}`}
                 alt={d.title}
                 src={d.featuredPhoto}
+                height={64}
+                width={96}
+                layout="fixed"
               />
             </a>
           </Link>
@@ -221,13 +225,15 @@ const ToastedOneArticle = (props) => {
         key={d._id}
         className={`d-flex justify-content-start align-items-center`}
       >
-        <div className={``}>
+        <div>
           <Link href={`/user/profile/${d.username}`}>
             <a>
-              <img
+              <Image
                 className={`img img-fluid ${styles.likedImage}`}
                 src={d.avatar}
                 alt={d.name}
+                height={64}
+                width={64}
               />
             </a>
           </Link>
@@ -253,10 +259,12 @@ const ToastedOneArticle = (props) => {
           <div className={``}>
             <Link href={`/user/profile/${authorInfo.username}`}>
               <a className={`${styles.similarLink}`}>
-                <img
+                <Image
                   className={`${styles.authorImg}`}
                   alt={authorInfo.name}
                   src={authorInfo.avatar}
+                  width={48}
+                  height={48}
                 />
               </a>
             </Link>

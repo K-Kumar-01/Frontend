@@ -21,11 +21,9 @@
 }
 
 .memberImage {
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 1px solid ghostwhite;
+  border-radius: 50% !important;
+  vertical-align: middle !important;
+  border: 1px solid ghostwhite !important;
 }
 
 .name {

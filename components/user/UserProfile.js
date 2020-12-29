@@ -17,6 +17,7 @@ import {
   FaEdit,
 } from "react-icons/fa";
 import { ToastProvider, useToasts } from "react-toast-notifications";
+import Image from "next/image";
 
 import LoadingSpinner from "../spinner/LoadingSpinner";
 import { deleteParticularArticle } from "../../actions/article";
@@ -279,10 +280,15 @@ const ToastedUserProfile = (props) => {
             <div className={`${styles.backgroundCover} col-12`}></div>
             <div className={`container`}>
               <div className={`row pt-3`}>
-                <div className={`col-lg-3 col-md-4 col-sm-12 text-center`}>
-                  <img
+                <div className={`col-lg-3 col-md-4 col-sm-12 text-center`}
+                 style={{position:"relative",top:"-120px"}}
+                 >
+                  <Image
                     src={`${userInfo.avatar}`}
                     className={`${styles.profileImage}`}
+                    width={200}
+                    height={200}
+                    layout="intrinsic"
                   />
                 </div>
                 <div
