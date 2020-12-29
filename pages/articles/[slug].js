@@ -62,7 +62,7 @@ const SingleArticle = (props) => {
 
 SingleArticle.getInitialProps = async (props) => {
   let response;
-  let token = props.req.headers.cookie;
+  let token = props.req?.headers?.cookie || "NA";
   let index = token.search("token=");
   if (index == -1) {
     token = "NA";

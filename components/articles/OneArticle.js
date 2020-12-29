@@ -59,8 +59,8 @@ const ToastedOneArticle = (props) => {
           </Link>
 
           <p>
-            <Link href={`/user/profile/${d.postedBy.username}`}>
-              <a className={`${styles.similarLink}`}>{d.postedBy.username}</a>
+            <Link href={`/user/profile/${d.postedBy?.username}`}>
+              <a className={`${styles.similarLink}`}>{d.postedBy?.username}</a>
             </Link>
             {` in `}
             <Link href={`/category/${d.category[0].name}`}>
