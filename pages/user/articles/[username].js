@@ -65,7 +65,7 @@ const ArticlesBySpecificUserPage = (props) => {
   );
 };
 
-export async function getInitialProps(props) {
+export async function getServerSideProps(props) {
   let username = props.query.username;
   let response;
   try {
