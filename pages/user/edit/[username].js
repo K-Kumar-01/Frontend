@@ -87,19 +87,19 @@ const EditUser = (props) => {
   );
 };
 
-EditUser.getInitialProps = async (props) => {
+export async function getServerSideProps(props) {
   let response;
 
   try {
     response = await getUserDetails(props.query.username);
   } catch (error) {
-    return { error: 500 };
+    return { props: { error: 500 } };
   }
   if (response.error) {
-    return { error: response.error.status };
+    return { props: { error: response.error.status } };
   } else {
-    return { userDetails: response.response.data };
+    return { props: { userDetails: response.response.data || null } };
   }
-};
+}
 
 export default EditUser;

@@ -60,30 +60,32 @@ const FavouritesPage = (props) => {
   );
 };
 
-FavouritesPage.getInitialProps = async (props) => {
+export async function getServerSideProps(props) {
   let response;
   let token = props.req?.headers?.cookie || "NA";
   let index = token.search("token=");
   if (index == -1) {
-    return { error: 401 };
+    return { props: { error: 401 } };
   }
   token = token.substring(index);
   token = token.split("=")[1];
   if (!token) {
-    return { error: 401 };
+    return { props: { error: 401 } };
   }
   try {
     response = await getFavourites(props.query.username, token);
   } catch (error) {
-    return { error: 500 };
+    return { props: { error: 500 } };
   }
   if (response.error) {
-    return { error: response.error.status };
+    return { props: { error: response.error.status } };
   } else {
     return {
-      favourites: response.articles,
+      props: {
+        favourites: response.articles || null,
+      },
     };
   }
-};
+}
 
 export default FavouritesPage;

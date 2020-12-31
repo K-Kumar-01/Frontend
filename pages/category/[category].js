@@ -59,18 +59,18 @@ const CategoryArticles = (props) => {
   );
 };
 
-CategoryArticles.getInitialProps = async (props) => {
+export async function getServerSideProps(props) {
   let response;
   try {
     response = await getArticlesByCategory(props.query.category);
   } catch (error) {
-    return { error: 500 };
+    return { props: { error: 500 } };
   }
   if (response.error) {
-    return { error: response.error.status };
+    return { props: { error: response.error.status } };
   } else {
-    return { articles: response.articles };
+    return { props: { articles: response.articles } };
   }
-};
+}
 
 export default CategoryArticles;

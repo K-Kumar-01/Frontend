@@ -60,7 +60,7 @@ const SingleArticle = (props) => {
   );
 };
 
-SingleArticle.getInitialProps = async (props) => {
+export async function getServerSideProps(props) {
   let response;
   let token = props.req?.headers?.cookie || "NA";
   let index = token.search("token=");
@@ -71,22 +71,24 @@ SingleArticle.getInitialProps = async (props) => {
     token = token.split("=")[1];
   }
   if (!token) {
-    return { error: 401 };
+    return { props: { error: 401 } };
   }
   try {
     response = await getParticularArticle(props.query.slug, undefined, token);
   } catch (error) {
-    return { error: 500 };
+    return { props: { error: 500 } };
   }
   if (response.error) {
-    return { error: response.error.status };
+    return { props: { error: response.error.status } };
   } else {
     return {
-      article: response.article,
-      articles: response.articles,
-      isFav: response.isFav,
+      props: {
+        article: response.article || null,
+        articles: response.articles || null,
+        isFav: response.isFav || false,
+      },
     };
   }
-};
+}
 
 export default SingleArticle;

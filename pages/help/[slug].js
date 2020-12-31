@@ -11,7 +11,7 @@ import { DOMAIN } from "../../appConstants";
 
 const SingleHelpPage = (props) => {
   const router = useRouter();
-  
+
   const head = () => (
     <Head>
       <title>{`Requested Article: ${router.query.slug}`}</title>
@@ -46,7 +46,7 @@ const SingleHelpPage = (props) => {
         <React.Fragment>
           {head()}
           <Layout headerSidebar={true}>
-              <SingleHelp request={props.request} />
+            <SingleHelp request={props.request} />
           </Layout>
         </React.Fragment>
       )}
@@ -54,18 +54,18 @@ const SingleHelpPage = (props) => {
   );
 };
 
-SingleHelpPage.getInitialProps = async (props) => {
+export async function getServerSideProps(props) {
   let response;
   try {
     response = await fetchSingleRequest(props.query.slug);
   } catch (error) {
-    return { error: 500 };
+    return { props: { error: 500 } };
   }
   if (response.error) {
-    return { error: response.error.status };
+    return { props: { error: response.error.status } };
   } else {
-    return { request: response.request };
+    return { props: { request: response.request || null } };
   }
-};
+}
 
 export default SingleHelpPage;

@@ -99,19 +99,23 @@ const EditArticlePage = (props) => {
   );
 };
 
-EditArticlePage.getInitialProps = async (props) => {
+export async function getServerSideProps(props) {
   let response;
-
   try {
     response = await getParticularArticle(props.query.slug, FETCH_TYPE);
   } catch (error) {
-    return { error: 500 };
+    return { props: { error: 500 } };
   }
   if (response.error) {
-    return { error: response.error.status };
+    return { props: { error: response.error.status } };
   } else {
-    return { article: response.article, articles: response.articles };
+    return {
+      props: {
+        article: response.article || null,
+        articles: response.articles || null,
+      },
+    };
   }
-};
+}
 
 export default EditArticlePage;

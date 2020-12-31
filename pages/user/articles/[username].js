@@ -57,7 +57,7 @@ const ArticlesBySpecificUserPage = (props) => {
         <React.Fragment>
           {head()}
           <Layout headerSidebar={true}>
-              <PostedArticles articles={props.articles} />
+            <PostedArticles articles={props.articles} />
           </Layout>
         </React.Fragment>
       )}
@@ -65,19 +65,19 @@ const ArticlesBySpecificUserPage = (props) => {
   );
 };
 
-ArticlesBySpecificUserPage.getInitialProps = async (props) => {
+export async function getInitialProps(props) {
   let username = props.query.username;
   let response;
   try {
     response = await getArticlesBySpecificUser(username);
   } catch (error) {
-    return { error: 500 };
+    return { props: { error: 500 } };
   }
   if (response.error) {
-    return { error: response.error.status };
+    return { props: { error: response.error.status } };
   } else {
-    return { articles: response.articles };
+    return { props: { articles: response.articles || null } };
   }
-};
+}
 
 export default ArticlesBySpecificUserPage;
