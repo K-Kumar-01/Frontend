@@ -7,7 +7,8 @@ import Features from "./Features";
 import Contact from "./Contact";
 import FooterLandingPage from "./FooterLandingPage";
 import GoogleSignin from "../auth/Google/GoogleSignin";
-import Chatbot from "./Chatbot";
+import dynamic from "next/dynamic";
+const Chatbot = dynamic(() => import("./Chatbot"));
 
 const Page2 = () => {
   const [show, setShow] = useState(false);

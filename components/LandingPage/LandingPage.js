@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Page0 from "./Page0";
-import Page1 from "./Page1";
 import Page2 from "./Page2";
+const Page1 = dynamic(() => import("./Page1"));
 
 const LandingPage = () => {
   const pageVariants = [
@@ -78,7 +79,7 @@ const LandingPage = () => {
       background: "#161616",
       display: "block",
       color: "white",
-      minHeight: "10ov0vh",
+      minHeight: "100vh",
       height: "auto",
     },
   ];
