@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { removeCookieonExp } from "../helpers/auth";
 import Footer from "./Footer";
-import Header from "./Header";
+import Header from "./Header/Header";
 
 NProgress.configure({ showSpinner: false });
 Router.onRouteChangeStart = (url) => NProgress.start();

@@ -1,57 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { IconContext } from "react-icons";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import {
-  FcAndroidOs,
-  FcHome,
-  FcIdea,
-  FcSportsMode,
-  FcBullish,
-  FcFilmReel,
-  FcCommandLine,
-  FcButtingIn,
-  FcGraduationCap,
-  FcSpeaker,
-  FcGoogle,
-  FcBriefcase,
-  FcCurrencyExchange,
-  FcComboChart,
-  FcAddDatabase,
-  FcFlowChart,
-  FcSteam,
-  FcFolder,
-  FcOpenedFolder,
-  FcGallery,
-} from "react-icons/fc";
-import { GiPopcorn } from "react-icons/gi";
-import {
-  FaHamburger,
-  FaPray,
-  FaTree,
-  FaVenusMars,
-  FaPlane,
-  FaSpaceShuttle,
-  FaHospital,
-  FaTimes,
-} from "react-icons/fa";
+import { FcFolder, FcOpenedFolder } from "react-icons/fc";
+import { FaTimes } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { ToastProvider, useToasts } from "react-toast-notifications";
 import { HiOutlineEmojiSad } from "react-icons/hi";
 
-import LoadingSpinner from "./spinner/LoadingSpinner";
-import ArticleCard from "./articles/ArticleCard";
-import { authenticate, removeCookie } from "../helpers/auth";
-import { searchArticles } from "../actions/article";
-import { logoutUser } from "../actions/auth";
-import { COOKIE_NAME } from "../appConstants";
+import LoadingSpinner from "../spinner/LoadingSpinner";
+import ArticleCard from "../articles/ArticleCard";
+import { authenticate, removeCookie } from "../../helpers/auth";
+import { searchArticles } from "../../actions/article";
+import { logoutUser } from "../../actions/auth";
+import { COOKIE_NAME } from "../../appConstants";
 
 import styles from "./Header.module.css";
 
+const Drawer = dynamic(() => import("./SideDrawer"), {
+  loading: () => (
+    <div
+      style={{
+        position: "relative",
+        top: "50%",
+        left: "25%",
+      }}
+    >
+      <LoadingSpinner />
+    </div>
+  ),
+});
+
 const ToastedHeader = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
   const [drawerPos, setDrawerPos] = useState(0);
   const [drawerClass, setDrawerClass] = useState([]);
   const [mainClass, setMainClass] = useState([]);
@@ -83,6 +68,7 @@ const ToastedHeader = (props) => {
   const router = useRouter();
 
   const handleDrawer = () => {
+    setShowDrawer(true);
     setDrawerPos((drawerPos + 1) % 3);
   };
 
@@ -105,281 +91,6 @@ const ToastedHeader = (props) => {
       w += `${z} `;
     });
     return w;
-  };
-
-  const showDrawer = () => {
-    return (
-      <ul>
-        <Link href="/articles">
-          <a title="Home">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcHome />
-              </IconContext.Provider>
-            </i>
-            <span className={`navbar-brand ${styles.link}`}>Titan Read</span>
-          </a>
-        </Link>
-        <Link href={`/category/technology`}>
-          <a title="Technology">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcAndroidOs />
-              </IconContext.Provider>
-            </i>
-            <span>Technology</span>
-          </a>
-        </Link>
-        <Link href={`/category/science`}>
-          <a title="Science">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcIdea />
-              </IconContext.Provider>
-            </i>
-            <span>Science</span>
-          </a>
-        </Link>
-        <Link href={`/category/sports`}>
-          <a title="Sports">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcSportsMode />
-              </IconContext.Provider>
-            </i>
-            <span>Sports</span>
-          </a>
-        </Link>
-        <Link href={`/caetgory/business`}>
-          <a title="Business">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcBullish />
-              </IconContext.Provider>
-            </i>
-            <span>Business</span>
-          </a>
-        </Link>
-        <Link href={`/category/media`}>
-          <a title="Media">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcFilmReel />
-              </IconContext.Provider>
-            </i>
-            <span>Media</span>
-          </a>
-        </Link>
-        <Link href={`/category/programming`}>
-          <a title="Programming">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcCommandLine />
-              </IconContext.Provider>
-            </i>
-            <span>Programming</span>
-          </a>
-        </Link>
-        <Link href={`/category/gaming`}>
-          <a title="Gaming">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcSteam />
-              </IconContext.Provider>
-            </i>
-            <span>Gaming</span>
-          </a>
-        </Link>
-        <Link href={`/caetgory/psychology`}>
-          <a title="Psychology">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcButtingIn />
-              </IconContext.Provider>
-            </i>
-            <span>Psychology</span>
-          </a>
-        </Link>
-        <Link href={`/category/education`}>
-          <a title="Education">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcGraduationCap />
-              </IconContext.Provider>
-            </i>
-            <span>Education</span>
-          </a>
-        </Link>
-        <Link href={`/category/politics`}>
-          <a title="Politics">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcSpeaker />
-              </IconContext.Provider>
-            </i>
-            <span>Politics</span>
-          </a>
-        </Link>
-        <Link href={`/category/world`}>
-          <a title="World">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcGoogle />
-              </IconContext.Provider>
-            </i>
-            <span>World</span>
-          </a>
-        </Link>
-        <Link href={`/category/startups`}>
-          <a title="Startups">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcBriefcase />
-              </IconContext.Provider>
-            </i>
-            <span>Startups</span>
-          </a>
-        </Link>
-        <Link href={`/category/history`}>
-          <a title="History">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcFlowChart />
-              </IconContext.Provider>
-            </i>
-            <span>History</span>
-          </a>
-        </Link>
-        <Link href={`/category/fashion`}>
-          <a title="Fashion">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcGallery />
-              </IconContext.Provider>
-            </i>
-            <span>Fashion</span>
-          </a>
-        </Link>
-        <Link href={`/category/cryptocurrency`}>
-          <a title="Cryptocurrency">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcCurrencyExchange />
-              </IconContext.Provider>
-            </i>
-            <span>Cryptocurrency</span>
-          </a>
-        </Link>
-        <Link href={`/category/marketing`}>
-          <a title="Marketing">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcComboChart />
-              </IconContext.Provider>
-            </i>
-            <span>Marketing</span>
-          </a>
-        </Link>
-        <Link href={`/category/entertainment`}>
-          <a title="Entertainment">
-            <i>
-              <IconContext.Provider value={{ size: "2rem", color: "bisque" }}>
-                <GiPopcorn />
-              </IconContext.Provider>
-            </i>
-            <span>Entertainment</span>
-          </a>
-        </Link>
-        <Link href={`/category/health`}>
-          <a title="Health">
-            <i>
-              <IconContext.Provider value={{ size: "2rem", color: "#F7C6C5" }}>
-                <FaHospital />
-              </IconContext.Provider>
-            </i>
-            <span>Health</span>
-          </a>
-        </Link>
-        <Link href={"/category/travel"}>
-          <a title="Travel">
-            <i>
-              <IconContext.Provider
-                value={{ size: "2rem", color: "lightgray" }}
-              >
-                <FaPlane />
-              </IconContext.Provider>
-            </i>
-            <span>Travel</span>
-          </a>
-        </Link>
-        <Link href={`/category/food`}>
-          <a title="Food">
-            <i>
-              <IconContext.Provider
-                value={{ size: "2rem", color: "rgb(223, 181, 142)" }}
-              >
-                <FaHamburger />
-              </IconContext.Provider>
-            </i>
-            <span>Food</span>
-          </a>
-        </Link>
-        <Link href={`/category/sexuality`}>
-          <a title="Sexuality">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FaVenusMars />
-              </IconContext.Provider>
-            </i>
-            <span>Sexuality</span>
-          </a>
-        </Link>
-        <Link href={`/category/nature`}>
-          <a title="Nature">
-            <i>
-              <IconContext.Provider
-                value={{ size: "2rem", color: "rgb(18, 159, 75)" }}
-              >
-                <FaTree />
-              </IconContext.Provider>
-            </i>
-            <span>Nature</span>
-          </a>
-        </Link>
-        <Link href={`/category/spirituality`}>
-          <a title="Spirituality">
-            <i>
-              <IconContext.Provider
-                value={{ size: "2rem", color: "floralwhite" }}
-              >
-                <FaPray />
-              </IconContext.Provider>
-            </i>
-            <span>Spirituality</span>
-          </a>
-        </Link>
-        <Link href={`/category/space`}>
-          <a title="Space">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FaSpaceShuttle />
-              </IconContext.Provider>
-            </i>
-            <span>Space</span>
-          </a>
-        </Link>
-        <Link href={`/category/others`}>
-          <a title="Others">
-            <i>
-              <IconContext.Provider value={{ size: "2rem" }}>
-                <FcAddDatabase />
-              </IconContext.Provider>
-            </i>
-            <span>Others</span>
-          </a>
-        </Link>
-      </ul>
-    );
   };
 
   const renderSearchArea = () => (
@@ -600,9 +311,9 @@ const ToastedHeader = (props) => {
         </div>
       </nav>
       {props.sidebar && (
-        <>
+        <React.Fragment>
           <aside className={makeClassNameString(drawerClass)}>
-            {showDrawer()}
+            {showDrawer && <Drawer />}
           </aside>
           <main className={makeClassNameString(mainClass)}>
             {showSearch ? (
@@ -633,7 +344,7 @@ const ToastedHeader = (props) => {
               </motion.section>
             )}
           </main>
-        </>
+        </React.Fragment>
       )}
     </div>
   );
