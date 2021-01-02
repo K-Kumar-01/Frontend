@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { IconContext } from "react-icons";
-import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FcFolder, FcOpenedFolder } from "react-icons/fc";
 import { FaTimes } from "react-icons/fa";
 import { useRouter } from "next/router";
@@ -33,6 +31,7 @@ const Drawer = dynamic(() => import("./SideDrawer"), {
     </div>
   ),
 });
+const DropDown = dynamic(() => import("./LoginDropDown"));
 
 const ToastedHeader = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -87,7 +86,7 @@ const ToastedHeader = (props) => {
   const makeClassNameString = (data) => {
     let w = "";
     data.forEach((d) => {
-      let z = styles[`${d}`];
+      let z = styles[d];
       w += `${z} `;
     });
     return w;
@@ -254,51 +253,7 @@ const ToastedHeader = (props) => {
               )}
 
               {loggedIn ? (
-                <li className="nav-item dropdown">
-                  <span
-                    className="nav-link dropdown-toggle"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <Image
-                      src={loggedIn.avatar}
-                      className={`${styles.avatar}`}
-                      width={35}
-                      height={35}
-                    />
-                  </span>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <Link href={`/user/edit/${loggedIn.username}`}>
-                      <a className="dropdown-item">Profile</a>
-                    </Link>
-                    <Link href={`/user/profile/${loggedIn.username}`}>
-                      <a className="dropdown-item">Dashboard</a>
-                    </Link>
-                    <Link href={`/articles/create`}>
-                      <a className="dropdown-item">Create Article</a>
-                    </Link>
-                    <Link href={`/favourites/${loggedIn.username}`}>
-                      <a className="dropdown-item">My Favourites</a>
-                    </Link>
-                    <Link href={`/user/articles/${loggedIn.username}`}>
-                      <a className="dropdown-item">My Posts</a>
-                    </Link>
-                    <div className="dropdown-divider"></div>
-
-                    <button className="dropdown-item" onClick={logout}>
-                      <IconContext.Provider value={{ size: "1.1rem" }}>
-                        <RiLogoutBoxRLine />
-                      </IconContext.Provider>
-                      {` `}Logout
-                    </button>
-                  </div>
-                </li>
+                <DropDown loggedIn={loggedIn} logout={logout} />
               ) : (
                 <li className="nav-item">
                   <Link href="/signup">
