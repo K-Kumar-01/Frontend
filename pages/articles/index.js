@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
 import Layout from "../../components/Layout";
-import Preloader from "../../components/spinner/Preloader";
-import ArticleList from "../../components/articles/ArticleList";
+import SkeletonArticle from "../../components/Skeleton/SkeletonArticle";
 import { getAllArticles } from "../../actions/article";
 import { DOMAIN } from "../../appConstants";
+
+const ArticleList = dynamic(()=>import("../../components/articles/ArticleList"))
 
 const Articles = () => {
   const [loading, setLoading] = useState(true);
@@ -50,7 +52,23 @@ const Articles = () => {
       {head()}
       <Layout headerSearch={true} headerSidebar={true}>
         <div style={{ minHeight: "70vh" }}>
-          {loading ? <Preloader /> : <ArticleList articles={articles} />}
+          {loading ? (
+            <div className="container">
+              <SkeletonArticle main />
+              <div className="row">
+                {[1, 2, 3, 4].map((i) => (
+                  <div
+                    className="col-md-3 col-sm-6 col-xs-12 mt-3"
+                    key={`side-article-${i}`}
+                  >
+                    <SkeletonArticle />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <ArticleList articles={articles} />
+          )}
         </div>
       </Layout>
     </React.Fragment>
