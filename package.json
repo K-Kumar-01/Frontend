@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "Dante2": "^0.5.0-rc4",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "framer-motion": "^2.4.1",
     "js-cookie": "^2.2.1",
