@@ -18,7 +18,7 @@ const Footer = () => {
       <div className="container py-5">
         <div className={`row`}>
           <div className={`col-12 col-md-4`}>
-            <Link href={`/`}>
+            <Link href="/">
               <a className={`${styles.logoLink}`}>
                 <h2 className={`heading ${styles.logo}`}>
                   T<span className={`${styles.colored}`}>R</span>
@@ -27,27 +27,25 @@ const Footer = () => {
             </Link>
             <p className={`py-3`}>
               <Link
-                href={`${
-                  loggedIn ? `/user/edit/${loggedIn.username}` : "/signup"
-                }`}
+                href={`${loggedIn ? "/user/edit/[username]" : "/signup"}`}
+                as={loggedIn ? `/user/edit/${loggedIn.username}` : "/signup"}
               >
                 <a className={`${styles.link}`}>
                   {loggedIn ? "Profile" : "Get Started"}
                 </a>
               </Link>
               <Link
-                href={`${
-                  loggedIn ? `/user/profile/${loggedIn.username}` : "/signin"
-                }`}
+                href={`${loggedIn ? "/user/profile/[username]" : "/signin"}`}
+                as={loggedIn ? `/user/profile/${loggedIn.username}` : "/signin"}
               >
                 <a className={`${styles.link}`}>
                   {loggedIn ? "Dashboard" : "Already a member"}
                 </a>
               </Link>
-              <Link href={`/articles`}>
+              <Link href="/articles">
                 <a className={`${styles.link}`}>Articles</a>
               </Link>
-              <Link href={`/membership`}>
+              <Link href="/membership">
                 <a className={`${styles.link} ${styles.nopipe}`}>Pricing</a>
               </Link>
             </p>

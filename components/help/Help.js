@@ -309,13 +309,16 @@ const ToastedComponent = (props) => {
       <React.Fragment key={d._id}>
         <div className={`row`}>
           <div className={`col-3 col-md-2`}>
-            <Link href={`/help/${d.slug}`}>
+            <Link href="/help/[slug]" as={`/help/${d.slug}`}>
               <a>{d.title}</a>
             </Link>
           </div>
           <div className={`col-3 col-md-5`}>{d.desc}</div>
           <div className={`col-3 col-md-2`}>
-            <Link href={`/user/profile/${d.postedBy.username}`}>
+            <Link
+              href="/user/profile/[username]"
+              as={`/user/profile/${d.postedBy.username}`}
+            >
               <a>{d.postedBy.username}</a>
             </Link>
           </div>
@@ -332,18 +335,21 @@ const ToastedComponent = (props) => {
       <React.Fragment key={d._id}>
         <div className={`row`}>
           <div className={`col-3 col-md-2`}>
-            <Link href={`/help/${d.slug}`}>
+            <Link href="/help/[slug]" as={`/help/${d.slug}`}>
               <a>{d.title}</a>
             </Link>
           </div>
           <div className={`col-3 col-md-5`}>{d.desc}</div>
           <div className={`col-3 col-md-2`}>
-            <Link href={`/user/profile/${d.postedBy.username}`}>
+            <Link
+              href="/user/profile/[username]"
+              as={`/user/profile/${d.postedBy.username}`}
+            >
               <a>{d.postedBy.username}</a>
             </Link>
           </div>
           <div className={`col-3 col-md-3`}>
-            <Link href={`/articles/${d.article.slug}`}>
+            <Link  href="/articles/[slug]" as={`/articles/${d.article.slug}`}>
               <a>{d.article.title}</a>
             </Link>
           </div>

@@ -49,7 +49,7 @@ const ErrorPage403 = (props) => {
       {code === 401 ? (
         <h2>
           You must be logged in. Click{" "}
-          <Link href={`/signin`}>
+          <Link href="/signin">
             <a className={`${styles.link}`}>here </a>
           </Link>
           to login
@@ -58,7 +58,7 @@ const ErrorPage403 = (props) => {
         <h2>
           <p>This place is not yours. You are not allowed here.</p>
           Go{" "}
-          <Link href={`/articles`}>
+          <Link href="/articles">
             <a className={`${styles.link}`}>Home!</a>
           </Link>
         </h2>

@@ -36,10 +36,10 @@ const FooterLandingPage = () => {
                 <a className={`${styles.link}`} href="#home">
                   Home
                 </a>
-                <Link href={`/articles`}>
+                <Link href="/articles">
                   <a className={`${styles.link}`}>Articles</a>
                 </Link>
-                <Link href={`/membership`}>
+                <Link href="/membership">
                   <a className={`${styles.link}`}>Pricing</a>
                 </Link>
                 <a className={`${styles.link}`} href="#about">

@@ -118,7 +118,7 @@ const Page2 = () => {
                   onClick={() => $("#getStartedModal").modal("toggle")}
                   className={`registerLinksArea btn`}
                 >
-                  <Link href={`/signup`}>
+                  <Link href="/signup">
                     <a className="registerLinks">Register here</a>
                   </Link>
                 </button>
@@ -128,7 +128,7 @@ const Page2 = () => {
                   onClick={() => $("#getStartedModal").modal("toggle")}
                   className={`registerLinksArea btn`}
                 >
-                  <Link href={`/signin`}>
+                  <Link href="/signin">
                     <a className="registerLinks">Signin here</a>
                   </Link>
                 </button>
@@ -139,7 +139,7 @@ const Page2 = () => {
               className={`btn`}
               onClick={() => $("#getStartedModal").modal("toggle")}
             >
-              <Link href={`/articles`}>
+              <Link href="/articles">
                 <a className="articlesbtn">Articles</a>
               </Link>
             </button>

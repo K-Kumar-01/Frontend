@@ -17,7 +17,7 @@ const Item = (props) => {
           layout
           className={`${styles.avatar} ${isOpen && styles.avatarBig}`}
         >
-          <Link href={`/articles/${article.slug}`}>
+          <Link href="articles/[slug]" as={`/articles/${article.slug}`}>
             <a>
               <motion.img
                 className={`img img-fluid ${styles.avatarImg} ${
@@ -33,7 +33,7 @@ const Item = (props) => {
           layout
           className={`${styles.text} ${isOpen && styles.textBig}`}
         >
-          <Link href={`/articles/${article.slug}`}>
+          <Link href="articles/[slug]" as={`/articles/${article.slug}`}>
             <a className={`${styles.link}`}>{article.title}</a>
           </Link>
         </motion.div>
@@ -50,7 +50,11 @@ const Content = (props) => {
 
   const renderCategories = (data) =>
     data.map((d) => (
-      <Link key={d._id} href={`/category/${d.name.toLowerCase()}`}>
+      <Link
+        key={d._id}
+        href="/category/[category]"
+        as={`/category/${d.name.toLowerCase()}`}
+      >
         <a className={`mr-3 h6 font-weight-bold ${styles.badge}`}>{d.name}</a>
       </Link>
     ));
@@ -67,8 +71,11 @@ const Content = (props) => {
       <div className={`container`}>
         <div className={`${styles.row}`}>
           <strong className={`heading`}>Posted by : </strong>{" "}
-          <Link href={`/user/profile/${article.postedBy.username}`}>
-            <a className={``}>{article.postedBy.name}</a>
+          <Link
+            href="/user/profile/[username]"
+            as={`/user/profile/${article.postedBy.username}`}
+          >
+            <a>{article.postedBy.name}</a>
           </Link>
         </div>
         <div className={`${styles.row}`}>

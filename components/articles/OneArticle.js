@@ -39,7 +39,7 @@ const ToastedOneArticle = (props) => {
 
   const renderCategories = (data) =>
     data.map((d) => (
-      <Link key={d._id} href={`/category/${d.name.toLowerCase()}`}>
+      <Link key={d._id} href="/category/[category]" as={`/category/${d.name.toLowerCase()}`}>
         <a className={`mr-3 h6 font-weight-bold ${styles.badge}`}>{d.name}</a>
       </Link>
     ));
@@ -51,7 +51,7 @@ const ToastedOneArticle = (props) => {
         key={d._id}
       >
         <div className={`mr-2 `}>
-          <Link href={`/articles/${d.slug}`}>
+          <Link href="/articles/[slug]" as={`/articles/${d.slug}`}>
             <a className={`${styles.similarLink} ${styles.removeLine}`}>
               <h4>
                 <strong>{d.title}</strong>
@@ -60,17 +60,17 @@ const ToastedOneArticle = (props) => {
           </Link>
 
           <p>
-            <Link href={`/user/profile/${d.postedBy?.username}`}>
+            <Link href="/user/profile/[username]" as={`/user/profile/${d.postedBy?.username}`}>
               <a className={`${styles.similarLink}`}>{d.postedBy?.username}</a>
             </Link>
             {` in `}
-            <Link href={`/category/${d.category[0].name}`}>
+            <Link href="/category/[category]" as={`/category/${d.category[0].name}`}>
               <a className={`${styles.similarLink}`}>{d.category[0].name}</a>
             </Link>
           </p>
         </div>
         <div>
-          <Link href={`/articles/${d.slug}`}>
+          <Link href="/articles/[slug]" as={`/articles/${d.slug}`}>
             <a>
               <Image
                 className={`img-fluid ${styles.similarImage}`}
@@ -226,7 +226,7 @@ const ToastedOneArticle = (props) => {
         className={`d-flex justify-content-start align-items-center`}
       >
         <div>
-          <Link href={`/user/profile/${d.username}`}>
+          <Link href="/user/profile/[username]" as={`/user/profile/${d.username}`}>
             <a>
               <Image
                 className={`img img-fluid ${styles.likedImage}`}
@@ -240,7 +240,7 @@ const ToastedOneArticle = (props) => {
         </div>
         <div className={`${styles.likedByPerson}`}>
           <p>
-            <Link href={`/user/profile/${d.username}`}>
+            <Link href="/user/profile/[username]" as={`/user/profile/${d.username}`}>
               <a className={`${styles.likedByLink}`}>
                 <strong>{d.username}</strong>
               </a>
@@ -257,7 +257,7 @@ const ToastedOneArticle = (props) => {
       <div className={`d-flex align-items-center justify-content-between`}>
         <div className={`d-flex align-items-center`}>
           <div className={``}>
-            <Link href={`/user/profile/${authorInfo.username}`}>
+            <Link href="/user/profile/[username]" as={`/user/profile/${authorInfo.username}`}>
               <a className={`${styles.similarLink}`}>
                 <Image
                   className={`${styles.authorImg}`}
@@ -271,7 +271,7 @@ const ToastedOneArticle = (props) => {
           </div>
           <div>
             <p className={`pt-3 pl-3`}>
-              <Link href={`/user/profile/${authorInfo.username}`}>
+              <Link href="/user/profile/[username]" as={`/user/profile/${authorInfo.username}`}>
                 <a className={`${styles.similarLink}`}>
                   <strong>{authorInfo.name}</strong>
                 </a>

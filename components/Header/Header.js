@@ -110,7 +110,7 @@ const ToastedHeader = (props) => {
         },
       }}
     >
-      <section className={`container mt-4`}>
+      <section className={`container mt-4`} style={{ paddingTop: "80px" }}>
         <div className={`row ${styles.changedFont}`}>
           <div className={`col-10 col-md-9`}>
             <p>

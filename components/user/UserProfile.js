@@ -161,7 +161,7 @@ const ToastedUserProfile = (props) => {
     data.map((d) => (
       <section key={d._id} className={`${styles.articlearea}`}>
         <div className={`d-flex justify-content-between align-items-center`}>
-          <Link href={`/articles/${d.slug}`}>
+          <Link href="/articles/[slug]" as={`/articles/${d.slug}`}>
             <a>
               <h5 className={`${styles.headLink}`}>
                 <FaAngleRight />
@@ -172,7 +172,7 @@ const ToastedUserProfile = (props) => {
           {userInfo.username === tokenDetails.username && (
             <div className={`d-flex`}>
               <h5 className={`${styles.delete} mr-2`} title="Edit article">
-                <Link href={`/articles/edit/${d.slug}`}>
+                <Link href="/articles/edit/[slug]" as={`/articles/edit/${d.slug}`}>
                   <a>
                     <IconContext.Provider value={{ color: "#17A2B8" }}>
                       <FaEdit />
@@ -501,7 +501,7 @@ const ToastedUserProfile = (props) => {
                       <div className={`text-muted lead`}>
                         {userInfo.username === tokenDetails.username && (
                           <p>
-                            <Link href={`../../articles/create`}>
+                            <Link href="../../articles/create">
                               <a className={`btn btn-outline-info`}>
                                 <IconContext.Provider
                                   value={{ size: "1.2rem" }}

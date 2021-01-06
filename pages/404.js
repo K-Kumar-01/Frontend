@@ -23,16 +23,16 @@ const ErrorPage404 = () => {
       {head()}
       <div className="errorContainer">
         <nav className="shelf">
-          <Link href={`/`}>
+          <Link href="/">
             <a className="book home-page">Home page</a>
           </Link>
-          <Link href={`/articles`}>
+          <Link href="/articles">
             <a className="book about-us">Articles</a>
           </Link>
-          <Link href={`/membership`}>
+          <Link href="/membership">
             <a className="book contact">Membership</a>
           </Link>
-          <Link href={`/help`}>
+          <Link href="/help">
             <a className="book faq">Help</a>
           </Link>
           <span className="book not-found"></span>

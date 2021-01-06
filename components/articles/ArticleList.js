@@ -37,7 +37,7 @@ const ArticleList = (props) => {
     return data.map((d) => (
       <div className={`col-md-3 col-sm-6 col-xs-12 mt-3`} key={d._id}>
         <div className={`w-100 ${styles.sideImgWrp}`}>
-          <Link href={`/articles/${d.slug}`}>
+          <Link href="articles/[slug]" as={`/articles/${d.slug}`}>
             <a>
               <Image
                 className={`img-fluid ${styles.sideImage}`}
@@ -53,7 +53,7 @@ const ArticleList = (props) => {
         </div>
         <div className={`d-flex align-items-center justify-content-between`}>
           <div className={`w-80`}>
-            <Link href={`/articles/${d.slug}`}>
+            <Link href="articles/[slug]" as={`/articles/${d.slug}`}>
               <a className={`${styles.headLink}`}>
                 <h4>{d.title}</h4>
               </a>
@@ -69,7 +69,7 @@ const ArticleList = (props) => {
       <div className={`col-12`}>
         <div className={`row`}>
           <div className={`col-lg-6 ${styles.mainImgWrp}`}>
-            <Link href={`/articles/${data.slug}`}>
+            <Link href="articles/[slug]" as={`/articles/${data.slug}`}>
               <a>
                 <Image
                   className={`img-fluid ${styles.mainImage}`}
@@ -84,7 +84,7 @@ const ArticleList = (props) => {
             </Link>
           </div>
           <div className={`col-lg-6`}>
-            <Link href={`/articles/${data.slug}`}>
+            <Link href="articles/[slug]" as={`/articles/${data.slug}`}>
               <a className={`${styles.headLink}`}>
                 <h3>{data.title}</h3>
               </a>

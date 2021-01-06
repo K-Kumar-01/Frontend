@@ -101,7 +101,7 @@ const ToastedComponentSingleHelp = (props) => {
         </div>
         <div className={`col-9 ${styles.changedFont}`}>
           <p>
-            <Link href={`/articles/${request.article.slug}`}>
+            <Link href="/articles/[slug]" as={`/articles/${request.article.slug}`}>
               <a className={`${styles.link}`}>{request.article.title}</a>
             </Link>
           </p>
@@ -115,7 +115,7 @@ const ToastedComponentSingleHelp = (props) => {
         </div>
         <div className={`col-9 ${styles.changedFont} `}>
           <p>
-            <Link href={`/user/profile/${request.closedBy.username}`}>
+            <Link href="/user/profile/[username]" as={`/user/profile/${request.closedBy.username}`}>
               <a className={`${styles.link}`}>{request.closedBy.name}</a>
             </Link>
           </p>
@@ -146,7 +146,7 @@ const ToastedComponentSingleHelp = (props) => {
         </div>
         <div className={`col-9 ${styles.changedFont}`}>
           <p>
-            <Link href={`/articles/${request.article.slug}`}>
+            <Link href="/artcles/[slug]" as={`/articles/${request.article.slug}`}>
               <a className={`${styles.link}`}>{request.article.title}</a>
             </Link>
           </p>
@@ -160,7 +160,7 @@ const ToastedComponentSingleHelp = (props) => {
         </div>
         <div className={`col-9 ${styles.changedFont} `}>
           <p>
-            <Link href={`/user/profile/${request.closedBy.username}`}>
+            <Link href="/user/profile/[username]" as={`/user/profile/${request.closedBy.username}`}>
               <a className={`${styles.link}`}>{request.closedBy.name}</a>
             </Link>
           </p>
@@ -702,7 +702,7 @@ const ToastedComponentSingleHelp = (props) => {
           </div>
           <div className={`col-9 ${styles.changedFont}`}>
             <p>
-              <Link href={`/user/profile/${request.postedBy.username}`}>
+              <Link href="/user/profile/[username]" as={`/user/profile/${request.postedBy.username}`}>
                 <a className={`${styles.link}`}>{request.postedBy.name}</a>
               </Link>
             </p>

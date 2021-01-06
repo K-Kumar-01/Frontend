@@ -8,10 +8,12 @@ const ArticleCategoryCard = (props) => {
 
   const renderCategories = (data) =>
     data.map((d) => (
-      <Link key={d._id} href={`/category/${d.name.toLowerCase()}`}>
-        <a className={`badge badge-info mr-3 ${styles.category}`}>
-          {d.name}
-        </a>
+      <Link
+        key={d._id}
+        href="/category/[category]"
+        as={`/category/${d.name.toLowerCase()}`}
+      >
+        <a className={`badge badge-info mr-3 ${styles.category}`}>{d.name}</a>
       </Link>
     ));
 
@@ -26,7 +28,7 @@ const ArticleCategoryCard = (props) => {
                   props.fav ? "col-md-2" : "col-md-4"
                 } col-10 mx-auto d-flex align-items-center`}
               >
-                <Link href={`/articles/${article.slug}`}>
+                <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
                   <a>
                     <img
                       src={article.featuredPhoto}
@@ -39,7 +41,7 @@ const ArticleCategoryCard = (props) => {
                 </Link>
               </div>
               <div className={`${props.fav ? "col-md-10" : "col-md-8"} col-12`}>
-                <Link href={`/articles/${article.slug}`}>
+                <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
                   <a className={`${styles.link} ${styles.headLink}`}>
                     <h4 className="card-title font-weight-bold">
                       {article.title}
@@ -56,7 +58,8 @@ const ArticleCategoryCard = (props) => {
                           Posted by:{` `}
                         </span>
                         <Link
-                          href={`../user/profile/${article.postedBy.username}`}
+                          href="../user/profile/[username["
+                          as={`../user/profile/${article.postedBy.username}`}
                         >
                           <a className={`${styles.link}`}>
                             {article.postedBy.username}
