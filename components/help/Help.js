@@ -53,7 +53,12 @@ const ToastedComponent = (props) => {
           appearance: "success",
           autoDismiss: true,
         });
-        router.reload();
+        setTimeout(() => {
+          addToast("The list will be updated soon.", {
+            appearance: "info",
+            autoDismiss: true,
+          });
+        }, 1000);
       }
     } catch (error) {
       setLoading(false);
@@ -349,7 +354,7 @@ const ToastedComponent = (props) => {
             </Link>
           </div>
           <div className={`col-3 col-md-3`}>
-            <Link  href="/articles/[slug]" as={`/articles/${d.article.slug}`}>
+            <Link href="/articles/[slug]" as={`/articles/${d.article.slug}`}>
               <a>{d.article.title}</a>
             </Link>
           </div>

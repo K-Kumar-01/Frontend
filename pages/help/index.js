@@ -52,16 +52,16 @@ const HelpPage = (props) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps(context) {
   let response;
   try {
     response = await getAllRequests();
   } catch (error) {
-    return { props: { error: 500 } };
+    return { props: { error: 500 }, revalidate: 1 };
   }
 
   if (response.error) {
-    return { props: { error: response.error.status } };
+    return { props: { error: response.error.status }, revalidate: 1 };
   } else {
     let w = response.requests;
     let open = [],
@@ -76,7 +76,7 @@ export async function getServerSideProps() {
         pending.push(w[i]);
       }
     }
-    return { props: { requests: { open, closed, pending } } };
+    return { props: { requests: { open, closed, pending } }, revalidate: 1 };
   }
 }
 
