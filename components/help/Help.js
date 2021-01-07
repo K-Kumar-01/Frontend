@@ -59,6 +59,9 @@ const ToastedComponent = (props) => {
             autoDismiss: true,
           });
         }, 1000);
+        setTimeout(() => {
+          router.reload();
+        }, 2000);
       }
     } catch (error) {
       setLoading(false);
@@ -115,6 +118,13 @@ const ToastedComponent = (props) => {
                 If you are providing an article the status of article will get
                 changed to pending. If the user who requested the article finds
                 it suitable then the request will get closed.
+              </p>
+              <p style={{ textAlign: "center" }}>
+                <strong>
+                  The newly created/changed requests may take some time to be
+                  displayed on the list. It is recommended to visit the page
+                  after a couple of minutes to see any change in requests.
+                </strong>
               </p>
             </div>
             <div className="modal-footer">
