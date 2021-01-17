@@ -75,7 +75,7 @@ const SideDrawer = () => {
           <span>Sports</span>
         </a>
       </Link>
-      <Link href="/category/[id]" as={`/caetgory/business`}>
+      <Link href="/category/[id]" as={`/category/business`}>
         <a title="Business">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
@@ -115,7 +115,7 @@ const SideDrawer = () => {
           <span>Gaming</span>
         </a>
       </Link>
-      <Link href="/category/[id]" as={`/caetgory/psychology`}>
+      <Link href="/category/[id]" as={`/category/psychology`}>
         <a title="Psychology">
           <i>
             <IconContext.Provider value={{ size: "2rem" }}>
