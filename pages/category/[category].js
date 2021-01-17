@@ -72,7 +72,7 @@ export async function getStaticPaths() {
     params: { category: cat.name.toLowerCase() },
   }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {

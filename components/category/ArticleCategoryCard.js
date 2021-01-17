@@ -58,11 +58,11 @@ const ArticleCategoryCard = (props) => {
                           Posted by:{` `}
                         </span>
                         <Link
-                          href="../user/profile/[username["
-                          as={`../user/profile/${article.postedBy.username}`}
+                          href="../user/profile/[username]"
+                          as={`../user/profile/${article.postedBy?.username}`}
                         >
                           <a className={`${styles.link}`}>
-                            {article.postedBy.username}
+                            {article.postedBy?.username}
                           </a>
                         </Link>
                       </section>
