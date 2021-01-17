@@ -8,6 +8,7 @@ import ArticlesListCategory from "../../components/category/ArticlesListCategory
 import ErrorPage404 from "../404";
 import { getArticlesByCategory } from "../../actions/article";
 import { DOMAIN } from "../../appConstants";
+import { getCategories } from "../../actions/category";
 
 const CategoryArticles = (props) => {
   const router = useRouter();
@@ -59,17 +60,32 @@ const CategoryArticles = (props) => {
   );
 };
 
-export async function getServerSideProps(props) {
+export async function getStaticPaths() {
+  let result;
+  try {
+    result = await getCategories();
+  } catch (e) {
+    e.ctx = ctx;
+    throw e;
+  }
+  const paths = result.categories.map((cat) => ({
+    params: { category: cat.name.toLowerCase() },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
   let response;
   try {
-    response = await getArticlesByCategory(props.query.category);
+    response = await getArticlesByCategory(params.category);
   } catch (error) {
-    return { props: { error: 500 } };
+    return { props: { error: 500, revalidate: 1 } };
   }
   if (response.error) {
-    return { props: { error: response.error.status } };
+    return { props: { error: response.error.status, revalidate: 1 } };
   } else {
-    return { props: { articles: response.articles } };
+    return { props: { articles: response.articles, revalidate: 1 } };
   }
 }
 
