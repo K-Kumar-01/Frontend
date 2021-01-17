@@ -80,12 +80,12 @@ export async function getStaticProps({ params }) {
   try {
     response = await getArticlesByCategory(params.category);
   } catch (error) {
-    return { props: { error: 500, revalidate: 1 } };
+    return { props: { error: 500 }, revalidate: 1 };
   }
   if (response.error) {
-    return { props: { error: response.error.status, revalidate: 1 } };
+    return { props: { error: response.error.status }, revalidate: 1 };
   } else {
-    return { props: { articles: response.articles, revalidate: 1 } };
+    return { props: { articles: response.articles }, revalidate: 1 };
   }
 }
 

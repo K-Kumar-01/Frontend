@@ -6,7 +6,7 @@ import ArticleCategoryCard from "./ArticleCategoryCard";
 
 const ArticlesListCategory = (props) => {
   const renderArticles = (data) => {
-    if (!data.length) {
+    if (!data?.length) {
       return (
         <section className={`text-center`}>
           <IconContext.Provider value={{ color: `#FED15A`, size: "4rem" }}>
