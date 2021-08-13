@@ -14,7 +14,7 @@
     "framer-motion": "^2.4.1",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
-    "next": "^10.0.4",
+    "next": "^11.1.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.24.0",
     "react": "16.13.1",
