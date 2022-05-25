@@ -16,7 +16,7 @@
     "jsonwebtoken": "^8.5.1",
     "next": "^10.0.4",
     "nprogress": "^0.2.0",
-    "prismjs": "^1.24.0",
+    "prismjs": "^1.27.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-dropzone": "^11.0.3",
