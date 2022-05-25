@@ -101,16 +101,18 @@ const ArticleList = (props) => {
       <section className={`trending`}>
         <h1>TRENDING</h1>
         <div className={`row`}>
-          {trending.length && renderMainArticle(trending[0])}
-          {trending.length && renderSideArticles(trending.slice(1))}
+          {!trending.length && <div className="col-12">No trending article.</div>}
+          {!!trending.length && renderMainArticle(trending[0])}
+          {!!trending.length && renderSideArticles(trending.slice(1))}
         </div>
       </section>
       <hr />
       <section className={`latest`}>
         <h1>LATEST</h1>
         <div className={`row`}>
-          {renderMainArticle(articles[0])}
-          {renderSideArticles(articles.slice(1, 5))}
+          {!articles.length && <div className="col-12">No article created. Create one to see the article listed here</div>}
+          {!!articles.length && renderMainArticle(articles[0])}
+          {!!articles.length && renderSideArticles(articles.slice(1, 5))}
         </div>
       </section>
     </div>
