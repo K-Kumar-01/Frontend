@@ -68,7 +68,13 @@ export async function getStaticPaths() {
     e.ctx = ctx;
     throw e;
   }
-  const paths = result.categories.map((cat) => ({
+  
+  let paths;
+  if(!result.categories){
+    result={categories:[]};
+  }
+
+  paths = result.categories.map((cat) => ({
     params: { category: cat.name.toLowerCase() },
   }));
 
