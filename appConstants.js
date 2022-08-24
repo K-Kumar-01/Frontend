@@ -1,7 +1,7 @@
 const BASE_URL = `https://mighty-ravine-63394.herokuapp.com/`;
 // const BASE_URL = `http://localhost:8000/`;
 
-const DOMAIN = `https://frontend.k-kumar-01.vercel.app/`;
+const DOMAIN = `https://frontend-three-kappa.vercel.app/`;
 // const DOMAIN = `http://localhost:3000`;
 
 // others
